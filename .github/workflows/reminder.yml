@@ -1,0 +1,24 @@
+name: Reminder
+
+on:
+  schedule:
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram reminder
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          APP_URL: ${{ vars.APP_URL }}
+        run: |
+          payload=$(jq -n --arg chat "$TELEGRAM_CHAT_ID" --arg url "$APP_URL" '{
+            chat_id: $chat,
+            text: "Время английского! 15 минут — и стрик продолжается 🔥",
+            reply_markup: { inline_keyboard: [[{ text: "Заниматься", web_app: { url: $url } }]] }
+          }')
+          curl --fail-with-body -sS "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -H 'Content-Type: application/json' -d "$payload"

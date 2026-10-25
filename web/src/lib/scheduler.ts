@@ -28,7 +28,7 @@ export function getNewWordIds(progress: Progress, meta: Meta, now = new Date()) 
     .map((word) => word.id)
 }
 
-function getStreak(meta: Meta, now: Date) {
+export function getStreak(meta: Meta, now = new Date()) {
   const day = new Date(now)
   if (!meta.days[dayKey(day)]?.reviewed) day.setDate(day.getDate() - 1)
   let streak = 0

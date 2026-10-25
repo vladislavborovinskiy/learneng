@@ -1,4 +1,5 @@
-import { Flame } from 'lucide-react'
+import { FireIcon } from '@phosphor-icons/react/dist/csr/Fire'
+import { GearSixIcon } from '@phosphor-icons/react/dist/csr/GearSix'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
@@ -7,18 +8,37 @@ import type { getStats } from '@/lib/scheduler'
 type HomeProps = {
   stats: ReturnType<typeof getStats>
   levelTestDone: boolean
+  onStartSession: () => void
+  onStartLevelTest: () => void
+  onOpenSettings: () => void
 }
 
-export function Home({ stats, levelTestDone }: HomeProps) {
+export function Home({
+  stats,
+  levelTestDone,
+  onStartSession,
+  onStartLevelTest,
+  onOpenSettings,
+}: HomeProps) {
   const hasWork = stats.due + stats.newToday > 0
 
   return (
     <main className="mx-auto flex min-h-svh max-w-md flex-col gap-3 p-4">
       <header className="flex items-center justify-between py-2">
         <h1 className="text-xl font-semibold">LearnEng</h1>
-        <div className="flex items-center gap-1 text-sm font-medium">
-          <Flame className={stats.streak > 0 ? 'text-orange-500' : 'text-muted-foreground'} />
-          {stats.streak}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 text-sm font-medium">
+            <FireIcon
+              weight={stats.streak > 0 ? 'fill' : 'regular'}
+              className={
+                stats.streak > 0 ? 'size-5 text-orange-500' : 'size-5 text-muted-foreground'
+              }
+            />
+            {stats.streak}
+          </div>
+          <Button variant="ghost" size="icon" aria-label="Настройки" onClick={onOpenSettings}>
+            <GearSixIcon className="size-5" />
+          </Button>
         </div>
       </header>
 
@@ -31,7 +51,7 @@ export function Home({ stats, levelTestDone }: HomeProps) {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button variant="secondary" className="h-11 w-full" disabled>
+            <Button variant="outline" className="h-11 w-full" onClick={onStartLevelTest}>
               Пройти тест
             </Button>
           </CardContent>
@@ -53,7 +73,7 @@ export function Home({ stats, levelTestDone }: HomeProps) {
               <div className="text-sm text-muted-foreground">новых слов</div>
             </div>
           </div>
-          <Button className="h-11 w-full text-base" disabled={!hasWork}>
+          <Button className="h-11 w-full text-base" disabled={!hasWork} onClick={onStartSession}>
             {hasWork ? 'Начать занятие' : 'На сегодня всё'}
           </Button>
         </CardContent>

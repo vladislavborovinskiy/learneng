@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
-import type { Grade } from 'ts-fsrs'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { Rating, type Grade } from 'ts-fsrs'
 import { dayKey, gradeCard } from '@/lib/scheduler'
-import { loadAll, saveCard, saveMeta, type Meta, type Progress } from '@/lib/storage'
+import { loadAll, saveCards, saveMeta, type Meta, type Progress } from '@/lib/storage'
+
+type LearningData = { progress: Progress; meta: Meta }
 
 type LearningState =
-  | { status: 'loading' }
-  | { status: 'error'; error: string }
-  | { status: 'ready'; progress: Progress; meta: Meta }
+  { status: 'loading' } | { status: 'error'; error: string } | ({ status: 'ready' } & LearningData)
 
 function reportSaveError(error: unknown) {
   console.error('Failed to save progress', error)
@@ -14,47 +14,69 @@ function reportSaveError(error: unknown) {
 
 export function useLearning() {
   const [state, setState] = useState<LearningState>({ status: 'loading' })
+  const dataRef = useRef<LearningData | null>(null)
+
+  const commit = useCallback((data: LearningData) => {
+    dataRef.current = data
+    setState({ status: 'ready', ...data })
+  }, [])
 
   useEffect(() => {
     loadAll()
-      .then(({ progress, meta }) => setState({ status: 'ready', progress, meta }))
+      .then(commit)
       .catch((error: unknown) => setState({ status: 'error', error: String(error) }))
-  }, [])
+  }, [commit])
 
   const grade = useCallback(
     (wordId: string, rating: Grade) => {
-      if (state.status !== 'ready') return
+      const data = dataRef.current
+      if (!data) return
       const now = new Date()
       const today = dayKey(now)
-      const previous = state.progress[wordId]
-      const progress = { ...state.progress, [wordId]: gradeCard(previous, rating, now) }
-      const todayStats = state.meta.days[today] ?? { reviewed: 0, learned: 0 }
+      const previous = data.progress[wordId]
+      const progress = { ...data.progress, [wordId]: gradeCard(previous, rating, now) }
+      const todayStats = data.meta.days[today] ?? { reviewed: 0, learned: 0 }
       const meta: Meta = {
-        ...state.meta,
+        ...data.meta,
         days: {
-          ...state.meta.days,
+          ...data.meta.days,
           [today]: {
             reviewed: todayStats.reviewed + 1,
             learned: todayStats.learned + (previous ? 0 : 1),
           },
         },
       }
-      setState({ status: 'ready', progress, meta })
-      saveCard(progress, wordId).catch(reportSaveError)
+      commit({ progress, meta })
+      saveCards(progress, [wordId]).catch(reportSaveError)
       saveMeta(meta).catch(reportSaveError)
     },
-    [state]
+    [commit]
+  )
+
+  const markKnown = useCallback(
+    (wordIds: string[]) => {
+      const data = dataRef.current
+      if (!data) return
+      const now = new Date()
+      const unseen = wordIds.filter((wordId) => !data.progress[wordId])
+      const progress = { ...data.progress }
+      for (const wordId of unseen) progress[wordId] = gradeCard(undefined, Rating.Easy, now)
+      commit({ ...data, progress })
+      saveCards(progress, unseen).catch(reportSaveError)
+    },
+    [commit]
   )
 
   const updateMeta = useCallback(
     (patch: Partial<Meta>) => {
-      if (state.status !== 'ready') return
-      const meta = { ...state.meta, ...patch }
-      setState({ ...state, meta })
+      const data = dataRef.current
+      if (!data) return
+      const meta = { ...data.meta, ...patch }
+      commit({ ...data, meta })
       saveMeta(meta).catch(reportSaveError)
     },
-    [state]
+    [commit]
   )
 
-  return { state, grade, updateMeta }
+  return { state, grade, markKnown, updateMeta }
 }

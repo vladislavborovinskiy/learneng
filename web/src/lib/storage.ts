@@ -152,17 +152,52 @@ export async function loadAll(): Promise<{ progress: Progress; meta: Meta }> {
   return { progress, meta }
 }
 
-export function saveCard(progress: Progress, wordId: string) {
-  const key = packKey(wordId)
-  const pack: Record<string, CompactCard> = {}
+const allPackKeys = Array.from(
+  { length: PACK_COUNT },
+  (_, index) => `p:${String(index).padStart(2, '0')}`
+)
+
+function serializePacks(progress: Progress, keys: Iterable<string>) {
+  const packs = new Map<string, Record<string, CompactCard>>([...keys].map((key) => [key, {}]))
   for (const [id, card] of Object.entries(progress)) {
-    if (packKey(id) === key) pack[id] = compact(card)
+    const pack = packs.get(packKey(id))
+    if (pack) pack[id] = compact(card)
   }
-  return store.set(key, JSON.stringify(pack))
+  return [...packs].map(([key, pack]) => [key, JSON.stringify(pack)] as const)
+}
+
+function serializeMeta(meta: Meta) {
+  const recentDays = Object.keys(meta.days).sort().slice(-MAX_STORED_DAYS)
+  const days = Object.fromEntries(recentDays.map((day) => [day, meta.days[day]]))
+  return JSON.stringify({ ...meta, days })
+}
+
+export async function saveCards(progress: Progress, wordIds: string[]) {
+  for (const [key, value] of serializePacks(progress, new Set(wordIds.map(packKey)))) {
+    await store.set(key, value)
+  }
 }
 
 export function saveMeta(meta: Meta) {
-  const recentDays = Object.keys(meta.days).sort().slice(-MAX_STORED_DAYS)
-  const days = Object.fromEntries(recentDays.map((day) => [day, meta.days[day]]))
-  return store.set(META_KEY, JSON.stringify({ ...meta, days }))
+  return store.set(META_KEY, serializeMeta(meta))
+}
+
+export function exportBackup(progress: Progress, meta: Meta) {
+  const packs = serializePacks(progress, allPackKeys).filter(([, value]) => value !== '{}')
+  return JSON.stringify(Object.fromEntries([...packs, [META_KEY, serializeMeta(meta)]]))
+}
+
+export async function importBackup(backup: string) {
+  const entries: unknown = JSON.parse(backup)
+  if (typeof entries !== 'object' || entries === null || !(META_KEY in entries)) {
+    throw new Error('Это не резервная копия LearnEng')
+  }
+  const values = entries as Record<string, unknown>
+  for (const [key, value] of Object.entries(values)) {
+    if (key !== META_KEY && !allPackKeys.includes(key)) throw new Error(`Неизвестный ключ ${key}`)
+    if (typeof value !== 'string') throw new Error(`Повреждённое значение ${key}`)
+    JSON.parse(value)
+  }
+  for (const key of allPackKeys) await store.set(key, (values[key] as string | undefined) ?? '{}')
+  await store.set(META_KEY, values[META_KEY] as string)
 }
