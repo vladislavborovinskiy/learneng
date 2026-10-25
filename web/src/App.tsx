@@ -8,9 +8,12 @@ import { Settings } from '@/screens/settings'
 
 type Screen = 'home' | 'session' | 'level-test' | 'settings'
 
+const EXTRA_NEW_WORDS = 5
+
 export function App() {
   const { state, grade, markKnown, updateMeta } = useLearning()
   const [screen, setScreen] = useState<Screen>('home')
+  const [extraNew, setExtraNew] = useState(0)
   const goHome = useCallback(() => setScreen('home'), [])
   const finishLevelTest = useCallback(() => {
     updateMeta({ levelTestDone: true })
@@ -34,6 +37,7 @@ export function App() {
       <Session
         progress={state.progress}
         meta={state.meta}
+        extraNew={extraNew}
         grade={grade}
         markKnown={markKnown}
         onExit={goHome}
@@ -61,7 +65,15 @@ export function App() {
     <Home
       stats={getStats(state.progress, state.meta)}
       levelTestDone={state.meta.levelTestDone}
-      onStartSession={() => setScreen('session')}
+      extraNewCount={EXTRA_NEW_WORDS}
+      onStartSession={() => {
+        setExtraNew(0)
+        setScreen('session')
+      }}
+      onStartExtra={() => {
+        setExtraNew(EXTRA_NEW_WORDS)
+        setScreen('session')
+      }}
       onStartLevelTest={() => setScreen('level-test')}
       onOpenSettings={() => setScreen('settings')}
     />

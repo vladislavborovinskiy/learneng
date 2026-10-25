@@ -10,7 +10,9 @@ import { cn } from '@/lib/utils'
 type HomeProps = {
   stats: ReturnType<typeof getStats>
   levelTestDone: boolean
+  extraNewCount: number
   onStartSession: () => void
+  onStartExtra: () => void
   onStartLevelTest: () => void
   onOpenSettings: () => void
 }
@@ -18,7 +20,9 @@ type HomeProps = {
 export function Home({
   stats,
   levelTestDone,
+  extraNewCount,
   onStartSession,
+  onStartExtra,
   onStartLevelTest,
   onOpenSettings,
 }: HomeProps) {
@@ -50,9 +54,21 @@ export function Home({
               Тест
             </Button>
           )}
-          <Button size="lg" className="flex-1" disabled={!hasWork} onClick={onStartSession}>
-            {hasWork ? 'Старт' : 'На сегодня всё'}
-          </Button>
+          {hasWork ? (
+            <Button size="lg" className="flex-1" onClick={onStartSession}>
+              Старт
+            </Button>
+          ) : (
+            <Button
+              size="lg"
+              variant="outline"
+              className="flex-1"
+              disabled={stats.unseen === 0}
+              onClick={onStartExtra}
+            >
+              {stats.unseen === 0 ? 'Всё выучено' : `Ещё ${extraNewCount} слов`}
+            </Button>
+          )}
         </div>
       }
     >

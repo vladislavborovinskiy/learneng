@@ -19,9 +19,9 @@ export function getDueWordIds(progress: Progress, now = new Date()) {
     .map(([wordId]) => wordId)
 }
 
-export function getNewWordIds(progress: Progress, meta: Meta, now = new Date()) {
+export function getNewWordIds(progress: Progress, meta: Meta, extra = 0, now = new Date()) {
   const learnedToday = meta.days[dayKey(now)]?.learned ?? 0
-  const limit = Math.max(0, meta.newPerDay - learnedToday)
+  const limit = extra > 0 ? extra : Math.max(0, meta.newPerDay - learnedToday)
   return newWordsOrder
     .filter((word) => !progress[word.id])
     .slice(0, limit)
@@ -46,7 +46,8 @@ export function getStats(progress: Progress, meta: Meta, now = new Date()) {
 
   return {
     due: getDueWordIds(progress, now).length,
-    newToday: getNewWordIds(progress, meta, now).length,
+    newToday: getNewWordIds(progress, meta, 0, now).length,
+    unseen: words.filter((word) => !progress[word.id]).length,
     streak: getStreak(meta, now),
     total: words.length,
     learned: words.filter((word) => isLearned(word.id)).length,

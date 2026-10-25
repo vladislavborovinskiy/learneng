@@ -22,6 +22,7 @@ import { SessionSummary } from '@/screens/session-summary'
 type SessionProps = {
   progress: Progress
   meta: Meta
+  extraNew: number
   grade: (wordId: string, rating: Grade) => void
   markKnown: (wordIds: string[]) => void
   onExit: () => void
@@ -39,10 +40,10 @@ function exerciseFor(item: QueueItem | undefined, progress: Progress) {
   return buildExercise(wordsById.get(item.wordId)!, progress[item.wordId])
 }
 
-export function Session({ progress, meta, grade, markKnown, onExit }: SessionProps) {
+export function Session({ progress, meta, extraNew, grade, markKnown, onExit }: SessionProps) {
   const [queue, setQueue] = useState<QueueItem[]>(() => [
     ...getDueWordIds(progress).map((wordId) => ({ wordId, intro: false })),
-    ...getNewWordIds(progress, meta).map((wordId) => ({ wordId, intro: true })),
+    ...getNewWordIds(progress, meta, extraNew).map((wordId) => ({ wordId, intro: true })),
   ])
   const [index, setIndex] = useState(0)
   const [exercise, setExercise] = useState<Exercise | null>(() => exerciseFor(queue[0], progress))

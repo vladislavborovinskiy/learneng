@@ -14,7 +14,7 @@
 - `web/` — Vite + React 19 + TS 6 + Tailwind 4 + shadcn (Base UI, стиль base-nova).
   - `src/lib/telegram.ts` — `Telegram.WebApp` (официальный скрипт в `index.html`), тема → класс `.dark`.
   - `src/lib/storage.ts` — KV поверх CloudStorage/localStorage. Карточки FSRS хранятся пачками в 64 ключах `p_NN` (CloudStorage допускает в ключах только `A-Za-z0-9_-`) (хэш id слова), компактно массивом; настройки и статистика по дням — ключ `meta`.
-  - `src/lib/scheduler.ts` — `ts-fsrs`, очередь (сначала повторения, затем новые: IT, потом NGSL по рангу), статистика.
+  - `src/lib/scheduler.ts` — `ts-fsrs`, очередь (сначала повторения, затем новые: IT, потом NGSL по рангу), статистика. Когда дневной лимит исчерпан, на главной кнопка «Ещё 5 слов» — сессия с `extraNew` новыми словами сверх лимита.
   - `src/lib/use-learning.ts` — хук состояния: загрузка, `grade`, `markKnown` (сразу `Easy`), `updateMeta`. Ошибка записи → тост `toast.error` (shadcn sonner в стиле приложения, `components/ui/sonner.tsx`, один тост с id `save-error`). Данные дублируются в ref, чтобы последовательные вызовы в одном обработчике не теряли изменения.
   - `src/lib/exercises.ts` — сборка упражнения по состоянию карточки FSRS (не Review → выбор EN→RU/RU→EN; stability < 7 дн → пропуск/плитки; иначе ввод), дистракторы той же части речи без пересечения переводов, проверка ввода по Левенштейну (опечатка → `Hard`).
   - `src/exercises/` — UI упражнений, карточка нового слова, панель обратной связи.
