@@ -1,0 +1,443 @@
+{
+  "bands": [
+    [
+      1,
+      500
+    ],
+    [
+      501,
+      1000
+    ],
+    [
+      1001,
+      1500
+    ],
+    [
+      1501,
+      2000
+    ],
+    [
+      2001,
+      2809
+    ]
+  ],
+  "words": [
+    {
+      "en": "would",
+      "rank": 36
+    },
+    {
+      "en": "first",
+      "rank": 78
+    },
+    {
+      "en": "new",
+      "rank": 79
+    },
+    {
+      "en": "feel",
+      "rank": 117
+    },
+    {
+      "en": "end",
+      "rank": 152
+    },
+    {
+      "en": "house",
+      "rank": 165
+    },
+    {
+      "en": "friend",
+      "rank": 208
+    },
+    {
+      "en": "result",
+      "rank": 233
+    },
+    {
+      "en": "line",
+      "rank": 274
+    },
+    {
+      "en": "often",
+      "rank": 288
+    },
+    {
+      "en": "hard",
+      "rank": 298
+    },
+    {
+      "en": "party",
+      "rank": 299
+    },
+    {
+      "en": "letter",
+      "rank": 358
+    },
+    {
+      "en": "town",
+      "rank": 364
+    },
+    {
+      "en": "future",
+      "rank": 370
+    },
+    {
+      "en": "black",
+      "rank": 411
+    },
+    {
+      "en": "describe",
+      "rank": 457
+    },
+    {
+      "en": "action",
+      "rank": 474
+    },
+    {
+      "en": "health",
+      "rank": 475
+    },
+    {
+      "en": "explain",
+      "rank": 489
+    },
+    {
+      "en": "data",
+      "rank": 556
+    },
+    {
+      "en": "summer",
+      "rank": 654
+    },
+    {
+      "en": "management",
+      "rank": 692
+    },
+    {
+      "en": "wall",
+      "rank": 722
+    },
+    {
+      "en": "direct",
+      "rank": 724
+    },
+    {
+      "en": "success",
+      "rank": 725
+    },
+    {
+      "en": "machine",
+      "rank": 745
+    },
+    {
+      "en": "floor",
+      "rank": 751
+    },
+    {
+      "en": "aim",
+      "rank": 794
+    },
+    {
+      "en": "movement",
+      "rank": 803
+    },
+    {
+      "en": "separate",
+      "rank": 890
+    },
+    {
+      "en": "fun",
+      "rank": 902
+    },
+    {
+      "en": "reflect",
+      "rank": 916
+    },
+    {
+      "en": "useful",
+      "rank": 918
+    },
+    {
+      "en": "define",
+      "rank": 930
+    },
+    {
+      "en": "dead",
+      "rank": 947
+    },
+    {
+      "en": "prefer",
+      "rank": 949
+    },
+    {
+      "en": "facility",
+      "rank": 953
+    },
+    {
+      "en": "rock",
+      "rank": 965
+    },
+    {
+      "en": "judge",
+      "rank": 995
+    },
+    {
+      "en": "unless",
+      "rank": 1005
+    },
+    {
+      "en": "request",
+      "rank": 1011
+    },
+    {
+      "en": "safe",
+      "rank": 1027
+    },
+    {
+      "en": "sample",
+      "rank": 1062
+    },
+    {
+      "en": "deliver",
+      "rank": 1064
+    },
+    {
+      "en": "hang",
+      "rank": 1085
+    },
+    {
+      "en": "double",
+      "rank": 1096
+    },
+    {
+      "en": "leg",
+      "rank": 1097
+    },
+    {
+      "en": "print",
+      "rank": 1100
+    },
+    {
+      "en": "excite",
+      "rank": 1142
+    },
+    {
+      "en": "taxi",
+      "rank": 1148
+    },
+    {
+      "en": "camp",
+      "rank": 1165
+    },
+    {
+      "en": "category",
+      "rank": 1192
+    },
+    {
+      "en": "senior",
+      "rank": 1207
+    },
+    {
+      "en": "cultural",
+      "rank": 1265
+    },
+    {
+      "en": "award",
+      "rank": 1341
+    },
+    {
+      "en": "threat",
+      "rank": 1348
+    },
+    {
+      "en": "finance",
+      "rank": 1379
+    },
+    {
+      "en": "construction",
+      "rank": 1400
+    },
+    {
+      "en": "industrial",
+      "rank": 1494
+    },
+    {
+      "en": "strongly",
+      "rank": 1545
+    },
+    {
+      "en": "brand",
+      "rank": 1549
+    },
+    {
+      "en": "row",
+      "rank": 1602
+    },
+    {
+      "en": "tiny",
+      "rank": 1636
+    },
+    {
+      "en": "entry",
+      "rank": 1655
+    },
+    {
+      "en": "proportion",
+      "rank": 1663
+    },
+    {
+      "en": "disappear",
+      "rank": 1665
+    },
+    {
+      "en": "ideal",
+      "rank": 1674
+    },
+    {
+      "en": "hell",
+      "rank": 1743
+    },
+    {
+      "en": "habit",
+      "rank": 1828
+    },
+    {
+      "en": "existence",
+      "rank": 1835
+    },
+    {
+      "en": "prime",
+      "rank": 1838
+    },
+    {
+      "en": "disappoint",
+      "rank": 1853
+    },
+    {
+      "en": "freeze",
+      "rank": 1856
+    },
+    {
+      "en": "extreme",
+      "rank": 1857
+    },
+    {
+      "en": "proud",
+      "rank": 1890
+    },
+    {
+      "en": "luck",
+      "rank": 1934
+    },
+    {
+      "en": "snow",
+      "rank": 1950
+    },
+    {
+      "en": "gentleman",
+      "rank": 1990
+    },
+    {
+      "en": "drama",
+      "rank": 1991
+    },
+    {
+      "en": "everyday",
+      "rank": 2158
+    },
+    {
+      "en": "van",
+      "rank": 2217
+    },
+    {
+      "en": "planet",
+      "rank": 2219
+    },
+    {
+      "en": "inner",
+      "rank": 2235
+    },
+    {
+      "en": "consult",
+      "rank": 2237
+    },
+    {
+      "en": "vice",
+      "rank": 2245
+    },
+    {
+      "en": "exposure",
+      "rank": 2307
+    },
+    {
+      "en": "deposit",
+      "rank": 2313
+    },
+    {
+      "en": "dependent",
+      "rank": 2336
+    },
+    {
+      "en": "twin",
+      "rank": 2366
+    },
+    {
+      "en": "rescue",
+      "rank": 2381
+    },
+    {
+      "en": "contest",
+      "rank": 2462
+    },
+    {
+      "en": "flash",
+      "rank": 2485
+    },
+    {
+      "en": "therapy",
+      "rank": 2498
+    },
+    {
+      "en": "pride",
+      "rank": 2563
+    },
+    {
+      "en": "exhaust",
+      "rank": 2669
+    },
+    {
+      "en": "hint",
+      "rank": 2689
+    },
+    {
+      "en": "innocent",
+      "rank": 2714
+    },
+    {
+      "en": "adjustment",
+      "rank": 2717
+    },
+    {
+      "en": "website",
+      "rank": 2764
+    }
+  ],
+  "pseudo": [
+    "plurdish",
+    "mornify",
+    "glendic",
+    "brastle",
+    "trevolate",
+    "kesterine",
+    "dabinate",
+    "snorvel",
+    "plimsful",
+    "crandile",
+    "wobent",
+    "flarnish",
+    "mudrible",
+    "pranticate",
+    "sloothe"
+  ]
+}
