@@ -13,14 +13,14 @@
 - `content/draft/` — промежуточные файлы генерации контента.
 - `web/` — Vite + React 19 + TS 6 + Tailwind 4 + shadcn (Base UI, стиль base-nova).
   - `src/lib/telegram.ts` — `Telegram.WebApp` (официальный скрипт в `index.html`), тема → класс `.dark`.
-  - `src/lib/storage.ts` — KV поверх CloudStorage/localStorage. Карточки FSRS хранятся пачками в 64 ключах `p:NN` (хэш id слова), компактно массивом; настройки и статистика по дням — ключ `meta`.
+  - `src/lib/storage.ts` — KV поверх CloudStorage/localStorage. Карточки FSRS хранятся пачками в 64 ключах `p_NN` (CloudStorage допускает в ключах только `A-Za-z0-9_-`) (хэш id слова), компактно массивом; настройки и статистика по дням — ключ `meta`.
   - `src/lib/scheduler.ts` — `ts-fsrs`, очередь (сначала повторения, затем новые: IT, потом NGSL по рангу), статистика.
   - `src/lib/use-learning.ts` — хук состояния: загрузка, `grade`, `markKnown` (сразу `Easy`), `updateMeta`. Данные дублируются в ref, чтобы последовательные вызовы в одном обработчике не теряли изменения.
   - `src/lib/exercises.ts` — сборка упражнения по состоянию карточки FSRS (не Review → выбор EN→RU/RU→EN; stability < 7 дн → пропуск/плитки; иначе ввод), дистракторы той же части речи без пересечения переводов, проверка ввода по Левенштейну (опечатка → `Hard`).
   - `src/exercises/` — UI упражнений, карточка нового слова, панель обратной связи.
   - `src/screens/` — `home`, `session` (ошибка → слово возвращается в очередь через 4 позиции), `session-summary`, `level-test` (коррекция по псевдословам; диапазон 1–500 ≥ 85% → все NGSL-слова диапазона в `Easy`); навигация через `useState`, без роутера.
   - `src/lib/telegram.ts` — `useBackButton` (заодно блокирует свайп-закрытие), `haptic`.
-  - `src/screens/settings.tsx` — новых слов в день, резервная копия (экспорт в буфер обмена как JSON `{ "p:NN": ..., "meta": ... }`, импорт перезаписывает все 64 пачки и перезагружает страницу), повтор теста уровня.
+  - `src/screens/settings.tsx` — новых слов в день, резервная копия (экспорт в буфер обмена как JSON `{ "p_NN": ..., "meta": ... }`, старые копии с `p:NN` тоже принимаются, импорт перезаписывает все 64 пачки и перезагружает страницу), повтор теста уровня.
 - `.github/workflows/deploy.yml` — push в `main` → lint + build `web/` → GitHub Pages.
 - `scripts/send-reminder.mjs` — отправка напоминания (`sendMessage` с кнопкой `web_app`), читает `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `APP_URL` из окружения. Локально ключи в `.env` (шаблон `.env.example`, `.env` в gitignore, ассистент его не читает).
 - `.github/workflows/reminder.yml` — cron `0 17 * * *` (20:00 МСК) → `node scripts/send-reminder.mjs`. Секреты `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, переменная `APP_URL`.

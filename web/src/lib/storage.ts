@@ -70,6 +70,8 @@ export const defaultMeta: Meta = {
 }
 
 const PACK_COUNT = 64
+const PACK_PREFIX = 'p_'
+const LEGACY_PACK_PREFIX = 'p:'
 const META_KEY = 'meta'
 const MAX_STORED_DAYS = 120
 
@@ -87,10 +89,14 @@ type CompactCard = [
 
 const MINUTE = 60_000
 
+function packKeyByIndex(index: number) {
+  return `${PACK_PREFIX}${String(index).padStart(2, '0')}`
+}
+
 function packKey(wordId: string) {
   let hash = 0
   for (const char of wordId) hash = (hash * 31 + char.charCodeAt(0)) >>> 0
-  return `p:${String(hash % PACK_COUNT).padStart(2, '0')}`
+  return packKeyByIndex(hash % PACK_COUNT)
 }
 
 function round(value: number) {
@@ -141,7 +147,7 @@ export async function loadAll(): Promise<{ progress: Progress; meta: Meta }> {
   const progress: Progress = {}
 
   for (const [key, value] of Object.entries(entries)) {
-    if (!key.startsWith('p:') || !value) continue
+    if (!key.startsWith(PACK_PREFIX) || !value) continue
     const pack = JSON.parse(value) as Record<string, CompactCard>
     for (const [wordId, card] of Object.entries(pack)) progress[wordId] = expand(card)
   }
@@ -152,10 +158,7 @@ export async function loadAll(): Promise<{ progress: Progress; meta: Meta }> {
   return { progress, meta }
 }
 
-const allPackKeys = Array.from(
-  { length: PACK_COUNT },
-  (_, index) => `p:${String(index).padStart(2, '0')}`
-)
+const allPackKeys = Array.from({ length: PACK_COUNT }, (_, index) => packKeyByIndex(index))
 
 function serializePacks(progress: Progress, keys: Iterable<string>) {
   const packs = new Map<string, Record<string, CompactCard>>([...keys].map((key) => [key, {}]))
@@ -192,7 +195,12 @@ export async function importBackup(backup: string) {
   if (typeof entries !== 'object' || entries === null || !(META_KEY in entries)) {
     throw new Error('Это не резервная копия LearnEng')
   }
-  const values = entries as Record<string, unknown>
+  const values = Object.fromEntries(
+    Object.entries(entries).map(([key, value]) => [
+      key.replace(LEGACY_PACK_PREFIX, PACK_PREFIX),
+      value,
+    ])
+  )
   for (const [key, value] of Object.entries(values)) {
     if (key !== META_KEY && !allPackKeys.includes(key)) throw new Error(`Неизвестный ключ ${key}`)
     if (typeof value !== 'string') throw new Error(`Повреждённое значение ${key}`)
