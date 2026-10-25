@@ -9,16 +9,12 @@ jobs:
   remind:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Telegram reminder
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: node scripts/send-reminder.mjs
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           APP_URL: ${{ vars.APP_URL }}
-        run: |
-          payload=$(jq -n --arg chat "$TELEGRAM_CHAT_ID" --arg url "$APP_URL" '{
-            chat_id: $chat,
-            text: "Время английского! 15 минут — и стрик продолжается 🔥",
-            reply_markup: { inline_keyboard: [[{ text: "Заниматься", web_app: { url: $url } }]] }
-          }')
-          curl --fail-with-body -sS "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-            -H 'Content-Type: application/json' -d "$payload"

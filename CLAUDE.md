@@ -22,13 +22,16 @@
   - `src/lib/telegram.ts` — `useBackButton` (заодно блокирует свайп-закрытие), `haptic`.
   - `src/screens/settings.tsx` — новых слов в день, резервная копия (экспорт в буфер обмена как JSON `{ "p:NN": ..., "meta": ... }`, импорт перезаписывает все 64 пачки и перезагружает страницу), повтор теста уровня.
 - `.github/workflows/deploy.yml` — push в `main` → lint + build `web/` → GitHub Pages.
-- `.github/workflows/reminder.yml` — cron `0 17 * * *` (20:00 МСК) → `sendMessage` с кнопкой `web_app`. Секреты `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, переменная `APP_URL`.
+- `scripts/send-reminder.mjs` — отправка напоминания (`sendMessage` с кнопкой `web_app`), читает `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `APP_URL` из окружения. Локально ключи в `.env` (шаблон `.env.example`, `.env` в gitignore, ассистент его не читает).
+- `.github/workflows/reminder.yml` — cron `0 17 * * *` (20:00 МСК) → `node scripts/send-reminder.mjs`. Секреты `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, переменная `APP_URL`.
 - Цвета shadcn-токенов берутся из `--tg-theme-*` с фолбэками.
 - Иконки — Phosphor через подпуть `@phosphor-icons/react/dist/csr/<Name>`.
 
 ## Команды (в `web/`)
 
 `npm run dev`, `npm run build`, `npm run lint` (oxlint), `npm run typecheck`, `npm run format`.
+
+Из корня: `node --env-file=.env scripts/send-reminder.mjs` — отправить напоминание вручную.
 
 ## Current state / Open work
 
