@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
 import { Rating, type Grade } from 'ts-fsrs'
 import { dayKey, gradeCard } from '@/lib/scheduler'
 import { loadAll, saveCards, saveMeta, type Meta, type Progress } from '@/lib/storage'
@@ -10,6 +11,12 @@ type LearningState =
 
 function reportSaveError(error: unknown) {
   console.error('Failed to save progress', error)
+  toast.error('Прогресс не сохранился', {
+    id: 'save-error',
+    description:
+      'Проверь интернет. Не закрывай приложение: в настройках можно скопировать резервную копию.',
+    duration: 8000,
+  })
 }
 
 export function useLearning() {
