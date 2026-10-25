@@ -21,7 +21,7 @@
   - `src/screens/` — `home`, `session` (ошибка → слово возвращается в очередь через 4 позиции), `session-summary`, `level-test` (коррекция по псевдословам; диапазон 1–500 ≥ 85% → все NGSL-слова диапазона в `Easy`); навигация через `useState`, без роутера.
   - `src/lib/telegram.ts` — `useBackButton` (заодно блокирует свайп-закрытие), `haptic`.
   - `src/screens/settings.tsx` — новых слов в день, резервная копия (экспорт в буфер обмена как JSON `{ "p:NN": ..., "meta": ... }`, импорт перезаписывает все 64 пачки и перезагружает страницу), повтор теста уровня.
-- `.github/workflows/deploy.yml` — push в `master` → lint + build `web/` → GitHub Pages.
+- `.github/workflows/deploy.yml` — push в `main` → lint + build `web/` → GitHub Pages.
 - `.github/workflows/reminder.yml` — cron `0 17 * * *` (20:00 МСК) → `sendMessage` с кнопкой `web_app`. Секреты `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, переменная `APP_URL`.
 - Цвета shadcn-токенов берутся из `--tg-theme-*` с фолбэками.
 - Иконки — Phosphor через подпуть `@phosphor-icons/react/dist/csr/<Name>`.
