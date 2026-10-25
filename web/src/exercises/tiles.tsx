@@ -1,76 +1,84 @@
-import { useState } from 'react'
-import { BottomBar } from '@/components/bottom-bar'
+import { useState, type ReactNode } from 'react'
+import { ScreenLabel } from '@/components/screen-label'
+import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
 import { checkTiles, type AnswerResult, type TilesExercise } from '@/lib/exercises'
 import { cn } from '@/lib/utils'
 
 type TilesProps = {
   exercise: TilesExercise
+  header: ReactNode
+  feedback: ReactNode
   onAnswer: (result: AnswerResult) => void
 }
 
 const tileClassName =
-  'rounded-xl border-2 bg-card px-3 py-2 text-base shadow-[0_2px_0_var(--border)] transition-transform active:translate-y-0.5'
+  'pixel-corners border-(length:--pixel) bg-card px-3 py-2 text-base transition-transform active:translate-y-0.5'
 
-export function Tiles({ exercise, onAnswer }: TilesProps) {
+export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
   const [selected, setSelected] = useState<number[]>([])
-  const [checked, setChecked] = useState(false)
   const { sentence, tiles, answer } = exercise
 
   const check = () => {
-    setChecked(true)
-    onAnswer(
-      checkTiles(
-        selected.map((index) => tiles[index]),
-        answer
-      )
-        ? 'correct'
-        : 'wrong'
+    const isCorrect = checkTiles(
+      selected.map((index) => tiles[index]),
+      answer
     )
+    onAnswer(isCorrect ? 'correct' : 'wrong')
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <p className="text-sm font-medium text-accent-foreground">Собери предложение</p>
+    <ThumbLayout
+      header={header}
+      actions={
+        feedback ?? (
+          <>
+            <div className="flex flex-wrap justify-center gap-2">
+              {tiles.map((tile, index) => {
+                const isUsed = selected.includes(index)
+                return (
+                  <button
+                    key={index}
+                    type="button"
+                    disabled={isUsed}
+                    className={cn(
+                      tileClassName,
+                      'border-border',
+                      isUsed && 'bg-transparent text-transparent'
+                    )}
+                    onClick={() => setSelected([...selected, index])}
+                  >
+                    {tile}
+                  </button>
+                )
+              })}
+            </div>
+            <Button size="lg" disabled={selected.length === 0} onClick={check}>
+              Проверить
+            </Button>
+          </>
+        )
+      }
+    >
+      <ScreenLabel>Собери предложение</ScreenLabel>
       <p className="text-xl">{sentence.ru}</p>
       <div
         className={cn(
-          'flex min-h-28 flex-wrap content-start gap-2 border-y py-3',
-          checked && 'pointer-events-none'
+          'flex min-h-24 flex-wrap content-start gap-2 border-b-(length:--pixel) border-dashed pb-3',
+          feedback && 'pointer-events-none'
         )}
       >
         {selected.map((index) => (
           <button
             key={index}
             type="button"
-            className={tileClassName}
+            className={cn(tileClassName, 'border-primary')}
             onClick={() => setSelected(selected.filter((other) => other !== index))}
           >
             {tiles[index]}
           </button>
         ))}
       </div>
-      <div className={cn('flex flex-wrap justify-center gap-2', checked && 'pointer-events-none')}>
-        {tiles.map((tile, index) => {
-          const isUsed = selected.includes(index)
-          return (
-            <button
-              key={index}
-              type="button"
-              disabled={isUsed}
-              className={cn(tileClassName, isUsed && 'bg-muted text-transparent shadow-none')}
-              onClick={() => setSelected([...selected, index])}
-            >
-              {tile}
-            </button>
-          )
-        })}
-      </div>
-      <BottomBar>
-        <Button className="h-12 text-base" disabled={selected.length === 0} onClick={check}>
-          Проверить
-        </Button>
-      </BottomBar>
-    </div>
+    </ThumbLayout>
   )
 }

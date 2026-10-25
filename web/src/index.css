@@ -1,17 +1,37 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/600.css';
 
-@custom-variant dark (&:is(.dark *));
+@font-face {
+  font-family: 'Pixel Letters';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@fontsource/pixelify-sans/files/pixelify-sans-latin-500-normal.woff2') format('woff2');
+  unicode-range: U+0041-005A, U+0061-007A;
+}
+
+@font-face {
+  font-family: 'Pixel Letters';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@fontsource/pixelify-sans/files/pixelify-sans-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0041-005A, U+0061-007A;
+}
 
 @theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'JetBrains Mono', ui-monospace, monospace;
+  --font-heading: 'Pixel Letters', var(--font-sans);
+  --font-pixel: 'Pixel Letters', var(--font-sans);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
   --color-success: var(--success);
+  --color-warning: var(--warning);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -26,58 +46,52 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 :root {
-  --background: var(--tg-theme-secondary-bg-color, oklch(0.97 0 0));
-  --foreground: var(--tg-theme-text-color, oklch(0.145 0 0));
-  --card: var(--tg-theme-section-bg-color, oklch(1 0 0));
-  --card-foreground: var(--tg-theme-text-color, oklch(0.145 0 0));
-  --popover: var(--tg-theme-section-bg-color, oklch(1 0 0));
-  --popover-foreground: var(--tg-theme-text-color, oklch(0.145 0 0));
-  --primary: var(--tg-theme-button-color, oklch(0.6 0.17 250));
-  --primary-foreground: var(--tg-theme-button-text-color, oklch(1 0 0));
-  --secondary: var(--tg-theme-section-bg-color, oklch(1 0 0));
-  --secondary-foreground: var(--tg-theme-text-color, oklch(0.145 0 0));
-  --muted: var(--tg-theme-secondary-bg-color, oklch(0.97 0 0));
-  --muted-foreground: var(--tg-theme-hint-color, oklch(0.556 0 0));
-  --accent: var(--tg-theme-secondary-bg-color, oklch(0.97 0 0));
-  --accent-foreground: var(--tg-theme-accent-text-color, oklch(0.55 0.17 250));
-  --destructive: var(--tg-theme-destructive-text-color, oklch(0.577 0.245 27.325));
-  --success: oklch(0.65 0.17 150);
-  --border: var(--tg-theme-section-separator-color, oklch(0.922 0 0));
-  --input: var(--tg-theme-section-separator-color, oklch(0.922 0 0));
-  --ring: var(--tg-theme-button-color, oklch(0.708 0 0));
-  --radius: 0.75rem;
+  color-scheme: dark;
+  --background: #0a0a0a;
+  --foreground: #f2f2f2;
+  --card: #151515;
+  --card-foreground: #f2f2f2;
+  --popover: #151515;
+  --popover-foreground: #f2f2f2;
+  --primary: #e2ff3b;
+  --primary-foreground: #0a0a0a;
+  --secondary: #1f1f1f;
+  --secondary-foreground: #f2f2f2;
+  --muted: #1f1f1f;
+  --muted-foreground: #8a8a8a;
+  --accent: #1f1f1f;
+  --accent-foreground: #e2ff3b;
+  --destructive: #ff4d4d;
+  --success: #e2ff3b;
+  --warning: #ffb02e;
+  --border: #2a2a2a;
+  --input: #2a2a2a;
+  --ring: #e2ff3b;
+  --pixel: 3px;
 }
 
-.dark {
-  --background: var(--tg-theme-secondary-bg-color, oklch(0.145 0 0));
-  --foreground: var(--tg-theme-text-color, oklch(0.985 0 0));
-  --card: var(--tg-theme-section-bg-color, oklch(0.205 0 0));
-  --card-foreground: var(--tg-theme-text-color, oklch(0.985 0 0));
-  --popover: var(--tg-theme-section-bg-color, oklch(0.205 0 0));
-  --popover-foreground: var(--tg-theme-text-color, oklch(0.985 0 0));
-  --primary: var(--tg-theme-button-color, oklch(0.62 0.17 250));
-  --primary-foreground: var(--tg-theme-button-text-color, oklch(1 0 0));
-  --secondary: var(--tg-theme-section-bg-color, oklch(0.205 0 0));
-  --secondary-foreground: var(--tg-theme-text-color, oklch(0.985 0 0));
-  --muted: var(--tg-theme-secondary-bg-color, oklch(0.269 0 0));
-  --muted-foreground: var(--tg-theme-hint-color, oklch(0.708 0 0));
-  --accent: var(--tg-theme-secondary-bg-color, oklch(0.269 0 0));
-  --accent-foreground: var(--tg-theme-accent-text-color, oklch(0.7 0.15 250));
-  --destructive: var(--tg-theme-destructive-text-color, oklch(0.704 0.191 22.216));
-  --success: oklch(0.72 0.17 150);
-  --border: var(--tg-theme-section-separator-color, oklch(1 0 0 / 10%));
-  --input: var(--tg-theme-section-separator-color, oklch(1 0 0 / 15%));
-  --ring: var(--tg-theme-button-color, oklch(0.556 0 0));
+@utility pixel-corners {
+  clip-path: polygon(
+    0 var(--pixel),
+    var(--pixel) var(--pixel),
+    var(--pixel) 0,
+    calc(100% - var(--pixel)) 0,
+    calc(100% - var(--pixel)) var(--pixel),
+    100% var(--pixel),
+    100% calc(100% - var(--pixel)),
+    calc(100% - var(--pixel)) calc(100% - var(--pixel)),
+    calc(100% - var(--pixel)) 100%,
+    var(--pixel) 100%,
+    var(--pixel) calc(100% - var(--pixel)),
+    0 calc(100% - var(--pixel))
+  );
+}
+
+@utility stripes {
+  background-image: repeating-linear-gradient(-45deg, var(--border) 0 2px, transparent 2px 12px);
 }
 
 @layer base {

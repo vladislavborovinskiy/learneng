@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { XIcon } from '@phosphor-icons/react/dist/csr/X'
+import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
@@ -42,14 +42,14 @@ export function Settings({ progress, meta, updateMeta, onRetakeLevelTest, onExit
   }
 
   return (
-    <main className="mx-auto flex min-h-svh max-w-md flex-col gap-3 p-4">
-      <header className="flex items-center justify-between py-2">
-        <h1 className="text-xl font-semibold">Настройки</h1>
-        <Button variant="ghost" size="icon" aria-label="Закрыть" onClick={onExit}>
-          <XIcon className="size-5" />
+    <ThumbLayout
+      header={<h1 className="font-pixel text-2xl font-bold text-primary">Настройки</h1>}
+      actions={
+        <Button size="lg" onClick={onExit}>
+          Готово
         </Button>
-      </header>
-
+      }
+    >
       <Card>
         <CardHeader>
           <CardTitle>Новых слов в день</CardTitle>
@@ -59,7 +59,8 @@ export function Settings({ progress, meta, updateMeta, onRetakeLevelTest, onExit
             <Button
               key={count}
               variant={meta.newPerDay === count ? 'default' : 'outline'}
-              className="h-11 text-base"
+              size="lg"
+              className="px-0"
               onClick={() => updateMeta({ newPerDay: count })}
             >
               {count}
@@ -77,7 +78,7 @@ export function Settings({ progress, meta, updateMeta, onRetakeLevelTest, onExit
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
-          <Button variant="outline" className="h-11" onClick={copyBackup}>
+          <Button variant="outline" onClick={copyBackup}>
             Скопировать прогресс
           </Button>
           {copyStatus && <p className="text-sm text-muted-foreground">{copyStatus}</p>}
@@ -89,15 +90,14 @@ export function Settings({ progress, meta, updateMeta, onRetakeLevelTest, onExit
               setImportError(null)
             }}
             placeholder="Вставь сюда скопированный прогресс"
-            className="h-24 bg-card font-mono text-xs"
+            className="h-24 text-xs"
           />
           <Button
             variant={confirmImport ? 'destructive' : 'outline'}
-            className="h-11"
             disabled={!backup.trim()}
             onClick={restoreBackup}
           >
-            {confirmImport ? 'Текущий прогресс сотрётся. Точно?' : 'Восстановить'}
+            {confirmImport ? 'Прогресс сотрётся. Точно?' : 'Восстановить'}
           </Button>
           {importError && <p className="text-sm text-destructive">{importError}</p>}
         </CardContent>
@@ -111,11 +111,11 @@ export function Settings({ progress, meta, updateMeta, onRetakeLevelTest, onExit
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Button variant="outline" className="h-11 w-full" onClick={onRetakeLevelTest}>
+          <Button variant="outline" className="w-full" onClick={onRetakeLevelTest}>
             Пройти заново
           </Button>
         </CardContent>
       </Card>
-    </main>
+    </ThumbLayout>
   )
 }

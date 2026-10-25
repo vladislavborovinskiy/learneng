@@ -15,7 +15,6 @@ import {
   type Exercise,
 } from '@/lib/exercises'
 import { getDueWordIds, getNewWordIds } from '@/lib/scheduler'
-import { speak } from '@/lib/speech'
 import type { Meta, Progress } from '@/lib/storage'
 import { haptic, useBackButton } from '@/lib/telegram'
 import { SessionSummary } from '@/screens/session-summary'
@@ -96,32 +95,30 @@ export function Session({ progress, meta, grade, markKnown, onExit }: SessionPro
       correct: stats.correct + (answer === 'wrong' ? 0 : 1),
     })
     haptic(answer === 'correct' ? 'success' : answer === 'typo' ? 'warning' : 'error')
-    speak(word.en)
     if (answer === 'wrong') {
       const retry = { wordId: item.wordId, intro: false }
       setQueue(queue.toSpliced(index + REQUEUE_GAP, 0, retry))
     }
   }
 
-  const body = (() => {
-    if (!exercise) return <WordIntro word={word} onNext={handleIntroNext} onKnown={handleKnown} />
-    switch (exercise.kind) {
-      case 'choice':
-        return <Choice key={index} exercise={exercise} onAnswer={handleAnswer} />
-      case 'tiles':
-        return <Tiles key={index} exercise={exercise} onAnswer={handleAnswer} />
-      case 'typing':
-        return <Typing key={index} exercise={exercise} onAnswer={handleAnswer} />
-    }
-  })()
+  const header = <ProgressHeader value={(index / queue.length) * 100} onClose={onExit} />
 
-  return (
-    <main className="mx-auto flex min-h-svh max-w-md flex-col gap-4 p-4 pb-48">
-      <ProgressHeader value={(index / queue.length) * 100} onClose={onExit} />
-      {body}
-      {exercise && result && (
-        <FeedbackPanel result={result} exercise={exercise} onContinue={advance} />
-      )}
-    </main>
-  )
+  if (!exercise) {
+    return <WordIntro word={word} header={header} onNext={handleIntroNext} onKnown={handleKnown} />
+  }
+
+  const props = {
+    header,
+    feedback: result && <FeedbackPanel result={result} exercise={exercise} onContinue={advance} />,
+    onAnswer: handleAnswer,
+  }
+
+  switch (exercise.kind) {
+    case 'choice':
+      return <Choice key={index} {...props} exercise={exercise} />
+    case 'tiles':
+      return <Tiles key={index} {...props} exercise={exercise} />
+    case 'typing':
+      return <Typing key={index} {...props} exercise={exercise} />
+  }
 }

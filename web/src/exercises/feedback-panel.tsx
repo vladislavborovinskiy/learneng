@@ -1,7 +1,6 @@
-import { CheckCircleIcon } from '@phosphor-icons/react/dist/csr/CheckCircle'
-import { WarningCircleIcon } from '@phosphor-icons/react/dist/csr/WarningCircle'
-import { XCircleIcon } from '@phosphor-icons/react/dist/csr/XCircle'
-import { BottomBar } from '@/components/bottom-bar'
+import { Check } from 'pixelarticons/react/Check.js'
+import { Close } from 'pixelarticons/react/Close.js'
+import { Zap } from 'pixelarticons/react/Zap.js'
 import { SpeakButton } from '@/components/speak-button'
 import { Button } from '@/components/ui/button'
 import type { AnswerResult, Exercise } from '@/lib/exercises'
@@ -14,59 +13,48 @@ type FeedbackPanelProps = {
 }
 
 const variants = {
-  correct: {
-    title: 'Правильно!',
-    Icon: CheckCircleIcon,
-    tone: 'text-success',
-    panel: 'bg-[color-mix(in_oklch,var(--success)_12%,var(--card))]',
-  },
-  typo: {
-    title: 'Почти! Есть опечатка',
-    Icon: WarningCircleIcon,
-    tone: 'text-orange-500',
-    panel: 'bg-[color-mix(in_oklch,orange_12%,var(--card))]',
-  },
-  wrong: {
-    title: 'Неправильно',
-    Icon: XCircleIcon,
-    tone: 'text-destructive',
-    panel: 'bg-[color-mix(in_oklch,var(--destructive)_12%,var(--card))]',
-  },
+  correct: { title: 'Правильно!', Icon: Check, tone: 'text-success border-success' },
+  typo: { title: 'Почти! Опечатка', Icon: Zap, tone: 'text-warning border-warning' },
+  wrong: { title: 'Неправильно', Icon: Close, tone: 'text-destructive border-destructive' },
 }
 
 export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelProps) {
-  const { title, Icon, tone, panel } = variants[result]
+  const { title, Icon, tone } = variants[result]
   const { sentence } = exercise
   const correctAnswer = exercise.kind === 'tiles' ? null : exercise.answer
 
   return (
-    <BottomBar className={cn('z-20 animate-in border-t-0 slide-in-from-bottom', panel)}>
-      <div className={cn('flex items-center gap-2 text-lg font-semibold', tone)}>
-        <Icon weight="fill" className="size-7" />
-        {title}
-      </div>
-      {result !== 'correct' && correctAnswer && (
-        <p>
-          Ответ: <span className="font-semibold">{correctAnswer}</span>
-        </p>
-      )}
-      <div className="flex items-start justify-between gap-2">
-        <div>
-          <p className="text-base">{sentence.en}</p>
-          <p className="text-sm text-muted-foreground">{sentence.ru}</p>
-        </div>
-        <SpeakButton text={sentence.en} />
-      </div>
-      <Button
-        autoFocus
+    <>
+      <div
         className={cn(
-          'h-12 text-base',
-          result === 'wrong' && 'bg-destructive text-white hover:bg-destructive/80'
+          'pixel-corners flex animate-in flex-col gap-2 border-(length:--pixel) bg-card p-3 fade-in slide-in-from-bottom-2',
+          tone
         )}
-        onClick={onContinue}
       >
-        Продолжить
-      </Button>
-    </BottomBar>
+        <div className="flex items-center gap-2 font-pixel text-xl font-bold">
+          <Icon className="size-6" />
+          {title}
+        </div>
+        {result !== 'correct' && correctAnswer && (
+          <p className="text-foreground">
+            Ответ: <span className="font-semibold text-primary">{correctAnswer}</span>
+          </p>
+        )}
+        <p className="text-foreground">{sentence.en}</p>
+        <p className="text-sm text-muted-foreground">{sentence.ru}</p>
+      </div>
+      <div className="flex gap-3">
+        <SpeakButton text={sentence.en} />
+        <Button
+          autoFocus
+          size="lg"
+          variant={result === 'wrong' ? 'destructive' : 'default'}
+          className="flex-1"
+          onClick={onContinue}
+        >
+          Дальше
+        </Button>
+      </div>
+    </>
   )
 }

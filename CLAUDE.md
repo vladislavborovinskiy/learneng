@@ -24,8 +24,10 @@
 - `.github/workflows/deploy.yml` — push в `main` → lint + build `web/` → GitHub Pages.
 - `scripts/send-reminder.mjs` — отправка напоминания (`sendMessage` с кнопкой `web_app`), читает `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `APP_URL` из окружения. Локально ключи в `.env` (шаблон `.env.example`, `.env` в gitignore, ассистент его не читает).
 - `.github/workflows/reminder.yml` — cron `0 17 * * *` (20:00 МСК) → `node scripts/send-reminder.mjs`. Секреты `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, переменная `APP_URL`.
-- Цвета shadcn-токенов берутся из `--tg-theme-*` с фолбэками.
-- Иконки — Phosphor через подпуть `@phosphor-icons/react/dist/csr/<Name>`.
+- Дизайн: тёмная тема с лаймовым акцентом в духе 8-bit, тема Telegram не используется (`initTelegram` красит шапку/фон Telegram в `#0a0a0a`). Палитра и утилиты `pixel-corners` (ступенчатые углы через clip-path, толщина `--pixel`) и `stripes` — в `index.css`. Shadcn-компоненты в `components/ui` перерисованы под этот стиль.
+- Шрифты: JetBrains Mono — основной; `font-pixel` — Pixelify Sans только для латинских букв (свой `@font-face` с `unicode-range`), кириллица и цифры падают на JetBrains Mono ради читаемости.
+- Раскладка «под большой палец»: каждый экран — `ThumbLayout` (шапка → контент → зона действий с отступом ~40px снизу, без отдельного спейсера). Все кнопки только в зоне действий; панель результата ответа заменяет варианты в той же зоне. Озвучка только по кнопке 🔊, без автоплея. Выход из сессии — системная BackButton Telegram (крестик только вне Telegram).
+- Иконки — pixelarticons поштучно: `pixelarticons/react/<Name>.js`.
 
 ## Команды (в `web/`)
 

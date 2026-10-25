@@ -1,9 +1,11 @@
-import { FireIcon } from '@phosphor-icons/react/dist/csr/Fire'
-import { GearSixIcon } from '@phosphor-icons/react/dist/csr/GearSix'
+import { Fire } from 'pixelarticons/react/Fire.js'
+import { Gear } from 'pixelarticons/react/Gear.js'
+import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
 import type { getStats } from '@/lib/scheduler'
+import { cn } from '@/lib/utils'
 
 type HomeProps = {
   stats: ReturnType<typeof getStats>
@@ -23,68 +25,56 @@ export function Home({
   const hasWork = stats.due + stats.newToday > 0
 
   return (
-    <main className="mx-auto flex min-h-svh max-w-md flex-col gap-3 p-4">
-      <header className="flex items-center justify-between py-2">
-        <h1 className="text-xl font-semibold">LearnEng</h1>
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 text-sm font-medium">
-            <FireIcon
-              weight={stats.streak > 0 ? 'fill' : 'regular'}
-              className={
-                stats.streak > 0 ? 'size-5 text-orange-500' : 'size-5 text-muted-foreground'
-              }
-            />
+    <ThumbLayout
+      header={
+        <div className="flex items-center justify-between">
+          <h1 className="font-pixel text-2xl font-bold text-primary">LearnEng</h1>
+          <div
+            className={cn(
+              'flex items-center gap-1 font-pixel text-xl',
+              stats.streak > 0 ? 'text-primary' : 'text-muted-foreground'
+            )}
+          >
+            <Fire className="size-6" />
             {stats.streak}
           </div>
-          <Button variant="ghost" size="icon" aria-label="Настройки" onClick={onOpenSettings}>
-            <GearSixIcon className="size-5" />
+        </div>
+      }
+      actions={
+        <div className="flex gap-3">
+          <Button variant="outline" size="icon-lg" aria-label="Настройки" onClick={onOpenSettings}>
+            <Gear className="size-7" />
+          </Button>
+          {!levelTestDone && (
+            <Button variant="outline" size="lg" onClick={onStartLevelTest}>
+              Тест
+            </Button>
+          )}
+          <Button size="lg" className="flex-1" disabled={!hasWork} onClick={onStartSession}>
+            {hasWork ? 'Старт' : 'На сегодня всё'}
           </Button>
         </div>
-      </header>
-
-      {!levelTestDone && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Тест уровня</CardTitle>
-            <CardDescription>
-              5 минут: отметь знакомые слова, и они не попадут в изучение как новые
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button variant="outline" className="h-11 w-full" onClick={onStartLevelTest}>
-              Пройти тест
-            </Button>
-          </CardContent>
-        </Card>
-      )}
+      }
+    >
+      <div className="grid grid-cols-2 gap-3">
+        {[
+          { label: 'повторить', value: stats.due },
+          { label: 'новых слов', value: stats.newToday },
+        ].map(({ label, value }) => (
+          <Card key={label} className="stripes">
+            <CardContent>
+              <div className="font-pixel text-5xl font-bold text-primary">{value}</div>
+              <div className="text-sm text-muted-foreground">{label}</div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Сегодня</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg bg-muted p-3">
-              <div className="text-2xl font-semibold">{stats.due}</div>
-              <div className="text-sm text-muted-foreground">на повторение</div>
-            </div>
-            <div className="rounded-lg bg-muted p-3">
-              <div className="text-2xl font-semibold">{stats.newToday}</div>
-              <div className="text-sm text-muted-foreground">новых слов</div>
-            </div>
-          </div>
-          <Button className="h-11 w-full text-base" disabled={!hasWork} onClick={onStartSession}>
-            {hasWork ? 'Начать занятие' : 'На сегодня всё'}
-          </Button>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Прогресс</CardTitle>
-          <CardDescription>
-            Выучено {stats.learned} из {stats.total}
-          </CardDescription>
+          <CardTitle>
+            Выучено {stats.learned} / {stats.total}
+          </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           {[
@@ -103,6 +93,12 @@ export function Home({
           ))}
         </CardContent>
       </Card>
-    </main>
+
+      {!levelTestDone && (
+        <p className="text-sm text-muted-foreground">
+          Пройди тест уровня: отметь знакомые слова, и они не попадут в изучение как новые.
+        </p>
+      )}
+    </ThumbLayout>
   )
 }

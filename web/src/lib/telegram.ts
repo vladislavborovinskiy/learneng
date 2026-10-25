@@ -4,20 +4,13 @@ export const webApp = window.Telegram?.WebApp
 
 export const isTelegram = Boolean(webApp?.initData)
 
+const APP_BACKGROUND = '#0a0a0a'
+
 export function initTelegram() {
-  const root = document.documentElement
-
-  if (!isTelegram) {
-    const media = window.matchMedia('(prefers-color-scheme: dark)')
-    const applyMedia = () => root.classList.toggle('dark', media.matches)
-    applyMedia()
-    media.addEventListener('change', applyMedia)
-    return
-  }
-
-  const applyScheme = () => root.classList.toggle('dark', webApp.colorScheme === 'dark')
-  applyScheme()
-  webApp.onEvent('themeChanged', applyScheme)
+  if (!isTelegram) return
+  webApp.setHeaderColor(APP_BACKGROUND)
+  webApp.setBackgroundColor(APP_BACKGROUND)
+  if (webApp.isVersionAtLeast('7.10')) webApp.setBottomBarColor(APP_BACKGROUND)
   webApp.ready()
   webApp.expand()
 }

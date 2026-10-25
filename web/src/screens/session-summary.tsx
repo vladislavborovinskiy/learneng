@@ -1,7 +1,8 @@
-import { FireIcon } from '@phosphor-icons/react/dist/csr/Fire'
-import { TrophyIcon } from '@phosphor-icons/react/dist/csr/Trophy'
-import { BottomBar } from '@/components/bottom-bar'
+import { Fire } from 'pixelarticons/react/Fire.js'
+import { Trophy } from 'pixelarticons/react/Trophy.js'
+import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 import { getStreak } from '@/lib/scheduler'
 import type { Meta } from '@/lib/storage'
 
@@ -16,30 +17,35 @@ export function SessionSummary({ stats, meta, onDone }: SessionSummaryProps) {
   const items = [
     { label: 'точность', value: `${accuracy}%` },
     { label: 'ответов', value: stats.answered },
-    { label: 'новых слов', value: stats.learned },
+    { label: 'новых', value: stats.learned },
   ]
 
   return (
-    <main className="mx-auto flex min-h-svh max-w-md flex-col items-center justify-center gap-6 p-4 pb-32 text-center">
-      <TrophyIcon weight="fill" className="size-20 text-amber-400" />
-      <h1 className="text-2xl font-semibold">Занятие завершено</h1>
-      <div className="grid w-full grid-cols-3 gap-3">
-        {items.map(({ label, value }) => (
-          <div key={label} className="rounded-xl bg-card p-3">
-            <div className="text-2xl font-semibold">{value}</div>
-            <div className="text-sm text-muted-foreground">{label}</div>
-          </div>
-        ))}
-      </div>
-      <div className="flex items-center gap-2 text-lg font-medium">
-        <FireIcon weight="fill" className="size-6 text-orange-500" />
-        {getStreak(meta)} дн. подряд
-      </div>
-      <BottomBar>
-        <Button className="h-12 text-base" onClick={onDone}>
+    <ThumbLayout
+      actions={
+        <Button size="lg" onClick={onDone}>
           На главную
         </Button>
-      </BottomBar>
-    </main>
+      }
+    >
+      <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
+        <Trophy className="size-24 text-primary" />
+        <h1 className="font-pixel text-3xl font-bold">Занятие завершено</h1>
+        <div className="grid w-full grid-cols-3 gap-3">
+          {items.map(({ label, value }) => (
+            <Card key={label} size="sm">
+              <CardContent>
+                <div className="font-pixel text-3xl font-bold text-primary">{value}</div>
+                <div className="text-xs text-muted-foreground">{label}</div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <div className="flex items-center gap-2 font-pixel text-xl text-primary">
+          <Fire className="size-7" />
+          {getStreak(meta)} дн. подряд
+        </div>
+      </div>
+    </ThumbLayout>
   )
 }
