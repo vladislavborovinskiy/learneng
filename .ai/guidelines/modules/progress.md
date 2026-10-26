@@ -2,11 +2,13 @@
 
 ## What this module is for
 
-Persisting the learner's state without a backend: FSRS cards per word, settings and per-day
-stats. Inside Telegram the data lives in Telegram CloudStorage (follows the account across
-devices); outside Telegram (local dev, browser) in `localStorage`. Also covers the manual backup
-in settings. Code: `web/src/lib/storage.ts`, `web/src/lib/use-learning.ts`,
-`web/src/screens/settings.tsx`.
+Persisting the learner's state: FSRS cards per word, settings and per-day stats. Inside
+Telegram the source of truth is the server (Cloudflare Worker + D1, `worker/`), with Telegram
+CloudStorage as a byte-identical local mirror and offline fallback; outside Telegram (local dev,
+browser) or without `VITE_API_URL` — CloudStorage / `localStorage` only, as before the server.
+Also covers the manual backup in settings and the daily backup file from the server. Code:
+`web/src/lib/storage.ts`, `web/src/lib/use-learning.ts`, `web/src/screens/settings.tsx`,
+`worker/src/`.
 
 ## Glossary
 
@@ -18,16 +20,30 @@ in settings. Code: `web/src/lib/storage.ts`, `web/src/lib/use-learning.ts`,
   each value is a JSON object `{ wordId: CompactCard }`. Key `meta` holds Meta.
 - **CompactCard** — 9-number tuple: due (minutes since epoch), stability, difficulty (2 decimals),
   scheduled_days, learning_steps, reps, lapses, state, last_review (minutes, 0 = none).
+- **Store** — `KeyValueStore` (`getAll`, `set`, optional atomic `replaceAll`). Picked once:
+  `syncedStore` (Telegram + CloudStorage ≥ 6.9 + `VITE_API_URL`), `cloudStore`, `localStore`.
+  `syncedStore` combines `cloudStore` and `apiStore` (HTTP to the Worker).
+- **Unsynced keys** — keys whose server write failed; JSON array in CloudStorage key `unsynced`,
+  pushed on the next successful write or launch.
+- **Server table** — D1 `kv(user_id, key, value, updated_at)`, one row per key per Telegram user;
+  API `GET /progress`, `PUT /progress/:key`, `PUT /progress` (replace all in one batch), auth
+  header `Authorization: tma <initData>`.
 - **Backup** — JSON `{ "p_NN": "<pack json>", …, "meta": "<meta json>" }` (values are strings),
   empty packs omitted.
 
 ## Key flows
 
 1. **Load** — `useLearning` calls `loadAll()` once: reads every key, expands packs, merges `meta`
-   over defaults. Load failure → full-screen error, nothing else works.
+   over defaults. Load failure → full-screen error, nothing else works. With `syncedStore`:
+   read CloudStorage → `GET /progress` → if the server answered with no entries and CloudStorage
+   has data, upload everything (migration) → otherwise push unsynced keys, overlay them on the
+   server result, refresh CloudStorage with server values → use server values. Any server error
+   (4 s timeout) → silently use CloudStorage.
 2. **Grade** — `grade(wordId, rating)` computes the next card, bumps today's `reviewed`, and
    `learned` if the word had no card; updates state synchronously, then writes **only the
-   touched pack** and `meta` in the background.
+   touched pack** and `meta` in the background. With `syncedStore` each write goes to
+   CloudStorage first (failure → toast), then to the server (failure → key becomes unsynced,
+   no toast).
 3. **Mark known** — `markKnown(ids)` gives every still-unseen id an `Easy` card (goes straight
    to Review) and writes their packs. Does not touch Meta.
 4. **Complete lesson** — `completeLesson()` bumps `days[today].lessons`; `grade` keeps the other
@@ -35,7 +51,11 @@ in settings. Code: `web/src/lib/storage.ts`, `web/src/lib/use-learning.ts`,
 5. **Settings** — backup and retaking the level test; no daily limit.
 6. **Backup** — «Скопировать прогресс» copies `exportBackup()` to the clipboard (user is told to
    keep it in Telegram «Избранное»); «Восстановить» requires a second tap («Прогресс сотрётся.
-   Точно?»), validates, overwrites all 64 packs + meta, then reloads the page.
+   Точно?»), validates, overwrites all 64 packs + meta, then reloads the page. With the server
+   the overwrite is one atomic `PUT /progress`, then CloudStorage is rewritten.
+7. **Daily backup** — Worker cron `0 0 * * *` (03:00 MSK): for each allowlisted user with a row
+   updated in the last 24 h, sends `learneng-backup-YYYY-MM-DD.json` (backup format) to the
+   user's chat with the bot via `sendDocument`. Errors are logged, nothing retried.
 
 ## Non-obvious invariants / gotchas
 
@@ -52,7 +72,15 @@ in settings. Code: `web/src/lib/storage.ts`, `web/src/lib/use-learning.ts`,
   handler see each other's changes.
 - `markKnown` does not increment `days.learned`, so words marked «Знаю» are not counted in
   «выучено сегодня».
-- Import is not atomic: packs are written one by one, a failure mid-way leaves a mix.
+- Import is atomic only on the server; without it packs are written one by one and a failure
+  mid-way leaves a mix.
+- Migration runs only on a successful empty response, and before the unsynced push — pushing
+  first would make the server non-empty after an offline first launch and skip the migration.
+- Devices sync last-write-wins per key; two devices editing offline overwrite each other's pack.
+- `initData` older than 24 h is rejected by the server (401) — an app left open for a day keeps
+  saving locally and catches up on next launch.
+- The server accepts values up to 64 KB, CloudStorage only 4096 chars: CloudStorage stays the
+  narrower limit. `meta` with 120 days of stats (~50 chars per day) may outgrow 4096 chars.
 
 ## Where to look next
 

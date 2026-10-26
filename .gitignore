@@ -12,3 +12,6 @@ dist/
 *.swp
 
 content/draft/
+
+.wrangler/
+.dev.vars

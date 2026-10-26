@@ -1,0 +1,14 @@
+name = "learneng"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://vladislavborovinskiy.github.io"
+
+[triggers]
+crons = ["0 0 * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "learneng"
+database_id = "b8278a33-a005-4e5c-a46e-ac798d615787"

@@ -2,10 +2,10 @@ schema: spec-driven
 
 context: |
   LearnEng — a personal Duolingo-style English trainer shipped as a Telegram Mini App for one
-  learner (level ~A1–A2, goal: read technical documentation). No backend: static Vite + React 19
-  + TypeScript + Tailwind v4 + shadcn (Base UI) app in web/, deployed to GitHub Pages; progress in
-  Telegram CloudStorage (localStorage outside Telegram); content is JSON in content/ bundled at
-  build time. Read CLAUDE.md for layout, design and conventions, and the module guideline in
+  learner (level ~A1–A2, goal: read technical documentation). Static Vite + React 19
+  + TypeScript + Tailwind v4 + shadcn (Base UI) app in web/, deployed to GitHub Pages; progress on
+  a Cloudflare Worker + D1 in worker/ (free tier) mirrored to Telegram CloudStorage
+  (localStorage outside Telegram); content is JSON in content/ bundled at build time. Read CLAUDE.md for layout, design and conventions, and the module guideline in
   .ai/guidelines/modules/<module>.md for domain context before writing any artifact.
   Artifacts are written in English; user-facing strings are quoted in Russian exactly as they
   appear in the UI. Conventional commits. Quality over speed.
@@ -33,7 +33,8 @@ rules:
     - >-
       Start from the module guideline; list which of its sections this change will update.
     - >-
-      Respect the constraints: no backend, CloudStorage limits (keys A-Za-z0-9_-, 1024 keys,
+      Respect the constraints: the only server is the progress Worker (keep it tiny, free
+      tier), CloudStorage limits (keys A-Za-z0-9_-, 1024 keys,
       4096 chars per value), backward compatibility of stored progress and backups.
     - >-
       Every decision names at least one rejected alternative and why.

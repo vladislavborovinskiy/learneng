@@ -4,7 +4,7 @@
 
 ## Архитектура
 
-Бэкенда нет. Статика на GitHub Pages, прогресс в Telegram CloudStorage (вне Telegram — `localStorage`), контент собирается в бандл.
+Статика на GitHub Pages, контент собирается в бандл. Прогресс внутри Telegram — на сервере (Cloudflare Worker + D1, бесплатный тариф) с зеркалом в Telegram CloudStorage (фолбэк без сети); вне Telegram — `localStorage`.
 
 ## Layout
 
@@ -13,7 +13,7 @@
 - `content/draft/` — промежуточные файлы генерации контента.
 - `web/` — Vite + React 19 + TS 6 + Tailwind 4 + shadcn (Base UI, стиль base-nova).
   - `src/lib/telegram.ts` — `Telegram.WebApp` (официальный скрипт в `index.html`), тема → класс `.dark`.
-  - `src/lib/storage.ts` — KV поверх CloudStorage/localStorage. Карточки FSRS хранятся пачками в 64 ключах `p_NN` (CloudStorage допускает в ключах только `A-Za-z0-9_-`) (хэш id слова), компактно массивом; настройки и статистика по дням — ключ `meta`.
+  - `src/lib/storage.ts` — KV поверх сервера/CloudStorage/localStorage (`syncedStore`: CloudStorage + API, несинхронизированные ключи в `unsynced`, миграция на пустой сервер, атомарное восстановление; включается при `VITE_API_URL`). Карточки FSRS хранятся пачками в 64 ключах `p_NN` (CloudStorage допускает в ключах только `A-Za-z0-9_-`) (хэш id слова), компактно массивом; настройки и статистика по дням — ключ `meta`.
   - `src/lib/scheduler.ts` — `ts-fsrs`, статистика, новые слова в уроке: 2 IT (по порядку словаря) + 1 NGSL (по рангу). Обучение уроками без дневного лимита (`buildLesson`): до 3 новых слов + до 8 повторений (сначала due, добор выученными с наименьшей retrievability), новые вперемешку с повторениями; при ≥ 24 due — урок «Повторение» без новых слов. На итоге урока «Ещё урок».
   - `src/lib/use-learning.ts` — хук состояния: загрузка, `grade`, `markKnown` (сразу `Easy`), `updateMeta`. Ошибка записи → тост `toast.error` (shadcn sonner в стиле приложения, `components/ui/sonner.tsx`, один тост с id `save-error`). Данные дублируются в ref, чтобы последовательные вызовы в одном обработчике не теряли изменения.
   - `src/lib/exercises.ts` — сборка упражнения по состоянию карточки FSRS (не Review → выбор EN→RU/RU→EN; stability < 7 дн → пропуск/плитки; иначе ввод), дистракторы той же части речи без пересечения переводов, проверка ввода по Левенштейну (опечатка → `Hard`).
@@ -21,7 +21,9 @@
   - `src/screens/` — `home`, `session` (ошибка → слово возвращается в очередь через 4 позиции), `session-summary`, `level-test` (коррекция по псевдословам; диапазон 1–500 ≥ 85% → все NGSL-слова диапазона в `Easy`); навигация через `useState`, без роутера.
   - `src/lib/telegram.ts` — `useBackButton` (заодно блокирует свайп-закрытие), `haptic`.
   - `src/screens/settings.tsx` — резервная копия (экспорт в буфер обмена как JSON `{ "p_NN": ..., "meta": ... }`, старые копии с `p:NN` тоже принимаются, импорт перезаписывает все 64 пачки и перезагружает страницу), повтор теста уровня.
-- `.github/workflows/deploy.yml` — push в `main` → lint + build `web/` → GitHub Pages.
+- `.github/workflows/deploy.yml` — push в `main` → lint + build `web/` (переменная `VITE_API_URL`) → GitHub Pages.
+- `worker/` — Cloudflare Worker (TS без фреймворка): `src/auth.ts` проверка `initData` + allowlist `ALLOWED_USER_IDS`, `src/index.ts` API `GET/PUT /progress[/:key]` + CORS, `src/backup.ts` ежедневный файл-копия в чат с ботом (cron `0 0 * * *`), `schema.sql` таблица `kv`. Секреты Worker: `TELEGRAM_BOT_TOKEN`, `ALLOWED_USER_IDS`; локально — `worker/.dev.vars` (в gitignore).
+- `.github/workflows/worker.yml` — push в `main` по `worker/**` → typecheck, схема в D1, `wrangler deploy`. Секреты `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`.
 - `scripts/send-reminder.mjs` — отправка напоминания (`sendMessage` с кнопкой `web_app`), читает `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `APP_URL` из окружения. Локально ключи в `.env` (шаблон `.env.example`, `.env` в gitignore, ассистент его не читает).
 - `.github/workflows/reminder.yml` — cron `0 17 * * *` (20:00 МСК) → `node scripts/send-reminder.mjs`. Секреты `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, переменная `APP_URL`.
 - Дизайн: тёмный «печатный» стиль ретро-журналов — три цвета: чернила `#1a1815`, бумага `#ede1c7` (текст, линии, контуры), оранжевый `#ee6a2e` (главное действие, прогресс, верный ответ) + приглушённый `#a39882` для подписей. Тема Telegram не используется (`initTelegram` красит шапку/фон в `#1a1815`). Кнопки плоские (заливка или контур 2px, без теней), панели с острыми углами и тонкой линией `--line` (1.5px), иконочные кнопки и номера — круги, ярлыки экранов — скруглённые таблички. Фактуры-утилиты в `index.css`: `halftone`, `hatch`, `hatch-primary` (заливка прогресса), `rays` (верный ответ) — не больше одной на экран. Верно/неверно различаются фактурой и подписью, а не цветом. Shadcn-компоненты в `components/ui` перерисованы под этот стиль.
@@ -50,10 +52,13 @@
 
 `npm run dev`, `npm run build`, `npm run lint` (oxlint), `npm run typecheck`, `npm run format`.
 
+В `worker/`: `npm run dev` (wrangler dev), `npm run typecheck`, `npm run db:local` / `npm run db:remote` (схема D1), `npm run deploy`.
+
 Из корня: `node --env-file=.env scripts/send-reminder.mjs` — отправить напоминание вручную.
 
 ## Current state / Open work
 
 - Готово: контент, каркас, хранилище, планировщик, главный экран, сессия с 5 упражнениями (+ повтор новых слов в конце), тест уровня, настройки, workflow деплоя и напоминаний.
-- Дальше: первый деплой и проверка внутри Telegram (CloudStorage, BackButton, haptics).
+- В работе: `server-progress` — код Worker и клиента готов и проверен локально; нужны разовая настройка Cloudflare, деплой и проверка внутри Telegram (миграция, второе устройство, офлайн, файл бэкапа).
+- Дальше: проверка внутри Telegram (CloudStorage, BackButton, haptics).
 - Потом: трек грамматики для чтения, трек чтения реальных текстов.

@@ -70,8 +70,9 @@ export function Settings({ progress, meta, onRetakeLevelTest, onExit }: Settings
         <CardHeader>
           <CardTitle>Резервная копия</CardTitle>
           <CardDescription>
-            Прогресс хранится в Telegram. «Скопировать» кладёт копию в буфер обмена — сохрани её
-            себе в «Избранное». Чтобы восстановить, вставь копию ниже и нажми «Восстановить».
+            Прогресс хранится на сервере и копией в Telegram. Раз в день бот присылает файл с
+            копией. «Скопировать» кладёт копию в буфер обмена. Чтобы восстановить, вставь копию ниже
+            и нажми «Восстановить».
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">

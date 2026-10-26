@@ -4,6 +4,7 @@ import { isTelegram, webApp } from '@/lib/telegram'
 type KeyValueStore = {
   getAll(): Promise<Record<string, string>>
   set(key: string, value: string): Promise<void>
+  replaceAll?(entries: Record<string, string>): Promise<void>
 }
 
 const LOCAL_PREFIX = 'learneng:'
@@ -48,7 +49,110 @@ const cloudStore: KeyValueStore = {
   },
 }
 
-const store = isTelegram && webApp.isVersionAtLeast('6.9') ? cloudStore : localStore
+const apiUrl: string | undefined = import.meta.env.VITE_API_URL
+const API_TIMEOUT = 4000
+
+async function apiRequest(path: string, init?: RequestInit) {
+  const response = await fetch(`${apiUrl}${path}`, {
+    ...init,
+    headers: { 'Authorization': `tma ${webApp.initData}`, 'Content-Type': 'application/json' },
+    signal: AbortSignal.timeout(API_TIMEOUT),
+  })
+  if (!response.ok) throw new Error(`API ${response.status}`)
+  return response
+}
+
+const apiStore = {
+  async getAll() {
+    const { entries } = (await (await apiRequest('/progress')).json()) as {
+      entries: Record<string, string>
+    }
+    return entries
+  },
+  async set(key: string, value: string) {
+    await apiRequest(`/progress/${key}`, { method: 'PUT', body: JSON.stringify({ value }) })
+  },
+  async replaceAll(entries: Record<string, string>) {
+    await apiRequest('/progress', { method: 'PUT', body: JSON.stringify({ entries }) })
+  },
+}
+
+const UNSYNCED_KEY = 'unsynced'
+
+let mirror: Record<string, string> = {}
+let unsynced = new Set<string>()
+
+function saveUnsynced() {
+  return cloudStore.set(UNSYNCED_KEY, JSON.stringify([...unsynced]))
+}
+
+async function flushUnsynced() {
+  try {
+    for (const key of [...unsynced]) {
+      if (key in mirror) await apiStore.set(key, mirror[key])
+      unsynced.delete(key)
+    }
+  } finally {
+    await saveUnsynced()
+  }
+}
+
+const syncedStore: KeyValueStore = {
+  async getAll() {
+    const local = await cloudStore.getAll()
+    mirror = Object.fromEntries(
+      Object.entries(local).filter(([key]) => key === META_KEY || allPackKeys.includes(key))
+    )
+    unsynced = new Set(local[UNSYNCED_KEY] ? (JSON.parse(local[UNSYNCED_KEY]) as string[]) : [])
+    try {
+      const remote = await apiStore.getAll()
+      if (Object.keys(remote).length === 0 && Object.keys(mirror).length > 0) {
+        await apiStore.replaceAll(mirror)
+        unsynced.clear()
+        await saveUnsynced()
+        return local
+      }
+      const pushed = [...unsynced]
+      if (pushed.length) await flushUnsynced()
+      for (const key of pushed) if (key in mirror) remote[key] = mirror[key]
+      const stale = Object.entries(remote).filter(([key, value]) => mirror[key] !== value)
+      mirror = { ...mirror, ...remote }
+      await Promise.all(stale.map(([key, value]) => cloudStore.set(key, value))).catch(
+        (error: unknown) => console.warn('Failed to refresh CloudStorage mirror', error)
+      )
+      return remote
+    } catch (error) {
+      console.warn('Server unavailable, using CloudStorage', error)
+      return local
+    }
+  },
+  async set(key, value) {
+    await cloudStore.set(key, value)
+    mirror[key] = value
+    const synced = await apiStore.set(key, value).then(
+      () => true,
+      () => false
+    )
+    if (!synced) {
+      unsynced.add(key)
+      return saveUnsynced()
+    }
+    const wasUnsynced = unsynced.delete(key)
+    if (unsynced.size) return flushUnsynced().catch(() => undefined)
+    if (wasUnsynced) return saveUnsynced()
+  },
+  async replaceAll(entries) {
+    await apiStore.replaceAll(entries)
+    for (const [key, value] of Object.entries(entries)) await cloudStore.set(key, value)
+    mirror = { ...entries }
+    unsynced.clear()
+    await saveUnsynced()
+  },
+}
+
+const hasCloudStorage = isTelegram && webApp.isVersionAtLeast('6.9')
+
+const store = hasCloudStorage ? (apiUrl ? syncedStore : cloudStore) : localStore
 
 export type Progress = Record<string, Card>
 
@@ -205,6 +309,10 @@ export async function importBackup(backup: string) {
     if (typeof value !== 'string') throw new Error(`Повреждённое значение ${key}`)
     JSON.parse(value)
   }
-  for (const key of allPackKeys) await store.set(key, (values[key] as string | undefined) ?? '{}')
-  await store.set(META_KEY, values[META_KEY] as string)
+  const restored: Record<string, string> = Object.fromEntries([
+    ...allPackKeys.map((key) => [key, (values[key] as string | undefined) ?? '{}']),
+    [META_KEY, values[META_KEY] as string],
+  ])
+  if (store.replaceAll) return store.replaceAll(restored)
+  for (const [key, value] of Object.entries(restored)) await store.set(key, value)
 }
