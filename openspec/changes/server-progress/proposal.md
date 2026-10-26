@@ -17,7 +17,8 @@ write would wipe months of FSRS history, and the manual backup depends on rememb
 - Restoring a backup in settings writes to the server in one atomic step.
 - A daily server job sends a backup file (same format as the manual backup) to the bot chat when
   progress changed during the day.
-- The manual backup in settings keeps working unchanged; its description text is updated.
+- The manual backup keeps working but moves into a separate view; the settings screen is reduced
+  to the minimum.
 - Outside Telegram (local dev, plain browser) nothing changes: `localStorage` only.
 - A deployment workflow for the Worker is added.
 
@@ -31,8 +32,9 @@ write would wipe months of FSRS history, and the manual backup depends on rememb
 
 ### Modified Capabilities
 
-None. `progress/settings` requirements (backup copy/restore, level test, old backups restore) stay
-as they are; only the settings description wording changes.
+- `progress/settings`: with the server and nightly files the manual backup becomes secondary —
+  the settings screen is reduced to a caption, «Тест заново» (now with confirmation) and «Готово»,
+  and backup copy/restore moves into a separate «Резервная копия» view.
 
 ## Impact
 

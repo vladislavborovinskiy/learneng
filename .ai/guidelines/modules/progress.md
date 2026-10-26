@@ -48,9 +48,12 @@ Also covers the manual backup in settings and the daily backup file from the ser
    to Review) and writes their packs. Does not touch Meta.
 4. **Complete lesson** — `completeLesson()` bumps `days[today].lessons`; `grade` keeps the other
    fields of the day (spread), so it never resets the lesson count.
-5. **Settings** — backup and retaking the level test; no daily limit.
-6. **Backup** — «Скопировать прогресс» copies `exportBackup()` to the clipboard (user is told to
-   keep it in Telegram «Избранное»); «Восстановить» requires a second tap («Прогресс сотрётся.
+5. **Settings** — main view: caption about server + nightly file, «Резервная копия →» (quiet
+   ghost button), «Тест заново» (second tap «Точно?» starts it), «Готово»; no daily limit. Backup
+   lives in a separate «Резервная копия» view of the same screen (`backupOpen` state); BackButton
+   there returns to the main view instead of leaving settings.
+6. **Backup** — in the «Резервная копия» view «Скопировать» copies `exportBackup()` to the
+   clipboard; «Восстановить» requires a second tap («Прогресс сотрётся.
    Точно?»), validates, overwrites all 64 packs + meta, then reloads the page. With the server
    the overwrite is one atomic `PUT /progress`, then CloudStorage is rewritten.
 7. **Daily backup** — Worker cron `0 0 * * *` (03:00 MSK): for each allowlisted user with a row

@@ -18,18 +18,19 @@
 - [x] 2.2 Add `syncedStore` (CloudStorage first, then server; unsynced keys in CloudStorage key `unsynced`; flush on load and after a successful write; migration via `replaceAll` only on a successful empty response; mirror server values into CloudStorage after load; CloudStorage fallback on any server error) and select it when `isTelegram && CloudStorage ≥ 6.9 && VITE_API_URL`; verify `npm run dev` outside Telegram still uses `localStorage` (DevTools → Application) and makes no network calls to the API
 - [x] 2.3 Make `importBackup` use `replaceAll` when the store supports it, then mirror to CloudStorage; verify an old backup with `p:NN` keys still validates (paste one into settings in `npm run dev`)
 - [x] 2.4 Update the settings «Резервная копия» description to mention the server and the daily file from the bot; verify on the settings screen in `npm run dev`
+- [x] 2.6 Reduce settings to caption + «Резервная копия →» + «Тест заново» (with «Точно?» confirmation) + «Готово», move copy/restore into a «Резервная копия» view with «Назад»/BackButton; verify with 375px screenshots of all three states in `npm run dev`
 - [x] 2.5 Add `.env.example` entry `VITE_API_URL=` in `web/` (no secrets) and pass `VITE_API_URL: ${{ vars.VITE_API_URL }}` to the build step in `deploy.yml`; verify `npm run build` succeeds with and without the variable
 
 ## 3. Delivery
 
 - [x] 3.1 Add `.github/workflows/worker.yml` (push to `main` on `worker/**` + manual: `npm ci`, typecheck, `wrangler d1 execute --remote --file schema.sql`, `wrangler deploy`, secrets `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`); verify the YAML with `npx action-validator` or a dry `workflow_dispatch` run after the developer adds secrets
-- [ ] 3.2 Give the developer the exact one-time setup commands (`wrangler login`, `wrangler d1 create`, `wrangler secret put TELEGRAM_BOT_TOKEN` / `ALLOWED_USER_IDS`, GitHub secrets and the `VITE_API_URL` variable); verify after their run that `curl <worker>/progress` returns 401
+- [x] 3.2 Give the developer the exact one-time setup commands (`wrangler login`, `wrangler d1 create`, `wrangler secret put TELEGRAM_BOT_TOKEN` / `ALLOWED_USER_IDS`, GitHub secrets and the `VITE_API_URL` variable); verify after their run that `curl <worker>/progress` returns 401
 
 ## 4. End-to-end in Telegram
 
-- [ ] 4.1 Open the Mini App in Telegram after deploy: home shows the same progress as before; verify with `wrangler d1 execute --remote --command "SELECT key FROM kv"` that the migration uploaded all keys
-- [ ] 4.2 Answer one exercise, reopen on a second device (or Telegram Desktop): progress matches; verify `updated_at` changed for the touched pack and `meta`
-- [ ] 4.3 Temporarily point `VITE_API_URL` at an unreachable host in a local Telegram test build (or block the Worker route): lesson works without toasts, `unsynced` key appears in CloudStorage; restore the URL and reopen — `unsynced` is empty and the server has the offline answers
+- [x] 4.1 Open the Mini App in Telegram after deploy: home shows the same progress as before; verify with `wrangler d1 execute --remote --command "SELECT key FROM kv"` that the migration uploaded all keys
+- [x] 4.2 Answer one exercise, reopen on a second device (or Telegram Desktop): progress matches; verify `updated_at` changed for the touched pack and `meta`
+- [x] 4.3 Temporarily point `VITE_API_URL` at an unreachable host in a local Telegram test build (or block the Worker route): lesson works without toasts, `unsynced` key appears in CloudStorage; restore the URL and reopen — `unsynced` is empty and the server has the offline answers
 
 ## 5. Docs & verification
 
