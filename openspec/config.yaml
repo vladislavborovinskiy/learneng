@@ -1,0 +1,70 @@
+schema: spec-driven
+
+context: |
+  LearnEng — a personal Duolingo-style English trainer shipped as a Telegram Mini App for one
+  learner (level ~A1–A2, goal: read technical documentation). No backend: static Vite + React 19
+  + TypeScript + Tailwind v4 + shadcn (Base UI) app in web/, deployed to GitHub Pages; progress in
+  Telegram CloudStorage (localStorage outside Telegram); content is JSON in content/ bundled at
+  build time. Read CLAUDE.md for layout, design and conventions, and the module guideline in
+  .ai/guidelines/modules/<module>.md for domain context before writing any artifact.
+  Artifacts are written in English; user-facing strings are quoted in Russian exactly as they
+  appear in the UI. Conventional commits. Quality over speed.
+
+rules:
+  proposal:
+    - >-
+      Sections in this order: Why, What Changes, Capabilities (New / Modified, named
+      <module>/<feature> matching openspec/specs), Impact, Non-goals.
+    - >-
+      Name the affected module guideline(s) under Impact.
+    - >-
+      Keep it under 500 words; no implementation details.
+  specs:
+    - >-
+      Observable behavior only — no component, hook, file or library names.
+    - >-
+      Every requirement uses SHALL/MUST and has at least one "#### Scenario" with WHEN/THEN.
+    - >-
+      Quote UI text in Russian exactly.
+    - >-
+      When behavior depends on stored data (cards, meta, backup format) or Telegram capabilities,
+      state the stored shape or the Telegram API version requirement explicitly.
+  design:
+    - >-
+      Start from the module guideline; list which of its sections this change will update.
+    - >-
+      Respect the constraints: no backend, CloudStorage limits (keys A-Za-z0-9_-, 1024 keys,
+      4096 chars per value), backward compatibility of stored progress and backups.
+    - >-
+      Every decision names at least one rejected alternative and why.
+    - >-
+      Follow CLAUDE.md conventions (no comments in code, ThumbLayout with all buttons in the
+      thumb zone, 8-bit theme tokens, pixelarticons per-icon imports) and reuse existing
+      components, hooks and helpers — name what was searched for and reused.
+  tasks:
+    - >-
+      Group by area (e.g. "1. Data & logic", "2. UI", "3. Docs & verification"); each task is
+      one checkbox with a concrete verification (what to open, click or run).
+    - >-
+      The last group always contains: update .ai/guidelines/modules/<module>.md (and CLAUDE.md
+      if layout/conventions changed) and run `npm run lint && npm run typecheck` in web/.
+
+operations:
+  apply:
+    guidance:
+      - >-
+        Never run mutating git commands; leave staging and commits to the developer.
+      - >-
+        No comments in code; explanations go to the chat.
+      - >-
+        Run `npm run typecheck` in web/ after each group of tasks and lint + typecheck before
+        reporting completion.
+      - >-
+        Tick tasks in tasks.md as they are verified, not when the code is written.
+  archive:
+    guidance:
+      - >-
+        Before archiving, confirm the module guideline reflects the new behavior and that the
+        main spec under openspec/specs matches the delta.
+      - >-
+        Summarize what changed for the user in two or three sentences, without listing files.

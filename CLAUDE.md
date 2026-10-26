@@ -29,6 +29,23 @@
 - Раскладка «под большой палец»: каждый экран — `ThumbLayout` (шапка → контент → зона действий с отступом ~40px снизу, без отдельного спейсера). Все кнопки только в зоне действий; панель результата ответа заменяет варианты в той же зоне. Озвучка только по кнопке 🔊, без автоплея. Выход из сессии — системная BackButton Telegram (крестик только вне Telegram).
 - Иконки — pixelarticons поштучно: `pixelarticons/react/<Name>.js`.
 
+## Гайдлайны модулей
+
+Бизнес-контекст по модулям — назначение, глоссарий, ключевые флоу с точками входа в код, неочевидное поведение. **Перед работой над модулем прочитай его гайдлайн**; при изменении поведения обнови его в том же изменении.
+
+| Модуль              | Покрывает                                                  | Гайдлайн                               |
+| ------------------- | ---------------------------------------------------------- | -------------------------------------- |
+| Content             | словарь, предложения, данные теста уровня                  | `.ai/guidelines/modules/content.md`    |
+| Progress            | хранилище, FSRS-карточки, meta, резервная копия, настройки | `.ai/guidelines/modules/progress.md`   |
+| Scheduling          | FSRS, очередь, дневной лимит, «Ещё 5 слов», стрик, главная | `.ai/guidelines/modules/scheduling.md` |
+| Session             | занятие, упражнения, обратная связь, итог                  | `.ai/guidelines/modules/session.md`    |
+| Level test          | тест уровня и пометка известных слов                       | `.ai/guidelines/modules/level-test.md` |
+| Telegram & delivery | WebApp, BackButton, haptics, деплой, напоминания           | `.ai/guidelines/modules/telegram.md`   |
+
+## Spec-driven изменения (OpenSpec)
+
+Фичи и изменения поведения идут через `openspec/` (схема `spec-driven`, конфиг `openspec/config.yaml`): `openspec/specs/<module>/<feature>/spec.md` — источник правды по наблюдаемому поведению; изменение в работе живёт в `openspec/changes/<change-id>/` (`proposal.md` → `specs/**/spec.md` дельта ADDED/MODIFIED/REMOVED → `design.md` → `tasks.md`); законченное архивируется в `openspec/changes/archive/YYYY-MM-DD-<change-id>/`, дельта вливается в основные спеки. Сначала договариваемся в документах, потом код. Команды: `/opsx:explore`, `/opsx:propose <id>`, `/opsx:apply`, `/opsx:update`, `/opsx:archive`; перед архивом `openspec validate <id> --strict`. Мелкие фиксы, стили, переименования — без change. Инициализировано 2026-10-26 (`openspec init --tools claude`), основных спек пока нет — появляются по мере изменений.
+
 ## Команды (в `web/`)
 
 `npm run dev`, `npm run build`, `npm run lint` (oxlint), `npm run typecheck`, `npm run format`.
