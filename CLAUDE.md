@@ -46,7 +46,7 @@
 
 ## Spec-driven изменения (OpenSpec)
 
-Фичи и изменения поведения идут через `openspec/` (схема `spec-driven`, конфиг `openspec/config.yaml`): `openspec/specs/<module>/<feature>/spec.md` — источник правды по наблюдаемому поведению; изменение в работе живёт в `openspec/changes/<change-id>/` (`proposal.md` → `specs/**/spec.md` дельта ADDED/MODIFIED/REMOVED → `design.md` → `tasks.md`); законченное архивируется в `openspec/changes/archive/YYYY-MM-DD-<change-id>/`, дельта вливается в основные спеки. Сначала договариваемся в документах, потом код. Команды: `/opsx:explore`, `/opsx:propose <id>`, `/opsx:apply`, `/opsx:update`, `/opsx:archive`; перед архивом `openspec validate <id> --strict`. Мелкие фиксы, стили, переименования — без change. Инициализировано 2026-10-26 (`openspec init --tools claude`), основные спеки: `progress/settings`, `scheduling/{lessons,home}`, `session/lesson-flow`, `ui/visual-style`.
+Фичи и изменения поведения идут через `openspec/` (схема `spec-driven`, конфиг `openspec/config.yaml`): `openspec/specs/<module>/<feature>/spec.md` — источник правды по наблюдаемому поведению; изменение в работе живёт в `openspec/changes/<change-id>/` (`proposal.md` → `specs/**/spec.md` дельта ADDED/MODIFIED/REMOVED → `design.md` → `tasks.md`); законченное архивируется в `openspec/changes/archive/YYYY-MM-DD-<change-id>/`, дельта вливается в основные спеки. Сначала договариваемся в документах, потом код. Команды: `/opsx:explore`, `/opsx:propose <id>`, `/opsx:apply`, `/opsx:update`, `/opsx:archive`; перед архивом `openspec validate <id> --strict`. Мелкие фиксы, стили, переименования — без change. Инициализировано 2026-10-26 (`openspec init --tools claude`), основные спеки: `progress/{settings,server-storage,daily-backup}`, `scheduling/{lessons,home}`, `session/lesson-flow`, `ui/visual-style`.
 
 ## Команды (в `web/`)
 
@@ -59,6 +59,6 @@
 ## Current state / Open work
 
 - Готово: контент, каркас, хранилище, планировщик, главный экран, сессия с 5 упражнениями (+ повтор новых слов в конце), тест уровня, настройки, workflow деплоя и напоминаний.
-- В работе: `server-progress` — код Worker и клиента готов и проверен локально; нужны разовая настройка Cloudflare, деплой и проверка внутри Telegram (миграция, второе устройство, офлайн, файл бэкапа).
+- Готово 2026-10-27: прогресс на сервере (`server-progress`) — миграция, второе устройство и дозаливка проверены в Telegram; ждём первый ночной файл-копию от бота (03:00 МСК).
 - Дальше: проверка внутри Telegram (CloudStorage, BackButton, haptics).
 - Потом: трек грамматики для чтения, трек чтения реальных текстов.

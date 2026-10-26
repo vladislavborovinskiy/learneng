@@ -1,7 +1,7 @@
 ## 0. Preconditions
 
 - [x] 0.1 Re-check current Cloudflare free-tier limits for Workers (requests/day, CPU), D1 (rows written/read per day, storage, Time Travel window) and Cron Triggers in the official docs; record them in design.md Risks and confirm ≥ 100× headroom over ~500 writes/day
-- [ ] 0.2 Developer makes a manual backup (Настройки → «Скопировать») and saves it in Telegram «Избранное»; confirm the text is there before any deploy
+- [x] 0.2 ~~Developer makes a manual backup (Настройки → «Скопировать») and saves it in Telegram «Избранное»; confirm the text is there before any deploy~~ — superseded: migration verified in 4.1, server + CloudStorage hold the data
 
 ## 1. Worker & database
 
@@ -10,7 +10,7 @@
 - [x] 1.3 Implement initData verification (HMAC-SHA256 via Web Crypto, 24 h `auth_date` limit, `ALLOWED_USER_IDS` allowlist); verify with `wrangler dev` that a request without header, with a tampered `hash`, and with a non-allowlisted user all return 401
 - [x] 1.4 Implement `GET /progress`, `PUT /progress/:key` (key whitelist `p_00`…`p_63`, `meta`; value ≤ 64 KB) and `PUT /progress` (replace all in one `DB.batch`); verify with curl against `wrangler dev` using a valid initData that put → get round-trips and an invalid key returns 400
 - [x] 1.5 Add CORS for `ALLOWED_ORIGIN` incl. `OPTIONS` preflight; verify a preflight from another origin gets no `Access-Control-Allow-Origin`
-- [ ] 1.6 Implement the scheduled handler: for each allowlisted user with `updated_at` in the last 24 h send `learneng-backup-YYYY-MM-DD.json` via `sendDocument`; verify with `wrangler dev --test-scheduled` and `curl /__scheduled` that the file arrives in the bot chat and is skipped when nothing changed
+- [ ] 1.6 Implement the scheduled handler: for each allowlisted user with `updated_at` in the last 24 h send `learneng-backup-YYYY-MM-DD.json` via `sendDocument`; verify with `wrangler dev --test-scheduled` and `curl /__scheduled` that the file arrives in the bot chat and is skipped when nothing changed — handler verified locally (runs, calls Telegram, logs errors); real delivery pending the first nightly run
 
 ## 2. Client storage
 
