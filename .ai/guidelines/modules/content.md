@@ -23,8 +23,8 @@ redeploying. Entry point in code: `web/src/lib/content.ts` (imported via the `@c
 - **Sentence** — `{ en, ru, form }`, six per word. `form` is the exact substring of `en` that
   realizes the word (inflected, original case) and occurs **exactly once** in `en`; cloze, typing
   and the blank rendering rely on it.
-- **New-words order** — all `it` words in file order, then `ngsl` by ascending `rank`
-  (`newWordsOrder`).
+- **New-words order** — two queues: `itWordsOrder` (file order) and `ngslWordsOrder` (ascending
+  `rank`); a lesson takes 2 IT + 1 NGSL (see `scheduling.md`).
 - **Level test** (`content/level_test.json`) — `bands` (rank ranges 1–500 … 2001–2809), 100
   `words` `{ en, rank }` sampled from NGSL across the bands, 15 `pseudo` non-words.
 
@@ -33,7 +33,7 @@ redeploying. Entry point in code: `web/src/lib/content.ts` (imported via the `@c
 1. **Generation** was a one-off offline process (LLM-assisted) whose intermediate files live in
    `content/draft/` (`input_*`, `words_*`, `ngsl_*`, merged). There is no generator script in
    the repo; drafts are kept for reference and re-runs, the app never reads them.
-2. **Consumption** — `words`, `wordsById`, `newWordsOrder` from `content.ts`; the level test is
+2. **Consumption** — `words`, `wordsById`, `itWordsOrder`, `ngslWordsOrder` from `content.ts`; the level test is
    imported directly by `screens/level-test.tsx`.
 
 ## Non-obvious invariants / gotchas

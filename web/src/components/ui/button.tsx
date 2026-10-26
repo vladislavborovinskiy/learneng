@@ -3,19 +3,15 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'cn'
 
 const buttonVariants = cva(
-  "group/button pixel-corners inline-flex shrink-0 items-center justify-center border-(length:--pixel) font-pixel font-medium whitespace-nowrap transition-[translate,background-color,border-color,box-shadow] duration-75 outline-none select-none focus-visible:border-ring active:translate-y-0.5 active:shadow-none disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-6",
+  "group/button inline-flex shrink-0 items-center justify-center border-2 font-display font-bold whitespace-nowrap transition-[background-color,border-color,color,opacity] duration-100 outline-none select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-6",
   {
     variants: {
       variant: {
-        default:
-          'border-primary bg-primary text-primary-foreground shadow-[inset_0_-4px_0_rgb(0_0_0/0.25)]',
-        outline:
-          'border-border bg-card text-foreground shadow-[inset_0_-4px_0_rgb(255_255_255/0.04)] active:border-primary',
-        secondary:
-          'border-secondary bg-secondary text-secondary-foreground shadow-[inset_0_-4px_0_rgb(0_0_0/0.25)]',
+        default: 'border-primary bg-primary text-primary-foreground active:opacity-85',
+        outline: 'border-border bg-transparent text-foreground active:bg-foreground/10',
+        secondary: 'border-secondary bg-secondary text-secondary-foreground active:bg-muted',
         ghost: 'border-transparent bg-transparent text-foreground active:bg-muted',
-        destructive:
-          'border-destructive bg-destructive text-primary-foreground shadow-[inset_0_-4px_0_rgb(0_0_0/0.25)]',
+        destructive: 'border-destructive bg-destructive text-primary-foreground active:opacity-85',
         link: 'border-transparent text-primary underline-offset-4 active:underline',
       },
       size: {
@@ -23,10 +19,10 @@ const buttonVariants = cva(
         'xs': "h-7 gap-1 px-2 text-xs [&_svg:not([class*='size-'])]:size-4",
         'sm': "h-9 gap-1.5 px-3 text-sm [&_svg:not([class*='size-'])]:size-5",
         'lg': 'h-14 gap-2 px-5 text-lg',
-        'icon': 'size-11',
-        'icon-xs': "size-7 [&_svg:not([class*='size-'])]:size-4",
-        'icon-sm': "size-9 [&_svg:not([class*='size-'])]:size-5",
-        'icon-lg': 'size-14',
+        'icon': 'size-11 rounded-full',
+        'icon-xs': "size-7 rounded-full [&_svg:not([class*='size-'])]:size-4",
+        'icon-sm': "size-9 rounded-full [&_svg:not([class*='size-'])]:size-5",
+        'icon-lg': 'size-14 rounded-full',
       },
     },
     defaultVariants: {

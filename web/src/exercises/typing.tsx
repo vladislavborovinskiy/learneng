@@ -49,7 +49,7 @@ export function Typing({ exercise, header, feedback, onAnswer }: TypingProps) {
       }
     >
       <ScreenLabel>Напиши по-английски</ScreenLabel>
-      <h2 className="text-2xl font-semibold">{word.ru.join(', ')}</h2>
+      <h2 className="font-display text-2xl leading-tight font-bold">{word.ru.join(', ')}</h2>
       <div className="flex flex-col gap-2">
         <SentenceWithBlank sentence={sentence} hint={feedback ? undefined : hint} />
         <p className="text-muted-foreground">{sentence.ru}</p>

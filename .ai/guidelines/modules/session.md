@@ -2,7 +2,7 @@
 
 ## What this module is for
 
-The Duolingo-style lesson: introduce new words, drill them and due reviews with exercises whose
+The Duolingo-style lesson: introduce new words, drill them and review items interleaved with exercises whose
 difficulty follows the FSRS card, give immediate feedback, finish with a summary. Code:
 `web/src/screens/session.tsx`, `web/src/screens/session-summary.tsx`, `web/src/lib/exercises.ts`,
 `web/src/exercises/*`.
@@ -12,7 +12,7 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
 - **Queue item** — `{ wordId, intro }`; `intro: true` for new words (shows the new-word card
   first).
 - **Exercise kinds** (`buildExercise`, by card state):
-  - no card / not `Review` → **choice** EN→RU or RU→EN (4 options);
+  - no card / not `Review` → **choice** EN→RU or RU→EN (4 numbered option rows in the thumb zone, one tap answers);
   - `Review` with stability < 7 days → **cloze** choice (pick the missing `form`) or **tiles**
     (assemble the English sentence from shuffled tokens + 3 extra tokens), 50/50;
   - otherwise → **typing** the missing `form`, hint = first letter + underscores.
@@ -27,16 +27,21 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
 1. **New word** — card with `en`, translations, `note`, first sentence, 🔊. «Дальше» → the word
    is drilled right away (choice) and remembered as introduced; «Знаю» → `markKnown` (Easy), skip.
 2. **Answer** — the word is graded immediately; the feedback panel replaces the actions in the
-   bottom zone («Правильно!» / «Почти! Опечатка» / «Неправильно», correct answer except for tiles,
+   bottom zone (orange rays + «Правильно!» / «Почти! Опечатка», paper hatching + inverted
+   «Неправильно»; correct answer except for tiles,
    the full sentence with translation, 🔊, «Дальше»). Haptic success/warning/error.
 3. **Wrong answer** — the word is re-inserted 4 positions later and graded again when it comes
    back.
-4. **Final round** — when the queue ends, every word introduced in this session is appended once
+4. **Final round** — when the queue ends, every word introduced in this lesson is appended once
    more in random order.
-5. **Summary** — «Занятие завершено»: accuracy (typo counts as correct), answers, new words,
-   streak; «На главную».
-6. **Exit** — Telegram BackButton (or the cross outside Telegram) returns home; already graded
-   answers are kept.
+5. **Completion** — when the index runs past the queue (after the final round), `completeLesson`
+   bumps `days[today].lessons`.
+6. **Summary** — «Урок пройден»: one cell per answer in order (orange = correct incl. typo,
+   hatched = wrong; `Session` keeps `results: AnswerResult[]`), accuracy, answers, new words,
+   streak; «На главную» and «Ещё урок» (App bumps `lessonKey`, `Session` remounts and builds a
+   new lesson from current progress).
+7. **Exit** — Telegram BackButton (or the cross outside Telegram) returns home; already graded
+   answers are kept, the lesson is not counted.
 
 ## Non-obvious invariants / gotchas
 
@@ -51,5 +56,5 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
 
 ## Where to look next
 
-- Grades and queue composition — `scheduling.md`; sentence/`form` invariants — `content.md`;
+- Grades and lesson composition — `scheduling.md`; sentence/`form` invariants — `content.md`;
   BackButton and haptics — `telegram.md`.

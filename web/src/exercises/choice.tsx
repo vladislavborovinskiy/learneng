@@ -18,11 +18,11 @@ export function Choice({ exercise, header, feedback, onAnswer }: ChoiceProps) {
   const prompts = {
     'en-ru': {
       title: 'Как переводится?',
-      body: <h2 className="font-pixel text-4xl font-bold text-primary">{word.en}</h2>,
+      body: <h2 className="font-display text-5xl leading-none font-black">{word.en}</h2>,
     },
     'ru-en': {
       title: 'Выбери перевод',
-      body: <h2 className="text-2xl font-semibold">{word.ru.join(', ')}</h2>,
+      body: <h2 className="font-display text-2xl leading-tight font-bold">{word.ru.join(', ')}</h2>,
     },
     'cloze': {
       title: 'Вставь слово',
@@ -40,14 +40,17 @@ export function Choice({ exercise, header, feedback, onAnswer }: ChoiceProps) {
       header={header}
       actions={
         feedback ?? (
-          <div className="grid grid-cols-2 gap-3">
-            {options.map((option) => (
+          <div className="flex flex-col gap-2">
+            {options.map((option, index) => (
               <Button
                 key={option}
                 variant="outline"
-                className="h-auto min-h-16 px-3 py-2 font-sans text-base font-normal whitespace-normal"
+                className="h-auto min-h-13 justify-start gap-3 border-(length:--line) px-3 py-2 text-left font-sans text-base font-normal whitespace-normal"
                 onClick={() => onAnswer(option === answer ? 'correct' : 'wrong')}
               >
+                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-foreground font-mono text-xs font-bold text-background">
+                  {index + 1}
+                </span>
                 {option}
               </Button>
             ))}

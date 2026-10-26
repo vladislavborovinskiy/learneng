@@ -9,14 +9,11 @@ import { useBackButton } from '@/lib/telegram'
 type SettingsProps = {
   progress: Progress
   meta: Meta
-  updateMeta: (patch: Partial<Meta>) => void
   onRetakeLevelTest: () => void
   onExit: () => void
 }
 
-const NEW_PER_DAY_OPTIONS = [5, 10, 15, 20]
-
-export function Settings({ progress, meta, updateMeta, onRetakeLevelTest, onExit }: SettingsProps) {
+export function Settings({ progress, meta, onRetakeLevelTest, onExit }: SettingsProps) {
   const [copyStatus, setCopyStatus] = useState<string | null>(null)
   const [backup, setBackup] = useState('')
   const [confirmImport, setConfirmImport] = useState(false)
@@ -43,45 +40,41 @@ export function Settings({ progress, meta, updateMeta, onRetakeLevelTest, onExit
 
   return (
     <ThumbLayout
-      header={<h1 className="font-pixel text-2xl font-bold text-primary">Настройки</h1>}
+      header={<h1 className="font-display text-2xl font-black">Настройки</h1>}
       actions={
-        <Button size="lg" onClick={onExit}>
-          Готово
-        </Button>
+        <>
+          <div className="grid grid-cols-2 gap-3">
+            <Button variant="outline" onClick={copyBackup}>
+              Скопировать
+            </Button>
+            <Button
+              variant={confirmImport ? 'destructive' : 'outline'}
+              disabled={!backup.trim()}
+              onClick={restoreBackup}
+            >
+              {confirmImport ? 'Точно?' : 'Восстановить'}
+            </Button>
+          </div>
+          <div className="flex gap-3">
+            <Button variant="outline" size="lg" onClick={onRetakeLevelTest}>
+              Тест заново
+            </Button>
+            <Button size="lg" className="flex-1" onClick={onExit}>
+              Готово
+            </Button>
+          </div>
+        </>
       }
     >
       <Card>
         <CardHeader>
-          <CardTitle>Новых слов в день</CardTitle>
-        </CardHeader>
-        <CardContent className="grid grid-cols-4 gap-2">
-          {NEW_PER_DAY_OPTIONS.map((count) => (
-            <Button
-              key={count}
-              variant={meta.newPerDay === count ? 'default' : 'outline'}
-              size="lg"
-              className="px-0"
-              onClick={() => updateMeta({ newPerDay: count })}
-            >
-              {count}
-            </Button>
-          ))}
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
           <CardTitle>Резервная копия</CardTitle>
           <CardDescription>
-            Прогресс хранится в Telegram. Копию можно сохранить себе в «Избранное» и восстановить
-            при необходимости.
+            Прогресс хранится в Telegram. «Скопировать» кладёт копию в буфер обмена — сохрани её
+            себе в «Избранное». Чтобы восстановить, вставь копию ниже и нажми «Восстановить».
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
-          <Button variant="outline" onClick={copyBackup}>
-            Скопировать прогресс
-          </Button>
-          {copyStatus && <p className="text-sm text-muted-foreground">{copyStatus}</p>}
           <Textarea
             value={backup}
             onChange={(event) => {
@@ -92,13 +85,12 @@ export function Settings({ progress, meta, updateMeta, onRetakeLevelTest, onExit
             placeholder="Вставь сюда скопированный прогресс"
             className="h-24 text-xs"
           />
-          <Button
-            variant={confirmImport ? 'destructive' : 'outline'}
-            disabled={!backup.trim()}
-            onClick={restoreBackup}
-          >
-            {confirmImport ? 'Прогресс сотрётся. Точно?' : 'Восстановить'}
-          </Button>
+          {copyStatus && <p className="text-sm text-muted-foreground">{copyStatus}</p>}
+          {confirmImport && (
+            <p className="text-sm text-primary">
+              Текущий прогресс сотрётся. Нажми «Точно?», чтобы восстановить копию.
+            </p>
+          )}
           {importError && <p className="text-sm text-destructive">{importError}</p>}
         </CardContent>
       </Card>
@@ -107,14 +99,9 @@ export function Settings({ progress, meta, updateMeta, onRetakeLevelTest, onExit
         <CardHeader>
           <CardTitle>Тест уровня</CardTitle>
           <CardDescription>
-            Уже выученные слова останутся, тест только добавит новые известные
+            «Тест заново» не сотрёт выученные слова, а только добавит новые известные.
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <Button variant="outline" className="w-full" onClick={onRetakeLevelTest}>
-            Пройти заново
-          </Button>
-        </CardContent>
       </Card>
     </ThumbLayout>
   )

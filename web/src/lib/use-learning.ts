@@ -48,6 +48,7 @@ export function useLearning() {
         days: {
           ...data.meta.days,
           [today]: {
+            ...todayStats,
             reviewed: todayStats.reviewed + 1,
             learned: todayStats.learned + (previous ? 0 : 1),
           },
@@ -74,6 +75,22 @@ export function useLearning() {
     [commit]
   )
 
+  const completeLesson = useCallback(() => {
+    const data = dataRef.current
+    if (!data) return
+    const today = dayKey()
+    const todayStats = data.meta.days[today] ?? { reviewed: 0, learned: 0 }
+    const meta: Meta = {
+      ...data.meta,
+      days: {
+        ...data.meta.days,
+        [today]: { ...todayStats, lessons: (todayStats.lessons ?? 0) + 1 },
+      },
+    }
+    commit({ ...data, meta })
+    saveMeta(meta).catch(reportSaveError)
+  }, [commit])
+
   const updateMeta = useCallback(
     (patch: Partial<Meta>) => {
       const data = dataRef.current
@@ -85,5 +102,5 @@ export function useLearning() {
     [commit]
   )
 
-  return { state, grade, markKnown, updateMeta }
+  return { state, grade, markKnown, completeLesson, updateMeta }
 }

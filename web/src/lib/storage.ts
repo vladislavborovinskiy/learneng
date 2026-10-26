@@ -55,16 +55,15 @@ export type Progress = Record<string, Card>
 export type DayStats = {
   reviewed: number
   learned: number
+  lessons?: number
 }
 
 export type Meta = {
-  newPerDay: number
   levelTestDone: boolean
   days: Record<string, DayStats>
 }
 
 export const defaultMeta: Meta = {
-  newPerDay: 10,
   levelTestDone: false,
   days: {},
 }
@@ -152,10 +151,10 @@ export async function loadAll(): Promise<{ progress: Progress; meta: Meta }> {
     for (const [wordId, card] of Object.entries(pack)) progress[wordId] = expand(card)
   }
 
-  const meta = entries[META_KEY]
-    ? { ...defaultMeta, ...JSON.parse(entries[META_KEY]) }
-    : defaultMeta
-  return { progress, meta }
+  const { newPerDay: _legacyNewPerDay, ...storedMeta } = entries[META_KEY]
+    ? (JSON.parse(entries[META_KEY]) as Partial<Meta> & { newPerDay?: number })
+    : {}
+  return { progress, meta: { ...defaultMeta, ...storedMeta } }
 }
 
 const allPackKeys = Array.from({ length: PACK_COUNT }, (_, index) => packKeyByIndex(index))

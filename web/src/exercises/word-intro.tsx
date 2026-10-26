@@ -32,10 +32,10 @@ export function WordIntro({ word, header, onNext, onKnown }: WordIntroProps) {
       }
     >
       <ScreenLabel>Новое слово</ScreenLabel>
-      <Card className="stripes">
+      <Card className="halftone">
         <CardContent className="flex flex-col gap-3">
-          <h2 className="font-pixel text-4xl font-bold text-primary">{word.en}</h2>
-          <p className="text-xl">{word.ru.join(', ')}</p>
+          <h2 className="font-display text-5xl leading-none font-black">{word.en}</h2>
+          <p className="text-xl font-medium">{word.ru.join(', ')}</p>
           {word.note && <p className="text-sm text-muted-foreground">{word.note}</p>}
         </CardContent>
       </Card>

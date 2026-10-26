@@ -13,7 +13,7 @@ type TilesProps = {
 }
 
 const tileClassName =
-  'pixel-corners border-(length:--pixel) bg-card px-3 py-2 text-base transition-transform active:translate-y-0.5'
+  'rounded-[10px] border-2 px-3 py-2 text-base transition-colors active:bg-foreground/10'
 
 export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
   const [selected, setSelected] = useState<number[]>([])
@@ -44,7 +44,7 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
                     className={cn(
                       tileClassName,
                       'border-border',
-                      isUsed && 'bg-transparent text-transparent'
+                      isUsed && 'border-dashed border-muted-foreground text-transparent'
                     )}
                     onClick={() => setSelected([...selected, index])}
                   >
@@ -64,7 +64,7 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
       <p className="text-xl">{sentence.ru}</p>
       <div
         className={cn(
-          'flex min-h-24 flex-wrap content-start gap-2 border-b-(length:--pixel) border-dashed pb-3',
+          'flex min-h-24 flex-wrap content-start gap-2 border-b-2 border-dashed pb-3',
           feedback && 'pointer-events-none'
         )}
       >

@@ -54,9 +54,9 @@ export function LevelTest({ markKnown, onFinish, onExit }: LevelTestProps) {
         }
       >
         <ScreenLabel>Знаешь это слово?</ScreenLabel>
-        <Card className="stripes flex-1 justify-center">
+        <Card className="halftone flex-1 justify-center">
           <CardContent className="text-center">
-            <h2 className="font-pixel text-5xl font-bold text-primary">{items[index].en}</h2>
+            <h2 className="font-display text-5xl font-black">{items[index].en}</h2>
           </CardContent>
         </Card>
       </ThumbLayout>
@@ -111,7 +111,7 @@ export function LevelTest({ markKnown, onFinish, onExit }: LevelTestProps) {
     >
       <ScreenLabel>Результат теста</ScreenLabel>
       <div>
-        <div className="font-pixel text-5xl font-bold text-primary">≈ {estimate}</div>
+        <div className="font-display text-5xl font-black text-primary">≈ {estimate}</div>
         <p className="text-sm text-muted-foreground">слов из {totalWords} самых частых ты знаешь</p>
       </div>
       <Card>

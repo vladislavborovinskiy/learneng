@@ -1,8 +1,8 @@
-import { Check } from 'pixelarticons/react/Check.js'
-import { Close } from 'pixelarticons/react/Close.js'
-import { InfoBox } from 'pixelarticons/react/InfoBox.js'
-import { Loader } from 'pixelarticons/react/Loader.js'
-import { WarningDiamond } from 'pixelarticons/react/WarningDiamond.js'
+import { CheckIcon } from '@phosphor-icons/react/dist/csr/Check'
+import { CircleNotchIcon } from '@phosphor-icons/react/dist/csr/CircleNotch'
+import { InfoIcon } from '@phosphor-icons/react/dist/csr/Info'
+import { WarningIcon } from '@phosphor-icons/react/dist/csr/Warning'
+import { XIcon } from '@phosphor-icons/react/dist/csr/X'
 import { Toaster as Sonner, type ToasterProps } from 'sonner'
 
 const Toaster = ({ ...props }: ToasterProps) => {
@@ -12,18 +12,18 @@ const Toaster = ({ ...props }: ToasterProps) => {
       position="top-center"
       className="toaster group"
       icons={{
-        success: <Check className="size-6 text-success" />,
-        info: <InfoBox className="size-6 text-primary" />,
-        warning: <WarningDiamond className="size-6 text-warning" />,
-        error: <Close className="size-6 text-destructive" />,
-        loading: <Loader className="size-6 animate-spin text-primary" />,
+        success: <CheckIcon weight="bold" className="size-6 text-success" />,
+        info: <InfoIcon weight="bold" className="size-6 text-primary" />,
+        warning: <WarningIcon weight="bold" className="size-6 text-warning" />,
+        error: <XIcon weight="bold" className="size-6 text-destructive" />,
+        loading: <CircleNotchIcon weight="bold" className="size-6 animate-spin text-primary" />,
       }}
       toastOptions={{
         unstyled: true,
         classNames: {
           toast:
-            'pixel-corners flex w-full items-start gap-3 border-(length:--pixel) border-border bg-card p-4 font-sans text-card-foreground shadow-none',
-          title: 'font-pixel text-base font-bold',
+            'flex w-full items-start gap-3 border-2 border-border bg-popover p-4 font-sans text-popover-foreground shadow-none',
+          title: 'font-display text-base font-bold',
           description: 'mt-1 text-sm text-muted-foreground',
           icon: 'mt-0.5 shrink-0',
           error: 'border-destructive [&_[data-title]]:text-destructive',

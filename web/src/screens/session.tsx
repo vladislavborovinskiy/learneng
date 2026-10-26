@@ -14,7 +14,7 @@ import {
   type AnswerResult,
   type Exercise,
 } from '@/lib/exercises'
-import { getDueWordIds, getNewWordIds } from '@/lib/scheduler'
+import { buildLesson, type LessonItem } from '@/lib/scheduler'
 import type { Meta, Progress } from '@/lib/storage'
 import { haptic, useBackButton } from '@/lib/telegram'
 import { SessionSummary } from '@/screens/session-summary'
@@ -22,33 +22,35 @@ import { SessionSummary } from '@/screens/session-summary'
 type SessionProps = {
   progress: Progress
   meta: Meta
-  extraNew: number
   grade: (wordId: string, rating: Grade) => void
   markKnown: (wordIds: string[]) => void
+  onComplete: () => void
+  onNextLesson: () => void
   onExit: () => void
-}
-
-type QueueItem = {
-  wordId: string
-  intro: boolean
 }
 
 const REQUEUE_GAP = 4
 
-function exerciseFor(item: QueueItem | undefined, progress: Progress) {
+function exerciseFor(item: LessonItem | undefined, progress: Progress) {
   if (!item || item.intro) return null
   return buildExercise(wordsById.get(item.wordId)!, progress[item.wordId])
 }
 
-export function Session({ progress, meta, extraNew, grade, markKnown, onExit }: SessionProps) {
-  const [queue, setQueue] = useState<QueueItem[]>(() => [
-    ...getDueWordIds(progress).map((wordId) => ({ wordId, intro: false })),
-    ...getNewWordIds(progress, meta, extraNew).map((wordId) => ({ wordId, intro: true })),
-  ])
+export function Session({
+  progress,
+  meta,
+  grade,
+  markKnown,
+  onComplete,
+  onNextLesson,
+  onExit,
+}: SessionProps) {
+  const [queue, setQueue] = useState<LessonItem[]>(() => buildLesson(progress))
   const [index, setIndex] = useState(0)
   const [exercise, setExercise] = useState<Exercise | null>(() => exerciseFor(queue[0], progress))
   const [result, setResult] = useState<AnswerResult | null>(null)
-  const [stats, setStats] = useState({ answered: 0, correct: 0, learned: 0 })
+  const [results, setResults] = useState<AnswerResult[]>([])
+  const [learned, setLearned] = useState(0)
   const [introduced, setIntroduced] = useState<string[]>([])
   const [finalRoundAdded, setFinalRoundAdded] = useState(false)
 
@@ -57,7 +59,15 @@ export function Session({ progress, meta, extraNew, grade, markKnown, onExit }: 
   const item = queue[index]
 
   if (!item) {
-    return <SessionSummary stats={stats} meta={meta} onDone={onExit} />
+    return (
+      <SessionSummary
+        results={results}
+        learned={learned}
+        meta={meta}
+        onNextLesson={onNextLesson}
+        onDone={onExit}
+      />
+    )
   }
 
   const word = wordsById.get(item.wordId)!
@@ -70,6 +80,7 @@ export function Session({ progress, meta, extraNew, grade, markKnown, onExit }: 
       setQueue(nextQueue)
       setFinalRoundAdded(true)
     }
+    if (nextIndex >= nextQueue.length) onComplete()
     setIndex(nextIndex)
     setExercise(exerciseFor(nextQueue[nextIndex], progress))
     setResult(null)
@@ -77,24 +88,20 @@ export function Session({ progress, meta, extraNew, grade, markKnown, onExit }: 
 
   const handleKnown = () => {
     markKnown([item.wordId])
-    setStats({ ...stats, learned: stats.learned + 1 })
+    setLearned(learned + 1)
     advance()
   }
 
   const handleIntroNext = () => {
     setExercise(buildExercise(word, progress[item.wordId]))
-    setStats({ ...stats, learned: stats.learned + 1 })
+    setLearned(learned + 1)
     setIntroduced([...introduced, item.wordId])
   }
 
   const handleAnswer = (answer: AnswerResult) => {
     grade(item.wordId, gradeByResult[answer])
     setResult(answer)
-    setStats({
-      ...stats,
-      answered: stats.answered + 1,
-      correct: stats.correct + (answer === 'wrong' ? 0 : 1),
-    })
+    setResults([...results, answer])
     haptic(answer === 'correct' ? 'success' : answer === 'typo' ? 'warning' : 'error')
     if (answer === 'wrong') {
       const retry = { wordId: item.wordId, intro: false }

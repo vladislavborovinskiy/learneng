@@ -1,31 +1,22 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
-@import '@fontsource/jetbrains-mono/400.css';
-@import '@fontsource/jetbrains-mono/600.css';
-
-@font-face {
-  font-family: 'Pixel Letters';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('@fontsource/pixelify-sans/files/pixelify-sans-latin-500-normal.woff2') format('woff2');
-  unicode-range: U+0041-005A, U+0061-007A;
-}
-
-@font-face {
-  font-family: 'Pixel Letters';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('@fontsource/pixelify-sans/files/pixelify-sans-latin-700-normal.woff2') format('woff2');
-  unicode-range: U+0041-005A, U+0061-007A;
-}
+@import '@fontsource/rubik/latin-400.css';
+@import '@fontsource/rubik/cyrillic-400.css';
+@import '@fontsource/rubik/latin-500.css';
+@import '@fontsource/rubik/cyrillic-500.css';
+@import '@fontsource/rubik/latin-700.css';
+@import '@fontsource/rubik/cyrillic-700.css';
+@import '@fontsource/rubik/latin-900.css';
+@import '@fontsource/rubik/cyrillic-900.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/700.css';
 
 @theme inline {
-  --font-sans: 'JetBrains Mono', ui-monospace, monospace;
-  --font-heading: 'Pixel Letters', var(--font-sans);
-  --font-pixel: 'Pixel Letters', var(--font-sans);
+  --font-sans: 'Rubik', system-ui, sans-serif;
+  --font-heading: 'Rubik', system-ui, sans-serif;
+  --font-display: 'Rubik', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -50,48 +41,53 @@
 
 :root {
   color-scheme: dark;
-  --background: #0a0a0a;
-  --foreground: #f2f2f2;
-  --card: #151515;
-  --card-foreground: #f2f2f2;
-  --popover: #151515;
-  --popover-foreground: #f2f2f2;
-  --primary: #e2ff3b;
-  --primary-foreground: #0a0a0a;
-  --secondary: #1f1f1f;
-  --secondary-foreground: #f2f2f2;
-  --muted: #1f1f1f;
-  --muted-foreground: #8a8a8a;
-  --accent: #1f1f1f;
-  --accent-foreground: #e2ff3b;
-  --destructive: #ff4d4d;
-  --success: #e2ff3b;
-  --warning: #ffb02e;
-  --border: #2a2a2a;
-  --input: #2a2a2a;
-  --ring: #e2ff3b;
-  --pixel: 3px;
+  --background: #1a1815;
+  --foreground: #ede1c7;
+  --card: #1a1815;
+  --card-foreground: #ede1c7;
+  --popover: #221f1b;
+  --popover-foreground: #ede1c7;
+  --primary: #ee6a2e;
+  --primary-foreground: #1a1815;
+  --secondary: #221f1b;
+  --secondary-foreground: #ede1c7;
+  --muted: #2b2823;
+  --muted-foreground: #a39882;
+  --accent: #221f1b;
+  --accent-foreground: #ee6a2e;
+  --destructive: #ee6a2e;
+  --success: #ee6a2e;
+  --warning: #ede1c7;
+  --border: #ede1c7;
+  --input: #ede1c7;
+  --ring: #ee6a2e;
+  --line: 1.5px;
 }
 
-@utility pixel-corners {
-  clip-path: polygon(
-    0 var(--pixel),
-    var(--pixel) var(--pixel),
-    var(--pixel) 0,
-    calc(100% - var(--pixel)) 0,
-    calc(100% - var(--pixel)) var(--pixel),
-    100% var(--pixel),
-    100% calc(100% - var(--pixel)),
-    calc(100% - var(--pixel)) calc(100% - var(--pixel)),
-    calc(100% - var(--pixel)) 100%,
-    var(--pixel) 100%,
-    var(--pixel) calc(100% - var(--pixel)),
-    0 calc(100% - var(--pixel))
+@utility halftone {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--foreground) 22%, transparent) 1.1px,
+    transparent 1.3px
+  );
+  background-size: 6px 6px;
+}
+
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--foreground) 18%, transparent) 0 2px,
+    transparent 2px 9px
   );
 }
 
-@utility stripes {
-  background-image: repeating-linear-gradient(-45deg, var(--border) 0 2px, transparent 2px 12px);
+@utility hatch-primary {
+  background-image: repeating-linear-gradient(-45deg, var(--primary) 0 3px, transparent 3px 6px);
+}
+
+@utility rays {
+  background-image:
+    linear-gradient(90deg, transparent 0 35%, var(--background) 80%),
+    repeating-conic-gradient(from -8deg at 0% 100%, var(--primary) 0 5deg, transparent 5deg 12deg);
 }
 
 @layer base {

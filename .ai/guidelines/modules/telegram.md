@@ -17,7 +17,7 @@ integration, deployment to GitHub Pages, the daily reminder from a bot. Code:
 
 ## Key flows
 
-1. **Init** (`initTelegram`) — paints header/background/bottom bar `#0a0a0a` (the app ignores the
+1. **Init** (`initTelegram`) — paints header/background/bottom bar `#1a1815` (ink) (the app ignores the
    Telegram theme), `ready()`, `expand()`.
 2. **Back** (`useBackButton`) — shows the system BackButton on non-home screens and disables
    vertical swipe-to-close while it is shown, so a scroll gesture does not close the lesson.

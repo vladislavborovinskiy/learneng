@@ -1,50 +1,74 @@
-import { Fire } from 'pixelarticons/react/Fire.js'
-import { Trophy } from 'pixelarticons/react/Trophy.js'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
+import type { AnswerResult } from '@/lib/exercises'
 import { getStreak } from '@/lib/scheduler'
 import type { Meta } from '@/lib/storage'
+import { cn } from '@/lib/utils'
 
 type SessionSummaryProps = {
-  stats: { answered: number; correct: number; learned: number }
+  results: AnswerResult[]
+  learned: number
   meta: Meta
+  onNextLesson: () => void
   onDone: () => void
 }
 
-export function SessionSummary({ stats, meta, onDone }: SessionSummaryProps) {
-  const accuracy = stats.answered ? Math.round((stats.correct / stats.answered) * 100) : 100
+export function SessionSummary({
+  results,
+  learned,
+  meta,
+  onNextLesson,
+  onDone,
+}: SessionSummaryProps) {
+  const correct = results.filter((result) => result !== 'wrong').length
+  const accuracy = results.length ? Math.round((correct / results.length) * 100) : 100
   const items = [
     { label: 'точность', value: `${accuracy}%` },
-    { label: 'ответов', value: stats.answered },
-    { label: 'новых', value: stats.learned },
+    { label: 'ответов', value: results.length },
+    { label: 'новых слов', value: learned },
+    { label: 'дней подряд', value: getStreak(meta) },
   ]
 
   return (
     <ThumbLayout
       actions={
-        <Button size="lg" onClick={onDone}>
-          На главную
-        </Button>
+        <div className="flex gap-3">
+          <Button variant="outline" size="lg" onClick={onDone}>
+            На главную
+          </Button>
+          <Button size="lg" className="flex-1" onClick={onNextLesson}>
+            Ещё урок
+          </Button>
+        </div>
       }
     >
-      <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-        <Trophy className="size-24 text-primary" />
-        <h1 className="font-pixel text-3xl font-bold">Занятие завершено</h1>
-        <div className="grid w-full grid-cols-3 gap-3">
-          {items.map(({ label, value }) => (
-            <Card key={label} size="sm">
-              <CardContent>
-                <div className="font-pixel text-3xl font-bold text-primary">{value}</div>
-                <div className="text-xs text-muted-foreground">{label}</div>
-              </CardContent>
-            </Card>
+      <h1 className="font-display text-3xl leading-none font-black">Урок пройден</h1>
+      {results.length > 0 && (
+        <div
+          className="grid grid-cols-6 border-t-(length:--line) border-l-(length:--line) border-foreground"
+          aria-label={`Верных ответов: ${correct} из ${results.length}`}
+        >
+          {results.map((result, index) => (
+            <div
+              key={index}
+              className={cn(
+                'aspect-square border-r-(length:--line) border-b-(length:--line) border-foreground',
+                result === 'wrong' ? 'hatch' : 'bg-primary'
+              )}
+            />
           ))}
         </div>
-        <div className="flex items-center gap-2 font-pixel text-xl text-primary">
-          <Fire className="size-7" />
-          {getStreak(meta)} дн. подряд
-        </div>
+      )}
+      <div className="flex flex-col">
+        {items.map(({ label, value }) => (
+          <div
+            key={label}
+            className="flex items-baseline justify-between border-b border-foreground/35 py-2.5 last:border-b-0"
+          >
+            <span className="text-sm text-muted-foreground">{label}</span>
+            <span className="font-display text-2xl font-black tabular-nums">{value}</span>
+          </div>
+        ))}
       </div>
     </ThumbLayout>
   )

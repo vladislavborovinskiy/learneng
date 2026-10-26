@@ -11,8 +11,9 @@ in settings. Code: `web/src/lib/storage.ts`, `web/src/lib/use-learning.ts`,
 ## Glossary
 
 - **Progress** — `Record<wordId, Card>` (ts-fsrs `Card`). A word without a card is unseen.
-- **Meta** — `{ newPerDay, levelTestDone, days }`, where `days` maps a local date
-  `'YYYY-MM-DD'` (`dayKey`) to `{ reviewed, learned }`. Defaults: 10 new per day, test not done.
+- **Meta** — `{ levelTestDone, days }`, where `days` maps a local date `'YYYY-MM-DD'`
+  (`dayKey`) to `{ reviewed, learned, lessons? }`. A legacy `newPerDay` from before lessons is
+  stripped on load.
 - **Pack** — progress is sharded into 64 keys `p_00` … `p_63` by a string hash of the word id;
   each value is a JSON object `{ wordId: CompactCard }`. Key `meta` holds Meta.
 - **CompactCard** — 9-number tuple: due (minutes since epoch), stability, difficulty (2 decimals),
@@ -29,9 +30,10 @@ in settings. Code: `web/src/lib/storage.ts`, `web/src/lib/use-learning.ts`,
    touched pack** and `meta` in the background.
 3. **Mark known** — `markKnown(ids)` gives every still-unseen id an `Easy` card (goes straight
    to Review) and writes their packs. Does not touch Meta.
-4. **Settings** — `updateMeta(patch)` for new-per-day (5/10/15/20); the level test can be
-   retaken.
-5. **Backup** — «Скопировать прогресс» copies `exportBackup()` to the clipboard (user is told to
+4. **Complete lesson** — `completeLesson()` bumps `days[today].lessons`; `grade` keeps the other
+   fields of the day (spread), so it never resets the lesson count.
+5. **Settings** — backup and retaking the level test; no daily limit.
+6. **Backup** — «Скопировать прогресс» copies `exportBackup()` to the clipboard (user is told to
    keep it in Telegram «Избранное»); «Восстановить» requires a second tap («Прогресс сотрётся.
    Точно?»), validates, overwrites all 64 packs + meta, then reloads the page.
 
@@ -48,11 +50,11 @@ in settings. Code: `web/src/lib/storage.ts`, `web/src/lib/use-learning.ts`,
 - Writes are fire-and-forget; a failure shows one sticky toast `id: 'save-error'` («Прогресс не
   сохранился») pointing to the backup. State is kept in a ref too, so several calls in one
   handler see each other's changes.
-- `markKnown` does not increment `days.learned`, so words marked «Знаю» do not consume the daily
-  new-word limit.
+- `markKnown` does not increment `days.learned`, so words marked «Знаю» are not counted in
+  «выучено сегодня».
 - Import is not atomic: packs are written one by one, a failure mid-way leaves a mix.
 
 ## Where to look next
 
-- What a card state means for exercises — `session.md`; daily limit and stats — `scheduling.md`;
+- What a card state means for exercises — `session.md`; lessons and stats — `scheduling.md`;
   Telegram API versions — `telegram.md`.

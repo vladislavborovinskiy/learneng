@@ -1,6 +1,3 @@
-import { Check } from 'pixelarticons/react/Check.js'
-import { Close } from 'pixelarticons/react/Close.js'
-import { Zap } from 'pixelarticons/react/Zap.js'
 import { SpeakButton } from '@/components/speak-button'
 import { Button } from '@/components/ui/button'
 import type { AnswerResult, Exercise } from '@/lib/exercises'
@@ -13,13 +10,13 @@ type FeedbackPanelProps = {
 }
 
 const variants = {
-  correct: { title: 'Правильно!', Icon: Check, tone: 'text-success border-success' },
-  typo: { title: 'Почти! Опечатка', Icon: Zap, tone: 'text-warning border-warning' },
-  wrong: { title: 'Неправильно', Icon: Close, tone: 'text-destructive border-destructive' },
+  correct: { title: 'Правильно!', panel: 'rays', stamp: 'bg-background text-foreground' },
+  typo: { title: 'Почти! Опечатка', panel: 'rays', stamp: 'bg-background text-foreground' },
+  wrong: { title: 'Неправильно', panel: 'hatch', stamp: 'bg-foreground text-background' },
 }
 
 export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelProps) {
-  const { title, Icon, tone } = variants[result]
+  const { title, panel, stamp } = variants[result]
   const { sentence } = exercise
   const correctAnswer = exercise.kind === 'tiles' ? null : exercise.answer
 
@@ -27,28 +24,36 @@ export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelPro
     <>
       <div
         className={cn(
-          'pixel-corners flex animate-in flex-col gap-2 border-(length:--pixel) bg-card p-3 fade-in slide-in-from-bottom-2',
-          tone
+          'flex animate-in flex-col border-2 border-foreground fade-in slide-in-from-bottom-2',
+          panel
         )}
       >
-        <div className="flex items-center gap-2 font-pixel text-xl font-bold">
-          <Icon className="size-6" />
-          {title}
+        <div className="flex flex-col items-start gap-2 p-3 pt-4">
+          <span
+            className={cn(
+              'rounded-[10px] border-2 border-foreground px-3 py-1 font-display text-xl font-black',
+              stamp
+            )}
+          >
+            {title}
+          </span>
+          {result !== 'correct' && correctAnswer && (
+            <p className="bg-background px-1 text-sm">
+              Ответ: <span className="font-bold text-primary">{correctAnswer}</span>
+            </p>
+          )}
         </div>
-        {result !== 'correct' && correctAnswer && (
-          <p className="text-foreground">
-            Ответ: <span className="font-semibold text-primary">{correctAnswer}</span>
-          </p>
-        )}
-        <p className="text-foreground">{sentence.en}</p>
-        <p className="text-sm text-muted-foreground">{sentence.ru}</p>
+        <div className="flex flex-col gap-1 border-t-(length:--line) border-foreground bg-background p-3">
+          <p>{sentence.en}</p>
+          <p className="text-sm text-muted-foreground">{sentence.ru}</p>
+        </div>
       </div>
-      <div className="flex gap-3">
+      <div className="flex items-center gap-3">
         <SpeakButton text={sentence.en} />
         <Button
           autoFocus
           size="lg"
-          variant={result === 'wrong' ? 'destructive' : 'default'}
+          variant={result === 'wrong' ? 'outline' : 'default'}
           className="flex-1"
           onClick={onContinue}
         >
