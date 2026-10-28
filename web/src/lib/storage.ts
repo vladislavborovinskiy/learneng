@@ -182,6 +182,13 @@ const PACK_PREFIX = 'p_'
 const LEGACY_PACK_PREFIX = 'p:'
 const META_KEY = 'meta'
 const MAX_STORED_DAYS = 120
+
+type CompactDayStats = [reviewed: number, learned: number, lessons: number]
+
+type StoredMeta = Partial<Omit<Meta, 'days'>> & {
+  days?: Record<string, DayStats | CompactDayStats>
+  newPerDay?: number
+}
 const STATS_KEY = 'stats'
 const MAX_STATS_DAYS = 30
 
@@ -262,11 +269,19 @@ export async function loadAll(): Promise<{ progress: Progress; meta: Meta; stats
     for (const [wordId, card] of Object.entries(pack)) progress[wordId] = expand(card)
   }
 
-  const { newPerDay: _legacyNewPerDay, ...storedMeta } = entries[META_KEY]
-    ? (JSON.parse(entries[META_KEY]) as Partial<Meta> & { newPerDay?: number })
-    : {}
+  const {
+    newPerDay: _legacyNewPerDay,
+    days: storedDays = {},
+    ...storedMeta
+  } = entries[META_KEY] ? (JSON.parse(entries[META_KEY]) as StoredMeta) : {}
+  const days = Object.fromEntries(
+    Object.entries(storedDays).map(([day, stats]) => [
+      day,
+      Array.isArray(stats) ? { reviewed: stats[0], learned: stats[1], lessons: stats[2] } : stats,
+    ])
+  )
   const stats = entries[STATS_KEY] ? (JSON.parse(entries[STATS_KEY]) as AnswerStats) : {}
-  return { progress, meta: { ...defaultMeta, ...storedMeta }, stats }
+  return { progress, meta: { ...defaultMeta, ...storedMeta, days }, stats }
 }
 
 const allPackKeys = Array.from({ length: PACK_COUNT }, (_, index) => packKeyByIndex(index))
@@ -282,7 +297,12 @@ function serializePacks(progress: Progress, keys: Iterable<string>) {
 
 function serializeMeta(meta: Meta) {
   const recentDays = Object.keys(meta.days).sort().slice(-MAX_STORED_DAYS)
-  const days = Object.fromEntries(recentDays.map((day) => [day, meta.days[day]]))
+  const days = Object.fromEntries(
+    recentDays.map((day) => {
+      const { reviewed, learned, lessons = 0 } = meta.days[day]
+      return [day, [reviewed, learned, lessons] satisfies CompactDayStats]
+    })
+  )
   return JSON.stringify({ ...meta, days })
 }
 

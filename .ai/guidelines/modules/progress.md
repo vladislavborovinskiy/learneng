@@ -14,7 +14,9 @@ Also covers the manual backup in settings and the daily backup file from the ser
 
 - **Progress** — `Record<wordId, Card>` (ts-fsrs `Card`). A word without a card is unseen.
 - **Meta** — `{ levelTestDone, days }`, where `days` maps a local date `'YYYY-MM-DD'`
-  (`dayKey`) to `{ reviewed, learned, lessons? }`. A legacy `newPerDay` from before lessons is
+  (`dayKey`) to `{ reviewed, learned, lessons? }`. Stored compactly as
+  `[reviewed, learned, lessons]` per day (`serializeMeta`); `loadAll` also reads the older object
+  form, so old storage and backups stay valid. A legacy `newPerDay` from before lessons is
   stripped on load.
 - **Pack** — progress is sharded into 64 keys `p_00` … `p_63` by a string hash of the word id;
   each value is a JSON object `{ wordId: CompactCard }`. Key `meta` holds Meta. Key `stats` holds
@@ -68,7 +70,9 @@ Also covers the manual backup in settings and the daily backup file from the ser
 - CloudStorage keys allow only `A-Za-z0-9_-`, hence `p_NN`; old backups with `p:NN` are accepted
   and renamed on import, but `loadAll` ignores `p:` keys in storage.
 - CloudStorage limits: 1024 keys, 4096 chars per value. ~12 words per pack today — fine, but grow
-  the deck with that budget in mind. `meta.days` is trimmed to the last 120 days on every write.
+  the deck with that budget in mind. `meta.days` is trimmed to the last 120 days on every write;
+  the compact day arrays keep that under ~3 KB (the object form would exceed 4096 chars after
+  ~75 days). The streak therefore cannot exceed 120 days.
 - `stats` is not part of the manual backup, and restoring a backup replaces all server keys, so
   the stats start over after an import.
 - CloudStorage is used only when `isTelegram && isVersionAtLeast('6.9')`; older clients fall
