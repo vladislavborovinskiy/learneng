@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useHotkeys } from '@/lib/use-hotkeys'
 
 export const webApp = window.Telegram?.WebApp
 
@@ -16,6 +17,7 @@ export function initTelegram() {
 }
 
 export function useBackButton(onBack: () => void) {
+  useHotkeys({ Escape: onBack })
   useEffect(() => {
     if (!isTelegram) return
     const canLockSwipes = webApp.isVersionAtLeast('7.7')

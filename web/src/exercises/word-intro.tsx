@@ -1,10 +1,12 @@
 import type { ReactNode } from 'react'
+import { KeyLabel } from '@/components/key-label'
 import { ScreenLabel } from '@/components/screen-label'
 import { SpeakButton } from '@/components/speak-button'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import type { Word } from '@/lib/content'
+import { useHotkeys } from '@/lib/use-hotkeys'
 
 type WordIntroProps = {
   word: Word
@@ -16,6 +18,8 @@ type WordIntroProps = {
 export function WordIntro({ word, header, onNext, onKnown }: WordIntroProps) {
   const example = word.sentences[0]
 
+  useHotkeys({ Enter: onNext })
+
   return (
     <ThumbLayout
       header={header}
@@ -26,7 +30,7 @@ export function WordIntro({ word, header, onNext, onKnown }: WordIntroProps) {
             Знаю
           </Button>
           <Button size="lg" className="flex-1" onClick={onNext}>
-            Дальше
+            Дальше <KeyLabel>Enter</KeyLabel>
           </Button>
         </div>
       }

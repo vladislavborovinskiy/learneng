@@ -15,22 +15,40 @@ There SHALL be no daily limit on new words.
 #### Scenario: Many lessons in one day
 
 - **WHEN** the learner has already completed several lessons today and starts another one
-- **THEN** a lesson is built with new words if unseen words remain and the backlog rule does not apply
+- **THEN** a lesson is built with as many new words as the taper allows for the current due count
 
 ### Requirement: New words per lesson
 
-A lesson SHALL include up to 3 unseen words: 2 IT words (in dictionary order) and 1 NGSL word
-(by frequency rank). When one source runs out, the other SHALL fill the free slots. A lesson
-SHALL include fewer new words only when fewer unseen words remain or the backlog rule applies.
+A lesson SHALL include up to N unseen words, where N depends on the number of due words at the
+moment the lesson is built: fewer than 12 due → 3, 12–23 → 2, 24–47 → 1, 48 or more → 0. With 3
+slots the lesson SHALL take 2 IT words (in dictionary order) and 1 NGSL word (by frequency rank);
+with 2 slots 1 IT and 1 NGSL word; with 1 slot 1 IT word. When one source runs out, the other
+SHALL fill the free slots. A lesson SHALL include fewer than N new words only when fewer unseen
+words remain.
 
 #### Scenario: Regular lesson
 
 - **WHEN** 5 words are due and 100 words are unseen
 - **THEN** the lesson contains the next 2 unseen IT words and the most frequent unseen NGSL word
 
+#### Scenario: Growing backlog
+
+- **WHEN** 15 words are due
+- **THEN** the lesson contains the next unseen IT word and the most frequent unseen NGSL word
+
+#### Scenario: Large backlog
+
+- **WHEN** 30 words are due
+- **THEN** the lesson contains the next unseen IT word and the 8 most overdue review items
+
+#### Scenario: New words paused
+
+- **WHEN** 50 words are due
+- **THEN** the lesson contains no new words and the 8 most overdue review items
+
 #### Scenario: NGSL words known from the level test
 
-- **WHEN** every NGSL word is already known and IT words remain unseen
+- **WHEN** every NGSL word is already known, IT words remain unseen and 5 words are due
 - **THEN** the lesson contains the next 3 unseen IT words
 
 #### Scenario: Deck almost exhausted
@@ -66,21 +84,6 @@ once per lesson (repeats after a wrong answer are not counted).
 
 - **WHEN** no word has been studied yet
 - **THEN** the lesson contains only new words
-
-### Requirement: Backlog lesson
-
-When 24 or more words are due, a lesson SHALL contain no new words and SHALL be presented as
-«Повторение».
-
-#### Scenario: Large backlog
-
-- **WHEN** 30 words are due
-- **THEN** the lesson contains the 8 most overdue words and no new words
-
-#### Scenario: Backlog cleared
-
-- **WHEN** the due count drops below 24
-- **THEN** the next lesson includes new words again
 
 ### Requirement: Review answers update the schedule
 

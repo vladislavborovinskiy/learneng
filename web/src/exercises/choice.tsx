@@ -1,9 +1,11 @@
 import type { ReactNode } from 'react'
+import { KeyLabel } from '@/components/key-label'
 import { ScreenLabel } from '@/components/screen-label'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
 import { SentenceWithBlank } from '@/exercises/sentence-with-blank'
 import type { AnswerResult, ChoiceExercise } from '@/lib/exercises'
+import { useHotkeys } from '@/lib/use-hotkeys'
 
 type ChoiceProps = {
   exercise: ChoiceExercise
@@ -14,6 +16,20 @@ type ChoiceProps = {
 
 export function Choice({ exercise, header, feedback, onAnswer }: ChoiceProps) {
   const { mode, word, sentence, options, answer } = exercise
+  const choose = (option: string) => onAnswer(option === answer ? 'correct' : 'wrong')
+
+  useHotkeys(
+    {
+      ...Object.fromEntries(
+        options.flatMap((option, index) => [
+          [`Digit${index + 1}`, () => choose(option)],
+          [`Numpad${index + 1}`, () => choose(option)],
+        ])
+      ),
+      'Shift+Enter': () => onAnswer('forgot'),
+    },
+    { enabled: !feedback }
+  )
 
   const prompts = {
     'en-ru': {
@@ -46,7 +62,7 @@ export function Choice({ exercise, header, feedback, onAnswer }: ChoiceProps) {
                 key={option}
                 variant="outline"
                 className="h-auto min-h-13 justify-start gap-3 border-(length:--line) px-3 py-2 text-left font-sans text-base font-normal whitespace-normal"
-                onClick={() => onAnswer(option === answer ? 'correct' : 'wrong')}
+                onClick={() => choose(option)}
               >
                 <span className="grid size-6 shrink-0 place-items-center rounded-full bg-foreground font-mono text-xs font-bold text-background">
                   {index + 1}
@@ -55,7 +71,7 @@ export function Choice({ exercise, header, feedback, onAnswer }: ChoiceProps) {
               </Button>
             ))}
             <Button variant="outline" size="lg" onClick={() => onAnswer('forgot')}>
-              Не помню
+              Не помню <KeyLabel>⇧Enter</KeyLabel>
             </Button>
           </div>
         )

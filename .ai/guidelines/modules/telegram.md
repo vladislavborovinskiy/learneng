@@ -26,6 +26,8 @@ reminder from a bot. Code:
    Telegram theme), `ready()`, `expand()`.
 2. **Back** (`useBackButton`) — shows the system BackButton on non-home screens and disables
    vertical swipe-to-close while it is shown, so a scroll gesture does not close the lesson.
+   `Esc` triggers the same handler (in and outside Telegram); Telegram Desktop may also handle
+   `Esc` itself — not verified yet.
 3. **Haptics** — `haptic('success' | 'warning' | 'error')` on answers; no-op outside Telegram.
 4. **Deploy** — push to `main` → `npm ci`, lint, build in `web/` (with repo variable
    `VITE_API_URL`) → GitHub Pages. Push touching `worker/**` → `worker.yml`: typecheck, apply

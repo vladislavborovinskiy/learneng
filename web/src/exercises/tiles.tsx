@@ -1,5 +1,6 @@
 import { LightbulbIcon } from '@phosphor-icons/react/dist/csr/Lightbulb'
 import { useState, type ReactNode } from 'react'
+import { KeyLabel } from '@/components/key-label'
 import { ScreenLabel } from '@/components/screen-label'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
@@ -11,6 +12,7 @@ import {
   type AnswerResult,
   type TilesExercise,
 } from '@/lib/exercises'
+import { useHotkeys } from '@/lib/use-hotkeys'
 import { cn } from '@/lib/utils'
 
 type TilesProps = {
@@ -29,9 +31,15 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
   const [misses, setMisses] = useState(0)
   const [shake, setShake] = useState({ index: -1, count: 0 })
   const [hinted, setHinted] = useState(false)
+  const [search, setSearch] = useState('')
   const { sentence, tiles, answer } = exercise
   const highlighted = misses >= MISSES_BEFORE_HIGHLIGHT ? nextTileIndex(tiles, placed, answer) : -1
   const canHint = answer.length - placed.length > 1
+  const searchMatch = search
+    ? tiles.findIndex(
+        (tile, index) => !placed.includes(index) && tile.toLowerCase().startsWith(search)
+      )
+    : -1
 
   const place = (index: number, isHint: boolean) => {
     const nextPlaced = [...placed, index]
@@ -43,6 +51,7 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
   }
 
   const tap = (index: number) => {
+    setSearch('')
     if (isSameTile(tiles[index], answer[placed.length])) return place(index, false)
     setMistakes(mistakes + 1)
     setMisses(misses + 1)
@@ -51,8 +60,21 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
 
   const takeHint = () => {
     setHinted(true)
+    setSearch('')
     place(nextTileIndex(tiles, placed, answer), true)
   }
+
+  useHotkeys(
+    {
+      'Space': () => {
+        if (searchMatch !== -1) tap(searchMatch)
+      },
+      'Backspace': () => setSearch(search.slice(0, -1)),
+      'Shift+Enter': () => onAnswer('forgot'),
+      ...(canHint && { Tab: takeHint }),
+    },
+    { enabled: !feedback, onText: (char) => setSearch(search + char) }
+  )
 
   return (
     <ThumbLayout
@@ -60,6 +82,12 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
       actions={
         feedback ?? (
           <>
+            {search && (
+              <p className="text-center font-mono text-sm text-muted-foreground">
+                {search}
+                <KeyLabel> · Space</KeyLabel>
+              </p>
+            )}
             <div className="flex flex-wrap justify-center gap-2">
               {tiles.map((tile, index) => {
                 const isUsed = placed.includes(index)
@@ -73,6 +101,7 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
                       'border-border active:bg-foreground/10',
                       shake.index === index && 'animate-shake',
                       index === highlighted && 'border-primary text-primary',
+                      index === searchMatch && 'bg-foreground text-background',
                       isUsed && 'border-dashed border-muted-foreground text-transparent'
                     )}
                     onClick={() => tap(index)}
@@ -84,8 +113,15 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
             </div>
             <div className="flex gap-3">
               {canHint && (
-                <Button variant="outline" size="icon-lg" aria-label="Подсказка" onClick={takeHint}>
+                <Button
+                  variant="outline"
+                  size="icon-lg"
+                  aria-label="Подсказка"
+                  className="flex-col gap-0"
+                  onClick={takeHint}
+                >
                   <LightbulbIcon weight="bold" className="size-6" />
+                  <KeyLabel>Tab</KeyLabel>
                 </Button>
               )}
               <Button
@@ -94,7 +130,7 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
                 className="flex-1"
                 onClick={() => onAnswer('forgot')}
               >
-                Не помню
+                Не помню <KeyLabel>⇧Enter</KeyLabel>
               </Button>
             </div>
           </>

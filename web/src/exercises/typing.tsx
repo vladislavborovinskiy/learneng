@@ -1,5 +1,6 @@
 import { LightbulbIcon } from '@phosphor-icons/react/dist/csr/Lightbulb'
 import { useRef, useState, type FormEvent, type ReactNode } from 'react'
+import { KeyLabel } from '@/components/key-label'
 import { ScreenLabel } from '@/components/screen-label'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
@@ -13,6 +14,7 @@ import {
   type AnswerResult,
   type TypingExercise,
 } from '@/lib/exercises'
+import { useHotkeys } from '@/lib/use-hotkeys'
 
 type TypingProps = {
   exercise: TypingExercise
@@ -30,9 +32,13 @@ export function Typing({ exercise, header, feedback, onAnswer }: TypingProps) {
   const hint = prefix + '_'.repeat(answer.length - prefix.length)
   const canHint = letters < maxHintLetters(answer)
 
+  const check = () => {
+    if (value.trim()) onAnswer(withHint(checkTyping(prefix + value, answer), letters > 1))
+  }
+
   const submit = (event: FormEvent) => {
     event.preventDefault()
-    if (value.trim()) onAnswer(withHint(checkTyping(prefix + value, answer), letters > 1))
+    check()
   }
 
   const takeHint = () => {
@@ -40,6 +46,15 @@ export function Typing({ exercise, header, feedback, onAnswer }: TypingProps) {
     setValue('')
     inputRef.current?.focus()
   }
+
+  useHotkeys(
+    {
+      'Enter': check,
+      'Shift+Enter': () => onAnswer('forgot'),
+      ...(canHint && { Tab: takeHint }),
+    },
+    { enabled: !feedback }
+  )
 
   return (
     <ThumbLayout
@@ -70,9 +85,11 @@ export function Typing({ exercise, header, feedback, onAnswer }: TypingProps) {
                   variant="outline"
                   size="icon-lg"
                   aria-label="Подсказка"
+                  className="flex-col gap-0"
                   onClick={takeHint}
                 >
                   <LightbulbIcon weight="bold" className="size-6" />
+                  <KeyLabel>Tab</KeyLabel>
                 </Button>
               )}
               <Button
@@ -82,11 +99,11 @@ export function Typing({ exercise, header, feedback, onAnswer }: TypingProps) {
                 className="flex-1"
                 onClick={() => onAnswer('forgot')}
               >
-                Не помню
+                Не помню <KeyLabel>⇧Enter</KeyLabel>
               </Button>
             </div>
             <Button type="submit" size="lg" disabled={!value.trim()}>
-              Проверить
+              Проверить <KeyLabel>Enter</KeyLabel>
             </Button>
           </form>
         )

@@ -62,7 +62,17 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
 7. **Exit** — Telegram BackButton (or the cross outside Telegram) returns home; already graded
    answers are kept, the lesson is not counted.
 
+- **Keyboard** (`useHotkeys`, `lib/use-hotkeys.ts`) — `1`–`4` options, `Enter` main action
+  (intro «Дальше», «Проверить», panel «Дальше», summary primary), `Shift+Enter` «Не помню», `Tab`
+  hint, tiles: typed letters pick the first matching unused tile, `Space` taps it, `Backspace`
+  edits; `Esc` = back. Keys are matched by `event.code` (works on the Russian layout). Labels
+  (`KeyLabel`) show only with `pointer-fine`.
+
 ## Non-obvious invariants / gotchas
+
+- `useHotkeys` listens on `window` in the capture phase and `preventDefault`s handled keys, so a
+  focused button or the typing form never fires a second time; repeats are ignored. Exercise
+  bindings are disabled while the feedback panel is shown (the panel has its own `Enter`).
 
 - The exercise for the next item is built at advance time from the **current** progress, so a
   requeued word may get a different (easier) exercise after an `Again`.

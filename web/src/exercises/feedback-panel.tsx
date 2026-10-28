@@ -1,6 +1,8 @@
+import { KeyLabel } from '@/components/key-label'
 import { SpeakButton } from '@/components/speak-button'
 import { Button } from '@/components/ui/button'
 import { isMistake, type AnswerResult, type Exercise } from '@/lib/exercises'
+import { useHotkeys } from '@/lib/use-hotkeys'
 import { cn } from '@/lib/utils'
 
 type FeedbackPanelProps = {
@@ -27,6 +29,8 @@ export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelPro
     exercise.kind === 'tiles' && result === 'typo' ? 'Почти! Были ошибки' : variants[result].title
   const { word, sentence } = exercise
   const correctAnswer = exercise.kind === 'tiles' ? null : exercise.answer
+
+  useHotkeys({ Enter: onContinue })
 
   return (
     <>
@@ -70,7 +74,7 @@ export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelPro
           className="flex-1"
           onClick={onContinue}
         >
-          Дальше
+          Дальше <KeyLabel>Enter</KeyLabel>
         </Button>
       </div>
     </>
