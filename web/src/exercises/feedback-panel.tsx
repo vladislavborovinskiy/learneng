@@ -22,7 +22,9 @@ const variants = {
 } satisfies Record<AnswerResult, { title: string; panel: string; stamp: string }>
 
 export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelProps) {
-  const { title, panel, stamp } = variants[result]
+  const { panel, stamp } = variants[result]
+  const title =
+    exercise.kind === 'tiles' && result === 'typo' ? 'Почти! Были ошибки' : variants[result].title
   const { word, sentence } = exercise
   const correctAnswer = exercise.kind === 'tiles' ? null : exercise.answer
 

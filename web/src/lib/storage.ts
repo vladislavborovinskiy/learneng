@@ -1,4 +1,5 @@
 import type { Card } from 'ts-fsrs'
+import type { ExerciseType } from '@/lib/exercises'
 import { isTelegram, webApp } from '@/lib/telegram'
 
 type KeyValueStore = {
@@ -101,7 +102,9 @@ const syncedStore: KeyValueStore = {
   async getAll() {
     const local = await cloudStore.getAll()
     mirror = Object.fromEntries(
-      Object.entries(local).filter(([key]) => key === META_KEY || allPackKeys.includes(key))
+      Object.entries(local).filter(
+        ([key]) => key === META_KEY || key === STATS_KEY || allPackKeys.includes(key)
+      )
     )
     unsynced = new Set(local[UNSYNCED_KEY] ? (JSON.parse(local[UNSYNCED_KEY]) as string[]) : [])
     try {
@@ -167,6 +170,8 @@ export type Meta = {
   days: Record<string, DayStats>
 }
 
+export type AnswerStats = Record<string, Partial<Record<ExerciseType, [number, number]>>>
+
 export const defaultMeta: Meta = {
   levelTestDone: false,
   days: {},
@@ -177,6 +182,8 @@ const PACK_PREFIX = 'p_'
 const LEGACY_PACK_PREFIX = 'p:'
 const META_KEY = 'meta'
 const MAX_STORED_DAYS = 120
+const STATS_KEY = 'stats'
+const MAX_STATS_DAYS = 30
 
 type CompactCard = [
   due: number,
@@ -245,7 +252,7 @@ function expand([
   }
 }
 
-export async function loadAll(): Promise<{ progress: Progress; meta: Meta }> {
+export async function loadAll(): Promise<{ progress: Progress; meta: Meta; stats: AnswerStats }> {
   const entries = await store.getAll()
   const progress: Progress = {}
 
@@ -258,7 +265,8 @@ export async function loadAll(): Promise<{ progress: Progress; meta: Meta }> {
   const { newPerDay: _legacyNewPerDay, ...storedMeta } = entries[META_KEY]
     ? (JSON.parse(entries[META_KEY]) as Partial<Meta> & { newPerDay?: number })
     : {}
-  return { progress, meta: { ...defaultMeta, ...storedMeta } }
+  const stats = entries[STATS_KEY] ? (JSON.parse(entries[STATS_KEY]) as AnswerStats) : {}
+  return { progress, meta: { ...defaultMeta, ...storedMeta }, stats }
 }
 
 const allPackKeys = Array.from({ length: PACK_COUNT }, (_, index) => packKeyByIndex(index))
@@ -286,6 +294,14 @@ export async function saveCards(progress: Progress, wordIds: string[]) {
 
 export function saveMeta(meta: Meta) {
   return store.set(META_KEY, serializeMeta(meta))
+}
+
+export function saveStats(stats: AnswerStats) {
+  const recentDays = Object.keys(stats).sort().slice(-MAX_STATS_DAYS)
+  return store.set(
+    STATS_KEY,
+    JSON.stringify(Object.fromEntries(recentDays.map((day) => [day, stats[day]])))
+  )
 }
 
 export function exportBackup(progress: Progress, meta: Meta) {

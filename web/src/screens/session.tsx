@@ -9,11 +9,13 @@ import { WordIntro } from '@/exercises/word-intro'
 import { wordsById } from '@/lib/content'
 import {
   buildExercise,
+  exerciseType,
   gradeByResult,
   isMistake,
   shuffle,
   type AnswerResult,
   type Exercise,
+  type ExerciseType,
 } from '@/lib/exercises'
 import { buildLesson, type LessonItem } from '@/lib/scheduler'
 import type { Meta, Progress } from '@/lib/storage'
@@ -25,6 +27,7 @@ type SessionProps = {
   meta: Meta
   grade: (wordId: string, rating: Grade) => void
   markKnown: (wordIds: string[]) => void
+  recordAnswer: (type: ExerciseType, isCorrect: boolean) => void
   onComplete: () => void
   onNextLesson: () => void
   onExit: () => void
@@ -50,6 +53,7 @@ export function Session({
   meta,
   grade,
   markKnown,
+  recordAnswer,
   onComplete,
   onNextLesson,
   onExit,
@@ -109,6 +113,7 @@ export function Session({
 
   const handleAnswer = (answer: AnswerResult) => {
     grade(item.wordId, gradeByResult[answer])
+    if (exercise) recordAnswer(exerciseType(exercise), !isMistake(answer))
     setResult(answer)
     setResults([...results, answer])
     haptic(hapticByResult[answer])

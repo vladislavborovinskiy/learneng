@@ -12,8 +12,11 @@ export type ChoiceExercise = {
   answer: string
 }
 
+export type TilesMode = 'chunks' | 'words'
+
 export type TilesExercise = {
   kind: 'tiles'
+  mode: TilesMode
   word: Word
   sentence: Sentence
   tiles: string[]
@@ -29,11 +32,21 @@ export type TypingExercise = {
 
 export type Exercise = ChoiceExercise | TilesExercise | TypingExercise
 
+export type ExerciseType = ChoiceMode | 'chunks' | 'tiles' | 'typing'
+
+export function exerciseType(exercise: Exercise): ExerciseType {
+  if (exercise.kind === 'typing') return 'typing'
+  if (exercise.kind === 'tiles') return exercise.mode === 'chunks' ? 'chunks' : 'tiles'
+  return exercise.mode
+}
+
 export type AnswerResult = 'correct' | 'hinted' | 'typo' | 'wrong' | 'forgot'
 
 const OPTIONS_COUNT = 4
 const EXTRA_TILES = 3
 const FAMILIAR_STABILITY_DAYS = 7
+const MATURE_STABILITY_DAYS = 21
+const MAX_TILE_MISTAKES_FOR_HARD = 2
 
 export function shuffle<T>(items: T[]) {
   const result = [...items]
@@ -84,7 +97,24 @@ function buildChoice(word: Word, sentence: Sentence, mode: ChoiceMode): ChoiceEx
   return { kind: 'choice', mode, word, sentence, options, answer }
 }
 
-function buildTiles(word: Word, sentence: Sentence): TilesExercise {
+export function chunkTexts(sentence: Sentence) {
+  const sentenceWords = sentence.en.split(' ')
+  const starts = [0, ...sentence.chunks, sentenceWords.length]
+  return starts
+    .slice(0, -1)
+    .map((start, index) =>
+      tokenize(sentenceWords.slice(start, starts[index + 1]).join(' ')).join(' ')
+    )
+}
+
+function buildChunkTiles(word: Word, sentence: Sentence): TilesExercise {
+  const answer = chunkTexts(sentence)
+  let tiles = shuffle(answer)
+  while (new Set(answer).size > 1 && tiles.join('|') === answer.join('|')) tiles = shuffle(answer)
+  return { kind: 'tiles', mode: 'chunks', word, sentence, tiles, answer }
+}
+
+function buildWordTiles(word: Word, sentence: Sentence): TilesExercise {
   const answer = tokenize(sentence.en)
   const used = new Set(answer.map((token) => token.toLowerCase()))
   const extras = shuffle(
@@ -92,7 +122,14 @@ function buildTiles(word: Word, sentence: Sentence): TilesExercise {
   )
     .filter((token) => !used.has(token.toLowerCase()))
     .slice(0, EXTRA_TILES)
-  return { kind: 'tiles', word, sentence, tiles: shuffle([...answer, ...extras]), answer }
+  return {
+    kind: 'tiles',
+    mode: 'words',
+    word,
+    sentence,
+    tiles: shuffle([...answer, ...extras]),
+    answer,
+  }
 }
 
 export function buildExercise(word: Word, card: Card | undefined): Exercise {
@@ -102,7 +139,12 @@ export function buildExercise(word: Word, card: Card | undefined): Exercise {
     return buildChoice(word, sentence, pick<ChoiceMode>(['en-ru', 'ru-en']))
   }
   if (card.stability < FAMILIAR_STABILITY_DAYS) {
-    return Math.random() < 0.5 ? buildChoice(word, sentence, 'cloze') : buildTiles(word, sentence)
+    return Math.random() < 0.5
+      ? buildChoice(word, sentence, 'cloze')
+      : buildChunkTiles(word, sentence)
+  }
+  if (card.stability < MATURE_STABILITY_DAYS && Math.random() < 0.5) {
+    return buildWordTiles(word, sentence)
   }
   return { kind: 'typing', word, sentence, answer: sentence.form }
 }
@@ -128,26 +170,19 @@ export function checkTyping(input: string, answer: string): AnswerResult {
   return distance <= allowedTypos ? 'typo' : 'wrong'
 }
 
-export function checkTiles(selected: string[], answer: string[]) {
-  return selected.join(' ').toLowerCase() === answer.join(' ').toLowerCase()
+export function isSameTile(tile: string, token: string) {
+  return tile.toLowerCase() === token.toLowerCase()
 }
 
-export function hintTiles(tiles: string[], selected: number[], answer: string[]) {
-  const sameToken = (tile: string, token: string) => tile.toLowerCase() === token.toLowerCase()
-  let correctCount = 0
-  while (
-    correctCount < selected.length &&
-    correctCount < answer.length &&
-    sameToken(tiles[selected[correctCount]], answer[correctCount])
-  ) {
-    correctCount++
-  }
-  const kept = selected.slice(0, correctCount)
-  if (correctCount >= answer.length) return kept
-  const next = tiles.findIndex(
-    (tile, index) => !kept.includes(index) && sameToken(tile, answer[correctCount])
+export function nextTileIndex(tiles: string[], placed: number[], answer: string[]) {
+  return tiles.findIndex(
+    (tile, index) => !placed.includes(index) && isSameTile(tile, answer[placed.length])
   )
-  return next === -1 ? kept : [...kept, next]
+}
+
+export function tilesResult(mistakes: number): AnswerResult {
+  if (mistakes === 0) return 'correct'
+  return mistakes <= MAX_TILE_MISTAKES_FOR_HARD ? 'typo' : 'wrong'
 }
 
 export function revealedPrefix(answer: string, letters: number) {

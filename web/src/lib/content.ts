@@ -7,6 +7,7 @@ export type Sentence = {
   en: string
   ru: string
   form: string
+  chunks: number[]
 }
 
 export type Word = {

@@ -1,10 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { Rating, type Grade } from 'ts-fsrs'
+import type { ExerciseType } from '@/lib/exercises'
 import { dayKey, gradeCard } from '@/lib/scheduler'
-import { loadAll, saveCards, saveMeta, type Meta, type Progress } from '@/lib/storage'
+import {
+  loadAll,
+  saveCards,
+  saveMeta,
+  saveStats,
+  type AnswerStats,
+  type Meta,
+  type Progress,
+} from '@/lib/storage'
 
-type LearningData = { progress: Progress; meta: Meta }
+type LearningData = { progress: Progress; meta: Meta; stats: AnswerStats }
 
 type LearningState =
   { status: 'loading' } | { status: 'error'; error: string } | ({ status: 'ready' } & LearningData)
@@ -54,7 +63,7 @@ export function useLearning() {
           },
         },
       }
-      commit({ progress, meta })
+      commit({ ...data, progress, meta })
       saveCards(progress, [wordId]).catch(reportSaveError)
       saveMeta(meta).catch(reportSaveError)
     },
@@ -102,5 +111,22 @@ export function useLearning() {
     [commit]
   )
 
-  return { state, grade, markKnown, completeLesson, updateMeta }
+  const recordAnswer = useCallback(
+    (type: ExerciseType, isCorrect: boolean) => {
+      const data = dataRef.current
+      if (!data) return
+      const today = dayKey()
+      const todayStats = data.stats[today] ?? {}
+      const [correct, total] = todayStats[type] ?? [0, 0]
+      const stats: AnswerStats = {
+        ...data.stats,
+        [today]: { ...todayStats, [type]: [correct + (isCorrect ? 1 : 0), total + 1] },
+      }
+      commit({ ...data, stats })
+      saveStats(stats).catch(reportSaveError)
+    },
+    [commit]
+  )
+
+  return { state, grade, markKnown, completeLesson, updateMeta, recordAnswer }
 }

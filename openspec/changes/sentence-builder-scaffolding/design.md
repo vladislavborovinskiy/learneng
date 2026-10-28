@@ -42,7 +42,7 @@ in `exercises.ts` slices words by the indices and strips punctuation like `token
 
 `scripts/check-content.mjs` (Node, no deps): validates `form` occurs exactly once in `en` and,
 when present, `chunks` is strictly increasing, within `1..words-1`, gives 2–4 chunks, and
-sentences of 2–3 words are split per word; prints offending ids and exits 1. Drafts:
+sentences of 2–3 words are split per word, and `form` does not cross a chunk boundary; prints offending ids and exits 1. Drafts:
 `content/draft/chunks_input_{1..6}.json` (`{ id, i, en }` per sentence) → six subagents write
 `content/draft/chunks_{1..6}.json` (`{ id, i, chunks }`) following one shared instruction with
 examples → merge into `words.json` → `check-content.mjs`. Invalid entries are re-sent to a
@@ -106,6 +106,9 @@ summary row markup pattern; searched for an existing stats list component — no
   the stats block shows whether accuracy moves.
 - [`meta` exceeds 4096 chars after ~75 days of use (pre-existing, not caused by this change)] →
   reported to the user; fix as a separate small change (fewer stored days).
+
+- [Restoring a backup replaces all server keys, so `stats` is reset after an import] →
+  acceptable for diagnostic data; documented in `progress.md`.
 
 ## Migration Plan
 

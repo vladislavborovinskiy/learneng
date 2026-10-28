@@ -4,8 +4,9 @@ import { ScreenLabel } from '@/components/screen-label'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
 import {
-  checkTiles,
-  hintTiles,
+  isSameTile,
+  nextTileIndex,
+  tilesResult,
   withHint,
   type AnswerResult,
   type TilesExercise,
@@ -19,25 +20,38 @@ type TilesProps = {
   onAnswer: (result: AnswerResult) => void
 }
 
-const tileClassName =
-  'rounded-[10px] border-2 px-3 py-2 text-base transition-colors active:bg-foreground/10'
+const tileClassName = 'rounded-[10px] border-2 px-3 py-2 text-base transition-colors'
+const MISSES_BEFORE_HIGHLIGHT = 2
 
 export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
-  const [selected, setSelected] = useState<number[]>([])
+  const [placed, setPlaced] = useState<number[]>([])
+  const [mistakes, setMistakes] = useState(0)
+  const [misses, setMisses] = useState(0)
+  const [shake, setShake] = useState({ index: -1, count: 0 })
   const [hinted, setHinted] = useState(false)
   const { sentence, tiles, answer } = exercise
-  const isComplete = checkTiles(
-    selected.map((index) => tiles[index]),
-    answer
-  )
+  const highlighted = misses >= MISSES_BEFORE_HIGHLIGHT ? nextTileIndex(tiles, placed, answer) : -1
+  const canHint = answer.length - placed.length > 1
 
-  const check = () => {
-    onAnswer(withHint(isComplete ? 'correct' : 'wrong', hinted))
+  const place = (index: number, isHint: boolean) => {
+    const nextPlaced = [...placed, index]
+    setPlaced(nextPlaced)
+    setMisses(0)
+    if (nextPlaced.length === answer.length) {
+      onAnswer(withHint(tilesResult(mistakes), hinted || isHint))
+    }
+  }
+
+  const tap = (index: number) => {
+    if (isSameTile(tiles[index], answer[placed.length])) return place(index, false)
+    setMistakes(mistakes + 1)
+    setMisses(misses + 1)
+    setShake({ index, count: shake.count + 1 })
   }
 
   const takeHint = () => {
-    setSelected(hintTiles(tiles, selected, answer))
     setHinted(true)
+    place(nextTileIndex(tiles, placed, answer), true)
   }
 
   return (
@@ -48,18 +62,20 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
           <>
             <div className="flex flex-wrap justify-center gap-2">
               {tiles.map((tile, index) => {
-                const isUsed = selected.includes(index)
+                const isUsed = placed.includes(index)
                 return (
                   <button
-                    key={index}
+                    key={`${index}-${shake.index === index ? shake.count : 0}`}
                     type="button"
                     disabled={isUsed}
                     className={cn(
                       tileClassName,
-                      'border-border',
+                      'border-border active:bg-foreground/10',
+                      shake.index === index && 'animate-shake',
+                      index === highlighted && 'border-primary text-primary',
                       isUsed && 'border-dashed border-muted-foreground text-transparent'
                     )}
-                    onClick={() => setSelected([...selected, index])}
+                    onClick={() => tap(index)}
                   >
                     {tile}
                   </button>
@@ -67,7 +83,7 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
               })}
             </div>
             <div className="flex gap-3">
-              {!isComplete && (
+              {canHint && (
                 <Button variant="outline" size="icon-lg" aria-label="Подсказка" onClick={takeHint}>
                   <LightbulbIcon weight="bold" className="size-6" />
                 </Button>
@@ -81,30 +97,17 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
                 Не помню
               </Button>
             </div>
-            <Button size="lg" disabled={selected.length === 0} onClick={check}>
-              Проверить
-            </Button>
           </>
         )
       }
     >
       <ScreenLabel>Собери предложение</ScreenLabel>
       <p className="text-xl">{sentence.ru}</p>
-      <div
-        className={cn(
-          'flex min-h-24 flex-wrap content-start gap-2 border-b-2 border-dashed pb-3',
-          feedback && 'pointer-events-none'
-        )}
-      >
-        {selected.map((index) => (
-          <button
-            key={index}
-            type="button"
-            className={cn(tileClassName, 'border-primary')}
-            onClick={() => setSelected(selected.filter((other) => other !== index))}
-          >
+      <div className="flex min-h-24 flex-wrap content-start gap-2 border-b-2 border-dashed pb-3">
+        {placed.map((index) => (
+          <span key={index} className={cn(tileClassName, 'border-primary')}>
             {tiles[index]}
-          </button>
+          </span>
         ))}
       </div>
     </ThumbLayout>

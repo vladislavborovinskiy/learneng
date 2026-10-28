@@ -20,9 +20,11 @@ redeploying. Entry point in code: `web/src/lib/content.ts` (imported via the `@c
     programming, general, development, network, files, os, databases, hardware, users) or `ngsl`
     (500 words of the New General Service List, CC BY-SA, `rank` = frequency rank, `topic` null).
   - `note` — optional usage hint shown on the new-word card (~420 words have one).
-- **Sentence** — `{ en, ru, form }`, six per word. `form` is the exact substring of `en` that
-  realizes the word (inflected, original case) and occurs **exactly once** in `en`; cloze, typing
-  and the blank rendering rely on it.
+- **Sentence** — `{ en, ru, form, chunks }`, six per word. `form` is the exact substring of `en`
+  that realizes the word (inflected, original case) and occurs **exactly once** in `en`; cloze,
+  typing and the blank rendering rely on it. `chunks` — start indices (in `en.split(' ')`) of
+  chunks 2…n for «Собери из кусков»: 2–4 natural phrases (subject / verb group / object /
+  prepositional phrase / clause), per word for 2–3-word sentences, `form` never cut.
 - **New-words order** — two queues: `itWordsOrder` (file order) and `ngslWordsOrder` (ascending
   `rank`); a lesson takes 2 IT + 1 NGSL (see `scheduling.md`).
 - **Level test** (`content/level_test.json`) — `bands` (rank ranges 1–500 … 2001–2809), 100
@@ -38,6 +40,10 @@ redeploying. Entry point in code: `web/src/lib/content.ts` (imported via the `@c
 
 ## Non-obvious invariants / gotchas
 
+- `node scripts/check-content.mjs` validates the `form` and `chunks` invariants — run it after any
+  edit of `words.json`. Chunks were produced once by LLM subagents
+  (`content/draft/chunks_instruction.md`, `chunks_input_N.json` → `chunks_N.json`, merged by
+  `content/draft/merge_chunks.mjs`, which keeps the file format and runs the check).
 - The `form`-occurs-once invariant is not checked at runtime; a violation silently breaks the
   blank in cloze/typing. Validate it when adding or editing sentences.
 - Only 24 of the 100 level-test words exist in `words.json` (ids match by lowercase `en`).

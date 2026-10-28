@@ -13,10 +13,18 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
   first).
 - **Exercise kinds** (`buildExercise`, by card state):
   - no card / not `Review` → **choice** EN→RU or RU→EN (4 numbered option rows in the thumb zone, one tap answers);
-  - `Review` with stability < 7 days → **cloze** choice (pick the missing `form`) or **tiles**
-    (assemble the English sentence from shuffled tokens + 3 extra tokens), 50/50;
-  - otherwise → **typing** the missing `form`; the input starts with the first letter as a fixed
-    prefix, the blank shows the same prefix + underscores.
+  - `Review` with stability < 7 days → **cloze** choice (pick the missing `form`) or **tiles in
+    `chunks` mode** (the sentence's 2–4 chunks, shuffled so the order always changes, no extras),
+    50/50;
+  - 7–21 days → **typing** or **tiles in `words` mode** (single tokens + 3 extra tokens), 50/50;
+  - from 21 days → **typing** the missing `form`; the input starts with the first letter as a
+    fixed prefix, the blank shows the same prefix + underscores.
+- **Tiles checking** — tiles are placed one at a time; a tile that is not the next part shakes,
+  stays and counts as a mistake; after 2 misses at one position the right tile is highlighted;
+  placed tiles cannot be removed; the last correct tile submits (no «Проверить»). Result by
+  mistakes: 0 → `correct`, 1–2 → `typo` (panel «Почти! Были ошибки»), 3+ → `wrong`.
+- **Exercise type** (`exerciseType`) — `en-ru | ru-en | cloze | chunks | tiles | typing`, used for
+  answer stats (see `progress.md`).
 - **Distractors** — words of the same part of speech (fallback: any) that share no `ru`
   translation with the target; cloze distractors use a random sentence `form` of the other word,
   case-matched.
@@ -25,8 +33,8 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
   spaces). `hinted` = correct or typo after a hint; `forgot` = «Не помню». Mistakes
   (`isMistake`) = `wrong | forgot`.
 - **Hints** (💡) — typing: each tap extends the fixed prefix by one letter (a space comes with the
-  next letter) up to half of the letters, clears the typed text; tiles: keeps the correct
-  beginning, drops the rest, places the next correct tile. Choice has no hint.
+  next letter) up to half of the letters, clears the typed text; tiles: places the next correct
+  tile (hidden when one tile is left). Choice has no hint.
 - **«Не помню»** — in every exercise (not on the new-word card): `Again`, panel «Запомни» with the
   word, translations and sentence.
 
@@ -57,7 +65,8 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
   requeued word may get a different (easier) exercise after an `Again`.
 - Each answer, including retries and the final round, is a real FSRS review — repeated grading
   within one session is intentional (short-term learning steps).
-- Tiles comparison is case-insensitive with punctuation stripped; duplicate tokens are fine.
+- Tiles comparison is case-insensitive with punctuation stripped; duplicate tokens are fine (any
+  unused equal tile is accepted).
 - The hint state lives in the exercise component; the session only sees the resulting
   `AnswerResult`. The checked typing answer is `prefix + typed text`.
 - Audio only on 🔊 (Web Speech API, `en-US`, rate 0.9) — never autoplay.

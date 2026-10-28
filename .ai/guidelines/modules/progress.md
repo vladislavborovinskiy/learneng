@@ -17,7 +17,9 @@ Also covers the manual backup in settings and the daily backup file from the ser
   (`dayKey`) to `{ reviewed, learned, lessons? }`. A legacy `newPerDay` from before lessons is
   stripped on load.
 - **Pack** — progress is sharded into 64 keys `p_00` … `p_63` by a string hash of the word id;
-  each value is a JSON object `{ wordId: CompactCard }`. Key `meta` holds Meta.
+  each value is a JSON object `{ wordId: CompactCard }`. Key `meta` holds Meta. Key `stats` holds
+  answer statistics `{ "YYYY-MM-DD": { "<exercise type>": [correct, total] } }`, last 30 days
+  (`recordAnswer` in `useLearning`, «Не помню» and wrong count as incorrect).
 - **CompactCard** — 9-number tuple: due (minutes since epoch), stability, difficulty (2 decimals),
   scheduled_days, learning_steps, reps, lapses, state, last_review (minutes, 0 = none).
 - **Store** — `KeyValueStore` (`getAll`, `set`, optional atomic `replaceAll`). Picked once:
@@ -49,7 +51,8 @@ Also covers the manual backup in settings and the daily backup file from the ser
 4. **Complete lesson** — `completeLesson()` bumps `days[today].lessons`; `grade` keeps the other
    fields of the day (spread), so it never resets the lesson count.
 5. **Settings** — main view: caption about server + nightly file, «Резервная копия →» (quiet
-   ghost button), «Тест заново» (second tap «Точно?» starts it), «Готово»; no daily limit. Backup
+   ghost button), «Тест заново» (second tap «Точно?» starts it), «Готово»; read-only «Точность по
+   упражнениям» over the stored 30 days (hidden without answers); no daily limit. Backup
    lives in a separate «Резервная копия» view of the same screen (`backupOpen` state); BackButton
    there returns to the main view instead of leaving settings.
 6. **Backup** — in the «Резервная копия» view «Скопировать» copies `exportBackup()` to the
@@ -66,6 +69,8 @@ Also covers the manual backup in settings and the daily backup file from the ser
   and renamed on import, but `loadAll` ignores `p:` keys in storage.
 - CloudStorage limits: 1024 keys, 4096 chars per value. ~12 words per pack today — fine, but grow
   the deck with that budget in mind. `meta.days` is trimmed to the last 120 days on every write.
+- `stats` is not part of the manual backup, and restoring a backup replaces all server keys, so
+  the stats start over after an import.
 - CloudStorage is used only when `isTelegram && isVersionAtLeast('6.9')`; older clients fall
   back to `localStorage` inside the WebView, i.e. progress is device-local there.
 - `elapsed_days` is not stored (restored as 0) and timestamps are rounded to the minute; FSRS

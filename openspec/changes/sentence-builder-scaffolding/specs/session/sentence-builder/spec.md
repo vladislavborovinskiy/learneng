@@ -29,7 +29,8 @@ Translation choice for words not yet in long-term review is unchanged.
 Every sentence SHALL carry chunk boundaries: the indices of the words (counting space-separated
 words of the English sentence from 0) where chunks 2…n start, giving 2–4 chunks, each a natural
 phrase (subject group, verb group, object group, prepositional phrase or clause). Sentences of
-2–3 words SHALL be split into single words. Tiles SHALL show chunk text without the punctuation
+2–3 words SHALL be split into single words. The practised word form (one or more words) SHALL
+lie entirely within one chunk. Tiles SHALL show chunk text without the punctuation
 `. , ! ? ; : " ( )`.
 
 #### Scenario: Stored boundaries

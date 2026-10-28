@@ -90,6 +90,23 @@
     repeating-conic-gradient(from -8deg at 0% 100%, var(--primary) 0 5deg, transparent 5deg 12deg);
 }
 
+@theme {
+  --animate-shake: shake 0.3s ease-in-out;
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-6px);
+    }
+    75% {
+      transform: translateX(6px);
+    }
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

@@ -9,7 +9,7 @@ import { Settings } from '@/screens/settings'
 type Screen = 'home' | 'session' | 'level-test' | 'settings'
 
 export function App() {
-  const { state, grade, markKnown, completeLesson, updateMeta } = useLearning()
+  const { state, grade, markKnown, completeLesson, updateMeta, recordAnswer } = useLearning()
   const [screen, setScreen] = useState<Screen>('home')
   const [lessonKey, setLessonKey] = useState(0)
   const goHome = useCallback(() => setScreen('home'), [])
@@ -42,6 +42,7 @@ export function App() {
         meta={state.meta}
         grade={grade}
         markKnown={markKnown}
+        recordAnswer={recordAnswer}
         onComplete={completeLesson}
         onNextLesson={startLesson}
         onExit={goHome}
@@ -58,6 +59,7 @@ export function App() {
       <Settings
         progress={state.progress}
         meta={state.meta}
+        stats={state.stats}
         onRetakeLevelTest={() => setScreen('level-test')}
         onExit={goHome}
       />
