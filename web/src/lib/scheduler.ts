@@ -4,14 +4,25 @@ import type { Meta, Progress } from '@/lib/storage'
 
 const scheduler = fsrs(generatorParameters({ enable_fuzz: true }))
 
-const NEW_PER_LESSON = 3
-const NGSL_PER_LESSON = 1
 const REVIEWS_PER_LESSON = 8
 const WARMUP_REVIEWS = 2
-export const BACKLOG_THRESHOLD = 24
+const NGSL_SLOTS_FROM = 2
+const PACE_DAYS = 14
+const NEW_WORDS_TAPER = [
+  { dueBelow: 12, count: 3 },
+  { dueBelow: 24, count: 2 },
+  { dueBelow: 48, count: 1 },
+]
+export const PAUSE_NEW_WORDS_AT = 48
 
 export function dayKey(date = new Date()) {
   return date.toLocaleDateString('en-CA')
+}
+
+function addDays(date: Date, days: number) {
+  const result = new Date(date)
+  result.setDate(result.getDate() + days)
+  return result
 }
 
 export function gradeCard(card: Card | undefined, grade: Grade, now = new Date()) {
@@ -41,20 +52,18 @@ function getTopUpWordIds(progress: Progress, excluded: Set<string>, count: numbe
     .map(({ wordId }) => wordId)
 }
 
-function getNewWordIds(progress: Progress) {
-  const unseenIt = itWordsOrder.filter((word) => !progress[word.id])
-  const unseenNgsl = ngslWordsOrder.filter((word) => !progress[word.id])
-  const itCount = Math.min(
-    unseenIt.length,
-    NEW_PER_LESSON - Math.min(NGSL_PER_LESSON, unseenNgsl.length)
-  )
-  return [...unseenIt.slice(0, itCount), ...unseenNgsl.slice(0, NEW_PER_LESSON - itCount)].map(
-    (word) => word.id
-  )
+export function newWordsLimit(dueCount: number) {
+  return NEW_WORDS_TAPER.find(({ dueBelow }) => dueCount < dueBelow)?.count ?? 0
 }
 
-export function isBacklog(dueCount: number) {
-  return dueCount >= BACKLOG_THRESHOLD
+function getNewWordIds(progress: Progress, limit: number) {
+  const unseenIt = itWordsOrder.filter((word) => !progress[word.id])
+  const unseenNgsl = ngslWordsOrder.filter((word) => !progress[word.id])
+  const ngslSlots = limit >= NGSL_SLOTS_FROM ? 1 : 0
+  const itCount = Math.min(unseenIt.length, limit - Math.min(ngslSlots, unseenNgsl.length))
+  return [...unseenIt.slice(0, itCount), ...unseenNgsl.slice(0, limit - itCount)].map(
+    (word) => word.id
+  )
 }
 
 export function buildLesson(progress: Progress, now = new Date()): LessonItem[] {
@@ -64,9 +73,10 @@ export function buildLesson(progress: Progress, now = new Date()): LessonItem[] 
     ...dueReviews,
     ...getTopUpWordIds(progress, new Set(dueReviews), REVIEWS_PER_LESSON - dueReviews.length, now),
   ].map((wordId) => ({ wordId, intro: false }))
-  const newWords = isBacklog(due.length)
-    ? []
-    : getNewWordIds(progress).map((wordId) => ({ wordId, intro: true }))
+  const newWords = getNewWordIds(progress, newWordsLimit(due.length)).map((wordId) => ({
+    wordId,
+    intro: true,
+  }))
 
   if (newWords.length === 0) return reviews
 
@@ -99,10 +109,20 @@ export function getStats(progress: Progress, meta: Meta, now = new Date()) {
 
   const due = getDueWordIds(progress, now).length
   const today = meta.days[dayKey(now)]
+  const unstarted = words.filter((word) => !progress[word.id]).length
+  const startedRecently = Array.from(
+    { length: PACE_DAYS },
+    (_, offset) => meta.days[dayKey(addDays(now, -offset))]?.learned ?? 0
+  ).reduce((sum, count) => sum + count, 0)
+  const pace = startedRecently / PACE_DAYS
+  const finishDate = pace > 0 && unstarted > 0 ? addDays(now, Math.ceil(unstarted / pace)) : null
 
   return {
     due,
-    isBacklog: isBacklog(due),
+    isNewWordsPaused: due >= PAUSE_NEW_WORDS_AT,
+    unstarted,
+    pace,
+    finishDate,
     learnedToday: today?.learned ?? 0,
     lessonsToday: today?.lessons ?? 0,
     streak: getStreak(meta, now),

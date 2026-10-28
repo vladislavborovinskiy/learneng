@@ -3,7 +3,7 @@ import { GearSixIcon } from '@phosphor-icons/react/dist/csr/GearSix'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
-import { BACKLOG_THRESHOLD, type getStats } from '@/lib/scheduler'
+import { PAUSE_NEW_WORDS_AT, type getStats } from '@/lib/scheduler'
 import { cn } from '@/lib/utils'
 
 type HomeProps = {
@@ -48,15 +48,32 @@ export function Home({
             </Button>
           )}
           <Button size="lg" className="flex-1" onClick={onStartLesson}>
-            {stats.isBacklog ? 'Повторение' : 'Урок'}
+            Урок
           </Button>
         </div>
       }
     >
+      <div className="flex flex-col gap-3 border-(length:--line) border-foreground p-3">
+        <h2 className="font-display text-2xl leading-tight font-black">
+          Выучено {stats.learned} из {stats.total}
+        </h2>
+        <Progress value={(stats.learned / stats.total) * 100} />
+        <div className="flex flex-col gap-1 font-mono text-xs tracking-wide text-muted-foreground">
+          <span>ещё не начато: {stats.unstarted}</span>
+          {stats.unstarted > 0 && (
+            <span>
+              {stats.finishDate
+                ? `при темпе ~${stats.pace.toLocaleString('ru-RU', { maximumFractionDigits: 1 })} в день — до ${stats.finishDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })}`
+                : 'начни урок, чтобы увидеть прогноз'}
+            </span>
+          )}
+        </div>
+      </div>
+
       <div className="grid grid-cols-2 border-(length:--line) border-foreground">
         {[
-          { label: 'повторить', value: stats.due, accent: true },
-          { label: 'выучено сегодня', value: stats.learnedToday, accent: false },
+          { label: 'выучено сегодня', value: stats.learnedToday, accent: true },
+          { label: 'уроков сегодня', value: stats.lessonsToday, accent: false },
         ].map(({ label, value, accent }) => (
           <div
             key={label}
@@ -73,23 +90,16 @@ export function Home({
             <span className="text-sm text-muted-foreground">{label}</span>
           </div>
         ))}
-        <div className="col-span-2 flex justify-between border-t-(length:--line) border-foreground px-3 py-1.5 font-mono text-xs tracking-widest text-muted-foreground uppercase">
-          <span>уроков сегодня</span>
-          <span>{stats.lessonsToday}</span>
-        </div>
       </div>
 
-      {stats.isBacklog && (
+      {stats.isNewWordsPaused && (
         <p className="hatch border-(length:--line) border-foreground p-3 text-sm">
           Накопилось {stats.due} повторений — новые слова вернутся, когда их станет меньше{' '}
-          {BACKLOG_THRESHOLD}
+          {PAUSE_NEW_WORDS_AT}
         </p>
       )}
 
       <div className="flex flex-col gap-4">
-        <h2 className="font-display text-lg font-bold">
-          Выучено {stats.learned} / {stats.total}
-        </h2>
         {[
           { label: 'IT-словарь', ...stats.it },
           { label: 'Частотные слова', ...stats.ngsl },
