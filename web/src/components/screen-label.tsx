@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 
 export function ScreenLabel({ children }: { children: ReactNode }) {
   return (
-    <p className="self-start rounded-[10px] border-2 border-foreground px-2.5 py-1 font-display text-sm font-bold">
+    <p className="glass self-start rounded-full px-3 py-1.5 font-mono text-[11px] tracking-[0.1em] text-muted-foreground uppercase">
       {children}
     </p>
   )

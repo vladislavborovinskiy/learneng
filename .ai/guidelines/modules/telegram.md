@@ -5,7 +5,8 @@
 Everything that makes the static site a Telegram Mini App and keeps the habit going: WebApp
 integration, deployment to GitHub Pages and of the progress Worker to Cloudflare, the daily
 reminder from a bot. Code:
-`web/src/lib/telegram.ts`, `web/index.html` (official `telegram-web-app.js`),
+`web/src/lib/telegram.ts`, `web/index.html` (official `telegram-web-app.js`, loaded synchronously in
+`<body>` right after the inline `#preloader`, so the preloader paints before it),
 `.github/workflows/deploy.yml`, `.github/workflows/reminder.yml`, `scripts/send-reminder.mjs`,
 `.github/workflows/worker.yml`, `worker/` (server side of `progress.md`).
 
@@ -22,7 +23,7 @@ reminder from a bot. Code:
 
 ## Key flows
 
-1. **Init** (`initTelegram`) — paints header/background/bottom bar `#1a1815` (ink) (the app ignores the
+1. **Init** (`initTelegram`) — paints header/background/bottom bar `#0b0d12` (graphite) (the app ignores the
    Telegram theme), `ready()`, `expand()`.
 2. **Back** (`useBackButton`) — shows the system BackButton on non-home screens and disables
    vertical swipe-to-close while it is shown, so a scroll gesture does not close the lesson.

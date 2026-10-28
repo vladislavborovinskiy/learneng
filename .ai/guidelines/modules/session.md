@@ -17,8 +17,11 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
     `chunks` mode** (the sentence's 2–4 chunks, shuffled so the order always changes, no extras),
     50/50;
   - 7–21 days → **typing** or **tiles in `words` mode** (single tokens + 3 extra tokens), 50/50;
-  - from 21 days → **typing** the missing `form`; the input starts with the first letter as a
-    fixed prefix, the blank shows the same prefix + underscores.
+  - from 21 days → **typing** the missing `form` right inside the sentence: the blank is the
+    input (first letter as a fixed prefix, underscores as placeholder, width = answer length);
+    the bottom row is 💡 / «Не помню» / white arrow «Проверить» (also Enter / «Готово» on the
+    keyboard). This screen sizes to `--tg-viewport-height` (`ThumbLayout followKeyboard`) so the
+    row stays above the iOS keyboard.
 - **Tiles checking** — tiles are placed one at a time; a tile that is not the next part shakes,
   stays and counts as a mistake; after 2 misses at one position the right tile is highlighted;
   placed tiles cannot be removed; the last correct tile submits (no «Проверить»). Result by
@@ -43,8 +46,9 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
 1. **New word** — card with `en`, translations, `note`, first sentence, 🔊. «Дальше» → the word
    is drilled right away (choice) and remembered as introduced; «Знаю» → `markKnown` (Easy), skip.
 2. **Answer** — the word is graded immediately; the feedback panel replaces the actions in the
-   bottom zone (orange rays + «Правильно!» / «Почти! Опечатка», paper hatching + inverted
-   «Неправильно»; correct answer except for tiles,
+   bottom zone (glass tinted sage for «Правильно!» / «Верно, с подсказкой», sand for «Почти! Опечатка» /
+   «Почти! Были ошибки» / «Запомни», clay for «Неправильно», no icons, the practised word highlighted in the
+   sentence; correct answer except for tiles,
    the full sentence with translation, 🔊, «Дальше»). Haptic success/warning/error.
 3. **Mistake** (wrong or «Не помню») — the word joins `missed` and is re-inserted 4 positions
    later, at most 2 times per word per lesson (`comebacks`, `MAX_COMEBACKS`); further mistakes
@@ -53,8 +57,8 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
    in random order; built once, so mistakes inside the round do not extend it.
 5. **Completion** — when the index runs past the queue (after the final round), `completeLesson`
    bumps `days[today].lessons`.
-6. **Summary** — «Урок пройден»: one cell per answer in order (orange = correct incl. typo,
-   hatched = wrong; `Session` keeps `results: AnswerResult[]`), accuracy, answers, new words,
+6. **Summary** — «Урок пройден»: one cell per answer in order (sage = correct incl. typo and hinted,
+   clay = mistake; `Session` keeps `results: AnswerResult[]`), accuracy, answers, new words,
    streak; «На главную» and «Ещё урок» (App bumps `lessonKey`, `Session` remounts and builds a
    new lesson from current progress). Accuracy < 70% with missed words → primary «Повторить
    ошибки» on its own row (others become outline): App passes `items` = the missed words to a

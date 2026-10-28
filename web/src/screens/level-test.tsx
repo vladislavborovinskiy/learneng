@@ -6,6 +6,7 @@ import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
+import { WordTitle } from '@/components/word-title'
 import { words } from '@/lib/content'
 import { shuffle } from '@/lib/exercises'
 import { useBackButton } from '@/lib/telegram'
@@ -54,9 +55,9 @@ export function LevelTest({ markKnown, onFinish, onExit }: LevelTestProps) {
         }
       >
         <ScreenLabel>Знаешь это слово?</ScreenLabel>
-        <Card className="halftone flex-1 justify-center">
-          <CardContent className="text-center">
-            <h2 className="font-display text-5xl font-black">{items[index].en}</h2>
+        <Card className="flex-1 justify-center">
+          <CardContent className="@container text-center">
+            <WordTitle text={items[index].en} />
           </CardContent>
         </Card>
       </ThumbLayout>
@@ -111,7 +112,7 @@ export function LevelTest({ markKnown, onFinish, onExit }: LevelTestProps) {
     >
       <ScreenLabel>Результат теста</ScreenLabel>
       <div>
-        <div className="font-display text-5xl font-black text-primary">≈ {estimate}</div>
+        <div className="text-5xl font-light tracking-[-0.03em] tabular-nums">≈ {estimate}</div>
         <p className="text-sm text-muted-foreground">слов из {totalWords} самых частых ты знаешь</p>
       </div>
       <Card>

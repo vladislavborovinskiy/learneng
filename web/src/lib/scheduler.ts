@@ -1,6 +1,6 @@
 import { createEmptyCard, fsrs, generatorParameters, State, type Card, type Grade } from 'ts-fsrs'
-import { itWordsOrder, ngslWordsOrder, words } from '@/lib/content'
-import type { Meta, Progress } from '@/lib/storage'
+import { itWordsOrder, ngslWordsOrder, words, wordsById } from '@/lib/content'
+import type { AnswerStats, Meta, Progress } from '@/lib/storage'
 
 const scheduler = fsrs(generatorParameters({ enable_fuzz: true }))
 
@@ -13,7 +13,7 @@ const NEW_WORDS_TAPER = [
   { dueBelow: 24, count: 2 },
   { dueBelow: 48, count: 1 },
 ]
-export const PAUSE_NEW_WORDS_AT = 48
+const PAUSE_NEW_WORDS_AT = 48
 
 export function dayKey(date = new Date()) {
   return date.toLocaleDateString('en-CA')
@@ -102,36 +102,68 @@ export function getStreak(meta: Meta, now = new Date()) {
   return streak
 }
 
-export function getStats(progress: Progress, meta: Meta, now = new Date()) {
-  const isLearned = (wordId: string) => progress[wordId]?.state === State.Review
-  const itWords = words.filter((word) => word.source === 'it')
-  const ngslWords = words.filter((word) => word.source === 'ngsl')
+export const SHORT_MONTHS = [
+  'янв',
+  'фев',
+  'мар',
+  'апр',
+  'май',
+  'июн',
+  'июл',
+  'авг',
+  'сен',
+  'окт',
+  'ноя',
+  'дек',
+]
 
+const ACCURACY_DAYS = 7
+const HARD_WORDS_COUNT = 3
+
+export function getStats(
+  progress: Progress,
+  meta: Meta,
+  answerStats: AnswerStats,
+  now = new Date()
+) {
   const due = getDueWordIds(progress, now).length
+  const paceSeries = Array.from({ length: PACE_DAYS }, (_, index) => {
+    const day = dayKey(addDays(now, index - PACE_DAYS + 1))
+    return { day, learned: meta.days[day]?.learned ?? 0 }
+  })
+  const [correct, total] = Array.from({ length: ACCURACY_DAYS }, (_, offset) =>
+    Object.values(answerStats[dayKey(addDays(now, -offset))] ?? {})
+  )
+    .flat()
+    .reduce(
+      ([correctSum, totalSum], [dayCorrect, dayTotal]) => [
+        correctSum + dayCorrect,
+        totalSum + dayTotal,
+      ],
+      [0, 0]
+    )
+  const hardWords = Object.entries(progress)
+    .filter(([wordId, card]) => card.lapses > 0 && wordsById.has(wordId))
+    .sort(
+      ([, a], [, b]) =>
+        b.lapses - a.lapses || (b.last_review?.getTime() ?? 0) - (a.last_review?.getTime() ?? 0)
+    )
+    .slice(0, HARD_WORDS_COUNT)
+    .map(([wordId, card]) => {
+      const word = wordsById.get(wordId)!
+      return { id: wordId, en: word.en, ru: word.ru[0], lapses: card.lapses }
+    })
   const today = meta.days[dayKey(now)]
-  const unstarted = words.filter((word) => !progress[word.id]).length
-  const startedRecently = Array.from(
-    { length: PACE_DAYS },
-    (_, offset) => meta.days[dayKey(addDays(now, -offset))]?.learned ?? 0
-  ).reduce((sum, count) => sum + count, 0)
-  const pace = startedRecently / PACE_DAYS
-  const finishDate = pace > 0 && unstarted > 0 ? addDays(now, Math.ceil(unstarted / pace)) : null
 
   return {
-    due,
     isNewWordsPaused: due >= PAUSE_NEW_WORDS_AT,
-    unstarted,
-    pace,
-    finishDate,
     learnedToday: today?.learned ?? 0,
-    lessonsToday: today?.lessons ?? 0,
+    reviewedToday: today?.reviewed ?? 0,
+    accuracyWeek: total > 0 ? Math.round((correct / total) * 100) : null,
+    hardWords,
+    paceSeries,
     streak: getStreak(meta, now),
     total: words.length,
-    learned: words.filter((word) => isLearned(word.id)).length,
-    it: { total: itWords.length, learned: itWords.filter((word) => isLearned(word.id)).length },
-    ngsl: {
-      total: ngslWords.length,
-      learned: ngslWords.filter((word) => isLearned(word.id)).length,
-    },
+    learned: words.filter((word) => progress[word.id]?.state === State.Review).length,
   }
 }

@@ -65,31 +65,30 @@ export function SessionSummary({
         </>
       }
     >
-      <h1 className="font-display text-3xl leading-none font-black">Урок пройден</h1>
+      <h1 className="text-3xl leading-none font-light tracking-[-0.02em]">Урок пройден</h1>
       {results.length > 0 && (
         <div
-          className="grid grid-cols-6 border-t-(length:--line) border-l-(length:--line) border-foreground"
+          className="grid grid-cols-8 gap-1.5"
           aria-label={`Верных ответов: ${correct} из ${results.length}`}
         >
           {results.map((result, index) => (
             <div
               key={index}
               className={cn(
-                'aspect-square border-r-(length:--line) border-b-(length:--line) border-foreground',
-                isMistake(result) ? 'hatch' : 'bg-primary'
+                'aspect-square rounded-lg',
+                isMistake(result) ? 'bg-destructive' : 'bg-success'
               )}
             />
           ))}
         </div>
       )}
-      <div className="flex flex-col">
+      <div className="grid grid-cols-2 gap-2.5">
         {items.map(({ label, value }) => (
-          <div
-            key={label}
-            className="flex items-baseline justify-between border-b border-foreground/35 py-2.5 last:border-b-0"
-          >
-            <span className="text-sm text-muted-foreground">{label}</span>
-            <span className="font-display text-2xl font-black tabular-nums">{value}</span>
+          <div key={label} className="glass flex flex-col gap-2 rounded-3xl p-4">
+            <span className="text-3xl leading-none font-light tracking-[-0.03em] tabular-nums">
+              {value}
+            </span>
+            <span className="text-xs text-muted-foreground">{label}</span>
           </div>
         ))}
       </div>

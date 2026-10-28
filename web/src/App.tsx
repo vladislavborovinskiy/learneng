@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { getStats, type LessonItem } from '@/lib/scheduler'
 import { useLearning } from '@/lib/use-learning'
 import { Home } from '@/screens/home'
@@ -7,6 +7,8 @@ import { Session } from '@/screens/session'
 import { Settings } from '@/screens/settings'
 
 type Screen = 'home' | 'session' | 'level-test' | 'settings'
+
+const PRELOADER_MIN_MS = 400
 
 export function App() {
   const { state, grade, markKnown, completeLesson, updateMeta, recordAnswer } = useLearning()
@@ -27,10 +29,22 @@ export function App() {
     updateMeta({ levelTestDone: true })
     setScreen('home')
   }, [updateMeta])
+  const isLoading = state.status === 'loading'
 
-  if (state.status === 'loading') {
-    return <div className="grid min-h-svh place-items-center text-muted-foreground">Загрузка…</div>
-  }
+  useEffect(() => {
+    if (isLoading) return
+    const preloader = document.getElementById('preloader')
+    if (!preloader) return
+    const minDelay = new Promise((resolve) =>
+      setTimeout(resolve, Math.max(0, PRELOADER_MIN_MS - performance.now()))
+    )
+    Promise.all([document.fonts.ready, minDelay]).then(() => {
+      preloader.classList.add('preloader-hidden')
+      preloader.addEventListener('transitionend', () => preloader.remove(), { once: true })
+    })
+  }, [isLoading])
+
+  if (isLoading) return null
 
   if (state.status === 'error') {
     return (
@@ -76,7 +90,7 @@ export function App() {
 
   return (
     <Home
-      stats={getStats(state.progress, state.meta)}
+      stats={getStats(state.progress, state.meta, state.stats)}
       levelTestDone={state.meta.levelTestDone}
       onStartLesson={startLesson}
       onStartLevelTest={() => setScreen('level-test')}

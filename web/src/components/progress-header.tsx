@@ -7,7 +7,7 @@ export function ProgressHeader({ value, onClose }: { value: number; onClose: () 
   return (
     <div className="flex items-center gap-3">
       {!isTelegram && (
-        <Button variant="ghost" size="icon-sm" aria-label="Закрыть" onClick={onClose}>
+        <Button variant="outline" size="icon" aria-label="Закрыть" onClick={onClose}>
           <XIcon weight="bold" />
         </Button>
       )}

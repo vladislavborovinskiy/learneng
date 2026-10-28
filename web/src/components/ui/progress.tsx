@@ -6,15 +6,12 @@ function Progress({ className, value, ...props }: ProgressPrimitive.Root.Props) 
     <ProgressPrimitive.Root
       value={value}
       data-slot="progress"
-      className={cn('h-2.5 w-full border-(length:--line) border-foreground', className)}
+      className={cn('h-[3px] w-full overflow-hidden rounded-full bg-track', className)}
       {...props}
     >
       <div
         data-slot="progress-indicator"
-        className={cn(
-          'hatch-primary h-full border-foreground transition-[width] duration-300',
-          (value ?? 0) > 0 && 'border-r-(length:--line)'
-        )}
+        className="h-full rounded-full bg-primary transition-[width] duration-300"
         style={{ width: `${value ?? 0}%` }}
       />
     </ProgressPrimitive.Root>

@@ -1,21 +1,18 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
-@import '@fontsource/rubik/latin-400.css';
-@import '@fontsource/rubik/cyrillic-400.css';
-@import '@fontsource/rubik/latin-500.css';
-@import '@fontsource/rubik/cyrillic-500.css';
-@import '@fontsource/rubik/latin-700.css';
-@import '@fontsource/rubik/cyrillic-700.css';
-@import '@fontsource/rubik/latin-900.css';
-@import '@fontsource/rubik/cyrillic-900.css';
-@import '@fontsource/jetbrains-mono/500.css';
-@import '@fontsource/jetbrains-mono/700.css';
+@import '@fontsource/montserrat/latin-300.css';
+@import '@fontsource/montserrat/cyrillic-300.css';
+@import '@fontsource/montserrat/latin-400.css';
+@import '@fontsource/montserrat/cyrillic-400.css';
+@import '@fontsource/montserrat/latin-500.css';
+@import '@fontsource/montserrat/cyrillic-500.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
 
 @theme inline {
-  --font-sans: 'Rubik', system-ui, sans-serif;
-  --font-heading: 'Rubik', system-ui, sans-serif;
-  --font-display: 'Rubik', system-ui, sans-serif;
+  --font-sans: 'Montserrat', system-ui, sans-serif;
+  --font-heading: 'Montserrat', system-ui, sans-serif;
+  --font-display: 'Montserrat', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --color-ring: var(--ring);
   --color-input: var(--input);
@@ -37,57 +34,67 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
+  --color-glass: var(--glass);
+  --color-glass-strong: var(--glass-strong);
+  --color-track: var(--track);
 }
 
 :root {
   color-scheme: dark;
-  --background: #1a1815;
-  --foreground: #ede1c7;
-  --card: #1a1815;
-  --card-foreground: #ede1c7;
-  --popover: #221f1b;
-  --popover-foreground: #ede1c7;
-  --primary: #ee6a2e;
-  --primary-foreground: #1a1815;
-  --secondary: #221f1b;
-  --secondary-foreground: #ede1c7;
-  --muted: #2b2823;
-  --muted-foreground: #a39882;
-  --accent: #221f1b;
-  --accent-foreground: #ee6a2e;
-  --destructive: #ee6a2e;
-  --success: #ee6a2e;
-  --warning: #ede1c7;
-  --border: #ede1c7;
-  --input: #ede1c7;
-  --ring: #ee6a2e;
-  --line: 1.5px;
+  --background: #0b0d12;
+  --foreground: #f2f3f5;
+  --card: transparent;
+  --card-foreground: #f2f3f5;
+  --popover: #16181d;
+  --popover-foreground: #f2f3f5;
+  --primary: #fafaf8;
+  --primary-foreground: #0a0b0f;
+  --secondary: rgba(255, 255, 255, 0.045);
+  --secondary-foreground: #f2f3f5;
+  --muted: rgba(255, 255, 255, 0.09);
+  --muted-foreground: #868c97;
+  --accent: rgba(255, 255, 255, 0.09);
+  --accent-foreground: #f2f3f5;
+  --destructive: #d4917a;
+  --success: #a8c5a0;
+  --warning: #d8c18a;
+  --border: transparent;
+  --input: transparent;
+  --ring: #fafaf8;
+  --glass: rgba(255, 255, 255, 0.045);
+  --glass-strong: rgba(255, 255, 255, 0.09);
+  --track: rgba(255, 255, 255, 0.08);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-@utility halftone {
-  background-image: radial-gradient(
-    color-mix(in srgb, var(--foreground) 22%, transparent) 1.1px,
-    transparent 1.3px
-  );
-  background-size: 6px 6px;
+@utility glass {
+  background: var(--grain), var(--glass);
+  backdrop-filter: blur(28px) saturate(150%);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
 }
 
-@utility hatch {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    color-mix(in srgb, var(--foreground) 18%, transparent) 0 2px,
-    transparent 2px 9px
-  );
+@utility glass-strong {
+  background: var(--grain), var(--glass-strong);
+  backdrop-filter: blur(28px) saturate(150%);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
 }
 
-@utility hatch-primary {
-  background-image: repeating-linear-gradient(-45deg, var(--primary) 0 3px, transparent 3px 6px);
+@utility tint-success {
+  background: var(--grain), color-mix(in srgb, var(--success) 12%, transparent);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
 }
 
-@utility rays {
-  background-image:
-    linear-gradient(90deg, transparent 0 35%, var(--background) 80%),
-    repeating-conic-gradient(from -8deg at 0% 100%, var(--primary) 0 5deg, transparent 5deg 12deg);
+@utility tint-warning {
+  background: var(--grain), color-mix(in srgb, var(--warning) 12%, transparent);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+}
+
+@utility tint-destructive {
+  background: var(--grain), color-mix(in srgb, var(--destructive) 12%, transparent);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
 }
 
 @theme {
@@ -112,7 +119,11 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply text-foreground antialiased;
+    background:
+      var(--grain), radial-gradient(120% 70% at 50% 0%, rgba(255, 255, 255, 0.05), transparent 60%),
+      var(--background);
+    background-attachment: fixed;
   }
   html {
     @apply font-sans;

@@ -19,10 +19,8 @@ home screen. Code: `web/src/lib/scheduler.ts`, `web/src/screens/home.tsx`,
   share of the remaining reviews. No daily limit — lessons can be repeated any number of times.
 - **Paused new words** — `due >= PAUSE_NEW_WORDS_AT` (48): lessons have no new words and home
   shows a hint. There is no separate «Повторение» mode; the button is always «Урок».
-- **Forecast** — `getStats`: `unstarted` (words without a card), `pace` (sum of `days[d].learned`
-  over the 14 local days ending today ÷ 14, idle days included), `finishDate` = today +
-  ⌈unstarted / pace⌉ days, `null` at pace 0. It predicts when every word is started, not
-  learned; «Знаю» / level-test words reduce `unstarted` but do not add to the pace.
+- **Pace** — `paceSeries`: `days[d].learned` for the 14 local days ending today (chart only;
+  no finish forecast is shown).
 - **Today** — `days[today].learned` (first-time graded words) and `days[today].lessons`
   (completed lessons).
 - **Learned** — a word whose card is in FSRS `Review` state. Shown overall and per source
@@ -34,10 +32,14 @@ home screen. Code: `web/src/lib/scheduler.ts`, `web/src/screens/home.tsx`,
 
 ## Key flows
 
-1. **Home** — main block «Выучено X из Y» + bar, «ещё не начато: N», forecast «при темпе ~P в
-   день — до D» (or «начни урок, чтобы увидеть прогноз»); cells «выучено сегодня» / «уроков
-   сегодня»; paused-words hint at 48+ due; IT / «Частотные слова» bars; streak. No due counter.
-   Main action always «Урок». «Тест» shows until the level test is done.
+1. **Home** — the learned count as one large number with «из Y слов», a thin bar, «сегодня +N»,
+   the pace chart (`components/pace-chart.tsx`, shadcn chart / Recharts, lazy-loaded chunk: new
+   words per day for 14 days, `getStats().paceSeries`, glass tooltip «28 окт · +3»), two glass
+   tiles «точность · 7 дн» (`accuracyWeek` from answer stats, «—» without answers) and
+   «повторений сегодня» (`reviewedToday`), the hard-words section without a visible title (`hardWords`: top 3 by
+   lapses, clay dots capped at 3, hidden without lapses), the one-line paused hint at 48+ due,
+   and the streak chip (white flame + number, grey at 0). No finish forecast. Main action always
+   «Урок»; «Тест» shows until the level test is done.
 2. **Lesson queue** — built once when a lesson starts from current progress (see `session.md`).
 
 ## Non-obvious invariants / gotchas

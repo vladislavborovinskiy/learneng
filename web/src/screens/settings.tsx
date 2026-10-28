@@ -84,7 +84,7 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
   if (backupOpen) {
     return (
       <ThumbLayout
-        header={<h1 className="font-display text-2xl font-black">Резервная копия</h1>}
+        header={<h1 className="text-2xl font-light tracking-[-0.02em]">Резервная копия</h1>}
         actions={
           <>
             <div className="grid grid-cols-2 gap-3">
@@ -117,7 +117,7 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
         />
         {copyStatus && <p className="text-sm text-muted-foreground">{copyStatus}</p>}
         {confirmImport && (
-          <p className="text-sm text-primary">
+          <p className="text-sm text-destructive">
             Текущий прогресс сотрётся. Нажми «Точно?», чтобы восстановить копию.
           </p>
         )}
@@ -128,7 +128,6 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
 
   return (
     <ThumbLayout
-      header={<h1 className="font-display text-2xl font-black">Настройки</h1>}
       actions={
         <>
           <Button
@@ -150,19 +149,13 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
         </>
       }
     >
-      <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
-        Прогресс хранится на сервере · копия приходит в чат с ботом каждую ночь
-      </p>
       {accuracy.length > 0 && (
-        <div className="flex flex-col">
-          <h2 className="font-display text-lg font-bold">Точность по упражнениям</h2>
+        <div className="glass flex flex-col gap-3 rounded-3xl p-5">
+          <h2 className="text-base font-medium">Точность по упражнениям</h2>
           {accuracy.map(({ type, correct, total }) => (
-            <div
-              key={type}
-              className="flex items-baseline justify-between border-b border-foreground/35 py-2.5 last:border-b-0"
-            >
+            <div key={type} className="flex items-baseline justify-between">
               <span className="text-sm text-muted-foreground">{exerciseNames[type]}</span>
-              <span className="font-display text-lg font-black tabular-nums">
+              <span className="font-mono text-sm tabular-nums">
                 {Math.round((correct / total) * 100)}% · {total}
               </span>
             </div>
@@ -170,7 +163,7 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
         </div>
       )}
       {confirmRetake && (
-        <p className="text-sm text-primary">
+        <p className="text-sm text-destructive">
           Тест не сотрёт выученные слова, только добавит новые известные. Нажми «Точно?», чтобы
           начать.
         </p>

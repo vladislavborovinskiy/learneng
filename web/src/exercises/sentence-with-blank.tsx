@@ -5,7 +5,7 @@ export function SentenceWithBlank({ sentence, hint }: { sentence: Sentence; hint
   return (
     <p className="text-xl leading-relaxed">
       {before}
-      <span className="mx-1 inline-block min-w-16 border-b-2 border-primary px-1 text-center tracking-widest text-muted-foreground">
+      <span className="glass mx-1 inline-block min-w-16 rounded-lg px-2 text-center tracking-widest text-muted-foreground">
         {hint ?? ' '}
       </span>
       {after}

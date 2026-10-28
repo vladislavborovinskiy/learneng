@@ -12,24 +12,24 @@ const Toaster = ({ ...props }: ToasterProps) => {
       position="top-center"
       className="toaster group"
       icons={{
-        success: <CheckIcon weight="bold" className="size-6 text-success" />,
-        info: <InfoIcon weight="bold" className="size-6 text-primary" />,
-        warning: <WarningIcon weight="bold" className="size-6 text-warning" />,
-        error: <XIcon weight="bold" className="size-6 text-destructive" />,
-        loading: <CircleNotchIcon weight="bold" className="size-6 animate-spin text-primary" />,
+        success: <CheckIcon weight="bold" className="size-5 text-success" />,
+        info: <InfoIcon weight="bold" className="size-5 text-primary" />,
+        warning: <WarningIcon weight="bold" className="size-5 text-warning" />,
+        error: <XIcon weight="bold" className="size-5 text-destructive" />,
+        loading: <CircleNotchIcon weight="bold" className="size-5 animate-spin text-primary" />,
       }}
       toastOptions={{
         unstyled: true,
         classNames: {
           toast:
-            'flex w-full items-start gap-3 border-2 border-border bg-popover p-4 font-sans text-popover-foreground shadow-none',
-          title: 'font-display text-base font-bold',
+            'flex w-full items-start gap-3 rounded-3xl bg-popover p-4 font-sans text-popover-foreground shadow-none',
+          title: 'text-base font-medium',
           description: 'mt-1 text-sm text-muted-foreground',
           icon: 'mt-0.5 shrink-0',
-          error: 'border-destructive [&_[data-title]]:text-destructive',
-          warning: 'border-warning [&_[data-title]]:text-warning',
-          success: 'border-success [&_[data-title]]:text-success',
-          info: 'border-primary [&_[data-title]]:text-primary',
+          error: '[&_[data-title]]:text-destructive',
+          warning: '[&_[data-title]]:text-warning',
+          success: '[&_[data-title]]:text-success',
+          info: '[&_[data-title]]:text-primary',
         },
       }}
       {...props}

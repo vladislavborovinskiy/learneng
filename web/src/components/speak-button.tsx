@@ -5,7 +5,7 @@ import { speak } from '@/lib/speech'
 export function SpeakButton({ text }: { text: string }) {
   return (
     <Button variant="outline" size="icon-lg" aria-label="Озвучить" onClick={() => speak(text)}>
-      <SpeakerHighIcon weight="bold" className="size-6" />
+      <SpeakerHighIcon weight="bold" className="size-5" />
     </Button>
   )
 }

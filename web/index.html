@@ -3,11 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <title>LearnEng</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+      html,
+      body {
+        background: #0b0d12;
+      }
+      #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        place-items: center;
+        background: #0b0d12;
+        transition: opacity 0.3s ease;
+      }
+      #preloader.preloader-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #preloader span {
+        width: 64px;
+        height: 3px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #a8c5a0, #d8c18a, #d4917a, #a8c5a0) 0 0 / 300% 100%;
+        animation: preloader-flow 2.4s linear infinite;
+      }
+      @keyframes preloader-flow {
+        to {
+          background-position: 300% 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #preloader span {
+          animation: none;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div id="preloader" aria-hidden="true"><span></span></div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

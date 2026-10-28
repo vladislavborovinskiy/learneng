@@ -1,10 +1,10 @@
+import { ArrowRightIcon } from '@phosphor-icons/react/dist/csr/ArrowRight'
 import { LightbulbIcon } from '@phosphor-icons/react/dist/csr/Lightbulb'
-import { useRef, useState, type FormEvent, type ReactNode } from 'react'
+import { useRef, useState, type ReactNode } from 'react'
 import { KeyLabel } from '@/components/key-label'
 import { ScreenLabel } from '@/components/screen-label'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { SentenceWithBlank } from '@/exercises/sentence-with-blank'
 import {
   checkTyping,
@@ -29,16 +29,11 @@ export function Typing({ exercise, header, feedback, onAnswer }: TypingProps) {
   const inputRef = useRef<HTMLInputElement>(null)
   const { word, sentence, answer } = exercise
   const prefix = revealedPrefix(answer, letters)
-  const hint = prefix + '_'.repeat(answer.length - prefix.length)
+  const [before, after] = sentence.en.split(sentence.form)
   const canHint = letters < maxHintLetters(answer)
 
   const check = () => {
     if (value.trim()) onAnswer(withHint(checkTyping(prefix + value, answer), letters > 1))
-  }
-
-  const submit = (event: FormEvent) => {
-    event.preventDefault()
-    check()
   }
 
   const takeHint = () => {
@@ -59,60 +54,66 @@ export function Typing({ exercise, header, feedback, onAnswer }: TypingProps) {
   return (
     <ThumbLayout
       header={header}
+      followKeyboard
       actions={
         feedback ?? (
-          <form className="flex flex-col gap-3" onSubmit={submit}>
-            <label className="flex h-14 items-center border-2 border-input px-3 text-lg transition-colors focus-within:border-ring">
+          <div className="flex gap-2.5">
+            {canHint && (
+              <Button
+                variant="outline"
+                size="icon-lg"
+                aria-label="Подсказка"
+                className="flex-col gap-0"
+                onClick={takeHint}
+              >
+                <LightbulbIcon weight="bold" />
+                <KeyLabel>Tab</KeyLabel>
+              </Button>
+            )}
+            <Button
+              variant="outline"
+              size="lg"
+              className="flex-1"
+              onClick={() => onAnswer('forgot')}
+            >
+              Не помню <KeyLabel>⇧Enter</KeyLabel>
+            </Button>
+            <Button size="icon-lg" aria-label="Проверить" disabled={!value.trim()} onClick={check}>
+              <ArrowRightIcon weight="bold" />
+            </Button>
+          </div>
+        )
+      }
+    >
+      <ScreenLabel>Напиши по-английски</ScreenLabel>
+      <h2 className="text-2xl leading-snug font-light">{word.ru.join(', ')}</h2>
+      <div className="flex flex-col gap-2">
+        {feedback ? (
+          <SentenceWithBlank sentence={sentence} />
+        ) : (
+          <p className="text-xl leading-relaxed">
+            {before}
+            <label className="glass mx-1 inline-flex items-baseline rounded-lg px-2 focus-within:glass-strong">
               <span className="whitespace-pre">{prefix}</span>
-              <Input
+              <input
                 ref={inputRef}
                 autoFocus
                 value={value}
                 onChange={(event) => setValue(event.target.value)}
+                placeholder={'_'.repeat(answer.length - prefix.length)}
                 autoCapitalize="none"
                 autoComplete="off"
                 autoCorrect="off"
                 spellCheck={false}
                 enterKeyHint="done"
-                className="h-full border-0 px-0 text-lg"
                 aria-label="Ответ"
+                className="min-w-[3ch] bg-transparent tracking-wide outline-none placeholder:tracking-widest placeholder:text-muted-foreground"
+                style={{ width: `${Math.max(value.length, answer.length - prefix.length) + 1}ch` }}
               />
             </label>
-            <div className="flex gap-3">
-              {canHint && (
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="icon-lg"
-                  aria-label="Подсказка"
-                  className="flex-col gap-0"
-                  onClick={takeHint}
-                >
-                  <LightbulbIcon weight="bold" className="size-6" />
-                  <KeyLabel>Tab</KeyLabel>
-                </Button>
-              )}
-              <Button
-                type="button"
-                variant="outline"
-                size="lg"
-                className="flex-1"
-                onClick={() => onAnswer('forgot')}
-              >
-                Не помню <KeyLabel>⇧Enter</KeyLabel>
-              </Button>
-            </div>
-            <Button type="submit" size="lg" disabled={!value.trim()}>
-              Проверить <KeyLabel>Enter</KeyLabel>
-            </Button>
-          </form>
-        )
-      }
-    >
-      <ScreenLabel>Напиши по-английски</ScreenLabel>
-      <h2 className="font-display text-2xl leading-tight font-bold">{word.ru.join(', ')}</h2>
-      <div className="flex flex-col gap-2">
-        <SentenceWithBlank sentence={sentence} hint={feedback ? undefined : hint} />
+            {after}
+          </p>
+        )}
         <p className="text-muted-foreground">{sentence.ru}</p>
       </div>
     </ThumbLayout>

@@ -22,7 +22,7 @@ type TilesProps = {
   onAnswer: (result: AnswerResult) => void
 }
 
-const tileClassName = 'rounded-[10px] border-2 px-3 py-2 text-base transition-colors'
+const tileClassName = 'rounded-2xl px-3.5 py-2.5 text-base transition-colors'
 const MISSES_BEFORE_HIGHLIGHT = 2
 
 export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
@@ -98,11 +98,11 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
                     disabled={isUsed}
                     className={cn(
                       tileClassName,
-                      'border-border active:bg-foreground/10',
+                      'glass active:glass-strong',
                       shake.index === index && 'animate-shake',
-                      index === highlighted && 'border-primary text-primary',
-                      index === searchMatch && 'bg-foreground text-background',
-                      isUsed && 'border-dashed border-muted-foreground text-transparent'
+                      index === highlighted && 'tint-success text-success',
+                      index === searchMatch && 'bg-primary text-primary-foreground',
+                      isUsed && 'bg-glass text-transparent opacity-40'
                     )}
                     onClick={() => tap(index)}
                   >
@@ -120,7 +120,7 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
                   className="flex-col gap-0"
                   onClick={takeHint}
                 >
-                  <LightbulbIcon weight="bold" className="size-6" />
+                  <LightbulbIcon weight="bold" className="size-5" />
                   <KeyLabel>Tab</KeyLabel>
                 </Button>
               )}
@@ -138,10 +138,10 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
       }
     >
       <ScreenLabel>Собери предложение</ScreenLabel>
-      <p className="text-xl">{sentence.ru}</p>
-      <div className="flex min-h-24 flex-wrap content-start gap-2 border-b-2 border-dashed pb-3">
+      <p className="text-xl leading-snug">{sentence.ru}</p>
+      <div className="flex min-h-24 flex-wrap content-start gap-2">
         {placed.map((index) => (
-          <span key={index} className={cn(tileClassName, 'border-primary')}>
+          <span key={index} className={cn(tileClassName, 'glass-strong')}>
             {tiles[index]}
           </span>
         ))}

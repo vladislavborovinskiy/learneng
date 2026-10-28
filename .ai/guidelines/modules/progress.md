@@ -52,7 +52,7 @@ Also covers the manual backup in settings and the daily backup file from the ser
    to Review) and writes their packs. Does not touch Meta.
 4. **Complete lesson** — `completeLesson()` bumps `days[today].lessons`; `grade` keeps the other
    fields of the day (spread), so it never resets the lesson count.
-5. **Settings** — main view: caption about server + nightly file, «Резервная копия →» (quiet
+5. **Settings** — main view: no title, no caption, «Резервная копия →» (quiet
    ghost button), «Тест заново» (second tap «Точно?» starts it), «Готово»; read-only «Точность по
    упражнениям» over the stored 30 days (hidden without answers); no daily limit. Backup
    lives in a separate «Резервная копия» view of the same screen (`backupOpen` state); BackButton

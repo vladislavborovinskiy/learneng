@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { KeyLabel } from '@/components/key-label'
 import { ScreenLabel } from '@/components/screen-label'
 import { ThumbLayout } from '@/components/thumb-layout'
+import { WordTitle } from '@/components/word-title'
 import { Button } from '@/components/ui/button'
 import { SentenceWithBlank } from '@/exercises/sentence-with-blank'
 import type { AnswerResult, ChoiceExercise } from '@/lib/exercises'
@@ -34,11 +35,11 @@ export function Choice({ exercise, header, feedback, onAnswer }: ChoiceProps) {
   const prompts = {
     'en-ru': {
       title: 'Как переводится?',
-      body: <h2 className="font-display text-5xl leading-none font-black">{word.en}</h2>,
+      body: <WordTitle text={word.en} />,
     },
     'ru-en': {
       title: 'Выбери перевод',
-      body: <h2 className="font-display text-2xl leading-tight font-bold">{word.ru.join(', ')}</h2>,
+      body: <h2 className="text-2xl leading-snug font-light">{word.ru.join(', ')}</h2>,
     },
     'cloze': {
       title: 'Вставь слово',
@@ -61,10 +62,10 @@ export function Choice({ exercise, header, feedback, onAnswer }: ChoiceProps) {
               <Button
                 key={option}
                 variant="outline"
-                className="h-auto min-h-13 justify-start gap-3 border-(length:--line) px-3 py-2 text-left font-sans text-base font-normal whitespace-normal"
+                className="h-auto min-h-13 justify-start gap-3 rounded-[18px] px-3 py-2 text-left text-base font-normal whitespace-normal"
                 onClick={() => choose(option)}
               >
-                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-foreground font-mono text-xs font-bold text-background">
+                <span className="grid size-7 shrink-0 place-items-center rounded-full bg-glass-strong font-mono text-xs text-muted-foreground">
                   {index + 1}
                 </span>
                 {option}

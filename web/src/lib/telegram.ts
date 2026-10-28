@@ -5,7 +5,7 @@ export const webApp = window.Telegram?.WebApp
 
 export const isTelegram = Boolean(webApp?.initData)
 
-const APP_BACKGROUND = '#1a1815'
+const APP_BACKGROUND = '#0b0d12'
 
 export function initTelegram() {
   if (!isTelegram) return
