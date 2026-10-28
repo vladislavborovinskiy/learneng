@@ -5,11 +5,15 @@ import { getStreak } from '@/lib/scheduler'
 import type { Meta } from '@/lib/storage'
 import { cn } from '@/lib/utils'
 
+const REPEAT_MISTAKES_ACCURACY = 70
+
 type SessionSummaryProps = {
   results: AnswerResult[]
   learned: number
   meta: Meta
+  missed: string[]
   onNextLesson: () => void
+  onRepeatMistakes: () => void
   onDone: () => void
 }
 
@@ -17,11 +21,14 @@ export function SessionSummary({
   results,
   learned,
   meta,
+  missed,
   onNextLesson,
+  onRepeatMistakes,
   onDone,
 }: SessionSummaryProps) {
   const correct = results.filter((result) => !isMistake(result)).length
   const accuracy = results.length ? Math.round((correct / results.length) * 100) : 100
+  const canRepeatMistakes = accuracy < REPEAT_MISTAKES_ACCURACY && missed.length > 0
   const items = [
     { label: 'точность', value: `${accuracy}%` },
     { label: 'ответов', value: results.length },
@@ -32,14 +39,26 @@ export function SessionSummary({
   return (
     <ThumbLayout
       actions={
-        <div className="flex gap-3">
-          <Button variant="outline" size="lg" onClick={onDone}>
-            На главную
-          </Button>
-          <Button size="lg" className="flex-1" onClick={onNextLesson}>
-            Ещё урок
-          </Button>
-        </div>
+        <>
+          {canRepeatMistakes && (
+            <Button size="lg" onClick={onRepeatMistakes}>
+              Повторить ошибки
+            </Button>
+          )}
+          <div className="flex gap-3">
+            <Button variant="outline" size="lg" onClick={onDone}>
+              На главную
+            </Button>
+            <Button
+              size="lg"
+              variant={canRepeatMistakes ? 'outline' : 'default'}
+              className="flex-1"
+              onClick={onNextLesson}
+            >
+              Ещё урок
+            </Button>
+          </div>
+        </>
       }
     >
       <h1 className="font-display text-3xl leading-none font-black">Урок пройден</h1>

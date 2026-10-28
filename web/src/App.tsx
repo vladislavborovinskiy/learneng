@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { getStats } from '@/lib/scheduler'
+import { getStats, type LessonItem } from '@/lib/scheduler'
 import { useLearning } from '@/lib/use-learning'
 import { Home } from '@/screens/home'
 import { LevelTest } from '@/screens/level-test'
@@ -12,10 +12,16 @@ export function App() {
   const { state, grade, markKnown, completeLesson, updateMeta, recordAnswer } = useLearning()
   const [screen, setScreen] = useState<Screen>('home')
   const [lessonKey, setLessonKey] = useState(0)
+  const [mistakeItems, setMistakeItems] = useState<LessonItem[] | null>(null)
   const goHome = useCallback(() => setScreen('home'), [])
   const startLesson = useCallback(() => {
+    setMistakeItems(null)
     setLessonKey((key) => key + 1)
     setScreen('session')
+  }, [])
+  const repeatMistakes = useCallback((wordIds: string[]) => {
+    setMistakeItems(wordIds.map((wordId) => ({ wordId, intro: false })))
+    setLessonKey((key) => key + 1)
   }, [])
   const finishLevelTest = useCallback(() => {
     updateMeta({ levelTestDone: true })
@@ -38,6 +44,7 @@ export function App() {
     return (
       <Session
         key={lessonKey}
+        items={mistakeItems ?? undefined}
         progress={state.progress}
         meta={state.meta}
         grade={grade}
@@ -45,6 +52,7 @@ export function App() {
         recordAnswer={recordAnswer}
         onComplete={completeLesson}
         onNextLesson={startLesson}
+        onRepeatMistakes={repeatMistakes}
         onExit={goHome}
       />
     )

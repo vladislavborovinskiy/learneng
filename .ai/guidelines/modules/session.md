@@ -46,16 +46,19 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
    bottom zone (orange rays + «Правильно!» / «Почти! Опечатка», paper hatching + inverted
    «Неправильно»; correct answer except for tiles,
    the full sentence with translation, 🔊, «Дальше»). Haptic success/warning/error.
-3. **Mistake** (wrong or «Не помню») — the word is re-inserted 4 positions later and graded again
-   when it comes back.
-4. **Final round** — when the queue ends, every word introduced in this lesson is appended once
-   more in random order.
+3. **Mistake** (wrong or «Не помню») — the word joins `missed` and is re-inserted 4 positions
+   later, at most 2 times per word per lesson (`comebacks`, `MAX_COMEBACKS`); further mistakes
+   only grade it.
+4. **Final round** — when the queue ends, unique `introduced ∪ missed` words are appended once
+   in random order; built once, so mistakes inside the round do not extend it.
 5. **Completion** — when the index runs past the queue (after the final round), `completeLesson`
    bumps `days[today].lessons`.
 6. **Summary** — «Урок пройден»: one cell per answer in order (orange = correct incl. typo,
    hatched = wrong; `Session` keeps `results: AnswerResult[]`), accuracy, answers, new words,
    streak; «На главную» and «Ещё урок» (App bumps `lessonKey`, `Session` remounts and builds a
-   new lesson from current progress).
+   new lesson from current progress). Accuracy < 70% with missed words → primary «Повторить
+   ошибки» on its own row (others become outline): App passes `items` = the missed words to a
+   remounted `Session` (no new words, same rules, counts as a lesson); «Ещё урок» clears it.
 7. **Exit** — Telegram BackButton (or the cross outside Telegram) returns home; already graded
    answers are kept, the lesson is not counted.
 

@@ -23,6 +23,7 @@ import { haptic, useBackButton } from '@/lib/telegram'
 import { SessionSummary } from '@/screens/session-summary'
 
 type SessionProps = {
+  items?: LessonItem[]
   progress: Progress
   meta: Meta
   grade: (wordId: string, rating: Grade) => void
@@ -30,10 +31,12 @@ type SessionProps = {
   recordAnswer: (type: ExerciseType, isCorrect: boolean) => void
   onComplete: () => void
   onNextLesson: () => void
+  onRepeatMistakes: (wordIds: string[]) => void
   onExit: () => void
 }
 
 const REQUEUE_GAP = 4
+const MAX_COMEBACKS = 2
 
 const hapticByResult = {
   correct: 'success',
@@ -49,6 +52,7 @@ function exerciseFor(item: LessonItem | undefined, progress: Progress) {
 }
 
 export function Session({
+  items,
   progress,
   meta,
   grade,
@@ -56,15 +60,18 @@ export function Session({
   recordAnswer,
   onComplete,
   onNextLesson,
+  onRepeatMistakes,
   onExit,
 }: SessionProps) {
-  const [queue, setQueue] = useState<LessonItem[]>(() => buildLesson(progress))
+  const [queue, setQueue] = useState<LessonItem[]>(() => items ?? buildLesson(progress))
   const [index, setIndex] = useState(0)
   const [exercise, setExercise] = useState<Exercise | null>(() => exerciseFor(queue[0], progress))
   const [result, setResult] = useState<AnswerResult | null>(null)
   const [results, setResults] = useState<AnswerResult[]>([])
   const [learned, setLearned] = useState(0)
   const [introduced, setIntroduced] = useState<string[]>([])
+  const [missed, setMissed] = useState<string[]>([])
+  const [comebacks, setComebacks] = useState<Record<string, number>>({})
   const [finalRoundAdded, setFinalRoundAdded] = useState(false)
 
   useBackButton(onExit)
@@ -77,7 +84,9 @@ export function Session({
         results={results}
         learned={learned}
         meta={meta}
+        missed={missed}
         onNextLesson={onNextLesson}
+        onRepeatMistakes={() => onRepeatMistakes(missed)}
         onDone={onExit}
       />
     )
@@ -88,8 +97,9 @@ export function Session({
   const advance = () => {
     const nextIndex = index + 1
     let nextQueue = queue
-    if (nextIndex >= queue.length && !finalRoundAdded && introduced.length > 0) {
-      nextQueue = [...queue, ...shuffle(introduced).map((wordId) => ({ wordId, intro: false }))]
+    const finalRound = [...new Set([...introduced, ...missed])]
+    if (nextIndex >= queue.length && !finalRoundAdded && finalRound.length > 0) {
+      nextQueue = [...queue, ...shuffle(finalRound).map((wordId) => ({ wordId, intro: false }))]
       setQueue(nextQueue)
       setFinalRoundAdded(true)
     }
@@ -117,9 +127,12 @@ export function Session({
     setResult(answer)
     setResults([...results, answer])
     haptic(hapticByResult[answer])
-    if (isMistake(answer)) {
-      const retry = { wordId: item.wordId, intro: false }
-      setQueue(queue.toSpliced(index + REQUEUE_GAP, 0, retry))
+    if (!isMistake(answer)) return
+    if (!missed.includes(item.wordId)) setMissed([...missed, item.wordId])
+    const count = comebacks[item.wordId] ?? 0
+    if (count < MAX_COMEBACKS) {
+      setComebacks({ ...comebacks, [item.wordId]: count + 1 })
+      setQueue(queue.toSpliced(index + REQUEUE_GAP, 0, { wordId: item.wordId, intro: false }))
     }
   }
 
