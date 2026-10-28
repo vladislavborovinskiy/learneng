@@ -1,8 +1,15 @@
+import { LightbulbIcon } from '@phosphor-icons/react/dist/csr/Lightbulb'
 import { useState, type ReactNode } from 'react'
 import { ScreenLabel } from '@/components/screen-label'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
-import { checkTiles, type AnswerResult, type TilesExercise } from '@/lib/exercises'
+import {
+  checkTiles,
+  hintTiles,
+  withHint,
+  type AnswerResult,
+  type TilesExercise,
+} from '@/lib/exercises'
 import { cn } from '@/lib/utils'
 
 type TilesProps = {
@@ -17,14 +24,20 @@ const tileClassName =
 
 export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
   const [selected, setSelected] = useState<number[]>([])
+  const [hinted, setHinted] = useState(false)
   const { sentence, tiles, answer } = exercise
+  const isComplete = checkTiles(
+    selected.map((index) => tiles[index]),
+    answer
+  )
 
   const check = () => {
-    const isCorrect = checkTiles(
-      selected.map((index) => tiles[index]),
-      answer
-    )
-    onAnswer(isCorrect ? 'correct' : 'wrong')
+    onAnswer(withHint(isComplete ? 'correct' : 'wrong', hinted))
+  }
+
+  const takeHint = () => {
+    setSelected(hintTiles(tiles, selected, answer))
+    setHinted(true)
   }
 
   return (
@@ -52,6 +65,21 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
                   </button>
                 )
               })}
+            </div>
+            <div className="flex gap-3">
+              {!isComplete && (
+                <Button variant="outline" size="icon-lg" aria-label="Подсказка" onClick={takeHint}>
+                  <LightbulbIcon weight="bold" className="size-6" />
+                </Button>
+              )}
+              <Button
+                variant="outline"
+                size="lg"
+                className="flex-1"
+                onClick={() => onAnswer('forgot')}
+              >
+                Не помню
+              </Button>
             </div>
             <Button size="lg" disabled={selected.length === 0} onClick={check}>
               Проверить

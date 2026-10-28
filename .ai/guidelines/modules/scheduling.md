@@ -11,7 +11,7 @@ home screen. Code: `web/src/lib/scheduler.ts`, `web/src/screens/home.tsx`,
 
 - **Due** — words whose card `due <= now`, oldest due first.
 - **Lesson** (`buildLesson`) — up to 3 new words: next 2 unseen IT words (file order) + the most
-  frequent unseen NGSL word; when one source runs out the other fills the slots + up to 8 review items. Reviews are due words, most overdue first; free
+  frequent unseen NGSL word; when one source runs out the other fills the slots + up to 8 review items. Reviews are due words, most lapses first, then most overdue; free
   slots are topped up with non-due `Review` cards with the lowest retrievability
   (`get_retrievability`). Order: 2 reviews as warm-up, then each new word followed by an even
   share of the remaining reviews. No daily limit — lessons can be repeated any number of times.
@@ -23,8 +23,8 @@ home screen. Code: `web/src/lib/scheduler.ts`, `web/src/screens/home.tsx`,
   (IT-словарь / Частотные слова).
 - **Streak** — consecutive days with `reviewed > 0`, ending today or yesterday (today without
   activity does not break it yet).
-- **Grades** — exercises map results to FSRS ratings: correct → `Good`, typo → `Hard`,
-  wrong → `Again`; «Знаю» / level test → `Easy`.
+- **Grades** — exercises map results to FSRS ratings: correct → `Good`, typo / hinted → `Hard`,
+  wrong / «Не помню» → `Again`; «Знаю» / level test → `Easy`.
 
 ## Key flows
 

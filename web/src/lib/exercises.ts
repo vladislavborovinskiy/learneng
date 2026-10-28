@@ -29,7 +29,7 @@ export type TypingExercise = {
 
 export type Exercise = ChoiceExercise | TilesExercise | TypingExercise
 
-export type AnswerResult = 'correct' | 'typo' | 'wrong'
+export type AnswerResult = 'correct' | 'hinted' | 'typo' | 'wrong' | 'forgot'
 
 const OPTIONS_COUNT = 4
 const EXTRA_TILES = 3
@@ -132,8 +132,49 @@ export function checkTiles(selected: string[], answer: string[]) {
   return selected.join(' ').toLowerCase() === answer.join(' ').toLowerCase()
 }
 
+export function hintTiles(tiles: string[], selected: number[], answer: string[]) {
+  const sameToken = (tile: string, token: string) => tile.toLowerCase() === token.toLowerCase()
+  let correctCount = 0
+  while (
+    correctCount < selected.length &&
+    correctCount < answer.length &&
+    sameToken(tiles[selected[correctCount]], answer[correctCount])
+  ) {
+    correctCount++
+  }
+  const kept = selected.slice(0, correctCount)
+  if (correctCount >= answer.length) return kept
+  const next = tiles.findIndex(
+    (tile, index) => !kept.includes(index) && sameToken(tile, answer[correctCount])
+  )
+  return next === -1 ? kept : [...kept, next]
+}
+
+export function revealedPrefix(answer: string, letters: number) {
+  let count = 0
+  for (let i = 0; i < answer.length; i++) {
+    if (answer[i] !== ' ') count++
+    if (count === letters) return answer.slice(0, i + 1)
+  }
+  return answer
+}
+
+export function maxHintLetters(answer: string) {
+  return Math.max(1, Math.floor(answer.replace(/ /g, '').length / 2))
+}
+
+export function withHint(result: AnswerResult, hinted: boolean): AnswerResult {
+  return hinted && (result === 'correct' || result === 'typo') ? 'hinted' : result
+}
+
+export function isMistake(result: AnswerResult) {
+  return result === 'wrong' || result === 'forgot'
+}
+
 export const gradeByResult: Record<AnswerResult, Grade> = {
   correct: Rating.Good,
+  hinted: Rating.Hard,
   typo: Rating.Hard,
   wrong: Rating.Again,
+  forgot: Rating.Again,
 }

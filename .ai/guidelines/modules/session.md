@@ -15,12 +15,20 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
   - no card / not `Review` → **choice** EN→RU or RU→EN (4 numbered option rows in the thumb zone, one tap answers);
   - `Review` with stability < 7 days → **cloze** choice (pick the missing `form`) or **tiles**
     (assemble the English sentence from shuffled tokens + 3 extra tokens), 50/50;
-  - otherwise → **typing** the missing `form`, hint = first letter + underscores.
+  - otherwise → **typing** the missing `form`; the input starts with the first letter as a fixed
+    prefix, the blank shows the same prefix + underscores.
 - **Distractors** — words of the same part of speech (fallback: any) that share no `ru`
   translation with the target; cloze distractors use a random sentence `form` of the other word,
   case-matched.
-- **Answer result** — `correct | typo | wrong`. Typo exists only for typing: Levenshtein ≤ 1 for
-  answers ≥ 4 chars, ≤ 2 for ≥ 8 chars (after trim, lowercase, collapsed spaces).
+- **Answer result** — `correct | hinted | typo | wrong | forgot`. Typo exists only for typing:
+  Levenshtein ≤ 1 for answers ≥ 4 chars, ≤ 2 for ≥ 8 chars (after trim, lowercase, collapsed
+  spaces). `hinted` = correct or typo after a hint; `forgot` = «Не помню». Mistakes
+  (`isMistake`) = `wrong | forgot`.
+- **Hints** (💡) — typing: each tap extends the fixed prefix by one letter (a space comes with the
+  next letter) up to half of the letters, clears the typed text; tiles: keeps the correct
+  beginning, drops the rest, places the next correct tile. Choice has no hint.
+- **«Не помню»** — in every exercise (not on the new-word card): `Again`, panel «Запомни» with the
+  word, translations and sentence.
 
 ## Key flows
 
@@ -30,8 +38,8 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
    bottom zone (orange rays + «Правильно!» / «Почти! Опечатка», paper hatching + inverted
    «Неправильно»; correct answer except for tiles,
    the full sentence with translation, 🔊, «Дальше»). Haptic success/warning/error.
-3. **Wrong answer** — the word is re-inserted 4 positions later and graded again when it comes
-   back.
+3. **Mistake** (wrong or «Не помню») — the word is re-inserted 4 positions later and graded again
+   when it comes back.
 4. **Final round** — when the queue ends, every word introduced in this lesson is appended once
    more in random order.
 5. **Completion** — when the index runs past the queue (after the final round), `completeLesson`
@@ -50,6 +58,8 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
 - Each answer, including retries and the final round, is a real FSRS review — repeated grading
   within one session is intentional (short-term learning steps).
 - Tiles comparison is case-insensitive with punctuation stripped; duplicate tokens are fine.
+- The hint state lives in the exercise component; the session only sees the resulting
+  `AnswerResult`. The checked typing answer is `prefix + typed text`.
 - Audio only on 🔊 (Web Speech API, `en-US`, rate 0.9) — never autoplay.
 - All buttons live in the thumb zone of `ThumbLayout`; exercise UIs receive `header`, `feedback`
   and render feedback in place of their own actions.

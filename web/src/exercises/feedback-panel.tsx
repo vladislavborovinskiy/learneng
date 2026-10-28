@@ -1,6 +1,6 @@
 import { SpeakButton } from '@/components/speak-button'
 import { Button } from '@/components/ui/button'
-import type { AnswerResult, Exercise } from '@/lib/exercises'
+import { isMistake, type AnswerResult, type Exercise } from '@/lib/exercises'
 import { cn } from '@/lib/utils'
 
 type FeedbackPanelProps = {
@@ -11,13 +11,19 @@ type FeedbackPanelProps = {
 
 const variants = {
   correct: { title: 'Правильно!', panel: 'rays', stamp: 'bg-background text-foreground' },
+  hinted: {
+    title: 'Верно, с подсказкой',
+    panel: 'rays',
+    stamp: 'bg-background text-foreground',
+  },
   typo: { title: 'Почти! Опечатка', panel: 'rays', stamp: 'bg-background text-foreground' },
   wrong: { title: 'Неправильно', panel: 'hatch', stamp: 'bg-foreground text-background' },
-}
+  forgot: { title: 'Запомни', panel: 'hatch', stamp: 'bg-foreground text-background' },
+} satisfies Record<AnswerResult, { title: string; panel: string; stamp: string }>
 
 export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelProps) {
   const { title, panel, stamp } = variants[result]
-  const { sentence } = exercise
+  const { word, sentence } = exercise
   const correctAnswer = exercise.kind === 'tiles' ? null : exercise.answer
 
   return (
@@ -37,7 +43,12 @@ export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelPro
           >
             {title}
           </span>
-          {result !== 'correct' && correctAnswer && (
+          {result === 'forgot' && (
+            <p className="bg-background px-1">
+              <span className="font-bold text-primary">{word.en}</span> — {word.ru.join(', ')}
+            </p>
+          )}
+          {result !== 'correct' && result !== 'forgot' && correctAnswer && (
             <p className="bg-background px-1 text-sm">
               Ответ: <span className="font-bold text-primary">{correctAnswer}</span>
             </p>
@@ -53,7 +64,7 @@ export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelPro
         <Button
           autoFocus
           size="lg"
-          variant={result === 'wrong' ? 'outline' : 'default'}
+          variant={isMistake(result) ? 'outline' : 'default'}
           className="flex-1"
           onClick={onContinue}
         >

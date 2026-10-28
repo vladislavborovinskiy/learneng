@@ -10,6 +10,7 @@ import { wordsById } from '@/lib/content'
 import {
   buildExercise,
   gradeByResult,
+  isMistake,
   shuffle,
   type AnswerResult,
   type Exercise,
@@ -30,6 +31,14 @@ type SessionProps = {
 }
 
 const REQUEUE_GAP = 4
+
+const hapticByResult = {
+  correct: 'success',
+  hinted: 'success',
+  typo: 'warning',
+  wrong: 'error',
+  forgot: 'warning',
+} as const satisfies Record<AnswerResult, Parameters<typeof haptic>[0]>
 
 function exerciseFor(item: LessonItem | undefined, progress: Progress) {
   if (!item || item.intro) return null
@@ -102,8 +111,8 @@ export function Session({
     grade(item.wordId, gradeByResult[answer])
     setResult(answer)
     setResults([...results, answer])
-    haptic(answer === 'correct' ? 'success' : answer === 'typo' ? 'warning' : 'error')
-    if (answer === 'wrong') {
+    haptic(hapticByResult[answer])
+    if (isMistake(answer)) {
       const retry = { wordId: item.wordId, intro: false }
       setQueue(queue.toSpliced(index + REQUEUE_GAP, 0, retry))
     }

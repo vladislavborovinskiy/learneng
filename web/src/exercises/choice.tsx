@@ -54,6 +54,9 @@ export function Choice({ exercise, header, feedback, onAnswer }: ChoiceProps) {
                 {option}
               </Button>
             ))}
+            <Button variant="outline" size="lg" onClick={() => onAnswer('forgot')}>
+              Не помню
+            </Button>
           </div>
         )
       }

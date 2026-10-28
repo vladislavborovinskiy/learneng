@@ -21,7 +21,7 @@ export function gradeCard(card: Card | undefined, grade: Grade, now = new Date()
 export function getDueWordIds(progress: Progress, now = new Date()) {
   return Object.entries(progress)
     .filter(([, card]) => card.due <= now)
-    .sort(([, a], [, b]) => a.due.getTime() - b.due.getTime())
+    .sort(([, a], [, b]) => b.lapses - a.lapses || a.due.getTime() - b.due.getTime())
     .map(([wordId]) => wordId)
 }
 

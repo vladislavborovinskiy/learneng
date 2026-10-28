@@ -1,6 +1,6 @@
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
-import type { AnswerResult } from '@/lib/exercises'
+import { isMistake, type AnswerResult } from '@/lib/exercises'
 import { getStreak } from '@/lib/scheduler'
 import type { Meta } from '@/lib/storage'
 import { cn } from '@/lib/utils'
@@ -20,7 +20,7 @@ export function SessionSummary({
   onNextLesson,
   onDone,
 }: SessionSummaryProps) {
-  const correct = results.filter((result) => result !== 'wrong').length
+  const correct = results.filter((result) => !isMistake(result)).length
   const accuracy = results.length ? Math.round((correct / results.length) * 100) : 100
   const items = [
     { label: 'точность', value: `${accuracy}%` },
@@ -53,7 +53,7 @@ export function SessionSummary({
               key={index}
               className={cn(
                 'aspect-square border-r-(length:--line) border-b-(length:--line) border-foreground',
-                result === 'wrong' ? 'hatch' : 'bg-primary'
+                isMistake(result) ? 'hatch' : 'bg-primary'
               )}
             />
           ))}
