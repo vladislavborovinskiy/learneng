@@ -44,14 +44,23 @@ SHALL be cleared when a hint is taken.
 
 ### Requirement: Tile hint
 
-A tiles exercise SHALL offer a hint button that keeps the placed tiles forming a correct
-beginning of the sentence, removes any placed tiles after it, and places the next correct tile.
-The hint button SHALL be hidden when the placed tiles already form the whole sentence.
+An assembly exercise SHALL offer a hint button that places the next correct tile. The hint
+button SHALL be hidden when only one tile is left to place. A hint SHALL NOT count as a mistake.
+
+#### Scenario: Hint
+
+- **WHEN** the sentence is «Update your software» and the learner placed «Update»
+- **THEN** after the hint the placed tiles are «Update your»
 
 #### Scenario: Hint after a wrong tile
 
-- **WHEN** the sentence is «Update your software» and the learner placed «Update software»
-- **THEN** after the hint the placed tiles are «Update your»
+- **WHEN** the sentence is «Update your software», the learner placed «Update» and then tapped the wrong tile «software»
+- **THEN** «software» stays in the pool and after the hint the placed tiles are «Update your»
+
+#### Scenario: Last tile
+
+- **WHEN** one tile is left to place
+- **THEN** the hint button is not shown
 
 ### Requirement: Hinted answers are graded Hard at best
 
