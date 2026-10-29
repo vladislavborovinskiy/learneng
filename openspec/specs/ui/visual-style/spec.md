@@ -120,8 +120,9 @@ and a short word SHALL keep the maximum size.
 
 ### Requirement: Streak chip
 
-The home screen SHALL show the streak as a glass chip with a filled flame icon and the number
-only, without a unit; flame and number SHALL be near-white while the streak is above 0 and muted
+The home screen SHALL have no header or app title; the streak SHALL be shown as a glass chip at
+the right end of the learned-count row («108 из 737 слов») with a filled flame icon and the
+number only, without a unit; flame and number SHALL be near-white while the streak is above 0 and muted
 grey at 0.
 
 #### Scenario: Streak

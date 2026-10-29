@@ -18,8 +18,9 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
     50/50;
   - 7–21 days → **typing** or **tiles in `words` mode** (single tokens + 3 extra tokens), 50/50;
   - from 21 days → **typing** the missing `form` right inside the sentence: the blank is the
-    input (first letter as a fixed prefix, underscores as placeholder, width = answer length);
-    the bottom row is 💡 / «Не помню» / white arrow «Проверить» (also Enter / «Готово» on the
+    input (starts empty, underscores as placeholder, grows with the typed text via an invisible
+    mirror span);
+    the bottom row is 💡 / «Не помню» / wide white «Проверить» (also Enter / «Готово» on the
     keyboard). This screen sizes to `--tg-viewport-height` (`ThumbLayout followKeyboard`) so the
     row stays above the iOS keyboard.
 - **Tiles checking** — tiles are placed one at a time; a tile that is not the next part shakes,
@@ -35,7 +36,7 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
   Levenshtein ≤ 1 for answers ≥ 4 chars, ≤ 2 for ≥ 8 chars (after trim, lowercase, collapsed
   spaces). `hinted` = correct or typo after a hint; `forgot` = «Не помню». Mistakes
   (`isMistake`) = `wrong | forgot`.
-- **Hints** (💡) — typing: each tap extends the fixed prefix by one letter (a space comes with the
+- **Hints** (💡) — typing: each tap extends a fixed (undeletable) prefix by one letter (a space comes with the
   next letter) up to half of the letters, clears the typed text; tiles: places the next correct
   tile (hidden when one tile is left). Choice has no hint.
 - **«Не помню»** — in every exercise (not on the new-word card): `Again`, panel «Запомни» with the

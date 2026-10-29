@@ -12,7 +12,7 @@ new-word limit.
 The settings screen SHALL show no explanatory caption; its content area SHALL hold only the
 exercise accuracy block when there are answers. In the thumb zone it SHALL offer a quiet
 «Резервная копия →» action, «Тест заново» and «Готово». The progress backup (copy and restore)
-SHALL be offered in a separate «Резервная копия» view of the same screen, left with «Назад» or the
+SHALL be offered in a separate view of the same screen without a title, left with «Назад» or the
 Telegram BackButton. The screen SHALL NOT offer a daily new-word limit.
 
 #### Scenario: Opening settings

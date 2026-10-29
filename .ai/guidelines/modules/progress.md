@@ -55,9 +55,9 @@ Also covers the manual backup in settings and the daily backup file from the ser
 5. **Settings** — main view: no title, no caption, «Резервная копия →» (quiet
    ghost button), «Тест заново» (second tap «Точно?» starts it), «Готово»; read-only «Точность по
    упражнениям» over the stored 30 days (hidden without answers); no daily limit. Backup
-   lives in a separate «Резервная копия» view of the same screen (`backupOpen` state); BackButton
+   lives in a separate untitled backup view of the same screen (`backupOpen` state); BackButton
    there returns to the main view instead of leaving settings.
-6. **Backup** — in the «Резервная копия» view «Скопировать» copies `exportBackup()` to the
+6. **Backup** — in the backup view «Скопировать» copies `exportBackup()` to the
    clipboard; «Восстановить» requires a second tap («Прогресс сотрётся.
    Точно?»), validates, overwrites all 64 packs + meta, then reloads the page. With the server
    the overwrite is one atomic `PUT /progress`, then CloudStorage is rewritten.

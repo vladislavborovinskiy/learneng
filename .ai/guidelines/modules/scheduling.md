@@ -35,10 +35,11 @@ home screen. Code: `web/src/lib/scheduler.ts`, `web/src/screens/home.tsx`,
 1. **Home** — the learned count as one large number with «из Y слов», a thin bar, «сегодня +N»,
    the pace chart (`components/pace-chart.tsx`, shadcn chart / Recharts, lazy-loaded chunk: new
    words per day for 14 days, `getStats().paceSeries`, glass tooltip «28 окт · +3»), two glass
-   tiles «точность · 7 дн» (`accuracyWeek` from answer stats, «—» without answers) and
+   tiles «точность за неделю» (`accuracyWeek` from answer stats, «—» without answers) and
    «повторений сегодня» (`reviewedToday`), the hard-words section without a visible title (`hardWords`: top 3 by
-   lapses, clay dots capped at 3, hidden without lapses), the one-line paused hint at 48+ due,
-   and the streak chip (white flame + number, grey at 0). No finish forecast. Main action always
+   lapses, English left, translation right and blurred until the row is tapped, hidden without
+   lapses), the one-line paused hint at 48+ due. No header: the streak chip (white flame +
+   number, grey at 0) sits at the right end of the learned-count row. No finish forecast. Main action always
    «Урок»; «Тест» shows until the level test is done.
 2. **Lesson queue** — built once when a lesson starts from current progress (see `session.md`).
 

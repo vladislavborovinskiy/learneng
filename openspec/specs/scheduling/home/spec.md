@@ -107,13 +107,13 @@ chart SHALL have no legend, title or border.
 
 Under the pace chart the home screen SHALL show two glass tiles: answer accuracy over the last 7
 local days including today (correct / total from the stored answer statistics, as a whole
-percent, «—» without answers) labelled «точность · 7 дн», and reviews done today
+percent, «—» without answers) labelled «точность за неделю», and reviews done today
 (`meta.days[today].reviewed`) labelled «повторений сегодня».
 
 #### Scenario: Tiles
 
 - **WHEN** the last 7 days have 50 answers with 41 correct and 24 reviews were done today
-- **THEN** the tiles read «82%» «точность · 7 дн» and «24» «повторений сегодня»
+- **THEN** the tiles read «82%» «точность за неделю» and «24» «повторений сегодня»
 
 #### Scenario: No answers yet
 
@@ -123,14 +123,19 @@ percent, «—» without answers) labelled «точность · 7 дн», and r
 ### Requirement: Hard words
 
 The home screen SHALL show a glass section without a visible title (labelled «Трудные слова» for
-screen readers) listing up to 3 words with the most lapses (ties by most recent review), each as the English word, its first Russian translation and
-clay dots equal to the lapse count capped at 3. The section SHALL NOT be shown when no word has
-lapses. The rows SHALL NOT be buttons.
+screen readers) listing up to 3 words with the most lapses (ties by most recent review), each as the English word on the left and its first Russian translation on the right. The
+translation SHALL be blurred until the learner taps the row; a tap reveals it until the home
+screen is left. The section SHALL NOT be shown when no word has lapses.
 
 #### Scenario: Hard words
 
 - **WHEN** «deploy» has 4 lapses, «capability» 2 and «throughput» 1
-- **THEN** the section lists deploy with 3 dots, capability with 2, throughput with 1
+- **THEN** the section lists deploy, capability, throughput with blurred translations
+
+#### Scenario: Reveal translation
+
+- **WHEN** the learner taps the «deploy» row
+- **THEN** its translation «развернуть» is shown unblurred
 
 #### Scenario: No lapses
 

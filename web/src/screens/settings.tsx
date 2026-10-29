@@ -84,7 +84,6 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
   if (backupOpen) {
     return (
       <ThumbLayout
-        header={<h1 className="text-2xl font-light tracking-[-0.02em]">Резервная копия</h1>}
         actions={
           <>
             <div className="grid grid-cols-2 gap-3">

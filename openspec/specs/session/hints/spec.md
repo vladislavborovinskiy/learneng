@@ -2,40 +2,34 @@
 
 ## Purpose
 
-Defines how the learner gets help during an exercise — the first-letter prefix, letter and tile
-hints, and «Не помню» — and how each affects grading and feedback.
+Defines how the learner gets help during an exercise — letter and tile hints, and «Не помню» — and how each affects grading and feedback.
 
 ## Requirements
 
-### Requirement: First letter as a fixed prefix in typing
+### Requirement: Empty typing input
 
-In a typing exercise the input SHALL start with the first letter of the expected answer in the
-answer's case, shown as a part of the input that the learner cannot delete or edit. The answer
-checked SHALL be the prefix followed by what the learner typed. «Проверить» SHALL be disabled
-until at least one character is typed after the prefix.
+In a typing exercise the input SHALL start empty, without any revealed letters, and SHALL grow
+with the typed text so the answer is always fully visible. «Проверить» SHALL be disabled until at
+least one character is typed.
 
-#### Scenario: Prefix shown
+#### Scenario: No letters revealed
 
-- **WHEN** the expected answer is «Software»
-- **THEN** the input shows a fixed «S» and the learner types «oftware»
-
-#### Scenario: Prefix cannot be erased
-
-- **WHEN** the learner presses backspace in an input that contains only the prefix
-- **THEN** the prefix stays
+- **WHEN** the expected answer is «Software» and no hint was taken
+- **THEN** the input is empty and the learner types the whole word
 
 ### Requirement: Letter hint in typing
 
 A typing exercise SHALL offer a hint button that reveals the next letter of the answer by
-extending the fixed prefix (spaces inside the answer are revealed together with the following
-letter). Hints SHALL stop when half of the answer's letters (rounded down, at least the first
-letter) are revealed; the hint button SHALL then be hidden. Text already typed after the prefix
-SHALL be cleared when a hint is taken.
+extending a fixed prefix that the learner cannot delete or edit (spaces inside the answer are
+revealed together with the following letter). The answer checked SHALL be the prefix followed by
+what the learner typed. Hints SHALL stop when half of the answer's letters (rounded down, at least
+one letter) are revealed; the hint button SHALL then be hidden. Text already typed after the
+prefix SHALL be cleared when a hint is taken.
 
 #### Scenario: Taking a hint
 
-- **WHEN** the answer is «deploy», the prefix is «d» and the learner taps the hint button
-- **THEN** the prefix becomes «de»
+- **WHEN** the answer is «deploy», no hint was taken and the learner taps the hint button twice
+- **THEN** the prefix is «de»
 
 #### Scenario: Hint limit
 

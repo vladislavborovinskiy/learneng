@@ -186,6 +186,7 @@ export function tilesResult(mistakes: number): AnswerResult {
 }
 
 export function revealedPrefix(answer: string, letters: number) {
+  if (letters === 0) return ''
   let count = 0
   for (let i = 0; i < answer.length; i++) {
     if (answer[i] !== ' ') count++
