@@ -106,3 +106,20 @@ rules and SHALL count as a completed lesson.
 
 - **WHEN** a lesson ends with 85% accuracy
 - **THEN** «Повторить ошибки» is not shown
+
+### Requirement: Lesson progress bar never goes back
+
+The lesson progress bar SHALL show completed steps out of the planned length: the queue plus the
+final round of new words and missed words, counted from the start of the lesson. The bar SHALL
+NOT decrease: when a mistake puts a word back into the queue it SHALL stay where it is until the
+learner catches up.
+
+#### Scenario: Mistake
+
+- **WHEN** the learner answers wrong and the word returns to the queue
+- **THEN** the bar does not move back
+
+#### Scenario: Final round
+
+- **WHEN** the main queue ends and the final round of new words starts
+- **THEN** the bar keeps moving forward without a jump back

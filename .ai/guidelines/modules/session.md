@@ -90,6 +90,9 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
 - Audio only on 🔊 (Web Speech API, `en-US`, rate 0.9) — never autoplay.
 - All buttons live in the thumb zone of `ThumbLayout`; exercise UIs receive `header`, `feedback`
   and render feedback in place of their own actions.
+- The progress bar is `completion` state, updated in `advance()` as `max(previous, index / planned
+  length)`; until the final round is appended the planned length adds intro words of the queue ∪
+  `missed`, so neither a requeue nor the final round moves the bar back.
 
 ## Where to look next
 

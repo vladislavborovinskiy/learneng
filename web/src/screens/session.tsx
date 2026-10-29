@@ -73,6 +73,7 @@ export function Session({
   const [missed, setMissed] = useState<string[]>([])
   const [comebacks, setComebacks] = useState<Record<string, number>>({})
   const [finalRoundAdded, setFinalRoundAdded] = useState(false)
+  const [completion, setCompletion] = useState(0)
 
   useBackButton(onExit)
 
@@ -104,6 +105,15 @@ export function Session({
       setFinalRoundAdded(true)
     }
     if (nextIndex >= nextQueue.length) onComplete()
+    const finalRoundPlan = new Set([
+      ...nextQueue.filter((queued) => queued.intro).map((queued) => queued.wordId),
+      ...missed,
+    ])
+    const plannedLength =
+      nextQueue === queue && !finalRoundAdded
+        ? nextQueue.length + finalRoundPlan.size
+        : nextQueue.length
+    setCompletion(Math.max(completion, nextIndex / plannedLength))
     setIndex(nextIndex)
     setExercise(exerciseFor(nextQueue[nextIndex], progress))
     setResult(null)
@@ -136,7 +146,7 @@ export function Session({
     }
   }
 
-  const header = <ProgressHeader value={(index / queue.length) * 100} onClose={onExit} />
+  const header = <ProgressHeader value={completion * 100} onClose={onExit} />
 
   if (!exercise) {
     return <WordIntro word={word} header={header} onNext={handleIntroNext} onKnown={handleKnown} />
