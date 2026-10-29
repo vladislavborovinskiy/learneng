@@ -27,6 +27,10 @@ redeploying. Entry point in code: `web/src/lib/content.ts` (imported via the `@c
   prepositional phrase / clause), per word for 2–3-word sentences, `form` never cut.
 - **New-words order** — two queues: `itWordsOrder` (file order) and `ngslWordsOrder` (ascending
   `rank`); a lesson takes 2 IT + 1 NGSL (see `scheduling.md`).
+- **Preloader facts** (`content/facts.json`) — `[{ en, ru, source }]`, short verified facts about
+  English, its history, its links with Russian, learning and IT words; ≤ 12 English / ≤ 14 Russian
+  words so they can be read in ~2.5 s. Not in the bundle: the `preloader-facts` Vite plugin
+  inlines `[en, ru]` pairs into `index.html`. `check-content.mjs` checks lengths and duplicates.
 - **Level test** (`content/level_test.json`) — `bands` (rank ranges 1–500 … 2001–2809), 100
   `words` `{ en, rank }` sampled from NGSL across the bands, 15 `pseudo` non-words.
 

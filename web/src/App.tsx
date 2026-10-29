@@ -8,7 +8,7 @@ import { Settings } from '@/screens/settings'
 
 type Screen = 'home' | 'session' | 'level-test' | 'settings'
 
-const PRELOADER_MIN_MS = 400
+const PRELOADER_MIN_MS = 2500
 
 export function App() {
   const { state, grade, markKnown, completeLesson, updateMeta, recordAnswer } = useLearning()
@@ -35,12 +35,15 @@ export function App() {
     if (isLoading) return
     const preloader = document.getElementById('preloader')
     if (!preloader) return
-    const minDelay = new Promise((resolve) =>
+    const minDelay = new Promise((resolve) => {
       setTimeout(resolve, Math.max(0, PRELOADER_MIN_MS - performance.now()))
-    )
+      preloader.addEventListener('pointerdown', resolve, { once: true })
+    })
     Promise.all([document.fonts.ready, minDelay]).then(() => {
       preloader.classList.add('preloader-hidden')
-      preloader.addEventListener('transitionend', () => preloader.remove(), { once: true })
+      preloader.addEventListener('transitionend', (event) => {
+        if (event.target === preloader) preloader.remove()
+      })
     })
   }, [isLoading])
 

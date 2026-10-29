@@ -19,34 +19,99 @@
         z-index: 100;
         display: grid;
         place-items: center;
-        background: #0b0d12;
+        padding: 32px;
+        background:
+          linear-gradient(
+              135deg,
+              rgb(168 197 160 / 0.32),
+              rgb(11 13 18 / 0.2),
+              rgb(216 193 138 / 0.3),
+              rgb(11 13 18 / 0.2),
+              rgb(212 145 122 / 0.32)
+            )
+            0 0 / 300% 300%,
+          #0b0d12;
+        animation: preloader-flow 10s ease-in-out infinite alternate;
         transition: opacity 0.3s ease;
       }
       #preloader.preloader-hidden {
         opacity: 0;
         pointer-events: none;
       }
-      #preloader span {
-        width: 64px;
-        height: 3px;
-        border-radius: 999px;
-        background: linear-gradient(90deg, #a8c5a0, #d8c18a, #d4917a, #a8c5a0) 0 0 / 300% 100%;
-        animation: preloader-flow 2.4s linear infinite;
+      #preloader-fact {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 22rem;
+        margin: 0;
+        font-family: Montserrat, system-ui, sans-serif;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      #preloader-fact.preloader-fact-ready {
+        opacity: 1;
+      }
+      #preloader-fact-en {
+        color: #f2f3f5;
+        font-size: 22px;
+        font-weight: 300;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+      }
+      #preloader-fact-ru {
+        color: rgb(242 243 245 / 0.6);
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 1.45;
       }
       @keyframes preloader-flow {
         to {
-          background-position: 300% 0;
+          background-position: 100% 100%;
         }
       }
       @media (prefers-reduced-motion: reduce) {
-        #preloader span {
+        #preloader {
           animation: none;
         }
       }
     </style>
   </head>
   <body>
-    <div id="preloader" aria-hidden="true"><span></span></div>
+    <div id="preloader" aria-hidden="true">
+      <p id="preloader-fact">
+        <span id="preloader-fact-en"></span>
+        <span id="preloader-fact-ru"></span>
+      </p>
+    </div>
+    <script>
+      ;(() => {
+        const facts = __PRELOADER_FACTS__
+        const storageKey = 'preloader-facts'
+        let bag
+        try {
+          bag = JSON.parse(localStorage.getItem(storageKey))
+        } catch {}
+        if (!bag || bag.size !== facts.length || !(bag.at < bag.order.length)) {
+          const order = facts.map((_, index) => index)
+          for (let i = order.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1))
+            ;[order[i], order[j]] = [order[j], order[i]]
+          }
+          bag = { size: facts.length, order, at: 0 }
+        }
+        const [en, ru] = facts[bag.order[bag.at]]
+        bag.at++
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(bag))
+        } catch {}
+        document.getElementById('preloader-fact-en').textContent = en
+        document.getElementById('preloader-fact-ru').textContent = ru
+        const show = () =>
+          document.getElementById('preloader-fact').classList.add('preloader-fact-ready')
+        document.fonts.load('300 1em Montserrat').then(show, show)
+      })()
+    </script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

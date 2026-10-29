@@ -1,0 +1,682 @@
+[
+  {
+    "en": "The word 'England' means 'land of the Angles', a Germanic tribe.",
+    "ru": "«England» значит «земля англов» — так звали одно германское племя.",
+    "source": "https://www.etymonline.com/word/England"
+  },
+  {
+    "en": "Frisian, spoken in the Netherlands, is one of English's closest relatives.",
+    "ru": "Фризский язык из Нидерландов — один из ближайших родственников английского.",
+    "source": "https://en.wikipedia.org/wiki/English_language"
+  },
+  {
+    "en": "In 597, Christian monks from Rome brought many Latin words to England.",
+    "ru": "В 597 году монахи из Рима принесли в Англию много латинских слов.",
+    "source": "https://www.britannica.com/topic/English-language/Historical-background"
+  },
+  {
+    "en": "'They', 'them' and 'their' came into English from the Vikings.",
+    "ru": "Слова they, them и their английский взял у викингов.",
+    "source": "https://www.etymonline.com/word/them"
+  },
+  {
+    "en": "'Sky' comes from an Old Norse word meaning 'cloud'.",
+    "ru": "Слово sky происходит от древнескандинавского слова «облако».",
+    "source": "https://www.etymonline.com/word/sky"
+  },
+  {
+    "en": "Around 1490, many English people said 'eyren' instead of 'eggs'.",
+    "ru": "Около 1490 года многие англичане говорили eyren вместо eggs.",
+    "source": "https://www.etymonline.com/word/egg"
+  },
+  {
+    "en": "For 300 years after 1066, English kings grew up speaking French.",
+    "ru": "Больше 300 лет после 1066 года родным языком английских королей был французский.",
+    "source": "https://en.wikipedia.org/wiki/Henry_IV_of_England"
+  },
+  {
+    "en": "In 1362, a new law said courts must speak English, not French.",
+    "ru": "В 1362 году закон велел судам говорить по-английски, а не по-французски.",
+    "source": "https://history.blog.gov.uk/2017/04/19/the-language-of-government-and-the-power-of-plain-english/"
+  },
+  {
+    "en": "William Caxton brought the first printing press to England in 1476.",
+    "ru": "Уильям Кэкстон привёз первый печатный станок в Англию в 1476 году.",
+    "source": "https://www.britannica.com/biography/William-Caxton"
+  },
+  {
+    "en": "In 'Ye Olde Shop', 'ye' is an old spelling of 'the'.",
+    "ru": "В вывесках Ye Olde Shop слово ye — просто старое написание the.",
+    "source": "https://www.etymonline.com/word/ye"
+  },
+  {
+    "en": "English speakers once pronounced the 'k' in 'knight' and 'know'.",
+    "ru": "Когда-то в словах knight и know букву k произносили.",
+    "source": "https://www.etymonline.com/word/knight"
+  },
+  {
+    "en": "In Old English, 'knight' simply meant 'boy' or 'servant'.",
+    "ru": "В древнеанглийском knight значило просто «мальчик» или «слуга».",
+    "source": "https://www.etymonline.com/word/knight"
+  },
+  {
+    "en": "Between 1400 and 1700, English long vowels changed, but spelling stayed.",
+    "ru": "С 1400 по 1700 год долгие гласные изменились, а написание осталось прежним.",
+    "source": "https://en.wikipedia.org/wiki/Great_Vowel_Shift"
+  },
+  {
+    "en": "Samuel Johnson promised his dictionary in three years; it took nine.",
+    "ru": "Сэмюэл Джонсон обещал сделать словарь за три года, а сделал за девять.",
+    "source": "https://en.wikipedia.org/wiki/A_Dictionary_of_the_English_Language"
+  },
+  {
+    "en": "The first Oxford English Dictionary took 70 years to finish.",
+    "ru": "Первый Оксфордский словарь английского языка делали 70 лет.",
+    "source": "https://www.oed.com/information/about-the-oed/history-of-the-oed/oed-editions/"
+  },
+  {
+    "en": "Americans write 'color', not 'colour', mostly thanks to Noah Webster.",
+    "ru": "Американцы пишут color вместо colour во многом благодаря Ною Уэбстеру.",
+    "source": "https://www.merriam-webster.com/grammar/noah-websters-spelling-wins-and-fails"
+  },
+  {
+    "en": "No word from Old English starts with the letter J.",
+    "ru": "Ни одно исконное древнеанглийское слово не начинается на букву J.",
+    "source": "https://www.etymonline.com/word/J"
+  },
+  {
+    "en": "The verb 'run' has 645 meanings in the Oxford English Dictionary.",
+    "ru": "У глагола run в Оксфордском словаре 645 значений.",
+    "source": "https://www.npr.org/2011/05/30/136796448/has-run-run-amok-it-has-645-meanings-so-far"
+  },
+  {
+    "en": "About three in four English speakers learned it as a second language.",
+    "ru": "Примерно трое из четырёх говорящих по-английски выучили его как второй язык.",
+    "source": "https://www.visualcapitalist.com/ranked-the-worlds-most-spoken-languages-by-total-speakers/"
+  },
+  {
+    "en": "The 's' in 'island' was added by mistake; it was never pronounced.",
+    "ru": "Букву s в island добавили по ошибке — её никогда не произносили.",
+    "source": "https://www.etymonline.com/word/island"
+  },
+  {
+    "en": "Writers added a silent 'b' to 'debt' to make it look Latin.",
+    "ru": "Немую b в debt вставили, чтобы слово было похоже на латинское.",
+    "source": "https://www.etymonline.com/word/debt"
+  },
+  {
+    "en": "The 'h' in 'ghost' came from printer Caxton and Flemish spelling.",
+    "ru": "Буква h в ghost появилась у печатника Кэкстона под влиянием фламандского.",
+    "source": "https://www.etymonline.com/word/ghost"
+  },
+  {
+    "en": "'An apron' was once 'a napron' — the 'n' jumped words.",
+    "ru": "Раньше говорили a napron, но потом n «перескочила» и вышло an apron.",
+    "source": "https://www.etymonline.com/word/apron"
+  },
+  {
+    "en": "The verb 'swagger' first appears in Shakespeare's plays.",
+    "ru": "Глагол swagger («важничать») впервые встречается в пьесах Шекспира.",
+    "source": "https://www.etymonline.com/word/swagger"
+  },
+  {
+    "en": "Shakespeare's 'Romeo and Juliet' gave us 'star-crossed', meaning unlucky.",
+    "ru": "Слово star-crossed («несчастливый») пришло из «Ромео и Джульетты» Шекспира.",
+    "source": "https://www.etymonline.com/word/star"
+  },
+  {
+    "en": "In the Middle Ages, 'nice' meant 'foolish'.",
+    "ru": "В Средние века nice значило «глупый».",
+    "source": "https://www.merriam-webster.com/dictionary/nice"
+  },
+  {
+    "en": "In Old English, 'silly' meant 'happy' or 'blessed'.",
+    "ru": "В древнеанглийском silly значило «счастливый» или «благословенный».",
+    "source": "https://www.etymonline.com/word/silly"
+  },
+  {
+    "en": "Around 1300, 'girl' could mean a child of any sex.",
+    "ru": "Около 1300 года girl могло означать ребёнка любого пола.",
+    "source": "https://www.etymonline.com/word/girl"
+  },
+  {
+    "en": "In Old English, 'meat' meant any food, not just flesh.",
+    "ru": "В древнеанглийском meat значило любую еду, а не только мясо.",
+    "source": "https://www.etymonline.com/word/meat"
+  },
+  {
+    "en": "In the 1640s, a 'computer' was a person who did calculations.",
+    "ru": "В 1640-х computer — это человек, который делал расчёты.",
+    "source": "https://www.etymonline.com/word/computer"
+  },
+  {
+    "en": "Engineers called machine faults 'bugs' by 1889, long before computers.",
+    "ru": "Неполадки в машинах называли bugs уже в 1889 году — задолго до компьютеров.",
+    "source": "https://www.etymonline.com/word/bug"
+  },
+  {
+    "en": "'Robot' comes from a Czech word for hard, forced work.",
+    "ru": "Robot — от чешского robota, «подневольный труд»; родня русской «работе».",
+    "source": "https://www.etymonline.com/word/robot"
+  },
+  {
+    "en": "'Window' comes from Old Norse for 'wind eye'.",
+    "ru": "Window — от древнескандинавского «глаз ветра».",
+    "source": "https://www.etymonline.com/word/window"
+  },
+  {
+    "en": "'Salary' comes from the Latin word for salt.",
+    "ru": "Salary происходит от латинского слова «соль».",
+    "source": "https://www.etymonline.com/word/salary"
+  },
+  {
+    "en": "'Goodbye' is a short form of 'God be with you'.",
+    "ru": "Goodbye — это сокращённое «God be with you» («Бог с тобой»).",
+    "source": "https://www.etymonline.com/word/good-bye"
+  },
+  {
+    "en": "'OK' started in 1839 as a joke spelling of 'all correct'.",
+    "ru": "OK появилось в 1839 году как шуточное «oll korrect» — «всё верно».",
+    "source": "https://www.etymonline.com/word/OK"
+  },
+  {
+    "en": "'Algorithm' comes from al-Khwarizmi, a mathematician from 9th-century Baghdad.",
+    "ru": "Algorithm — от имени аль-Хорезми, математика из Багдада IX века.",
+    "source": "https://www.etymonline.com/word/algorithm"
+  },
+  {
+    "en": "Google is named after 'googol', the number 1 with 100 zeros.",
+    "ru": "Google назван в честь googol — единицы со ста нулями.",
+    "source": "https://www.etymonline.com/word/google"
+  },
+  {
+    "en": "Junk email is 'spam' because of a Monty Python comedy sketch.",
+    "ru": "Спам назвали в честь скетча «Монти Пайтона», где все твердят spam.",
+    "source": "https://www.etymonline.com/word/Spam"
+  },
+  {
+    "en": "'Daisy' comes from 'day's eye' — it opens at dawn.",
+    "ru": "Daisy (маргаритка) — это «глаз дня»: цветок раскрывается на рассвете.",
+    "source": "https://www.etymonline.com/word/daisy"
+  },
+  {
+    "en": "'Muscle' comes from Latin for 'little mouse'.",
+    "ru": "Muscle происходит от латинского musculus — «мышонок».",
+    "source": "https://www.etymonline.com/word/muscle"
+  },
+  {
+    "en": "'Disaster' literally means 'bad star' — people blamed the planets.",
+    "ru": "Disaster буквально — «плохая звезда»: в бедах раньше винили планеты.",
+    "source": "https://www.etymonline.com/word/disaster"
+  },
+  {
+    "en": "'Clue' comes from 'clew', a ball of thread for leaving a maze.",
+    "ru": "Clue — от clew, клубка ниток, который выводит из лабиринта.",
+    "source": "https://www.etymonline.com/word/clue"
+  },
+  {
+    "en": "'Data' is the Latin plural of 'datum', meaning 'thing given'.",
+    "ru": "Data — латинское множественное число от datum, «данное».",
+    "source": "https://www.etymonline.com/word/data"
+  },
+  {
+    "en": "'Emoji' is Japanese for 'picture character', not related to 'emotion'.",
+    "ru": "Emoji по-японски — «картинка-знак», со словом emotion оно не связано.",
+    "source": "https://www.etymonline.com/word/emoji"
+  },
+  {
+    "en": "Bluetooth is named after Harald Bluetooth, a Danish king.",
+    "ru": "Bluetooth назван в честь датского короля Харальда Синезубого.",
+    "source": "https://www.bluetooth.com/about-us/bluetooth-origin/"
+  },
+  {
+    "en": "Python is named after a British comedy show, not the snake.",
+    "ru": "Python назван в честь британского комедийного шоу, а не змеи.",
+    "source": "https://docs.python.org/3/faq/general.html"
+  },
+  {
+    "en": "'Tea' came to English by sea; Russian 'chai' came by land.",
+    "ru": "Tea пришло в английский морем, а русское «чай» — по суше.",
+    "source": "https://www.etymonline.com/word/tea"
+  },
+  {
+    "en": "English mother and Russian мать come from one ancient word.",
+    "ru": "Mother и «мать» восходят к одному древнему слову.",
+    "source": "https://en.wiktionary.org/wiki/мать"
+  },
+  {
+    "en": "Brother and брат are relatives: they share one old root.",
+    "ru": "Brother и «брат» — родственники: у них общий древний корень.",
+    "source": "https://en.wiktionary.org/wiki/брат"
+  },
+  {
+    "en": "Sister and сестра come from the same old word.",
+    "ru": "Sister и «сестра» происходят от одного древнего слова.",
+    "source": "https://en.wiktionary.org/wiki/sister"
+  },
+  {
+    "en": "Night and ночь are old relatives, like Latin nox.",
+    "ru": "Night и «ночь» — древние родственники, как и латинское nox.",
+    "source": "https://en.wiktionary.org/wiki/night"
+  },
+  {
+    "en": "New and новый sound alike because they share one old root.",
+    "ru": "New и «новый» звучат похоже не случайно: корень у них общий.",
+    "source": "https://en.wiktionary.org/wiki/new"
+  },
+  {
+    "en": "Vodka means little water, and вода is a relative of water.",
+    "ru": "Водка — это «водичка», а «вода» — родственница английского water.",
+    "source": "https://en.wiktionary.org/wiki/водка"
+  },
+  {
+    "en": "Heart and сердце are relatives, like the word cardio.",
+    "ru": "Heart и «сердце» — родня, как и греческое «кардио».",
+    "source": "https://en.wiktionary.org/wiki/heart"
+  },
+  {
+    "en": "Nose and нос are almost the same word, and not by chance.",
+    "ru": "Nose и «нос» почти совпадают — и это не случайность, а общий корень.",
+    "source": "https://en.wiktionary.org/wiki/nose"
+  },
+  {
+    "en": "Snow and снег grew from one ancient root.",
+    "ru": "Snow и «снег» выросли из одного древнего корня.",
+    "source": "https://en.wiktionary.org/wiki/snow"
+  },
+  {
+    "en": "Mouse and мышь are relatives, and both name a computer device.",
+    "ru": "Mouse и «мышь» — родственники, и обе теперь ещё и компьютерные.",
+    "source": "https://en.wiktionary.org/wiki/mouse"
+  },
+  {
+    "en": "Wolf and волк come from one old name for this animal.",
+    "ru": "Wolf и «волк» происходят от одного древнего названия этого зверя.",
+    "source": "https://en.wiktionary.org/wiki/wolf"
+  },
+  {
+    "en": "Old Russian око and English eye come from the same root.",
+    "ru": "Старинное «око» и английское eye — от одного корня.",
+    "source": "https://en.wiktionary.org/wiki/eye"
+  },
+  {
+    "en": "Tree and дерево are related, even if they look different.",
+    "ru": "Tree и «дерево» — родственники, хоть и непохожи с виду.",
+    "source": "https://en.wiktionary.org/wiki/tree"
+  },
+  {
+    "en": "Know and знать are relatives; the k in know is silent.",
+    "ru": "Know и «знать» — родня; буква k в know не читается.",
+    "source": "https://en.wiktionary.org/wiki/know"
+  },
+  {
+    "en": "English is and Russian есть both come from one old verb.",
+    "ru": "Английское is и русское «есть» — от одного древнего глагола «быть».",
+    "source": "https://en.wiktionary.org/wiki/is"
+  },
+  {
+    "en": "Mead is a honey drink, and its name is related to мёд.",
+    "ru": "Mead — медовый напиток, и его название родственно слову «мёд».",
+    "source": "https://en.wiktionary.org/wiki/mead"
+  },
+  {
+    "en": "English timber and Russian дом come from one root: to build.",
+    "ru": "Timber («строевой лес») и «дом» — от одного корня со значением «строить».",
+    "source": "https://en.wiktionary.org/wiki/timber"
+  },
+  {
+    "en": "Guest and гость are relatives, and so is the word host.",
+    "ru": "Guest и «гость» — родственники, как и английское host.",
+    "source": "https://en.wiktionary.org/wiki/гость"
+  },
+  {
+    "en": "Sputnik means fellow traveler; English took the word in 1957.",
+    "ru": "«Спутник» — это «попутчик»; английский взял это слово в 1957 году.",
+    "source": "https://en.wiktionary.org/wiki/sputnik"
+  },
+  {
+    "en": "Tsar, German Kaiser and Latin Caesar are really one word.",
+    "ru": "Царь, кайзер и Цезарь — по сути одно и то же слово.",
+    "source": "https://en.wiktionary.org/wiki/tsar"
+  },
+  {
+    "en": "English took the word pogrom from Russian through Yiddish.",
+    "ru": "Слово pogrom пришло в английский из русского через идиш.",
+    "source": "https://en.wiktionary.org/wiki/pogrom"
+  },
+  {
+    "en": "In American English, a babushka can also be a headscarf.",
+    "ru": "В американском английском babushka может означать и головной платок.",
+    "source": "https://en.wiktionary.org/wiki/babushka"
+  },
+  {
+    "en": "English steppe is Russian степь that came through German or French.",
+    "ru": "Английское steppe — это русская «степь», пришедшая через немецкий или французский.",
+    "source": "https://en.wiktionary.org/wiki/steppe"
+  },
+  {
+    "en": "Samovar is in English dictionaries; it means self-boiler.",
+    "ru": "Samovar есть в английских словарях — дословно «сам варит».",
+    "source": "https://en.wiktionary.org/wiki/samovar"
+  },
+  {
+    "en": "In English, a cosmonaut is a Russian or Soviet astronaut.",
+    "ru": "По-английски cosmonaut — это именно российский или советский астронавт.",
+    "source": "https://en.wiktionary.org/wiki/cosmonaut"
+  },
+  {
+    "en": "English mammoth comes from Russian мамонт and can also mean huge.",
+    "ru": "Английское mammoth — от русского «мамонт» и ещё значит «огромный».",
+    "source": "https://en.wiktionary.org/wiki/mammoth"
+  },
+  {
+    "en": "Tundra came to English from Russian, and Russian took it from Sami.",
+    "ru": "Tundra пришла в английский из русского, а в русский — из саамского.",
+    "source": "https://en.wiktionary.org/wiki/tundra"
+  },
+  {
+    "en": "In English, a kremlin is a fortress in many Russian cities.",
+    "ru": "По-английски kremlin — крепость во многих русских городах, а не только в Москве.",
+    "source": "https://en.wiktionary.org/wiki/kremlin"
+  },
+  {
+    "en": "Russian вокзал comes from Vauxhall, a park in London.",
+    "ru": "«Вокзал» — от Воксхолла, увеселительного сада в Лондоне.",
+    "source": "https://en.wiktionary.org/wiki/вокзал"
+  },
+  {
+    "en": "The word вокзал meant a fun park before it meant station.",
+    "ru": "Сначала «вокзал» означал парк развлечений, а уже потом — станцию.",
+    "source": "https://en.wiktionary.org/wiki/вокзал"
+  },
+  {
+    "en": "Russian пиджак comes from the English words pea jacket.",
+    "ru": "Слово «пиджак» происходит от английского pea jacket.",
+    "source": "https://en.wiktionary.org/wiki/пиджак"
+  },
+  {
+    "en": "Russian кекс comes from English cakes, through German Keks.",
+    "ru": "«Кекс» — это английское cakes, пришедшее к нам через немецкий Keks.",
+    "source": "https://en.wiktionary.org/wiki/кекс"
+  },
+  {
+    "en": "Russian хулиган comes from English hooligan, probably an Irish family name.",
+    "ru": "«Хулиган» — из английского hooligan, вероятно, от ирландской фамилии.",
+    "source": "https://en.wiktionary.org/wiki/hooligan"
+  },
+  {
+    "en": "Митинг comes from meeting, but in Russian it is a public rally.",
+    "ru": "«Митинг» — от английского meeting, но по-русски это прежде всего массовая акция.",
+    "source": "https://en.wiktionary.org/wiki/митинг"
+  },
+  {
+    "en": "Смокинг comes from smoking jacket, but English says tuxedo.",
+    "ru": "«Смокинг» — от smoking jacket, но по-английски это tuxedo.",
+    "source": "https://en.wiktionary.org/wiki/смокинг"
+  },
+  {
+    "en": "A magazine is a журнал; a shop is a магазин.",
+    "ru": "Magazine — это журнал, а магазин по-английски — shop или store.",
+    "source": "https://en.wiktionary.org/wiki/магазин"
+  },
+  {
+    "en": "Magazine and магазин both first meant a store room, from Arabic.",
+    "ru": "Magazine и «магазин» сначала оба значили «склад» — от арабского слова.",
+    "source": "https://en.wiktionary.org/wiki/magazine"
+  },
+  {
+    "en": "Accurate means точный; for аккуратный, English usually says neat or tidy.",
+    "ru": "Accurate — это «точный», а «аккуратный» по-английски обычно neat или tidy.",
+    "source": "https://en.wiktionary.org/wiki/аккуратный"
+  },
+  {
+    "en": "Actual means real; for актуальный, say relevant or current.",
+    "ru": "Actual — «настоящий, фактический», а «актуальный» — это relevant или current.",
+    "source": "https://en.wiktionary.org/wiki/актуальный"
+  },
+  {
+    "en": "Family is семья; фамилия is surname, though it once meant family.",
+    "ru": "Family — это «семья», а «фамилия» — surname; когда-то она тоже значила «семья».",
+    "source": "https://en.wiktionary.org/wiki/фамилия"
+  },
+  {
+    "en": "A decade is ten years, but Russian декада is ten days.",
+    "ru": "Decade — десять лет, а русская «декада» — десять дней.",
+    "source": "https://en.wiktionary.org/wiki/декада"
+  },
+  {
+    "en": "Симпатичный is nice or cute; sympathetic means сочувствующий.",
+    "ru": "«Симпатичный» — это nice или cute, а sympathetic — «сочувствующий».",
+    "source": "https://en.wiktionary.org/wiki/симпатичный"
+  },
+  {
+    "en": "An artist usually paints, but an артист performs on stage.",
+    "ru": "Artist — обычно художник, а «артист» выступает на сцене.",
+    "source": "https://en.wiktionary.org/wiki/артист"
+  },
+  {
+    "en": "Russian has no articles, but English needs a, an and the.",
+    "ru": "В русском нет артиклей, а в английском без a, an и the не обойтись.",
+    "source": "https://en.wikipedia.org/wiki/Russian_grammar"
+  },
+  {
+    "en": "Russians say Я студент, but English needs am: I am a student.",
+    "ru": "По-русски «Я студент», а по-английски нужен глагол: I am a student.",
+    "source": "https://en.wikipedia.org/wiki/Russian_grammar"
+  },
+  {
+    "en": "English nouns have no gender: a table is just it.",
+    "ru": "В английском у существительных нет рода: стол — это просто it.",
+    "source": "https://en.wikipedia.org/wiki/Grammatical_gender_in_English"
+  },
+  {
+    "en": "Old English had three genders, just like Russian today.",
+    "ru": "В древнеанглийском было три рода — как сейчас в русском.",
+    "source": "https://en.wikipedia.org/wiki/Grammatical_gender_in_English"
+  },
+  {
+    "en": "Russian has six cases; English nouns almost never change their endings.",
+    "ru": "В русском шесть падежей, а английские существительные почти не меняют окончаний.",
+    "source": "https://en.wikipedia.org/wiki/Russian_grammar"
+  },
+  {
+    "en": "Dog bites man and man bites dog mean different things.",
+    "ru": "Dog bites man и man bites dog — разные события: решает порядок слов.",
+    "source": "https://en.wikipedia.org/wiki/English_grammar"
+  },
+  {
+    "en": "Russian has no th sound, so people say s, t or f.",
+    "ru": "Звука th в русском нет, поэтому его часто заменяют на «с», «т» или «ф».",
+    "source": "https://en.wikipedia.org/wiki/Voiceless_dental_fricative"
+  },
+  {
+    "en": "In the 1880s, Ebbinghaus tested his memory only on himself.",
+    "ru": "В 1880-х Эббингауз изучал память, ставя все опыты только на себе.",
+    "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0120644"
+  },
+  {
+    "en": "Ebbinghaus learned syllables with no meaning, like WID and ZOF.",
+    "ru": "Эббингауз заучивал бессмысленные слоги вроде WID и ZOF, чтобы смысл не помогал.",
+    "source": "https://en.wikipedia.org/wiki/Forgetting_curve"
+  },
+  {
+    "en": "We forget most quickly in the first hours after learning.",
+    "ru": "Быстрее всего мы забываем в первые часы после заучивания.",
+    "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0120644"
+  },
+  {
+    "en": "After a night of sleep, the forgetting curve can rise a little.",
+    "ru": "После ночного сна кривая забывания может даже немного подняться.",
+    "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0120644"
+  },
+  {
+    "en": "317 experiments show: learning with breaks beats learning all at once.",
+    "ru": "317 экспериментов показали: учить с перерывами лучше, чем всё за один раз.",
+    "source": "https://escholarship.org/uc/item/3rr6q10c"
+  },
+  {
+    "en": "Breaks helped 90% of learners, but most of them thought the opposite.",
+    "ru": "Перерывы помогли 90% учеников, но большинство было уверено в обратном.",
+    "source": "https://web.williams.edu/Psychology/Faculty/Kornell/Publications/Kornell.2009b.pdf"
+  },
+  {
+    "en": "Testing yourself helps more than reading the text again.",
+    "ru": "Проверять себя полезнее, чем ещё раз перечитывать текст.",
+    "source": "https://doi.org/10.1111/j.1467-9280.2006.01693.x"
+  },
+  {
+    "en": "After a week, tested students remembered 56%, re-readers only 42%.",
+    "ru": "Через неделю проверявшие себя помнили 56% текста, перечитывавшие — лишь 42%.",
+    "source": "https://doi.org/10.1111/j.1467-9280.2006.01693.x"
+  },
+  {
+    "en": "Re-readers felt more sure, but they really remembered less.",
+    "ru": "Перечитывавшие были увереннее в себе, но на деле помнили меньше.",
+    "source": "https://doi.org/10.1111/j.1467-9280.2006.01693.x"
+  },
+  {
+    "en": "In 1972, Sebastian Leitner put word cards into boxes to repeat them.",
+    "ru": "В 1972 году Себастьян Лейтнер придумал раскладывать карточки со словами по коробкам.",
+    "source": "https://en.wikipedia.org/wiki/Leitner_system"
+  },
+  {
+    "en": "Already in 1924, scientists saw that people forget less during sleep.",
+    "ru": "Ещё в 1924 году заметили: во сне мы забываем меньше, чем днём.",
+    "source": "https://www.jstor.org/stable/1414040"
+  },
+  {
+    "en": "New words stay better if you sleep soon after learning them.",
+    "ru": "Новые слова лучше запоминаются, если вскоре после занятия лечь спать.",
+    "source": "https://doi.org/10.1101/lm.132106"
+  },
+  {
+    "en": "About 2,800 common words cover 92% of everyday English text.",
+    "ru": "Около 2800 частых слов покрывают 92% обычного английского текста.",
+    "source": "https://www.newgeneralservicelist.com/"
+  },
+  {
+    "en": "To read a novel easily, you need about 8,000–9,000 word families.",
+    "ru": "Чтобы свободно читать роман, нужно знать 8–9 тысяч семейств слов.",
+    "source": "https://www.lextutor.ca/cover/papers/nation_2006.pdf"
+  },
+  {
+    "en": "Just 100 words make up about half of all written English.",
+    "ru": "Всего сто слов — это примерно половина всего письменного английского.",
+    "source": "https://en.wikipedia.org/wiki/Most_common_words_in_English"
+  },
+  {
+    "en": "The word 'the' is almost 7 of every 100 English words.",
+    "ru": "Слово «the» — почти 7 из каждых 100 слов английского текста.",
+    "source": "https://en.wikipedia.org/wiki/Zipf%27s_law"
+  },
+  {
+    "en": "Researchers say a new word needs about 10 meetings, often more.",
+    "ru": "Исследования говорят: чтобы слово запомнилось, его нужно встретить раз десять, а то и больше.",
+    "source": "http://www2.hawaii.edu/~readfl/rfl/October2008/webb/webb.html"
+  },
+  {
+    "en": "About 1.5 billion people speak English; under 400 million from birth.",
+    "ru": "По-английски говорят около 1,5 млрд человек, родной он меньше чем для 400 млн.",
+    "source": "https://www.ethnologue.com/insights/most-spoken-language/"
+  },
+  {
+    "en": "About half of all websites are in English; Russian has 3.4%.",
+    "ru": "Около половины сайтов — на английском, на русском — всего около 3,4%.",
+    "source": "https://w3techs.com/technologies/overview/content_language"
+  },
+  {
+    "en": "In 2023, 85% of science articles were in English.",
+    "ru": "В 2023 году 85% научных статей в мировых базах были на английском.",
+    "source": "https://phys.org/news/2026-04-english-dominates-science-fell.html"
+  },
+  {
+    "en": "About 28% of English words come from French, 28% from Latin.",
+    "ru": "Около 28% английских слов пришли из французского и столько же — из латыни.",
+    "source": "https://en.wikipedia.org/wiki/Latin_influence_in_English"
+  },
+  {
+    "en": "In 1947, engineers found a real moth inside a computer.",
+    "ru": "В 1947 году инженеры нашли в компьютере настоящего мотылька — «живой баг».",
+    "source": "https://www.si.edu/object/log-book-computer-bug:nmah_334663"
+  },
+  {
+    "en": "'Bit' is short for 'binary digit'; John Tukey made the word.",
+    "ru": "«Бит» — сокращение от «binary digit», слово придумал Джон Тьюки.",
+    "source": "https://www.merriam-webster.com/dictionary/bit"
+  },
+  {
+    "en": "'Byte' has a 'y' so people don't mix it up with 'bit'.",
+    "ru": "«Byte» пишется через «y», чтобы его не путали с «bit».",
+    "source": "https://en.wikipedia.org/wiki/Byte"
+  },
+  {
+    "en": "'Pixel' means 'picture element'; it appeared in print in 1965.",
+    "ru": "«Pixel» — это «picture element», в печати слово появилось в 1965 году.",
+    "source": "https://ui.adsabs.harvard.edu/abs/2006SPIE.6069....1L/abstract"
+  },
+  {
+    "en": "'Wiki' means 'quick' in Hawaiian; the name came from an airport bus.",
+    "ru": "«Вики» по-гавайски значит «быстро» — так звали автобус в аэропорту Гонолулу.",
+    "source": "https://en.wikipedia.org/wiki/WikiWikiWeb"
+  },
+  {
+    "en": "'Hello, world' first appeared in a 1972 programming guide.",
+    "ru": "«Hello, world» впервые появилось в учебнике по программированию 1972 года.",
+    "source": "https://en.wikipedia.org/wiki/%22Hello,_World!%22_program"
+  },
+  {
+    "en": "In 1971, Ray Tomlinson chose @ for email: user 'at' computer.",
+    "ru": "В 1971 году Рэй Томлинсон выбрал @ для почты: «пользователь на компьютере».",
+    "source": "https://www.npr.org/sections/alltechconsidered/2016/03/07/469492182/in-memoriam-ray-tomlinson-who-put-the-sign-in-your-email"
+  },
+  {
+    "en": "Russians call @ a 'dog', and Italians call it a 'snail'.",
+    "ru": "Русские зовут @ «собакой», а итальянцы — «улиткой».",
+    "source": "https://en.wikipedia.org/wiki/At_sign"
+  },
+  {
+    "en": "Web 'cookies' got their name from old 'magic cookies' in Unix.",
+    "ru": "Веб-«куки» названы по «волшебным печенькам» — старому термину программистов Unix.",
+    "source": "https://en.wikipedia.org/wiki/HTTP_cookie"
+  },
+  {
+    "en": "'Git' is British slang for an unpleasant person.",
+    "ru": "«Git» — британское жаргонное словечко для неприятного человека.",
+    "source": "https://en.wikipedia.org/wiki/Git"
+  },
+  {
+    "en": "Linus Torvalds wanted to call his system 'Freax', not Linux.",
+    "ru": "Линус Торвальдс хотел назвать свою систему Freax, а не Linux.",
+    "source": "https://www.howtogeek.com/how-linux-got-its-name/"
+  },
+  {
+    "en": "'Wi-Fi' does not mean anything; it is just a name.",
+    "ru": "«Wi-Fi» ничего не расшифровывается — это просто придуманное название.",
+    "source": "https://boingboing.net/2005/11/08/wifi-isnt-short-for.html"
+  },
+  {
+    "en": "The first :-) smiley was posted in 1982 by Scott Fahlman.",
+    "ru": "Первый смайлик :-) предложил Скотт Фальман в 1982 году.",
+    "source": "http://www.cs.cmu.edu/~sef/Orig-Smiley.htm"
+  },
+  {
+    "en": "The first version of JavaScript was made in about ten days.",
+    "ru": "Первую версию JavaScript написали примерно за десять дней.",
+    "source": "https://buttondown.com/hillelwayne/archive/did-brendan-eich-really-make-javascript-in-10-days/"
+  },
+  {
+    "en": "Background 'daemons' are named after an imaginary helper from physics.",
+    "ru": "Фоновые «демоны» названы в честь демона Максвелла — воображаемого помощника из физики.",
+    "source": "https://www.takeourword.com/TOW146/page4.html"
+  },
+  {
+    "en": "'Ping' is named after the sound that sonar makes underwater.",
+    "ru": "Утилита ping названа по звуку сонара, который ищет цели под водой.",
+    "source": "https://ftp.arl.army.mil/mike/ping.html"
+  },
+  {
+    "en": "The mouse got its name because the cable looked like a tail.",
+    "ru": "Мышь так назвали, потому что провод был похож на хвостик.",
+    "source": "https://www.computerhistory.org/revolution/input-output/14/350"
+  }
+]

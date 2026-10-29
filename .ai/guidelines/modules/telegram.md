@@ -6,7 +6,10 @@ Everything that makes the static site a Telegram Mini App and keeps the habit go
 integration, deployment to GitHub Pages and of the progress Worker to Cloudflare, the daily
 reminder from a bot. Code:
 `web/src/lib/telegram.ts`, `web/index.html` (official `telegram-web-app.js`, loaded synchronously in
-`<body>` right after the inline `#preloader`, so the preloader paints before it),
+`<body>` right after the inline `#preloader`, so the preloader paints before it; the preloader is
+a flowing dimmed sage / sand / clay gradient with one fact from `content/facts.json`, inlined at
+build by the `preloader-facts` Vite plugin and picked from a shuffle bag in `localStorage`
+`preloader-facts`; `App.tsx` hides it after load + fonts + 2.5 s, a tap after load hides it at once),
 `.github/workflows/deploy.yml`, `.github/workflows/reminder.yml`, `scripts/send-reminder.mjs`,
 `.github/workflows/worker.yml`, `worker/` (server side of `progress.md`).
 

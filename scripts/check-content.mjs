@@ -3,9 +3,11 @@ import { readFileSync } from 'node:fs'
 const MIN_CHUNKS = 2
 const MAX_CHUNKS = 4
 const PER_WORD_MAX_WORDS = 3
+const FACT_MAX_WORDS = { en: 12, ru: 14 }
 
 const path = process.argv[2] ?? new URL('../content/words.json', import.meta.url)
 const words = JSON.parse(readFileSync(path, 'utf8'))
+const facts = JSON.parse(readFileSync(new URL('../content/facts.json', import.meta.url), 'utf8'))
 const problems = []
 
 function countOccurrences(text, part) {
@@ -51,6 +53,19 @@ for (const word of words) {
   })
 }
 
+const seenFacts = new Set()
+facts.forEach((fact, index) => {
+  for (const lang of ['en', 'ru']) {
+    const wordCount = fact[lang]?.trim().split(/\s+/).length ?? 0
+    if (!wordCount || wordCount > FACT_MAX_WORDS[lang]) {
+      problems.push(`fact#${index}: ${lang} has ${wordCount} words, expected 1–${FACT_MAX_WORDS[lang]}`)
+    }
+  }
+  const key = fact.en?.toLowerCase()
+  if (seenFacts.has(key)) problems.push(`fact#${index}: duplicate — ${fact.en}`)
+  seenFacts.add(key)
+})
+
 const sentenceCount = words.reduce((sum, word) => sum + word.sentences.length, 0)
 const chunked = words.reduce(
   (sum, word) => sum + word.sentences.filter((sentence) => 'chunks' in sentence).length,
@@ -58,5 +73,7 @@ const chunked = words.reduce(
 )
 
 for (const problem of problems) console.error(problem)
-console.log(`${sentenceCount} sentences, ${chunked} with chunks, ${problems.length} problems`)
+console.log(
+  `${sentenceCount} sentences, ${chunked} with chunks, ${facts.length} facts, ${problems.length} problems`
+)
 process.exit(problems.length ? 1 : 0)
