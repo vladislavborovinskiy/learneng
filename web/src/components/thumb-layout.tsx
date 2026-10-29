@@ -19,12 +19,12 @@ export function ThumbLayout({ header, children, actions, followKeyboard }: Thumb
       )}
     >
       {header && <header className="px-5 pt-4">{header}</header>}
-      <main className="@container flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-5 py-4">
+      <main className="@container flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-5 pt-4">
         {children}
+        <div className="sticky bottom-0 mt-auto flex flex-col gap-2.5 pb-[max(2.5rem,calc(env(safe-area-inset-bottom)+1.5rem))]">
+          {actions}
+        </div>
       </main>
-      <div className="flex flex-col gap-2.5 px-5 pb-[max(2.5rem,calc(env(safe-area-inset-bottom)+1.5rem))]">
-        {actions}
-      </div>
     </div>
   )
 }

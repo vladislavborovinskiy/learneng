@@ -1,3 +1,4 @@
+import { FloppyDiskIcon } from '@phosphor-icons/react/dist/csr/FloppyDisk'
 import { useCallback, useState } from 'react'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
@@ -21,8 +22,8 @@ type SettingsProps = {
 }
 
 const exerciseNames: Record<ExerciseType, string> = {
-  'en-ru': 'Перевод EN→RU',
-  'ru-en': 'Перевод RU→EN',
+  'en-ru': 'С английского',
+  'ru-en': 'На английский',
   'cloze': 'Вставь слово',
   'chunks': 'Собери из кусков',
   'tiles': 'Собери из слов',
@@ -128,37 +129,38 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
   return (
     <ThumbLayout
       actions={
-        <>
+        <div className="flex items-center gap-2.5">
           <Button
-            variant="ghost"
-            size="sm"
-            className="self-start px-0"
+            variant="outline"
+            size="icon-lg"
+            aria-label="Резервная копия"
             onClick={() => setBackupOpen(true)}
           >
-            Резервная копия →
+            <FloppyDiskIcon weight="bold" />
           </Button>
-          <div className="flex gap-3">
-            <Button variant="outline" size="lg" onClick={retakeLevelTest}>
-              {confirmRetake ? 'Точно?' : 'Тест заново'}
-            </Button>
-            <Button size="lg" className="flex-1" onClick={onExit}>
-              Готово
-            </Button>
-          </div>
-        </>
+          <Button variant="outline" size="lg" onClick={retakeLevelTest}>
+            {confirmRetake ? 'Точно?' : 'Тест заново'}
+          </Button>
+          <Button size="lg" className="flex-1" onClick={onExit}>
+            Готово
+          </Button>
+        </div>
       }
     >
       {accuracy.length > 0 && (
-        <div className="glass flex flex-col gap-3 rounded-3xl p-5">
-          <h2 className="text-base font-medium">Точность по упражнениям</h2>
+        <div className="glass mt-6 flex flex-col gap-3 rounded-3xl p-5">
           {accuracy.map(({ type, correct, total }) => (
-            <div key={type} className="flex items-baseline justify-between">
-              <span className="text-sm text-muted-foreground">{exerciseNames[type]}</span>
-              <span className="font-mono text-sm tabular-nums">
-                {Math.round((correct / total) * 100)}% · {total}
+            <div key={type} className="flex items-baseline gap-4">
+              <span className="flex-1 text-sm text-muted-foreground">{exerciseNames[type]}</span>
+              <span className="font-mono text-xs text-muted-foreground tabular-nums">
+                {correct}/{total}
+              </span>
+              <span className="w-10 text-right font-mono text-sm tabular-nums">
+                {Math.round((correct / total) * 100)}%
               </span>
             </div>
           ))}
+          <span className="text-xs text-muted-foreground">точность за 30 дней</span>
         </div>
       )}
       {confirmRetake && (

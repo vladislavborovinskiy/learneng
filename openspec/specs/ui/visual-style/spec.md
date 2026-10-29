@@ -132,17 +132,25 @@ grey at 0.
 
 ### Requirement: Launch preloader
 
-From the first paint until the learner's progress is loaded and the Montserrat font is ready
-(and at least 0.4 s after launch), the app SHALL show only a preloader: the graphite background
-and a thin rounded bar in the centre whose sage → sand → clay gradient slowly flows. It SHALL
-contain no text, logo or glow, and with reduced motion enabled the gradient SHALL stay still. The
-preloader SHALL then fade out and reveal the screen; no intermediate «Загрузка…» text SHALL be
-shown. If loading fails, the preloader SHALL disappear and the error message SHALL be shown.
+From the first paint the app SHALL show a full-screen preloader: a slowly flowing muted sage →
+sand → clay gradient (still with reduced motion) and one short English fact with its Russian
+translation in the centre, taken in turn from a shuffled deck so facts do not repeat until all
+were shown. No «Загрузка…» text SHALL be shown. Once the learner's progress is loaded and the
+fonts are ready, a solid white «Понятно» button SHALL fade in at the bottom of the screen, in the
+action zone. The preloader SHALL stay until the learner presses «Понятно» (or `Enter` on a
+keyboard), then fade out and reveal the screen; no timer and no tap elsewhere SHALL close it, and
+while it is shown keys SHALL NOT reach the screen underneath. If loading fails, the preloader SHALL
+disappear by itself and the error message SHALL be shown.
 
 #### Scenario: Normal launch
 
 - **WHEN** the learner opens the app
-- **THEN** the preloader bar is visible immediately and the home screen appears after it fades out, already in Montserrat
+- **THEN** the gradient and a fact are visible immediately, «Понятно» appears once progress is loaded, and the home screen appears only after it is pressed
+
+#### Scenario: Keyboard
+
+- **WHEN** «Понятно» is visible and the learner presses `Enter` in Telegram Desktop
+- **THEN** the preloader closes and no lesson is started
 
 #### Scenario: Load error
 

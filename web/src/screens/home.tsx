@@ -62,10 +62,12 @@ export function Home({
             {stats.streak}
           </div>
         </div>
-        <Progress value={(stats.learned / stats.total) * 100} />
-        <span className="font-mono text-xs text-muted-foreground">
-          сегодня +{stats.learnedToday}
-        </span>
+        <div className="flex flex-col gap-2">
+          <Progress value={(stats.learned / stats.total) * 100} />
+          <span className="self-end font-mono text-xs text-muted-foreground">
+            сегодня +{stats.learnedToday}
+          </span>
+        </div>
         <Suspense fallback={<div className="h-36" />}>
           <PaceChart data={stats.paceSeries} />
         </Suspense>
@@ -98,11 +100,11 @@ export function Home({
               aria-pressed={revealed.has(id)}
               onClick={() => setRevealed(new Set(revealed).add(id))}
             >
-              <span className="font-medium">{en}</span>
+              <span className="shrink-0 font-medium">{en}</span>
               <span
                 className={cn(
-                  'min-w-0 truncate text-sm text-muted-foreground transition-[filter]',
-                  !revealed.has(id) && 'blur-sm'
+                  'min-w-0 text-right text-sm text-muted-foreground transition-[filter]',
+                  !revealed.has(id) && 'blur-[3.5px]'
                 )}
               >
                 {ru}

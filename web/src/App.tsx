@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { getStats, type LessonItem } from '@/lib/scheduler'
+import { haptic } from '@/lib/telegram'
 import { useLearning } from '@/lib/use-learning'
 import { Home } from '@/screens/home'
 import { LevelTest } from '@/screens/level-test'
@@ -7,8 +8,6 @@ import { Session } from '@/screens/session'
 import { Settings } from '@/screens/settings'
 
 type Screen = 'home' | 'session' | 'level-test' | 'settings'
-
-const PRELOADER_MIN_MS = 2500
 
 export function App() {
   const { state, grade, markKnown, completeLesson, updateMeta, recordAnswer } = useLearning()
@@ -30,22 +29,31 @@ export function App() {
     setScreen('home')
   }, [updateMeta])
   const isLoading = state.status === 'loading'
+  const hasError = state.status === 'error'
 
   useEffect(() => {
     if (isLoading) return
     const preloader = document.getElementById('preloader')
     if (!preloader) return
-    const minDelay = new Promise((resolve) => {
-      setTimeout(resolve, Math.max(0, PRELOADER_MIN_MS - performance.now()))
-      preloader.addEventListener('pointerdown', resolve, { once: true })
-    })
-    Promise.all([document.fonts.ready, minDelay]).then(() => {
+    const hide = () => {
       preloader.classList.add('preloader-hidden')
       preloader.addEventListener('transitionend', (event) => {
         if (event.target === preloader) preloader.remove()
       })
-    })
-  }, [isLoading])
+    }
+    if (hasError) {
+      hide()
+      return
+    }
+    const close = document.getElementById('preloader-close')
+    const handleClose = () => {
+      haptic('success')
+      hide()
+    }
+    close?.addEventListener('click', handleClose, { once: true })
+    document.fonts.ready.then(() => preloader.classList.add('preloader-ready'))
+    return () => close?.removeEventListener('click', handleClose)
+  }, [isLoading, hasError])
 
   if (isLoading) return null
 

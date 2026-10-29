@@ -29,12 +29,13 @@ localStorage outside). Missing `stats` SHALL read as empty. The manual backup SH
 
 ### Requirement: Accuracy per exercise in settings
 
-Settings SHALL show «Точность по упражнениям» for the last 30 days: one row per exercise type
-that has answers, with its Russian name («Перевод EN→RU», «Перевод RU→EN», «Вставь слово»,
-«Собери из кусков», «Собери из слов», «Напиши слово»), accuracy in percent and the total number
-of answers. With no answers the block SHALL NOT be shown.
+Settings SHALL show exercise accuracy for the last 30 days in a card without a title, captioned
+«точность за 30 дней» below the rows: one row per exercise type that has answers, with its Russian
+name («С английского», «На английский», «Вставь слово», «Собери из кусков», «Собери из слов»,
+«Напиши слово»), a muted «correct/total» and the accuracy in percent. With no answers the block
+SHALL NOT be shown.
 
 #### Scenario: Settings
 
 - **WHEN** the last 30 days contain 20 «Собери из кусков» answers with 15 correct
-- **THEN** settings show the row «Собери из кусков — 75% · 20»
+- **THEN** settings show the row «Собери из кусков  15/20  75%»

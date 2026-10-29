@@ -65,6 +65,35 @@
         font-weight: 400;
         line-height: 1.45;
       }
+      #preloader-close {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: max(2.5rem, calc(env(safe-area-inset-bottom) + 1.5rem));
+        max-width: 408px;
+        height: 56px;
+        margin: 0 auto;
+        border: 0;
+        border-radius: 20px;
+        background: #fafaf8;
+        color: #0a0b0f;
+        font-family: Montserrat, system-ui, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.4s ease,
+          visibility 0.4s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      #preloader.preloader-ready #preloader-close {
+        opacity: 1;
+        visibility: visible;
+      }
+      #preloader.preloader-ready #preloader-close:active {
+        opacity: 0.85;
+      }
       @keyframes preloader-flow {
         to {
           background-position: 100% 100%;
@@ -78,11 +107,12 @@
     </style>
   </head>
   <body>
-    <div id="preloader" aria-hidden="true">
+    <div id="preloader">
       <p id="preloader-fact">
         <span id="preloader-fact-en"></span>
         <span id="preloader-fact-ru"></span>
       </p>
+      <button id="preloader-close" type="button">Понятно</button>
     </div>
     <script>
       ;(() => {
@@ -110,6 +140,19 @@
         const show = () =>
           document.getElementById('preloader-fact').classList.add('preloader-fact-ready')
         document.fonts.load('300 1em Montserrat').then(show, show)
+        const preloader = document.getElementById('preloader')
+        const blockKeys = (event) => {
+          if (!preloader.isConnected || preloader.classList.contains('preloader-hidden')) {
+            window.removeEventListener('keydown', blockKeys, true)
+            return
+          }
+          event.preventDefault()
+          event.stopImmediatePropagation()
+          if (event.code === 'Enter' && preloader.classList.contains('preloader-ready')) {
+            document.getElementById('preloader-close').click()
+          }
+        }
+        window.addEventListener('keydown', blockKeys, true)
       })()
     </script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>

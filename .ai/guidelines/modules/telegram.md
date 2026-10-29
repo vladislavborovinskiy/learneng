@@ -9,7 +9,7 @@ reminder from a bot. Code:
 `<body>` right after the inline `#preloader`, so the preloader paints before it; the preloader is
 a flowing dimmed sage / sand / clay gradient with one fact from `content/facts.json`, inlined at
 build by the `preloader-facts` Vite plugin and picked from a shuffle bag in `localStorage`
-`preloader-facts`; `App.tsx` hides it after load + fonts + 2.5 s, a tap after load hides it at once),
+`preloader-facts`; after load + fonts `App.tsx` shows a «Понятно» button and the preloader closes only on it or `Enter`; an inline capture listener swallows all keys until then so `Enter` does not start a lesson; on load error it hides by itself),
 `.github/workflows/deploy.yml`, `.github/workflows/reminder.yml`, `scripts/send-reminder.mjs`,
 `.github/workflows/worker.yml`, `worker/` (server side of `progress.md`).
 
