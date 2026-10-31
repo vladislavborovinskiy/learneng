@@ -51,7 +51,7 @@
 
 ## Spec-driven изменения (OpenSpec)
 
-Фичи и изменения поведения идут через `openspec/` (схема `spec-driven`, конфиг `openspec/config.yaml`): `openspec/specs/<module>/<feature>/spec.md` — источник правды по наблюдаемому поведению; изменение в работе живёт в `openspec/changes/<change-id>/` (`proposal.md` → `specs/**/spec.md` дельта ADDED/MODIFIED/REMOVED → `design.md` → `tasks.md`); законченное архивируется в `openspec/changes/archive/YYYY-MM-DD-<change-id>/`, дельта вливается в основные спеки. Сначала договариваемся в документах, потом код. Команды: `/opsx:explore`, `/opsx:propose <id>`, `/opsx:apply`, `/opsx:update`, `/opsx:archive`; перед архивом `openspec validate <id> --strict`. Мелкие фиксы, стили, переименования — без change. Инициализировано 2026-10-26 (`openspec init --tools claude`), основные спеки: `progress/{settings,server-storage,daily-backup,answer-stats}`, `scheduling/{lessons,home}`, `session/{lesson-flow,hints,sentence-builder,keyboard}`, `ui/visual-style`.
+Фичи и изменения поведения идут через `openspec/` (схема `spec-driven`, конфиг `openspec/config.yaml`): `openspec/specs/<module>/<feature>/spec.md` — источник правды по наблюдаемому поведению; изменение в работе живёт в `openspec/changes/<change-id>/` (`proposal.md` → `specs/**/spec.md` дельта ADDED/MODIFIED/REMOVED → `design.md` → `tasks.md`); законченное архивируется в `openspec/changes/archive/YYYY-MM-DD-<change-id>/`, дельта вливается в основные спеки. Сначала договариваемся в документах, потом код. Команды: `/opsx:explore`, `/opsx:propose <id>`, `/opsx:apply`, `/opsx:update`, `/opsx:archive`; перед архивом `openspec validate <id> --strict`. Мелкие фиксы, стили, переименования — без change. Инициализировано 2026-10-26 (`openspec init --tools claude`), основные спеки: `progress/{settings,server-storage,daily-backup,answer-stats}`, `scheduling/{lessons,home}`, `session/{lesson-flow,hints,sentence-builder,keyboard}`, `ui/{visual-style,interface-language}`.
 
 ## Команды (в `web/`)
 
@@ -66,5 +66,6 @@
 - Готово: контент, каркас, хранилище, планировщик, главный экран, сессия с 5 упражнениями (+ повтор новых слов в конце), тест уровня, настройки, workflow деплоя и напоминаний.
 - Готово 2026-10-27: прогресс на сервере (`server-progress`) — миграция, второе устройство и дозаливка проверены в Telegram; ждём первый ночной файл-копию от бота (03:00 МСК).
 - Готово 2026-10-28: подсказки и «Не помню», сборка предложения из кусков с проверкой по плиткам, повтор ошибок, единый «Урок» с плавным числом новых слов, клавиатура, стеклянный редизайн (Montserrat, шалфей / песок / глина), минималистичная главная с графиком, плитками и трудными словами, прелоадер. Все изменения в `openspec/changes/archive/2026-10-28-*`.
+- Готово 2026-10-31: переключатель языка интерфейса RU / EN в настройках (`interface-language`).
 - Дальше: проверка внутри Telegram на айфоне — клавиатура при вводе в предложении (строка кнопок над клавиатурой), `Esc` и подписи клавиш в Telegram Desktop, прелоадер, CloudStorage, BackButton, haptics.
 - Потом: трек грамматики для чтения, трек чтения реальных текстов.
