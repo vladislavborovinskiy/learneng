@@ -62,9 +62,12 @@ function pick<T>(items: T[]) {
 }
 
 function distractorWords(word: Word, count: number) {
+  const isPhrase = word.source === 'phrasal'
   const unambiguous = words.filter(
     (other) =>
-      other.id !== word.id && !other.ru.some((translation) => word.ru.includes(translation))
+      (other.source === 'phrasal') === isPhrase &&
+      other.id !== word.id &&
+      !other.ru.some((translation) => word.ru.includes(translation))
   )
   const samePos = unambiguous.filter((other) => other.pos === word.pos)
   return shuffle(samePos.length >= count ? samePos : unambiguous).slice(0, count)
@@ -82,6 +85,10 @@ export function tokenize(text: string) {
     .filter(Boolean)
 }
 
+function joinedSentences(word: Word) {
+  return word.sentences.filter((sentence) => !sentence.parts)
+}
+
 function buildChoice(word: Word, sentence: Sentence, mode: ChoiceMode): ChoiceExercise {
   const distractors = distractorWords(word, OPTIONS_COUNT - 1)
   const variants = {
@@ -89,7 +96,9 @@ function buildChoice(word: Word, sentence: Sentence, mode: ChoiceMode): ChoiceEx
     'ru-en': { answer: word.en, others: distractors.map((other) => other.en) },
     'cloze': {
       answer: sentence.form,
-      others: distractors.map((other) => matchCase(pick(other.sentences).form, sentence.form)),
+      others: distractors.map((other) =>
+        matchCase(pick(joinedSentences(other)).form, sentence.form)
+      ),
     },
   }
   const { answer, others } = variants[mode]
@@ -134,19 +143,20 @@ function buildWordTiles(word: Word, sentence: Sentence): TilesExercise {
 
 export function buildExercise(word: Word, card: Card | undefined): Exercise {
   const sentence = pick(word.sentences)
+  const joinedSentence = pick(joinedSentences(word))
 
   if (!card || card.state !== State.Review) {
     return buildChoice(word, sentence, pick<ChoiceMode>(['en-ru', 'ru-en']))
   }
   if (card.stability < FAMILIAR_STABILITY_DAYS) {
     return Math.random() < 0.5
-      ? buildChoice(word, sentence, 'cloze')
+      ? buildChoice(word, joinedSentence, 'cloze')
       : buildChunkTiles(word, sentence)
   }
   if (card.stability < MATURE_STABILITY_DAYS && Math.random() < 0.5) {
     return buildWordTiles(word, sentence)
   }
-  return { kind: 'typing', word, sentence, answer: sentence.form }
+  return { kind: 'typing', word, sentence: joinedSentence, answer: joinedSentence.form }
 }
 
 function levenshtein(a: string, b: string) {

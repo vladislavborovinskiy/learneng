@@ -37,6 +37,8 @@ export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelPro
   const { word, sentence } = exercise
   const correctAnswer = exercise.kind === 'tiles' ? null : exercise.answer
   const [before, after] = sentence.en.split(sentence.form)
+  const [first, last] = sentence.parts ?? [sentence.form, '']
+  const middle = sentence.form.slice(first.length, sentence.form.length - last.length)
   const tone = toneByResult[result]
 
   useHotkeys({ Enter: onContinue })
@@ -63,7 +65,9 @@ export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelPro
         <div className="flex flex-col gap-1">
           <p className="leading-relaxed">
             {before}
-            <span className={cn('font-medium', tone)}>{sentence.form}</span>
+            <span className={cn('font-medium', tone)}>{first}</span>
+            {middle}
+            <span className={cn('font-medium', tone)}>{last}</span>
             {after}
           </p>
           <p className="text-sm text-muted-foreground">{sentence.ru}</p>

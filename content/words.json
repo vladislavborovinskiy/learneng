@@ -37341,5 +37341,6291 @@
         "chunks": [1, 3, 5]
       }
     ]
+  },
+  {
+    "id": "for-example",
+    "en": "for example",
+    "ru": [
+      "например"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 1,
+    "topic": null,
+    "note": "В документации часто сокращают до e.g.",
+    "sentences": [
+      {
+        "en": "For example, run the tests first.",
+        "ru": "Например, сначала запусти тесты.",
+        "form": "For example",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Some browsers, for example Safari, block this feature.",
+        "ru": "Некоторые браузеры, например Safari, блокируют эту функцию.",
+        "form": "for example",
+        "chunks": [2, 5, 6]
+      },
+      {
+        "en": "This file, for example, has no tests.",
+        "ru": "В этом файле, например, нет тестов.",
+        "form": "for example",
+        "chunks": [2, 4, 5]
+      },
+      {
+        "en": "Add a key, for example API_KEY.",
+        "ru": "Добавь ключ, например API_KEY.",
+        "form": "for example",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "For example, you can use a config file.",
+        "ru": "Например, можно использовать конфиг-файл.",
+        "form": "For example",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "I like fruit, for example apples.",
+        "ru": "Я люблю фрукты, например яблоки.",
+        "form": "for example",
+        "chunks": [1, 2, 3]
+      }
+    ]
+  },
+  {
+    "id": "such-as",
+    "en": "such as",
+    "ru": [
+      "такой как",
+      "например",
+      "вроде"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 2,
+    "topic": null,
+    "note": "Вводит примеры, обычно после существительного: tools such as Git — инструменты вроде Git.",
+    "sentences": [
+      {
+        "en": "Use tools such as Git and Docker.",
+        "ru": "Используй инструменты вроде Git и Docker.",
+        "form": "such as",
+        "chunks": [1, 2]
+      },
+      {
+        "en": "Files such as logs are not saved.",
+        "ru": "Файлы вроде логов не сохраняются.",
+        "form": "such as",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "The app supports languages such as Python.",
+        "ru": "Приложение поддерживает такие языки, как Python.",
+        "form": "such as",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Avoid names such as test or temp.",
+        "ru": "Избегай имён вроде test или temp.",
+        "form": "such as",
+        "chunks": [1, 2]
+      },
+      {
+        "en": "Can I use a database such as Postgres?",
+        "ru": "Можно использовать базу данных, например Postgres?",
+        "form": "such as",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "I eat vegetables such as carrots.",
+        "ru": "Я ем овощи, например морковь.",
+        "form": "such as",
+        "chunks": [1, 2, 3]
+      }
+    ]
+  },
+  {
+    "id": "instead-of",
+    "en": "instead of",
+    "ru": [
+      "вместо",
+      "вместо того чтобы"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 3,
+    "topic": null,
+    "note": "После instead of глагол идёт с -ing: instead of writing — вместо того чтобы писать.",
+    "sentences": [
+      {
+        "en": "Use const instead of let.",
+        "ru": "Используй const вместо let.",
+        "form": "instead of",
+        "chunks": [1, 2]
+      },
+      {
+        "en": "Run npm ci instead of npm install.",
+        "ru": "Запусти npm ci вместо npm install.",
+        "form": "instead of",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Instead of copying code, write a function.",
+        "ru": "Вместо того чтобы копировать код, напиши функцию.",
+        "form": "Instead of",
+        "chunks": [4, 5]
+      },
+      {
+        "en": "The API returns null instead of an error.",
+        "ru": "API возвращает null вместо ошибки.",
+        "form": "instead of",
+        "chunks": [2, 3, 4]
+      },
+      {
+        "en": "Why did you use a loop instead of map?",
+        "ru": "Почему ты использовал цикл вместо map?",
+        "form": "instead of",
+        "chunks": [1, 4, 6]
+      },
+      {
+        "en": "I drink tea instead of coffee.",
+        "ru": "Я пью чай вместо кофе.",
+        "form": "instead of",
+        "chunks": [1, 2, 3]
+      }
+    ]
+  },
+  {
+    "id": "by-default",
+    "en": "by default",
+    "ru": [
+      "по умолчанию"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 4,
+    "topic": null,
+    "note": "Отсюда default — значение по умолчанию: default settings — настройки по умолчанию.",
+    "sentences": [
+      {
+        "en": "The port is 3000 by default.",
+        "ru": "По умолчанию порт — 3000.",
+        "form": "by default",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "By default, the button is disabled.",
+        "ru": "По умолчанию кнопка неактивна.",
+        "form": "By default",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Git creates the main branch by default.",
+        "ru": "Git по умолчанию создаёт ветку main.",
+        "form": "by default",
+        "chunks": [1, 2, 5]
+      },
+      {
+        "en": "This option is not enabled by default.",
+        "ru": "Эта опция по умолчанию не включена.",
+        "form": "by default",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Which browser opens by default?",
+        "ru": "Какой браузер открывается по умолчанию?",
+        "form": "by default",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Logs are saved to this folder by default.",
+        "ru": "По умолчанию логи сохраняются в эту папку.",
+        "form": "by default",
+        "chunks": [1, 3, 6]
+      }
+    ]
+  },
+  {
+    "id": "depend-on",
+    "en": "depend on",
+    "ru": [
+      "зависеть от",
+      "полагаться на"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 5,
+    "topic": null,
+    "note": "Отсюда dependency — зависимость; в package.json это dependencies.",
+    "sentences": [
+      {
+        "en": "The app depends on this library.",
+        "ru": "Приложение зависит от этой библиотеки.",
+        "form": "depends on",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Many packages depend on React.",
+        "ru": "Многие пакеты зависят от React.",
+        "form": "depend on",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Don't depend on the order of keys.",
+        "ru": "Не полагайся на порядок ключей.",
+        "form": "depend on",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "The result depended on the input.",
+        "ru": "Результат зависел от входных данных.",
+        "form": "depended on",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Your tests should not depend on each other.",
+        "ru": "Тесты не должны зависеть друг от друга.",
+        "form": "depend on",
+        "chunks": [2, 6]
+      },
+      {
+        "en": "Our plans depend on the weather.",
+        "ru": "Наши планы зависят от погоды.",
+        "form": "depend on",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "so-that",
+    "en": "so that",
+    "ru": [
+      "чтобы",
+      "так чтобы"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 6,
+    "topic": null,
+    "note": "Вводит цель; не путай с so — «поэтому».",
+    "sentences": [
+      {
+        "en": "Add comments so that others understand the code.",
+        "ru": "Добавь комментарии, чтобы другие понимали код.",
+        "form": "so that",
+        "chunks": [1, 2]
+      },
+      {
+        "en": "Cache the data so that the page loads faster.",
+        "ru": "Кэшируй данные, чтобы страница грузилась быстрее.",
+        "form": "so that",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "We split the file so that tests run faster.",
+        "ru": "Мы разделили файл, чтобы тесты шли быстрее.",
+        "form": "so that",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Save your work so that you don't lose it.",
+        "ru": "Сохрани работу, чтобы не потерять её.",
+        "form": "so that",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Name variables clearly so that the code is readable.",
+        "ru": "Называй переменные понятно, чтобы код легко читался.",
+        "form": "so that",
+        "chunks": [1, 2, 3]
+      },
+      {
+        "en": "Speak slowly so that I can understand you.",
+        "ru": "Говори медленно, чтобы я тебя понял.",
+        "form": "so that",
+        "chunks": [1, 2]
+      }
+    ]
+  },
+  {
+    "id": "rather-than",
+    "en": "rather than",
+    "ru": [
+      "а не",
+      "вместо"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 7,
+    "topic": null,
+    "note": "Близко к instead of, но сравнивает два варианта: X rather than Y — X, а не Y.",
+    "sentences": [
+      {
+        "en": "Use a Map rather than an object.",
+        "ru": "Используй Map, а не объект.",
+        "form": "rather than",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Fix the cause rather than the symptom.",
+        "ru": "Исправляй причину, а не симптом.",
+        "form": "rather than",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The function returns a list rather than a string.",
+        "ru": "Функция возвращает список, а не строку.",
+        "form": "rather than",
+        "chunks": [2, 3, 5]
+      },
+      {
+        "en": "We chose Postgres rather than MySQL.",
+        "ru": "Мы выбрали Postgres, а не MySQL.",
+        "form": "rather than",
+        "chunks": [1, 2, 3]
+      },
+      {
+        "en": "Write small commits rather than one big commit.",
+        "ru": "Делай маленькие коммиты, а не один большой.",
+        "form": "rather than",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "I walk to work rather than drive.",
+        "ru": "Я хожу на работу пешком, а не езжу на машине.",
+        "form": "rather than",
+        "chunks": [1, 4]
+      }
+    ]
+  },
+  {
+    "id": "set-up",
+    "en": "set up",
+    "ru": [
+      "настроить",
+      "развернуть",
+      "подготовить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 8,
+    "topic": null,
+    "note": "С местоимением частица идёт после него: set it up; существительное — setup.",
+    "sentences": [
+      {
+        "en": "Set up the database first.",
+        "ru": "Сначала настрой базу данных.",
+        "form": "Set up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We set up a new server yesterday.",
+        "ru": "Вчера мы развернули новый сервер.",
+        "form": "set up",
+        "chunks": [1, 3, 6]
+      },
+      {
+        "en": "The project is easy to set up.",
+        "ru": "Проект легко настроить.",
+        "form": "set up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Can you set it up for me?",
+        "ru": "Можешь настроить это для меня?",
+        "form": "set it up",
+        "chunks": [2, 5],
+        "parts": ["set", "up"]
+      },
+      {
+        "en": "How do I set up Git?",
+        "ru": "Как настроить Git?",
+        "form": "set up",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "They set up a tent near the lake.",
+        "ru": "Они поставили палатку у озера.",
+        "form": "set up",
+        "chunks": [1, 3, 5]
+      }
+    ]
+  },
+  {
+    "id": "depending-on",
+    "en": "depending on",
+    "ru": [
+      "в зависимости от"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 9,
+    "topic": null,
+    "note": "Не путай с depend on: depending on не требует подлежащего и стоит в начале или в конце фразы.",
+    "sentences": [
+      {
+        "en": "Depending on the config, the app uses a different port.",
+        "ru": "В зависимости от конфига приложение использует другой порт.",
+        "form": "Depending on",
+        "chunks": [4, 6, 7]
+      },
+      {
+        "en": "The price changes depending on the plan.",
+        "ru": "Цена меняется в зависимости от тарифа.",
+        "form": "depending on",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Build time varies depending on the project.",
+        "ru": "Время сборки различается в зависимости от проекта.",
+        "form": "depending on",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Choose a method depending on the data.",
+        "ru": "Выбирай метод в зависимости от данных.",
+        "form": "depending on",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The output can look different depending on your OS.",
+        "ru": "Вывод может выглядеть по-разному в зависимости от ОС.",
+        "form": "depending on",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "We walk or drive depending on the weather.",
+        "ru": "Мы ходим пешком или ездим на машине — в зависимости от погоды.",
+        "form": "depending on",
+        "chunks": [1, 4]
+      }
+    ]
+  },
+  {
+    "id": "even-if",
+    "en": "even if",
+    "ru": [
+      "даже если"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 10,
+    "topic": null,
+    "note": "Не путай с even though — «хотя» (о том, что уже правда).",
+    "sentences": [
+      {
+        "en": "The script runs even if a test fails.",
+        "ru": "Скрипт выполняется, даже если тест падает.",
+        "form": "even if",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Even if it works, add a test.",
+        "ru": "Даже если это работает, добавь тест.",
+        "form": "Even if",
+        "chunks": [4, 5]
+      },
+      {
+        "en": "Save the file even if it is empty.",
+        "ru": "Сохрани файл, даже если он пустой.",
+        "form": "even if",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The build should not stop even if one step fails.",
+        "ru": "Сборка не должна останавливаться, даже если один шаг упал.",
+        "form": "even if",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Check the logs even if nothing looks wrong.",
+        "ru": "Проверь логи, даже если всё выглядит нормально.",
+        "form": "even if",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "I go for a walk even if it rains.",
+        "ru": "Я гуляю, даже если идёт дождь.",
+        "form": "even if",
+        "chunks": [1, 5]
+      }
+    ]
+  },
+  {
+    "id": "make-sure",
+    "en": "make sure",
+    "ru": [
+      "убедиться",
+      "проследить",
+      "обязательно сделать"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 11,
+    "topic": null,
+    "note": "После make sure идёт целое предложение (часто с that) или to + глагол: make sure to save — обязательно сохрани.",
+    "sentences": [
+      {
+        "en": "Make sure the server is running.",
+        "ru": "Убедись, что сервер запущен.",
+        "form": "Make sure",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Make sure you have the latest version.",
+        "ru": "Убедись, что у тебя последняя версия.",
+        "form": "Make sure",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I made sure that all tests pass.",
+        "ru": "Я убедился, что все тесты проходят.",
+        "form": "made sure",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Please make sure to save your changes.",
+        "ru": "Обязательно сохрани изменения.",
+        "form": "make sure",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "Did you make sure the file exists?",
+        "ru": "Ты проверил, что файл существует?",
+        "form": "make sure",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Make sure the door is locked.",
+        "ru": "Проверь, что дверь заперта.",
+        "form": "Make sure",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "refer-to",
+    "en": "refer to",
+    "ru": [
+      "ссылаться на",
+      "обращаться к",
+      "означать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 12,
+    "topic": null,
+    "note": "В документации refer to the guide — «см. руководство»; отсюда reference — ссылка, справочник.",
+    "sentences": [
+      {
+        "en": "Refer to the docs for details.",
+        "ru": "Подробности см. в документации.",
+        "form": "Refer to",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "This variable refers to the current user.",
+        "ru": "Эта переменная ссылается на текущего пользователя.",
+        "form": "refers to",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "What does this term refer to?",
+        "ru": "Что означает этот термин?",
+        "form": "refer to",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "The key refers to a row in another table.",
+        "ru": "Ключ ссылается на строку в другой таблице.",
+        "form": "refers to",
+        "chunks": [2, 4, 6]
+      },
+      {
+        "en": "Please refer to the README before you start.",
+        "ru": "Перед началом загляни в README.",
+        "form": "refer to",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "The word \"node\" can refer to many things.",
+        "ru": "Слово «node» может означать многое.",
+        "form": "refer to",
+        "chunks": [3, 6]
+      }
+    ]
+  },
+  {
+    "id": "in-addition",
+    "en": "in addition",
+    "ru": [
+      "кроме того",
+      "вдобавок"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 13,
+    "topic": null,
+    "note": "С существительным — in addition to: in addition to tests — помимо тестов.",
+    "sentences": [
+      {
+        "en": "In addition, the tool checks your code style.",
+        "ru": "Кроме того, инструмент проверяет стиль кода.",
+        "form": "In addition",
+        "chunks": [2, 4, 5]
+      },
+      {
+        "en": "In addition to tests, we use a linter.",
+        "ru": "Помимо тестов, мы используем линтер.",
+        "form": "In addition",
+        "chunks": [4, 5, 6]
+      },
+      {
+        "en": "In addition, you can export the data.",
+        "ru": "Кроме того, можно экспортировать данные.",
+        "form": "In addition",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "In addition to the API, there is a CLI.",
+        "ru": "Помимо API, есть ещё CLI.",
+        "form": "In addition",
+        "chunks": [5, 7]
+      },
+      {
+        "en": "In addition, the page loads faster now.",
+        "ru": "Кроме того, страница теперь грузится быстрее.",
+        "form": "In addition",
+        "chunks": [2, 4, 5]
+      },
+      {
+        "en": "In addition to English, she speaks French.",
+        "ru": "Кроме английского, она говорит по-французски.",
+        "form": "In addition",
+        "chunks": [4, 5, 6]
+      }
+    ]
+  },
+  {
+    "id": "in-order-to",
+    "en": "in order to",
+    "ru": [
+      "чтобы",
+      "для того чтобы"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 14,
+    "topic": null,
+    "note": "Дальше идёт глагол: in order to save — чтобы сохранить; часто можно сказать просто to.",
+    "sentences": [
+      {
+        "en": "In order to deploy, you need access.",
+        "ru": "Чтобы задеплоить, нужен доступ.",
+        "form": "In order to",
+        "chunks": [4, 6]
+      },
+      {
+        "en": "Restart the server in order to apply the changes.",
+        "ru": "Перезапусти сервер, чтобы применить изменения.",
+        "form": "in order to",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "We cache the data in order to save time.",
+        "ru": "Мы кэшируем данные, чтобы сэкономить время.",
+        "form": "in order to",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "You must sign in in order to comment.",
+        "ru": "Чтобы комментировать, нужно войти.",
+        "form": "in order to",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "In order to run the tests, install Node.",
+        "ru": "Чтобы запустить тесты, установи Node.",
+        "form": "In order to",
+        "chunks": [6, 7]
+      },
+      {
+        "en": "I get up early in order to study.",
+        "ru": "Я встаю рано, чтобы позаниматься.",
+        "form": "in order to",
+        "chunks": [1, 4]
+      }
+    ]
+  },
+  {
+    "id": "at-least",
+    "en": "at least",
+    "ru": [
+      "как минимум",
+      "хотя бы",
+      "по крайней мере"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 15,
+    "topic": null,
+    "note": "Противоположность — at most, «максимум».",
+    "sentences": [
+      {
+        "en": "The password needs at least eight characters.",
+        "ru": "В пароле должно быть не меньше восьми символов.",
+        "form": "at least",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "You need at least Node 18.",
+        "ru": "Нужен как минимум Node 18.",
+        "form": "at least",
+        "chunks": [1, 2]
+      },
+      {
+        "en": "Run the tests at least once.",
+        "ru": "Запусти тесты хотя бы раз.",
+        "form": "at least",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "At least one field is required.",
+        "ru": "Нужно заполнить хотя бы одно поле.",
+        "form": "At least",
+        "chunks": [4]
+      },
+      {
+        "en": "The build takes at least ten minutes.",
+        "ru": "Сборка занимает минимум десять минут.",
+        "form": "at least",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Sleep at least seven hours.",
+        "ru": "Спи хотя бы семь часов.",
+        "form": "at least",
+        "chunks": [1]
+      }
+    ]
+  },
+  {
+    "id": "rely-on",
+    "en": "rely on",
+    "ru": [
+      "полагаться на",
+      "зависеть от"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 16,
+    "topic": null,
+    "note": "Отсюда reliable — надёжный.",
+    "sentences": [
+      {
+        "en": "Don't rely on global variables.",
+        "ru": "Не полагайся на глобальные переменные.",
+        "form": "rely on",
+        "chunks": [3]
+      },
+      {
+        "en": "Many apps rely on this API.",
+        "ru": "Многие приложения зависят от этого API.",
+        "form": "rely on",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We rely on tests to find bugs.",
+        "ru": "Мы полагаемся на тесты, чтобы находить баги.",
+        "form": "rely on",
+        "chunks": [1, 3, 4]
+      },
+      {
+        "en": "You can rely on this value.",
+        "ru": "На это значение можно положиться.",
+        "form": "rely on",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "The code relied on an old library.",
+        "ru": "Код зависел от старой библиотеки.",
+        "form": "relied on",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I can always rely on my brother.",
+        "ru": "Я всегда могу положиться на брата.",
+        "form": "rely on",
+        "chunks": [1, 5]
+      }
+    ]
+  },
+  {
+    "id": "due-to",
+    "en": "due to",
+    "ru": [
+      "из-за",
+      "вследствие"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 17,
+    "topic": null,
+    "note": "Звучит формально, это стиль документации; в разговоре чаще because of.",
+    "sentences": [
+      {
+        "en": "The build failed due to a missing file.",
+        "ru": "Сборка упала из-за отсутствующего файла.",
+        "form": "due to",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Due to high load, the site is slow.",
+        "ru": "Из-за высокой нагрузки сайт тормозит.",
+        "form": "Due to",
+        "chunks": [4, 6]
+      },
+      {
+        "en": "The error is due to an old version.",
+        "ru": "Ошибка возникает из-за старой версии.",
+        "form": "due to",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "The request failed due to a timeout.",
+        "ru": "Запрос не прошёл из-за таймаута.",
+        "form": "due to",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Is this bug due to the new code?",
+        "ru": "Этот баг из-за нового кода?",
+        "form": "due to",
+        "chunks": [3]
+      },
+      {
+        "en": "The train was late due to snow.",
+        "ru": "Поезд опоздал из-за снега.",
+        "form": "due to",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "as-well-as",
+    "en": "as well as",
+    "ru": [
+      "а также",
+      "так же как и"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 18,
+    "topic": null,
+    "note": "Связывает два однородных члена, как and: Linux as well as macOS — Linux, а также macOS.",
+    "sentences": [
+      {
+        "en": "The tool supports Linux as well as macOS.",
+        "ru": "Инструмент поддерживает Linux, а также macOS.",
+        "form": "as well as",
+        "chunks": [2, 3, 4]
+      },
+      {
+        "en": "You can edit files as well as folders.",
+        "ru": "Можно редактировать файлы, а также папки.",
+        "form": "as well as",
+        "chunks": [3, 4]
+      },
+      {
+        "en": "The API returns the name as well as the email.",
+        "ru": "API возвращает имя, а также email.",
+        "form": "as well as",
+        "chunks": [2, 3, 5]
+      },
+      {
+        "en": "Tests check the logic as well as the UI.",
+        "ru": "Тесты проверяют логику, а также интерфейс.",
+        "form": "as well as",
+        "chunks": [1, 2, 4]
+      },
+      {
+        "en": "Update the code as well as the docs.",
+        "ru": "Обнови код, а также документацию.",
+        "form": "as well as",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "She speaks English as well as Spanish.",
+        "ru": "Она говорит по-английски, а также по-испански.",
+        "form": "as well as",
+        "chunks": [1, 2, 3]
+      }
+    ]
+  },
+  {
+    "id": "pass-down",
+    "en": "pass down",
+    "ru": [
+      "передать вниз",
+      "передать по наследству"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 19,
+    "topic": null,
+    "note": "В React так говорят о передаче props от родителя к дочерним компонентам.",
+    "sentences": [
+      {
+        "en": "Pass down the props to the child.",
+        "ru": "Передай props дочернему компоненту.",
+        "form": "Pass down",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The parent passes down the data.",
+        "ru": "Родитель передаёт данные вниз.",
+        "form": "passes down",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "You can pass it down as a prop.",
+        "ru": "Можно передать это вниз как prop.",
+        "form": "pass it down",
+        "chunks": [1, 5],
+        "parts": ["pass", "down"]
+      },
+      {
+        "en": "Don't pass down too many props.",
+        "ru": "Не передавай вниз слишком много props.",
+        "form": "pass down",
+        "chunks": [3]
+      },
+      {
+        "en": "The theme is passed down through context.",
+        "ru": "Тема передаётся вниз через контекст.",
+        "form": "passed down",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "My grandmother passed down this recipe to me.",
+        "ru": "Бабушка передала мне этот рецепт.",
+        "form": "passed down",
+        "chunks": [2, 4, 6]
+      }
+    ]
+  },
+  {
+    "id": "regardless-of",
+    "en": "regardless of",
+    "ru": [
+      "независимо от",
+      "несмотря на"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 20,
+    "topic": null,
+    "note": "Не путай с depending on: здесь результат как раз не зависит от условия.",
+    "sentences": [
+      {
+        "en": "The code runs regardless of the browser.",
+        "ru": "Код работает независимо от браузера.",
+        "form": "regardless of",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Regardless of the result, log the request.",
+        "ru": "Независимо от результата, запиши запрос в лог.",
+        "form": "Regardless of",
+        "chunks": [4, 5]
+      },
+      {
+        "en": "All users see this page regardless of their role.",
+        "ru": "Все пользователи видят эту страницу независимо от роли.",
+        "form": "regardless of",
+        "chunks": [2, 3, 5]
+      },
+      {
+        "en": "The test should pass regardless of the time zone.",
+        "ru": "Тест должен проходить независимо от часового пояса.",
+        "form": "regardless of",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Regardless of size, every file is checked.",
+        "ru": "Каждый файл проверяется независимо от размера.",
+        "form": "Regardless of",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "We go out regardless of the weather.",
+        "ru": "Мы выходим гулять независимо от погоды.",
+        "form": "regardless of",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "sign-in",
+    "en": "sign in",
+    "ru": [
+      "войти",
+      "авторизоваться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 21,
+    "topic": null,
+    "note": "То же, что log in; выйти — sign out; существительное пишется через дефис — sign-in.",
+    "sentences": [
+      {
+        "en": "Sign in to your account.",
+        "ru": "Войди в свой аккаунт.",
+        "form": "Sign in",
+        "chunks": [2]
+      },
+      {
+        "en": "You need to sign in first.",
+        "ru": "Сначала нужно войти.",
+        "form": "sign in",
+        "chunks": [1, 5]
+      },
+      {
+        "en": "I can't sign in with my email.",
+        "ru": "Не могу войти по своей почте.",
+        "form": "sign in",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Users signed in with GitHub.",
+        "ru": "Пользователи вошли через GitHub.",
+        "form": "signed in",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Are you signed in?",
+        "ru": "Ты вошёл в систему?",
+        "form": "signed in",
+        "chunks": [2]
+      },
+      {
+        "en": "My mom can't sign in to her bank app.",
+        "ru": "Мама не может войти в банковское приложение.",
+        "form": "sign in",
+        "chunks": [2, 5]
+      }
+    ]
+  },
+  {
+    "id": "check-out",
+    "en": "check out",
+    "ru": [
+      "посмотреть",
+      "переключиться на",
+      "ознакомиться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 22,
+    "topic": null,
+    "note": "В git — переключиться на ветку или коммит (git checkout); в тексте — «посмотри, загляни».",
+    "sentences": [
+      {
+        "en": "Check out the main branch.",
+        "ru": "Переключись на ветку main.",
+        "form": "Check out",
+        "chunks": [2]
+      },
+      {
+        "en": "Check out our guide for more examples.",
+        "ru": "Посмотри наше руководство — там больше примеров.",
+        "form": "Check out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I checked out the old commit.",
+        "ru": "Я переключился на старый коммит.",
+        "form": "checked out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Fetch the branch and check it out.",
+        "ru": "Скачай ветку и переключись на неё.",
+        "form": "check it out",
+        "chunks": [3],
+        "parts": ["check", "out"]
+      },
+      {
+        "en": "You should check out this library.",
+        "ru": "Тебе стоит посмотреть эту библиотеку.",
+        "form": "check out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Check this out, it's funny.",
+        "ru": "Глянь, это смешно.",
+        "form": "Check this out",
+        "chunks": [3],
+        "parts": ["Check", "out"]
+      }
+    ]
+  },
+  {
+    "id": "as-a-result",
+    "en": "as a result",
+    "ru": [
+      "в результате",
+      "в итоге"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 23,
+    "topic": null,
+    "note": "С существительным — as a result of: as a result of the update — в результате обновления.",
+    "sentences": [
+      {
+        "en": "As a result, the page loads faster.",
+        "ru": "В результате страница грузится быстрее.",
+        "form": "As a result",
+        "chunks": [3, 5, 6]
+      },
+      {
+        "en": "As a result, the build failed.",
+        "ru": "В итоге сборка упала.",
+        "form": "As a result",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "As a result of the bug, users lost data.",
+        "ru": "В результате ошибки пользователи потеряли данные.",
+        "form": "As a result",
+        "chunks": [6, 7, 8]
+      },
+      {
+        "en": "As a result, you don't need a server.",
+        "ru": "В итоге сервер тебе не нужен.",
+        "form": "As a result",
+        "chunks": [3, 6]
+      },
+      {
+        "en": "As a result, tests run twice as fast.",
+        "ru": "В результате тесты работают вдвое быстрее.",
+        "form": "As a result",
+        "chunks": [3, 4, 5]
+      },
+      {
+        "en": "As a result, I missed the train.",
+        "ru": "В итоге я опоздал на поезд.",
+        "form": "As a result",
+        "chunks": [3, 4, 5]
+      }
+    ]
+  },
+  {
+    "id": "belong-to",
+    "en": "belong to",
+    "ru": [
+      "принадлежать",
+      "относиться к"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 24,
+    "topic": null,
+    "note": "Подлежащее — то, что принадлежит: the file belongs to root — файл принадлежит root.",
+    "sentences": [
+      {
+        "en": "This file belongs to the root user.",
+        "ru": "Этот файл принадлежит пользователю root.",
+        "form": "belongs to",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Which group does this user belong to?",
+        "ru": "К какой группе относится этот пользователь?",
+        "form": "belong to",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "The method belongs to the User class.",
+        "ru": "Метод принадлежит классу User.",
+        "form": "belongs to",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "These settings belong to another project.",
+        "ru": "Эти настройки относятся к другому проекту.",
+        "form": "belong to",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The repo doesn't belong to our team.",
+        "ru": "Репозиторий не принадлежит нашей команде.",
+        "form": "belong to",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "This bag belongs to my sister.",
+        "ru": "Эта сумка принадлежит моей сестре.",
+        "form": "belongs to",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "make-sense",
+    "en": "make sense",
+    "ru": [
+      "иметь смысл",
+      "быть понятным"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 25,
+    "topic": null,
+    "note": "It makes sense — «логично, понятно»; it doesn’t make sense — «бессмыслица, непонятно».",
+    "sentences": [
+      {
+        "en": "This error doesn't make sense.",
+        "ru": "Эта ошибка какая-то бессмысленная.",
+        "form": "make sense",
+        "chunks": [2]
+      },
+      {
+        "en": "Does this code make sense to you?",
+        "ru": "Тебе понятен этот код?",
+        "form": "make sense",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "It makes sense to cache the result.",
+        "ru": "Результат имеет смысл кэшировать.",
+        "form": "makes sense",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The docs finally make sense.",
+        "ru": "Наконец-то документация понятна.",
+        "form": "make sense",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Your variable names should make sense.",
+        "ru": "Имена переменных должны быть понятными.",
+        "form": "make sense",
+        "chunks": [3]
+      },
+      {
+        "en": "His idea made sense to everyone.",
+        "ru": "Его идея всем показалась разумной.",
+        "form": "made sense",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "according-to",
+    "en": "according to",
+    "ru": [
+      "согласно",
+      "по данным",
+      "в соответствии с"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 26,
+    "topic": null,
+    "note": "Ставится перед источником: according to the docs — согласно документации.",
+    "sentences": [
+      {
+        "en": "According to the docs, this method is deprecated.",
+        "ru": "Согласно документации, этот метод устарел.",
+        "form": "According to",
+        "chunks": [4, 6]
+      },
+      {
+        "en": "Sort the list according to the date.",
+        "ru": "Отсортируй список по дате.",
+        "form": "according to",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "According to the logs, the server crashed at night.",
+        "ru": "Судя по логам, сервер упал ночью.",
+        "form": "According to",
+        "chunks": [4, 6, 7]
+      },
+      {
+        "en": "Everything went according to plan.",
+        "ru": "Всё прошло по плану.",
+        "form": "according to",
+        "chunks": [1, 2]
+      },
+      {
+        "en": "The app changes colors according to your theme.",
+        "ru": "Приложение меняет цвета в соответствии с темой.",
+        "form": "according to",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "According to my doctor, I need more sleep.",
+        "ru": "По словам моего врача, мне нужно больше спать.",
+        "form": "According to",
+        "chunks": [4, 5, 6]
+      }
+    ]
+  },
+  {
+    "id": "in-production",
+    "en": "in production",
+    "ru": [
+      "в продакшене",
+      "на проде"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 27,
+    "topic": null,
+    "note": "Production (prod) — рабочая среда с реальными пользователями, в отличие от dev и staging.",
+    "sentences": [
+      {
+        "en": "The bug only happens in production.",
+        "ru": "Баг воспроизводится только на проде.",
+        "form": "in production",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Never test in production.",
+        "ru": "Никогда не тестируй на проде.",
+        "form": "in production",
+        "chunks": [2]
+      },
+      {
+        "en": "Is this version running in production?",
+        "ru": "Эта версия уже работает на проде?",
+        "form": "in production",
+        "chunks": [3, 4]
+      },
+      {
+        "en": "We use Postgres in production.",
+        "ru": "На проде мы используем Postgres.",
+        "form": "in production",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Don't enable debug mode in production.",
+        "ru": "Не включай режим отладки на проде.",
+        "form": "in production",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The new code has been in production for a week.",
+        "ru": "Новый код уже неделю на проде.",
+        "form": "in production",
+        "chunks": [3, 5, 7]
+      }
+    ]
+  },
+  {
+    "id": "clean-up",
+    "en": "clean up",
+    "ru": [
+      "почистить",
+      "убрать",
+      "навести порядок"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 28,
+    "topic": null,
+    "note": "Существительное — cleanup (очистка): cleanup function в React.",
+    "sentences": [
+      {
+        "en": "Clean up old branches.",
+        "ru": "Почисти старые ветки.",
+        "form": "Clean up",
+        "chunks": [2]
+      },
+      {
+        "en": "The script cleans up temporary files.",
+        "ru": "Скрипт подчищает временные файлы.",
+        "form": "cleans up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I cleaned up the code before the review.",
+        "ru": "Перед ревью я почистил код.",
+        "form": "cleaned up",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "If you add listeners, clean them up.",
+        "ru": "Если добавляешь слушатели, не забудь их убрать.",
+        "form": "clean them up",
+        "chunks": [4],
+        "parts": ["clean", "up"]
+      },
+      {
+        "en": "Should we clean up the database?",
+        "ru": "Нам почистить базу данных?",
+        "form": "clean up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Please clean up your room.",
+        "ru": "Пожалуйста, убери в комнате.",
+        "form": "clean up",
+        "chunks": [3]
+      }
+    ]
+  },
+  {
+    "id": "point-to",
+    "en": "point to",
+    "ru": [
+      "указывать на",
+      "ссылаться на",
+      "вести на"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 29,
+    "topic": null,
+    "note": "Так говорят о ссылках, указателях и DNS: the domain points to the server — домен указывает на сервер.",
+    "sentences": [
+      {
+        "en": "The link points to the wrong page.",
+        "ru": "Ссылка ведёт не на ту страницу.",
+        "form": "points to",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The domain points to our server.",
+        "ru": "Домен указывает на наш сервер.",
+        "form": "points to",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "HEAD points to the current branch.",
+        "ru": "HEAD указывает на текущую ветку.",
+        "form": "points to",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The error points to line 42.",
+        "ru": "Ошибка указывает на строку 42.",
+        "form": "points to",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Does this variable point to the same object?",
+        "ru": "Эта переменная указывает на тот же объект?",
+        "form": "point to",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "This URL doesn't point to anything.",
+        "ru": "Этот URL никуда не ведёт.",
+        "form": "point to",
+        "chunks": [2, 5]
+      }
+    ]
+  },
+  {
+    "id": "as-long-as",
+    "en": "as long as",
+    "ru": [
+      "при условии что",
+      "пока",
+      "лишь бы"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 30,
+    "topic": null,
+    "note": "Чаще значит условие («при условии, что»), а не время.",
+    "sentences": [
+      {
+        "en": "Any name works as long as it is unique.",
+        "ru": "Подойдёт любое имя, лишь бы оно было уникальным.",
+        "form": "as long as",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "The session stays open as long as the tab is open.",
+        "ru": "Сессия активна, пока открыта вкладка.",
+        "form": "as long as",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "You can push as long as the tests pass.",
+        "ru": "Пушить можно, если проходят тесты.",
+        "form": "as long as",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The cache is used as long as the data is fresh.",
+        "ru": "Кэш используется, пока данные свежие.",
+        "form": "as long as",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "As long as it works, don't touch it.",
+        "ru": "Пока работает — не трогай.",
+        "form": "As long as",
+        "chunks": [5, 7]
+      },
+      {
+        "en": "You can stay as long as you want.",
+        "ru": "Можешь оставаться сколько хочешь.",
+        "form": "as long as",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "at-the-same-time",
+    "en": "at the same time",
+    "ru": [
+      "одновременно",
+      "в то же время"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 31,
+    "topic": null,
+    "note": "Второе значение — «вместе с тем»: fast and at the same time simple — быстрый и в то же время простой.",
+    "sentences": [
+      {
+        "en": "Two users edited the file at the same time.",
+        "ru": "Два пользователя редактировали файл одновременно.",
+        "form": "at the same time",
+        "chunks": [2, 3, 5]
+      },
+      {
+        "en": "Don't run both scripts at the same time.",
+        "ru": "Не запускай оба скрипта одновременно.",
+        "form": "at the same time",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The tests run at the same time.",
+        "ru": "Тесты запускаются одновременно.",
+        "form": "at the same time",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Can I open two projects at the same time?",
+        "ru": "Можно открыть два проекта одновременно?",
+        "form": "at the same time",
+        "chunks": [2, 3, 5]
+      },
+      {
+        "en": "The tool is fast and, at the same time, simple.",
+        "ru": "Инструмент быстрый и в то же время простой.",
+        "form": "at the same time",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We arrived at the same time.",
+        "ru": "Мы пришли одновременно.",
+        "form": "at the same time",
+        "chunks": [1, 2]
+      }
+    ]
+  },
+  {
+    "id": "in-other-words",
+    "en": "in other words",
+    "ru": [
+      "другими словами",
+      "иначе говоря"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 32,
+    "topic": null,
+    "note": "Вводит более простое объяснение сказанного; в документации близко к i.e. (that is).",
+    "sentences": [
+      {
+        "en": "In other words, the build failed.",
+        "ru": "Другими словами, сборка упала.",
+        "form": "In other words",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "In other words, this function is pure.",
+        "ru": "Иначе говоря, эта функция чистая.",
+        "form": "In other words",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "In other words, you need a new token.",
+        "ru": "Другими словами, тебе нужен новый токен.",
+        "form": "In other words",
+        "chunks": [3, 4, 5]
+      },
+      {
+        "en": "In other words, do not edit this file.",
+        "ru": "Иначе говоря, не редактируй этот файл.",
+        "form": "In other words",
+        "chunks": [3, 6]
+      },
+      {
+        "en": "The API is stateless, in other words, it stores nothing.",
+        "ru": "API не хранит состояние, другими словами, ничего не запоминает.",
+        "form": "in other words",
+        "chunks": [2, 4, 7]
+      },
+      {
+        "en": "He is busy, in other words, he can't come.",
+        "ru": "Он занят, другими словами, он не сможет прийти.",
+        "form": "in other words",
+        "chunks": [1, 3, 6]
+      }
+    ]
+  },
+  {
+    "id": "in-practice",
+    "en": "in practice",
+    "ru": [
+      "на практике",
+      "в действительности"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 33,
+    "topic": null,
+    "note": "Противопоставляется in theory — «в теории».",
+    "sentences": [
+      {
+        "en": "In practice, this rarely happens.",
+        "ru": "На практике такое бывает редко.",
+        "form": "In practice",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "In practice, most users skip this step.",
+        "ru": "На практике большинство пользователей пропускают этот шаг.",
+        "form": "In practice",
+        "chunks": [2, 4, 5]
+      },
+      {
+        "en": "The rule works well in practice.",
+        "ru": "На практике это правило работает хорошо.",
+        "form": "in practice",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "In practice, you can ignore this warning.",
+        "ru": "На практике это предупреждение можно игнорировать.",
+        "form": "In practice",
+        "chunks": [2, 3, 5]
+      },
+      {
+        "en": "Does this pattern help in practice?",
+        "ru": "Этот паттерн помогает на практике?",
+        "form": "in practice",
+        "chunks": [3, 4]
+      },
+      {
+        "en": "It sounds easy, but in practice it is hard.",
+        "ru": "Звучит просто, но в действительности это сложно.",
+        "form": "in practice",
+        "chunks": [3, 6]
+      }
+    ]
+  },
+  {
+    "id": "consist-of",
+    "en": "consist of",
+    "ru": [
+      "состоять из"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 34,
+    "topic": null,
+    "note": "Не ставится в continuous: the app consists of, не is consisting of.",
+    "sentences": [
+      {
+        "en": "The app consists of three modules.",
+        "ru": "Приложение состоит из трёх модулей.",
+        "form": "consists of",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "A URL consists of several parts.",
+        "ru": "URL состоит из нескольких частей.",
+        "form": "consists of",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Each record consists of a key and a value.",
+        "ru": "Каждая запись состоит из ключа и значения.",
+        "form": "consists of",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "What does this package consist of?",
+        "ru": "Из чего состоит этот пакет?",
+        "form": "consist of",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "The team consists of five developers.",
+        "ru": "Команда состоит из пяти разработчиков.",
+        "form": "consists of",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Breakfast consisted of eggs and toast.",
+        "ru": "Завтрак состоял из яиц и тостов.",
+        "form": "consisted of",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "as-soon-as",
+    "en": "as soon as",
+    "ru": [
+      "как только",
+      "сразу после того как"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 35,
+    "topic": null,
+    "note": "О будущем после as soon as ставится настоящее время: as soon as it starts, не will start.",
+    "sentences": [
+      {
+        "en": "The page reloads as soon as you save.",
+        "ru": "Страница перезагружается, как только ты сохраняешь.",
+        "form": "as soon as",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "As soon as the build finishes, deploy it.",
+        "ru": "Как только сборка закончится, задеплой её.",
+        "form": "As soon as",
+        "chunks": [6, 7]
+      },
+      {
+        "en": "I will reply as soon as I can.",
+        "ru": "Я отвечу, как только смогу.",
+        "form": "as soon as",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "As soon as a user logs in, show the menu.",
+        "ru": "Как только пользователь войдёт, покажи меню.",
+        "form": "As soon as",
+        "chunks": [7, 8]
+      },
+      {
+        "en": "Tests run as soon as you push.",
+        "ru": "Тесты запускаются сразу после того, как ты делаешь пуш.",
+        "form": "as soon as",
+        "chunks": [1, 2]
+      },
+      {
+        "en": "The timer stops as soon as the request ends.",
+        "ru": "Таймер останавливается, как только запрос завершается.",
+        "form": "as soon as",
+        "chunks": [2, 3]
+      }
+    ]
+  },
+  {
+    "id": "in-the-background",
+    "en": "in the background",
+    "ru": [
+      "в фоне",
+      "в фоновом режиме",
+      "на заднем плане"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 36,
+    "topic": null,
+    "note": "Отсюда background task / background job — фоновая задача.",
+    "sentences": [
+      {
+        "en": "The sync runs in the background.",
+        "ru": "Синхронизация идёт в фоне.",
+        "form": "in the background",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "Updates download in the background.",
+        "ru": "Обновления скачиваются в фоновом режиме.",
+        "form": "in the background",
+        "chunks": [1, 2]
+      },
+      {
+        "en": "Can this script work in the background?",
+        "ru": "Может ли этот скрипт работать в фоне?",
+        "form": "in the background",
+        "chunks": [3, 4]
+      },
+      {
+        "en": "The app keeps running in the background.",
+        "ru": "Приложение продолжает работать в фоне.",
+        "form": "in the background",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Don't run heavy tasks in the background.",
+        "ru": "Не запускай тяжёлые задачи в фоне.",
+        "form": "in the background",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Music was playing in the background.",
+        "ru": "На заднем плане играла музыка.",
+        "form": "in the background",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "in-place",
+    "en": "in place",
+    "ru": [
+      "на месте",
+      "на своём месте"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 37,
+    "topic": null,
+    "note": "В коде in place значит «меняет сам объект, без копии»: sort() сортирует массив на месте.",
+    "sentences": [
+      {
+        "en": "The sort method changes the array in place.",
+        "ru": "Метод sort меняет массив на месте.",
+        "form": "in place",
+        "chunks": [3, 4, 6]
+      },
+      {
+        "en": "This function edits the file in place.",
+        "ru": "Эта функция редактирует файл на месте.",
+        "form": "in place",
+        "chunks": [2, 3, 5]
+      },
+      {
+        "en": "Is everything in place for the release?",
+        "ru": "Для релиза всё на своих местах?",
+        "form": "in place",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Keep the old config in place.",
+        "ru": "Оставь старый конфиг на месте.",
+        "form": "in place",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "All the files are in place.",
+        "ru": "Все файлы на своих местах.",
+        "form": "in place",
+        "chunks": [3, 4]
+      },
+      {
+        "en": "Put the books back in place.",
+        "ru": "Положи книги обратно на место.",
+        "form": "in place",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "in-general",
+    "en": "in general",
+    "ru": [
+      "в целом",
+      "вообще",
+      "как правило"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 38,
+    "topic": null,
+    "note": "То же, что generally; противоположность — in particular, «в частности».",
+    "sentences": [
+      {
+        "en": "In general, avoid global variables.",
+        "ru": "Как правило, избегай глобальных переменных.",
+        "form": "In general",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "The docs are good in general.",
+        "ru": "В целом документация хорошая.",
+        "form": "in general",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "In general, small commits are better.",
+        "ru": "В целом маленькие коммиты лучше.",
+        "form": "In general",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Do you know how APIs work in general?",
+        "ru": "Ты знаешь, как вообще работают API?",
+        "form": "in general",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "This tool is fast in general.",
+        "ru": "В целом этот инструмент быстрый.",
+        "form": "in general",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "In general, I sleep well.",
+        "ru": "В целом я хорошо сплю.",
+        "form": "In general",
+        "chunks": [2, 3]
+      }
+    ]
+  },
+  {
+    "id": "as-expected",
+    "en": "as expected",
+    "ru": [
+      "как и ожидалось",
+      "как положено",
+      "как надо"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 39,
+    "topic": null,
+    "note": "Частая фраза в тестах и баг-репортах: works as expected — работает как надо.",
+    "sentences": [
+      {
+        "en": "The app works as expected.",
+        "ru": "Приложение работает как надо.",
+        "form": "as expected",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "As expected, the test failed.",
+        "ru": "Как и ожидалось, тест упал.",
+        "form": "As expected",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The button does not work as expected.",
+        "ru": "Кнопка работает не так, как положено.",
+        "form": "as expected",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Everything went as expected after the update.",
+        "ru": "После обновления всё прошло как и ожидалось.",
+        "form": "as expected",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Does the function behave as expected?",
+        "ru": "Функция ведёт себя как положено?",
+        "form": "as expected",
+        "chunks": [3, 4]
+      },
+      {
+        "en": "As expected, the train was late.",
+        "ru": "Как и ожидалось, поезд опоздал.",
+        "form": "As expected",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "turn-off",
+    "en": "turn off",
+    "ru": [
+      "выключить",
+      "отключить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 40,
+    "topic": null,
+    "note": "С местоимением частица идёт после него: turn it off; противоположность — turn on.",
+    "sentences": [
+      {
+        "en": "Turn off notifications in the settings.",
+        "ru": "Отключи уведомления в настройках.",
+        "form": "Turn off",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "You can turn off dark mode.",
+        "ru": "Можно отключить тёмную тему.",
+        "form": "turn off",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "I turned off the cache for testing.",
+        "ru": "Я отключил кеш для тестов.",
+        "form": "turned off",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "This feature is turned off by default.",
+        "ru": "Эта функция по умолчанию отключена.",
+        "form": "turned off",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "If the alarm rings, turn it off.",
+        "ru": "Если зазвонит будильник, выключи его.",
+        "form": "turn it off",
+        "chunks": [4],
+        "parts": ["turn", "off"]
+      },
+      {
+        "en": "Why did you turn off the tests?",
+        "ru": "Зачем ты отключил тесты?",
+        "form": "turn off",
+        "chunks": [1, 3, 5]
+      }
+    ]
+  },
+  {
+    "id": "slow-down",
+    "en": "slow down",
+    "ru": [
+      "замедлить",
+      "замедлиться",
+      "тормозить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 41,
+    "topic": null,
+    "note": "Бывает и без объекта: the app slows down — приложение тормозит; с объектом — slow it down.",
+    "sentences": [
+      {
+        "en": "Too many plugins slow down the editor.",
+        "ru": "Слишком много плагинов замедляют редактор.",
+        "form": "slow down",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "The app slows down after an hour.",
+        "ru": "Через час работы приложение начинает тормозить.",
+        "form": "slows down",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Large images can slow down the page.",
+        "ru": "Большие картинки могут замедлить страницу.",
+        "form": "slow down",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Debug logs slow the build down.",
+        "ru": "Отладочные логи замедляют сборку.",
+        "form": "slow the build down",
+        "chunks": [2],
+        "parts": ["slow", "down"]
+      },
+      {
+        "en": "Why does my laptop slow down?",
+        "ru": "Почему мой ноутбук тормозит?",
+        "form": "slow down",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "The car slowed down near the school.",
+        "ru": "Машина замедлилась у школы.",
+        "form": "slowed down",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "keep-track-of",
+    "en": "keep track of",
+    "ru": [
+      "следить за",
+      "отслеживать",
+      "вести учёт"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 42,
+    "topic": null,
+    "note": "Track здесь — «след»; противоположность — lose track of, «потерять счёт, упустить из виду».",
+    "sentences": [
+      {
+        "en": "Git keeps track of every change.",
+        "ru": "Git отслеживает каждое изменение.",
+        "form": "keeps track of",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Use a list to keep track of tasks.",
+        "ru": "Используй список, чтобы следить за задачами.",
+        "form": "keep track of",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The state keeps track of the current page.",
+        "ru": "Состояние отслеживает текущую страницу.",
+        "form": "keeps track of",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "How do you keep track of bugs?",
+        "ru": "Как вы отслеживаете баги?",
+        "form": "keep track of",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "It is hard to keep track of versions.",
+        "ru": "За версиями трудно следить.",
+        "form": "keep track of",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "I keep track of my spending.",
+        "ru": "Я веду учёт своих расходов.",
+        "form": "keep track of",
+        "chunks": [1, 4]
+      }
+    ]
+  },
+  {
+    "id": "log-in",
+    "en": "log in",
+    "ru": [
+      "войти",
+      "залогиниться",
+      "авторизоваться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 43,
+    "topic": null,
+    "note": "Глагол пишется раздельно — log in, существительное слитно — login; выйти — log out.",
+    "sentences": [
+      {
+        "en": "Log in with your email.",
+        "ru": "Войди по своей почте.",
+        "form": "Log in",
+        "chunks": [2]
+      },
+      {
+        "en": "Users must log in to see the page.",
+        "ru": "Чтобы увидеть страницу, пользователи должны войти.",
+        "form": "log in",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "I can't log in to the admin panel.",
+        "ru": "Не могу залогиниться в админку.",
+        "form": "log in",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "She logged in from a new device.",
+        "ru": "Она вошла с нового устройства.",
+        "form": "logged in",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Is the user logged in?",
+        "ru": "Пользователь авторизован?",
+        "form": "logged in",
+        "chunks": [3]
+      },
+      {
+        "en": "Log in to the game every day for bonuses.",
+        "ru": "Входи в игру каждый день, чтобы получать бонусы.",
+        "form": "Log in",
+        "chunks": [2, 5, 7]
+      }
+    ]
+  },
+  {
+    "id": "fill-in",
+    "en": "fill in",
+    "ru": [
+      "заполнить",
+      "вписать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 44,
+    "topic": null,
+    "note": "С местоимением частица идёт после него: fill it in; про целую анкету говорят и fill out.",
+    "sentences": [
+      {
+        "en": "Fill in your name and email.",
+        "ru": "Впиши своё имя и почту.",
+        "form": "Fill in",
+        "chunks": [2]
+      },
+      {
+        "en": "Please fill in all required fields.",
+        "ru": "Пожалуйста, заполни все обязательные поля.",
+        "form": "fill in",
+        "chunks": [3]
+      },
+      {
+        "en": "The form is not filled in.",
+        "ru": "Форма не заполнена.",
+        "form": "filled in",
+        "chunks": [2]
+      },
+      {
+        "en": "The app fills in the date automatically.",
+        "ru": "Приложение само вписывает дату.",
+        "form": "fills in",
+        "chunks": [2, 4, 6]
+      },
+      {
+        "en": "If the field is empty, fill it in.",
+        "ru": "Если поле пустое, заполни его.",
+        "form": "fill it in",
+        "chunks": [5],
+        "parts": ["fill", "in"]
+      },
+      {
+        "en": "I filled in the hotel form.",
+        "ru": "Я заполнил анкету в отеле.",
+        "form": "filled in",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "on-the-other-hand",
+    "en": "on the other hand",
+    "ru": [
+      "с другой стороны"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 45,
+    "topic": null,
+    "note": "Часто в паре с on the one hand — «с одной стороны».",
+    "sentences": [
+      {
+        "en": "On the other hand, the code is simple.",
+        "ru": "С другой стороны, код простой.",
+        "form": "On the other hand",
+        "chunks": [4, 6]
+      },
+      {
+        "en": "On the other hand, tests take time.",
+        "ru": "С другой стороны, тесты отнимают время.",
+        "form": "On the other hand",
+        "chunks": [4, 5]
+      },
+      {
+        "en": "On the other hand, a cache uses memory.",
+        "ru": "С другой стороны, кеш занимает память.",
+        "form": "On the other hand",
+        "chunks": [4, 6, 7]
+      },
+      {
+        "en": "Docker is heavy but, on the other hand, reliable.",
+        "ru": "Docker тяжёлый, но, с другой стороны, надёжный.",
+        "form": "on the other hand",
+        "chunks": [1, 3, 8]
+      },
+      {
+        "en": "On the other hand, the old version is stable.",
+        "ru": "С другой стороны, старая версия стабильна.",
+        "form": "On the other hand",
+        "chunks": [4, 7]
+      },
+      {
+        "en": "On the other hand, the hotel is cheap.",
+        "ru": "С другой стороны, отель дешёвый.",
+        "form": "On the other hand",
+        "chunks": [4, 6]
+      }
+    ]
+  },
+  {
+    "id": "end-up",
+    "en": "end up",
+    "ru": [
+      "в итоге оказаться",
+      "в итоге сделать",
+      "закончиться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 46,
+    "topic": null,
+    "note": "Дальше идёт -ing или место: end up rewriting — в итоге переписать, end up in the logs — оказаться в логах.",
+    "sentences": [
+      {
+        "en": "We ended up rewriting the whole module.",
+        "ru": "В итоге мы переписали весь модуль.",
+        "form": "ended up",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "The error ended up in the logs.",
+        "ru": "Ошибка в итоге оказалась в логах.",
+        "form": "ended up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "You may end up with two copies.",
+        "ru": "В итоге у тебя могут оказаться две копии.",
+        "form": "end up",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Many projects end up using TypeScript.",
+        "ru": "Многие проекты в итоге начинают использовать TypeScript.",
+        "form": "end up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Where did the file end up?",
+        "ru": "Где в итоге оказался файл?",
+        "form": "end up",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "We ended up at a small cafe.",
+        "ru": "В итоге мы оказались в маленьком кафе.",
+        "form": "ended up",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "deal-with",
+    "en": "deal with",
+    "ru": [
+      "разобраться с",
+      "справиться с",
+      "иметь дело с"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 47,
+    "topic": null,
+    "note": "Прошедшее время — dealt: we dealt with it — мы с этим разобрались.",
+    "sentences": [
+      {
+        "en": "Let's deal with this bug first.",
+        "ru": "Давай сначала разберёмся с этим багом.",
+        "form": "deal with",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "The team dealt with the problem quickly.",
+        "ru": "Команда быстро справилась с проблемой.",
+        "form": "dealt with",
+        "chunks": [2, 4, 6]
+      },
+      {
+        "en": "How do you deal with merge conflicts?",
+        "ru": "Как ты справляешься с конфликтами слияния?",
+        "form": "deal with",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "You don't need to deal with caching.",
+        "ru": "Тебе не нужно разбираться с кешированием.",
+        "form": "deal with",
+        "chunks": [1, 6]
+      },
+      {
+        "en": "I deal with old code every day.",
+        "ru": "Я каждый день имею дело со старым кодом.",
+        "form": "deal with",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "She deals with angry customers.",
+        "ru": "Она имеет дело с недовольными клиентами.",
+        "form": "deals with",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "keep-in-mind",
+    "en": "keep in mind",
+    "ru": [
+      "иметь в виду",
+      "учитывать",
+      "помнить"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 48,
+    "topic": null,
+    "note": "Объект может встать внутрь: keep this in mind — имей это в виду.",
+    "sentences": [
+      {
+        "en": "Keep in mind that the API is slow.",
+        "ru": "Учитывай, что API медленный.",
+        "form": "Keep in mind",
+        "chunks": [3]
+      },
+      {
+        "en": "Keep in mind that tokens expire.",
+        "ru": "Помни, что у токенов истекает срок действия.",
+        "form": "Keep in mind",
+        "chunks": [3]
+      },
+      {
+        "en": "Please keep in mind the file size limit.",
+        "ru": "Пожалуйста, учитывай ограничение на размер файла.",
+        "form": "keep in mind",
+        "chunks": [4]
+      },
+      {
+        "en": "There is one thing to keep in mind.",
+        "ru": "Есть одна вещь, которую нужно иметь в виду.",
+        "form": "keep in mind",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Keep in mind, this command deletes data.",
+        "ru": "Имей в виду: эта команда удаляет данные.",
+        "form": "Keep in mind",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "Keep in mind that the shop closes early.",
+        "ru": "Имей в виду, что магазин рано закрывается.",
+        "form": "Keep in mind",
+        "chunks": [3]
+      }
+    ]
+  },
+  {
+    "id": "opt-out",
+    "en": "opt out",
+    "ru": [
+      "отказаться",
+      "не участвовать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 49,
+    "topic": null,
+    "note": "Обычно с of: opt out of tracking — отказаться от отслеживания; противоположность — opt in.",
+    "sentences": [
+      {
+        "en": "You can opt out of tracking.",
+        "ru": "Можно отказаться от отслеживания.",
+        "form": "opt out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Users can opt out at any time.",
+        "ru": "Пользователи могут отказаться в любой момент.",
+        "form": "opt out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "How do I opt out of emails?",
+        "ru": "Как отказаться от рассылки?",
+        "form": "opt out",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "I opted out of the beta.",
+        "ru": "Я отказался от участия в бете.",
+        "form": "opted out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Set this flag to opt out of telemetry.",
+        "ru": "Укажи этот флаг, чтобы отказаться от телеметрии.",
+        "form": "opt out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "She opted out of the trip.",
+        "ru": "Она отказалась от поездки.",
+        "form": "opted out",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "prior-to",
+    "en": "prior to",
+    "ru": [
+      "до",
+      "перед",
+      "прежде чем"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 50,
+    "topic": null,
+    "note": "Формальный синоним before; глагол после него — с -ing: prior to installing.",
+    "sentences": [
+      {
+        "en": "Back up your data prior to the update.",
+        "ru": "Сделай резервную копию данных перед обновлением.",
+        "form": "prior to",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Prior to version 2, this was not supported.",
+        "ru": "До версии 2 это не поддерживалось.",
+        "form": "Prior to",
+        "chunks": [4, 5]
+      },
+      {
+        "en": "Read the guide prior to installing.",
+        "ru": "Прочитай руководство, прежде чем устанавливать.",
+        "form": "prior to",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Tests run prior to each deploy.",
+        "ru": "Тесты запускаются перед каждым деплоем.",
+        "form": "prior to",
+        "chunks": [1, 2]
+      },
+      {
+        "en": "Was the file changed prior to the crash?",
+        "ru": "Файл изменили до сбоя?",
+        "form": "prior to",
+        "chunks": [3, 4]
+      },
+      {
+        "en": "Please arrive prior to 9 am.",
+        "ru": "Пожалуйста, приходите до 9 утра.",
+        "form": "prior to",
+        "chunks": [2]
+      }
+    ]
+  },
+  {
+    "id": "pass-in",
+    "en": "pass in",
+    "ru": [
+      "передать",
+      "передавать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 51,
+    "topic": null,
+    "note": "Про аргументы и props: pass in a value — передать значение внутрь; с местоимением — pass it in.",
+    "sentences": [
+      {
+        "en": "Pass in the user ID as an argument.",
+        "ru": "Передай ID пользователя как аргумент.",
+        "form": "Pass in",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "You can pass in a custom config.",
+        "ru": "Можно передать свой конфиг.",
+        "form": "pass in",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "The callback is passed in as a prop.",
+        "ru": "Колбэк передаётся как prop.",
+        "form": "passed in",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "What should I pass in here?",
+        "ru": "Что мне сюда передать?",
+        "form": "pass in",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "If you have a token, pass it in.",
+        "ru": "Если у тебя есть токен, передай его.",
+        "form": "pass it in",
+        "chunks": [5],
+        "parts": ["pass", "in"]
+      },
+      {
+        "en": "The function ignores any options passed in.",
+        "ru": "Функция игнорирует любые переданные ей опции.",
+        "form": "passed in",
+        "chunks": [2, 3]
+      }
+    ]
+  },
+  {
+    "id": "on-behalf-of",
+    "en": "on behalf of",
+    "ru": [
+      "от имени",
+      "в интересах"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 52,
+    "topic": null,
+    "note": "В OAuth так говорят о приложении, которое действует от имени пользователя.",
+    "sentences": [
+      {
+        "en": "The app acts on behalf of the user.",
+        "ru": "Приложение действует от имени пользователя.",
+        "form": "on behalf of",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "The bot posts on behalf of the team.",
+        "ru": "Бот публикует сообщения от имени команды.",
+        "form": "on behalf of",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "This key sends requests on behalf of the service.",
+        "ru": "Этот ключ отправляет запросы от имени сервиса.",
+        "form": "on behalf of",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The script runs on behalf of the admin.",
+        "ru": "Скрипт запускается от имени администратора.",
+        "form": "on behalf of",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "I am writing on behalf of my company.",
+        "ru": "Я пишу от имени своей компании.",
+        "form": "on behalf of",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "She thanked them on behalf of everyone.",
+        "ru": "Она поблагодарила их от имени всех.",
+        "form": "on behalf of",
+        "chunks": [1, 2, 3]
+      }
+    ]
+  },
+  {
+    "id": "on-top-of",
+    "en": "on top of",
+    "ru": [
+      "поверх",
+      "на",
+      "вдобавок к"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 53,
+    "topic": null,
+    "note": "В документации часто: built on top of React — построен поверх React, на его основе.",
+    "sentences": [
+      {
+        "en": "Next.js is built on top of React.",
+        "ru": "Next.js построен поверх React.",
+        "form": "on top of",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The modal appears on top of the page.",
+        "ru": "Модальное окно появляется поверх страницы.",
+        "form": "on top of",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "We added a cache on top of the database.",
+        "ru": "Мы добавили кеш поверх базы данных.",
+        "form": "on top of",
+        "chunks": [1, 2, 4]
+      },
+      {
+        "en": "On top of that, the tests are slow.",
+        "ru": "Вдобавок к этому тесты медленные.",
+        "form": "On top of",
+        "chunks": [4, 6]
+      },
+      {
+        "en": "Put the header on top of the image.",
+        "ru": "Помести заголовок поверх картинки.",
+        "form": "on top of",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The cat sleeps on top of the fridge.",
+        "ru": "Кот спит на холодильнике.",
+        "form": "on top of",
+        "chunks": [2, 3]
+      }
+    ]
+  },
+  {
+    "id": "figure-out",
+    "en": "figure out",
+    "ru": [
+      "разобраться",
+      "понять",
+      "выяснить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 54,
+    "topic": null,
+    "note": "С местоимением частица идёт после него: figure it out — разберись сам.",
+    "sentences": [
+      {
+        "en": "I can't figure out this error.",
+        "ru": "Не могу разобраться с этой ошибкой.",
+        "form": "figure out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "We figured out why the build fails.",
+        "ru": "Мы выяснили, почему падает сборка.",
+        "form": "figured out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Try to figure out the cause first.",
+        "ru": "Сначала попробуй понять причину.",
+        "form": "figure out",
+        "chunks": [4, 6]
+      },
+      {
+        "en": "The docs are confusing, but you'll figure it out.",
+        "ru": "Документация запутанная, но ты разберёшься.",
+        "form": "figure it out",
+        "chunks": [2, 4],
+        "parts": ["figure", "out"]
+      },
+      {
+        "en": "Did you figure out the API?",
+        "ru": "Ты разобрался с API?",
+        "form": "figure out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I need to figure out the train times.",
+        "ru": "Мне нужно выяснить расписание поездов.",
+        "form": "figure out",
+        "chunks": [1, 5]
+      }
+    ]
+  },
+  {
+    "id": "throw-away",
+    "en": "throw away",
+    "ru": [
+      "выбросить",
+      "выкинуть",
+      "отбросить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 55,
+    "topic": null,
+    "note": "Отсюда throwaway — одноразовый: throwaway code — код на выброс.",
+    "sentences": [
+      {
+        "en": "Throw away the old prototype.",
+        "ru": "Выкинь старый прототип.",
+        "form": "Throw away",
+        "chunks": [2]
+      },
+      {
+        "en": "Don't throw away your logs.",
+        "ru": "Не выбрасывай логи.",
+        "form": "throw away",
+        "chunks": [3]
+      },
+      {
+        "en": "The function throws away invalid values.",
+        "ru": "Функция отбрасывает неверные значения.",
+        "form": "throws away",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "This code is a test, so throw it away.",
+        "ru": "Это тестовый код, так что выкинь его.",
+        "form": "throw it away",
+        "chunks": [2, 5],
+        "parts": ["throw", "away"]
+      },
+      {
+        "en": "Should we throw away the old branch?",
+        "ru": "Нам выкинуть старую ветку?",
+        "form": "throw away",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I threw away my old shoes.",
+        "ru": "Я выбросил свои старые ботинки.",
+        "form": "threw away",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "so-far",
+    "en": "so far",
+    "ru": [
+      "пока что",
+      "до сих пор",
+      "на данный момент"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 56,
+    "topic": null,
+    "note": "Обычно с present perfect: so far it has worked — пока что всё работало.",
+    "sentences": [
+      {
+        "en": "So far, all tests pass.",
+        "ru": "Пока что все тесты проходят.",
+        "form": "So far",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The migration has gone well so far.",
+        "ru": "Пока что миграция идёт хорошо.",
+        "form": "so far",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "We have fixed ten bugs so far.",
+        "ru": "На данный момент мы исправили десять багов.",
+        "form": "so far",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "Is everything working so far?",
+        "ru": "Пока что всё работает?",
+        "form": "so far",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "No users have complained so far.",
+        "ru": "До сих пор никто из пользователей не жаловался.",
+        "form": "so far",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "So far, the trip is great.",
+        "ru": "Пока что поездка отличная.",
+        "form": "So far",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "find-out",
+    "en": "find out",
+    "ru": [
+      "узнать",
+      "выяснить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 57,
+    "topic": null,
+    "note": "Не путай с figure out: find out — узнать факт, figure out — разобраться, додуматься.",
+    "sentences": [
+      {
+        "en": "Find out which version you have.",
+        "ru": "Узнай, какая у тебя версия.",
+        "form": "Find out",
+        "chunks": [2]
+      },
+      {
+        "en": "How can I find out my IP address?",
+        "ru": "Как узнать мой IP-адрес?",
+        "form": "find out",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "We found out the bug was in the cache.",
+        "ru": "Мы выяснили, что баг был в кеше.",
+        "form": "found out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Run this command to find out more.",
+        "ru": "Запусти эту команду, чтобы узнать больше.",
+        "form": "find out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Did you find out why it crashed?",
+        "ru": "Ты выяснил, почему оно упало?",
+        "form": "find out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I found out about the party today.",
+        "ru": "Сегодня я узнал про вечеринку.",
+        "form": "found out",
+        "chunks": [1, 3, 6]
+      }
+    ]
+  },
+  {
+    "id": "as-needed",
+    "en": "as needed",
+    "ru": [
+      "по мере необходимости",
+      "по необходимости",
+      "при необходимости"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 58,
+    "topic": null,
+    "note": "Обычно стоит в конце фразы; близко к if needed — «если нужно».",
+    "sentences": [
+      {
+        "en": "Change these values as needed.",
+        "ru": "Меняй эти значения по необходимости.",
+        "form": "as needed",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Add more servers as needed.",
+        "ru": "Добавляй серверы по мере необходимости.",
+        "form": "as needed",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The pool creates connections as needed.",
+        "ru": "Пул создаёт соединения по мере необходимости.",
+        "form": "as needed",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "You can edit the config as needed.",
+        "ru": "При необходимости конфиг можно отредактировать.",
+        "form": "as needed",
+        "chunks": [1, 5]
+      },
+      {
+        "en": "Images are loaded as needed.",
+        "ru": "Картинки загружаются по мере необходимости.",
+        "form": "as needed",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Take this medicine as needed.",
+        "ru": "Принимай это лекарство по необходимости.",
+        "form": "as needed",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "opt-in",
+    "en": "opt in",
+    "ru": [
+      "согласиться",
+      "подключиться",
+      "включить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 59,
+    "topic": null,
+    "note": "Обычно с to: opt in to emails — согласиться на рассылку; противоположность — opt out.",
+    "sentences": [
+      {
+        "en": "Users must opt in to emails.",
+        "ru": "Пользователи должны сами согласиться на рассылку.",
+        "form": "opt in",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "You can opt in to the beta.",
+        "ru": "Можно подключиться к бете.",
+        "form": "opt in",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "How do I opt in to new features?",
+        "ru": "Как включить новые функции?",
+        "form": "opt in",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "Only users who opted in see the banner.",
+        "ru": "Баннер видят только пользователи, которые согласились.",
+        "form": "opted in",
+        "chunks": [5, 6]
+      },
+      {
+        "en": "Did you opt in to tracking?",
+        "ru": "Ты согласился на отслеживание?",
+        "form": "opt in",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I opted in to the newsletter.",
+        "ru": "Я согласился получать рассылку.",
+        "form": "opted in",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "go-through",
+    "en": "go through",
+    "ru": [
+      "пройти",
+      "просмотреть",
+      "пройтись по"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 60,
+    "topic": null,
+    "note": "В коде часто «пройтись по»: the loop goes through the list — цикл проходит по списку.",
+    "sentences": [
+      {
+        "en": "Let's go through the steps together.",
+        "ru": "Давай вместе пройдёмся по шагам.",
+        "form": "go through",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "The loop goes through every item.",
+        "ru": "Цикл проходит по каждому элементу.",
+        "form": "goes through",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I went through the logs again.",
+        "ru": "Я ещё раз просмотрел логи.",
+        "form": "went through",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "Did the payment go through?",
+        "ru": "Платёж прошёл?",
+        "form": "go through",
+        "chunks": [3]
+      },
+      {
+        "en": "Go through this checklist before the release.",
+        "ru": "Перед релизом пройдись по этому чек-листу.",
+        "form": "Go through",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We went through the museum in an hour.",
+        "ru": "Мы прошли весь музей за час.",
+        "form": "went through",
+        "chunks": [1, 3, 5]
+      }
+    ]
+  },
+  {
+    "id": "take-advantage-of",
+    "en": "take advantage of",
+    "ru": [
+      "воспользоваться",
+      "использовать"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 61,
+    "topic": null,
+    "note": "О людях звучит негативно: take advantage of someone — воспользоваться кем-то в своих целях.",
+    "sentences": [
+      {
+        "en": "Take advantage of the browser cache.",
+        "ru": "Используй кеш браузера.",
+        "form": "Take advantage of",
+        "chunks": [3]
+      },
+      {
+        "en": "This tool takes advantage of multiple cores.",
+        "ru": "Этот инструмент использует несколько ядер.",
+        "form": "takes advantage of",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "You can take advantage of free hosting.",
+        "ru": "Можно воспользоваться бесплатным хостингом.",
+        "form": "take advantage of",
+        "chunks": [1, 5]
+      },
+      {
+        "en": "We didn't take advantage of TypeScript.",
+        "ru": "Мы не использовали возможности TypeScript.",
+        "form": "take advantage of",
+        "chunks": [1, 5]
+      },
+      {
+        "en": "Modern browsers take advantage of the GPU.",
+        "ru": "Современные браузеры используют GPU.",
+        "form": "take advantage of",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Take advantage of the sale this week.",
+        "ru": "Воспользуйся распродажей на этой неделе.",
+        "form": "Take advantage of",
+        "chunks": [3, 5]
+      }
+    ]
+  },
+  {
+    "id": "try-out",
+    "en": "try out",
+    "ru": [
+      "попробовать",
+      "опробовать",
+      "испытать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 62,
+    "topic": null,
+    "note": "С местоимением частица идёт после него: try it out; в отличие от try — испытать что-то новое в деле.",
+    "sentences": [
+      {
+        "en": "Try out the new editor.",
+        "ru": "Опробуй новый редактор.",
+        "form": "Try out",
+        "chunks": [2]
+      },
+      {
+        "en": "You can try out the demo online.",
+        "ru": "Демо можно попробовать онлайн.",
+        "form": "try out",
+        "chunks": [1, 4, 6]
+      },
+      {
+        "en": "I tried out three frameworks last month.",
+        "ru": "В прошлом месяце я попробовал три фреймворка.",
+        "form": "tried out",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "This feature is new, so try it out.",
+        "ru": "Это новая функция, так что опробуй её.",
+        "form": "try it out",
+        "chunks": [2, 4],
+        "parts": ["try", "out"]
+      },
+      {
+        "en": "Do you want to try out Bun?",
+        "ru": "Хочешь попробовать Bun?",
+        "form": "try out",
+        "chunks": [2, 6]
+      },
+      {
+        "en": "We tried out a new recipe.",
+        "ru": "Мы попробовали новый рецепт.",
+        "form": "tried out",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "lay-out",
+    "en": "lay out",
+    "ru": [
+      "расположить",
+      "изложить",
+      "разложить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 63,
+    "topic": null,
+    "note": "Отсюда существительное layout — макет, раскладка.",
+    "sentences": [
+      {
+        "en": "Lay out the buttons in a row.",
+        "ru": "Расположи кнопки в ряд.",
+        "form": "Lay out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "CSS Grid lays out items in columns.",
+        "ru": "CSS Grid располагает элементы по колонкам.",
+        "form": "lays out",
+        "chunks": [2, 4, 5]
+      },
+      {
+        "en": "The docs lay out the main steps.",
+        "ru": "В документации изложены основные шаги.",
+        "form": "lay out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Lay them out from left to right.",
+        "ru": "Расположи их слева направо.",
+        "form": "Lay them out",
+        "chunks": [3],
+        "parts": ["Lay", "out"]
+      },
+      {
+        "en": "How should we lay out the form fields?",
+        "ru": "Как нам расположить поля формы?",
+        "form": "lay out",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "She laid out her clothes for the trip.",
+        "ru": "Она разложила одежду для поездки.",
+        "form": "laid out",
+        "chunks": [1, 3, 5]
+      }
+    ]
+  },
+  {
+    "id": "fall-back",
+    "en": "fall back",
+    "ru": [
+      "перейти на запасной вариант",
+      "переключиться на",
+      "откатиться к"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 64,
+    "topic": null,
+    "note": "Обычно с to: fall back to HTTP; существительное fallback — запасной вариант.",
+    "sentences": [
+      {
+        "en": "Without a translation, the app falls back to English.",
+        "ru": "Без перевода приложение переходит на английский.",
+        "form": "falls back",
+        "chunks": [3, 5, 7]
+      },
+      {
+        "en": "If the font fails, the browser falls back to Arial.",
+        "ru": "Если шрифт не загрузится, браузер переключится на Arial.",
+        "form": "falls back",
+        "chunks": [4, 6, 8]
+      },
+      {
+        "en": "We fell back to the old server.",
+        "ru": "Мы переключились на старый сервер.",
+        "form": "fell back",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The code can fall back to a default value.",
+        "ru": "Код может откатиться к значению по умолчанию.",
+        "form": "fall back",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Does it fall back to HTTP?",
+        "ru": "Оно переключается на HTTP при сбое?",
+        "form": "fall back",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Without Wi-Fi, the phone falls back to mobile data.",
+        "ru": "Без Wi-Fi телефон переключается на мобильный интернет.",
+        "form": "falls back",
+        "chunks": [2, 4, 6]
+      }
+    ]
+  },
+  {
+    "id": "look-up",
+    "en": "look up",
+    "ru": [
+      "найти",
+      "посмотреть",
+      "искать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 65,
+    "topic": null,
+    "note": "Так ищут в справочнике или таблице; существительное lookup — поиск.",
+    "sentences": [
+      {
+        "en": "Look up the error in the docs.",
+        "ru": "Посмотри эту ошибку в документации.",
+        "form": "Look up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The function looks up a user by ID.",
+        "ru": "Функция ищет пользователя по ID.",
+        "form": "looks up",
+        "chunks": [2, 4, 6]
+      },
+      {
+        "en": "If you forget a command, look it up.",
+        "ru": "Если забыл команду, посмотри её.",
+        "form": "look it up",
+        "chunks": [5],
+        "parts": ["look", "up"]
+      },
+      {
+        "en": "You can look up any key in the map.",
+        "ru": "Можно найти любой ключ в Map.",
+        "form": "look up",
+        "chunks": [1, 4, 6]
+      },
+      {
+        "en": "We looked up the price online.",
+        "ru": "Мы посмотрели цену в интернете.",
+        "form": "looked up",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "Can you look up his phone number?",
+        "ru": "Можешь найти его номер телефона?",
+        "form": "look up",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "up-to-date",
+    "en": "up to date",
+    "ru": [
+      "актуальный",
+      "обновлённый",
+      "в курсе"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 66,
+    "topic": null,
+    "note": "Перед существительным пишут через дефис: up-to-date docs; противоположность — out of date.",
+    "sentences": [
+      {
+        "en": "Keep your packages up to date.",
+        "ru": "Держи пакеты обновлёнными.",
+        "form": "up to date",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Is this guide up to date?",
+        "ru": "Это руководство актуально?",
+        "form": "up to date",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The docs are not up to date.",
+        "ru": "Документация неактуальна.",
+        "form": "up to date",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Your branch is up to date with main.",
+        "ru": "Твоя ветка актуальна относительно main.",
+        "form": "up to date",
+        "chunks": [2, 3, 6]
+      },
+      {
+        "en": "We update the list to keep it up to date.",
+        "ru": "Мы обновляем список, чтобы он был актуальным.",
+        "form": "up to date",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "I read the news to stay up to date.",
+        "ru": "Я читаю новости, чтобы быть в курсе.",
+        "form": "up to date",
+        "chunks": [1, 4]
+      }
+    ]
+  },
+  {
+    "id": "turn-on",
+    "en": "turn on",
+    "ru": [
+      "включить",
+      "включать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 67,
+    "topic": null,
+    "note": "Выключить — turn off; с местоимением частица идёт после него: turn it on.",
+    "sentences": [
+      {
+        "en": "Turn on dark mode in the settings.",
+        "ru": "Включи тёмную тему в настройках.",
+        "form": "Turn on",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "You should turn on notifications.",
+        "ru": "Тебе стоит включить уведомления.",
+        "form": "turn on",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "The feature is turned on by default.",
+        "ru": "Эта функция включена по умолчанию.",
+        "form": "turned on",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Where do I turn on logging?",
+        "ru": "Где включить логирование?",
+        "form": "turn on",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "If the Wi-Fi is off, turn it on.",
+        "ru": "Если Wi-Fi выключен, включи его.",
+        "form": "turn it on",
+        "chunks": [5],
+        "parts": ["turn", "on"]
+      },
+      {
+        "en": "I turned on the light in the kitchen.",
+        "ru": "Я включил свет на кухне.",
+        "form": "turned on",
+        "chunks": [1, 3, 5]
+      }
+    ]
+  },
+  {
+    "id": "build-on",
+    "en": "build on",
+    "ru": [
+      "основываться на",
+      "опираться на",
+      "строиться на"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 68,
+    "topic": null,
+    "note": "Часто в пассиве: built on React — построен на React.",
+    "sentences": [
+      {
+        "en": "Next.js builds on React.",
+        "ru": "Next.js основан на React.",
+        "form": "builds on",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "This lesson builds on the last one.",
+        "ru": "Этот урок опирается на предыдущий.",
+        "form": "builds on",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Vite is built on esbuild and Rollup.",
+        "ru": "Vite построен на esbuild и Rollup.",
+        "form": "built on",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "We can build on this example.",
+        "ru": "Можно опереться на этот пример.",
+        "form": "build on",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Each step builds on the previous step.",
+        "ru": "Каждый шаг опирается на предыдущий.",
+        "form": "builds on",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Good habits build on small wins.",
+        "ru": "Хорошие привычки строятся на маленьких победах.",
+        "form": "build on",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "account-for",
+    "en": "account for",
+    "ru": [
+      "учитывать",
+      "составлять",
+      "объяснять"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 69,
+    "topic": null,
+    "note": "В документации чаще значит «учесть»; с числами — «составлять»: accounts for 10% — составляет 10%.",
+    "sentences": [
+      {
+        "en": "Account for empty strings in your code.",
+        "ru": "Учитывай в коде пустые строки.",
+        "form": "Account for",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The function doesn't account for time zones.",
+        "ru": "Функция не учитывает часовые пояса.",
+        "form": "account for",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Mobile users account for half of our traffic.",
+        "ru": "Мобильные пользователи составляют половину нашего трафика.",
+        "form": "account for",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Did you account for slow networks?",
+        "ru": "Ты учёл медленные сети?",
+        "form": "account for",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "This bug accounts for the crashes.",
+        "ru": "Этот баг и объясняет падения.",
+        "form": "accounts for",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We must account for the cost of travel.",
+        "ru": "Нужно учесть расходы на дорогу.",
+        "form": "account for",
+        "chunks": [1, 4]
+      }
+    ]
+  },
+  {
+    "id": "roll-out",
+    "en": "roll out",
+    "ru": [
+      "выкатить",
+      "развернуть",
+      "запустить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 70,
+    "topic": null,
+    "note": "Существительное rollout — выкатка, постепенный выпуск.",
+    "sentences": [
+      {
+        "en": "We roll out updates every week.",
+        "ru": "Мы выкатываем обновления каждую неделю.",
+        "form": "roll out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "The feature was rolled out to all users.",
+        "ru": "Функцию выкатили на всех пользователей.",
+        "form": "rolled out",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Roll it out to ten percent of users.",
+        "ru": "Выкати её на десять процентов пользователей.",
+        "form": "Roll it out",
+        "chunks": [3],
+        "parts": ["Roll", "out"]
+      },
+      {
+        "en": "Google is rolling out a new design.",
+        "ru": "Google выкатывает новый дизайн.",
+        "form": "rolling out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "When can we roll out the fix?",
+        "ru": "Когда мы сможем выкатить исправление?",
+        "form": "roll out",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "The city rolled out new buses.",
+        "ru": "Город запустил новые автобусы.",
+        "form": "rolled out",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "keep-up",
+    "en": "keep up",
+    "ru": [
+      "не отставать",
+      "успевать",
+      "продолжать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 71,
+    "topic": null,
+    "note": "С объектом обычно keep up with: keep up with changes — успевать за изменениями; keep it up — так держать.",
+    "sentences": [
+      {
+        "en": "It's hard to keep up with JavaScript.",
+        "ru": "Трудно успевать за JavaScript.",
+        "form": "keep up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "The server can't keep up with the requests.",
+        "ru": "Сервер не успевает за запросами.",
+        "form": "keep up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Docs should keep up with the code.",
+        "ru": "Документация не должна отставать от кода.",
+        "form": "keep up",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "I read blogs to keep up with new tools.",
+        "ru": "Я читаю блоги, чтобы не отставать от новых инструментов.",
+        "form": "keep up",
+        "chunks": [1, 3, 6]
+      },
+      {
+        "en": "Great work, keep it up.",
+        "ru": "Отличная работа, продолжай в том же духе.",
+        "form": "keep it up",
+        "chunks": [2],
+        "parts": ["keep", "up"]
+      },
+      {
+        "en": "I can't keep up with my brother.",
+        "ru": "Я не успеваю за братом.",
+        "form": "keep up",
+        "chunks": [1, 4]
+      }
+    ]
+  },
+  {
+    "id": "under-the-hood",
+    "en": "under the hood",
+    "ru": [
+      "под капотом",
+      "внутри"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 72,
+    "topic": null,
+    "note": "Так говорят о внутреннем устройстве: что происходит под капотом библиотеки.",
+    "sentences": [
+      {
+        "en": "Under the hood, React uses a virtual DOM.",
+        "ru": "Под капотом React использует виртуальный DOM.",
+        "form": "Under the hood",
+        "chunks": [3, 4]
+      },
+      {
+        "en": "Let's see what happens under the hood.",
+        "ru": "Давай посмотрим, что происходит под капотом.",
+        "form": "under the hood",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "This command calls Git under the hood.",
+        "ru": "Внутри эта команда вызывает Git.",
+        "form": "under the hood",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "How does it work under the hood?",
+        "ru": "Как это устроено под капотом?",
+        "form": "under the hood",
+        "chunks": [1, 3, 4]
+      },
+      {
+        "en": "The API is simple, but complex under the hood.",
+        "ru": "API простой, но внутри сложный.",
+        "form": "under the hood",
+        "chunks": [2, 4, 6]
+      },
+      {
+        "en": "Under the hood, fetch sends an HTTP request.",
+        "ru": "Под капотом fetch отправляет HTTP-запрос.",
+        "form": "Under the hood",
+        "chunks": [3, 4]
+      }
+    ]
+  },
+  {
+    "id": "back-up",
+    "en": "back up",
+    "ru": [
+      "сделать резервную копию",
+      "сохранить копию",
+      "поддержать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 73,
+    "topic": null,
+    "note": "Существительное пишется слитно — backup (резервная копия).",
+    "sentences": [
+      {
+        "en": "Back up your files before the update.",
+        "ru": "Сделай резервную копию файлов перед обновлением.",
+        "form": "Back up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The script backs up the database every night.",
+        "ru": "Скрипт каждую ночь делает резервную копию базы.",
+        "form": "backs up",
+        "chunks": [2, 4, 6]
+      },
+      {
+        "en": "Did you back up the config?",
+        "ru": "Ты сделал резервную копию конфига?",
+        "form": "back up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "This data is important, so back it up.",
+        "ru": "Эти данные важные, так что сделай их резервную копию.",
+        "form": "back it up",
+        "chunks": [2, 4],
+        "parts": ["back", "up"]
+      },
+      {
+        "en": "All photos are backed up to the cloud.",
+        "ru": "Копии всех фото сохраняются в облаке.",
+        "form": "backed up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "My friends always back me up.",
+        "ru": "Друзья всегда меня поддерживают.",
+        "form": "back me up",
+        "chunks": [2],
+        "parts": ["back", "up"]
+      }
+    ]
+  },
+  {
+    "id": "run-into",
+    "en": "run into",
+    "ru": [
+      "столкнуться с",
+      "наткнуться на",
+      "случайно встретить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 74,
+    "topic": null,
+    "note": "Чаще о проблемах: run into an error — столкнуться с ошибкой; о людях — случайно встретить.",
+    "sentences": [
+      {
+        "en": "You may run into this error on Windows.",
+        "ru": "На Windows ты можешь столкнуться с этой ошибкой.",
+        "form": "run into",
+        "chunks": [1, 4, 6]
+      },
+      {
+        "en": "We ran into a problem with the build.",
+        "ru": "Мы столкнулись с проблемой в сборке.",
+        "form": "ran into",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "If you run into issues, open a ticket.",
+        "ru": "Если столкнёшься с проблемами, создай тикет.",
+        "form": "run into",
+        "chunks": [5]
+      },
+      {
+        "en": "Many users run into the same bug.",
+        "ru": "Многие пользователи натыкаются на тот же баг.",
+        "form": "run into",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Did you run into any limits?",
+        "ru": "Ты столкнулся с какими-то ограничениями?",
+        "form": "run into",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I ran into my teacher at the shop.",
+        "ru": "Я случайно встретил учителя в магазине.",
+        "form": "ran into",
+        "chunks": [1, 3, 5]
+      }
+    ]
+  },
+  {
+    "id": "speed-up",
+    "en": "speed up",
+    "ru": [
+      "ускорить",
+      "ускориться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 75,
+    "topic": null,
+    "note": "Отсюда существительное speedup — ускорение.",
+    "sentences": [
+      {
+        "en": "Caching can speed up your app.",
+        "ru": "Кэширование может ускорить приложение.",
+        "form": "speed up",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Speed up the build with this flag.",
+        "ru": "Ускорь сборку с помощью этого флага.",
+        "form": "Speed up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The new version sped up our tests.",
+        "ru": "Новая версия ускорила наши тесты.",
+        "form": "sped up",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "How can I speed it up?",
+        "ru": "Как это ускорить?",
+        "form": "speed it up",
+        "chunks": [1, 3],
+        "parts": ["speed", "up"]
+      },
+      {
+        "en": "Loading speeds up after the first visit.",
+        "ru": "После первого визита загрузка ускоряется.",
+        "form": "speeds up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The car sped up on the highway.",
+        "ru": "Машина ускорилась на трассе.",
+        "form": "sped up",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "break-down",
+    "en": "break down",
+    "ru": [
+      "разбить на части",
+      "разобрать",
+      "сломаться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 76,
+    "topic": null,
+    "note": "Существительное breakdown — разбивка или поломка.",
+    "sentences": [
+      {
+        "en": "Break down big tasks into small steps.",
+        "ru": "Разбивай большие задачи на маленькие шаги.",
+        "form": "Break down",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Break it down into functions.",
+        "ru": "Разбей это на функции.",
+        "form": "Break it down",
+        "chunks": [3],
+        "parts": ["Break", "down"]
+      },
+      {
+        "en": "The report breaks down costs by month.",
+        "ru": "Отчёт разбивает расходы по месяцам.",
+        "form": "breaks down",
+        "chunks": [2, 4, 5]
+      },
+      {
+        "en": "Let's break down this error message.",
+        "ru": "Давай разберём это сообщение об ошибке.",
+        "form": "break down",
+        "chunks": [3]
+      },
+      {
+        "en": "The old server broke down last night.",
+        "ru": "Старый сервер сломался прошлой ночью.",
+        "form": "broke down",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "Our car broke down on the way home.",
+        "ru": "Наша машина сломалась по дороге домой.",
+        "form": "broke down",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "out-of-the-box",
+    "en": "out of the box",
+    "ru": [
+      "из коробки",
+      "сразу",
+      "без настройки"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 77,
+    "topic": null,
+    "note": "Значит «работает сразу, без настройки»; перед существительным — через дефис: out-of-the-box support.",
+    "sentences": [
+      {
+        "en": "Vite supports TypeScript out of the box.",
+        "ru": "Vite поддерживает TypeScript из коробки.",
+        "form": "out of the box",
+        "chunks": [1, 2, 3]
+      },
+      {
+        "en": "It works out of the box.",
+        "ru": "Это работает из коробки.",
+        "form": "out of the box",
+        "chunks": [1, 2]
+      },
+      {
+        "en": "Out of the box, the app uses SQLite.",
+        "ru": "Без настройки приложение использует SQLite.",
+        "form": "Out of the box",
+        "chunks": [4, 6]
+      },
+      {
+        "en": "Does dark mode work out of the box?",
+        "ru": "Тёмная тема работает из коробки?",
+        "form": "out of the box",
+        "chunks": [3, 4]
+      },
+      {
+        "en": "Many features are ready out of the box.",
+        "ru": "Многие функции доступны из коробки.",
+        "form": "out of the box",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The new phone was ready out of the box.",
+        "ru": "Новый телефон был готов к работе сразу.",
+        "form": "out of the box",
+        "chunks": [3, 5]
+      }
+    ]
+  },
+  {
+    "id": "pick-up",
+    "en": "pick up",
+    "ru": [
+      "подхватить",
+      "забрать",
+      "освоить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 78,
+    "topic": null,
+    "note": "Много значений; в документации чаще «подхватить»: the server picks up changes — сервер подхватывает изменения.",
+    "sentences": [
+      {
+        "en": "The dev server picks up changes automatically.",
+        "ru": "Dev-сервер подхватывает изменения автоматически.",
+        "form": "picks up",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "Restart the app to pick up the new config.",
+        "ru": "Перезапусти приложение, чтобы оно подхватило новый конфиг.",
+        "form": "pick up",
+        "chunks": [1, 3, 6]
+      },
+      {
+        "en": "Git didn't pick up my new file.",
+        "ru": "Git не подхватил мой новый файл.",
+        "form": "pick up",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "You can pick up Python in a month.",
+        "ru": "Python можно освоить за месяц.",
+        "form": "pick up",
+        "chunks": [1, 4, 5]
+      },
+      {
+        "en": "The worker picks the job up from the queue.",
+        "ru": "Воркер забирает задачу из очереди.",
+        "form": "picks the job up",
+        "chunks": [2, 6],
+        "parts": ["picks", "up"]
+      },
+      {
+        "en": "I pick up my son from school.",
+        "ru": "Я забираю сына из школы.",
+        "form": "pick up",
+        "chunks": [1, 3, 5]
+      }
+    ]
+  },
+  {
+    "id": "work-out",
+    "en": "work out",
+    "ru": [
+      "разобраться",
+      "выяснить",
+      "получиться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 79,
+    "topic": null,
+    "note": "Не путай с существительным workout — тренировка.",
+    "sentences": [
+      {
+        "en": "I can't work out why the test fails.",
+        "ru": "Не могу разобраться, почему падает тест.",
+        "form": "work out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "We worked out the problem together.",
+        "ru": "Мы вместе разобрались с проблемой.",
+        "form": "worked out",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "Let me work it out.",
+        "ru": "Дай мне разобраться.",
+        "form": "work it out",
+        "chunks": [2],
+        "parts": ["work", "out"]
+      },
+      {
+        "en": "Can you work out the total size?",
+        "ru": "Можешь выяснить общий размер?",
+        "form": "work out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The new setup worked out well.",
+        "ru": "С новой настройкой всё хорошо получилось.",
+        "form": "worked out",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "Our trip didn't work out.",
+        "ru": "Поездка у нас не получилась.",
+        "form": "work out",
+        "chunks": [2]
+      }
+    ]
+  },
+  {
+    "id": "sign-up",
+    "en": "sign up",
+    "ru": [
+      "зарегистрироваться",
+      "записаться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 80,
+    "topic": null,
+    "note": "Существительное — sign-up или signup (регистрация); войти — sign in.",
+    "sentences": [
+      {
+        "en": "Sign up with your email.",
+        "ru": "Зарегистрируйся по почте.",
+        "form": "Sign up",
+        "chunks": [2]
+      },
+      {
+        "en": "New users must sign up first.",
+        "ru": "Новые пользователи сначала должны зарегистрироваться.",
+        "form": "sign up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "I signed up for a free account.",
+        "ru": "Я зарегистрировался на бесплатном тарифе.",
+        "form": "signed up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Can I sign up without a phone number?",
+        "ru": "Можно зарегистрироваться без номера телефона?",
+        "form": "sign up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Users who sign up get a welcome email.",
+        "ru": "Те, кто зарегистрировался, получают приветственное письмо.",
+        "form": "sign up",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "She signed up for a yoga class.",
+        "ru": "Она записалась на йогу.",
+        "form": "signed up",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "make-up",
+    "en": "make up",
+    "ru": [
+      "составлять",
+      "состоять из",
+      "выдумать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 81,
+    "topic": null,
+    "note": "В пассиве — be made up of: the page is made up of blocks — страница состоит из блоков.",
+    "sentences": [
+      {
+        "en": "Small components make up the page.",
+        "ru": "Страницу составляют небольшие компоненты.",
+        "form": "make up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Images make up most of the bundle.",
+        "ru": "Картинки составляют большую часть бандла.",
+        "form": "make up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "A URL is made up of several parts.",
+        "ru": "URL состоит из нескольких частей.",
+        "form": "made up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Tests make up half of our code.",
+        "ru": "Тесты составляют половину нашего кода.",
+        "form": "make up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Don't make up numbers in the report.",
+        "ru": "Не выдумывай цифры в отчёте.",
+        "form": "make up",
+        "chunks": [3, 4]
+      },
+      {
+        "en": "He made the story up.",
+        "ru": "Он выдумал эту историю.",
+        "form": "made the story up",
+        "chunks": [1],
+        "parts": ["made", "up"]
+      }
+    ]
+  },
+  {
+    "id": "check-in",
+    "en": "check in",
+    "ru": [
+      "закоммитить",
+      "зарегистрироваться",
+      "пройти регистрацию"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 82,
+    "topic": null,
+    "note": "В разработке — сдать код в репозиторий; в отеле и аэропорту — регистрация (check-in).",
+    "sentences": [
+      {
+        "en": "Check in your changes before you leave.",
+        "ru": "Закоммить изменения, перед тем как уйти.",
+        "form": "Check in",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Don't check in secrets.",
+        "ru": "Не коммить секреты.",
+        "form": "check in",
+        "chunks": [3]
+      },
+      {
+        "en": "Check it in when the tests pass.",
+        "ru": "Закоммить это, когда тесты пройдут.",
+        "form": "Check it in",
+        "chunks": [3],
+        "parts": ["Check", "in"]
+      },
+      {
+        "en": "Is the lock file checked in?",
+        "ru": "Lock-файл закоммичен?",
+        "form": "checked in",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Check in at the front desk.",
+        "ru": "Пройди регистрацию на стойке ресепшена.",
+        "form": "Check in",
+        "chunks": [2]
+      },
+      {
+        "en": "We checked in two hours before the flight.",
+        "ru": "Мы прошли регистрацию за два часа до вылета.",
+        "form": "checked in",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "kick-off",
+    "en": "kick off",
+    "ru": [
+      "запустить",
+      "начать",
+      "стартовать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 83,
+    "topic": null,
+    "note": "Существительное kickoff — старт, первая встреча по проекту.",
+    "sentences": [
+      {
+        "en": "A push kicks off the CI pipeline.",
+        "ru": "Пуш запускает CI-пайплайн.",
+        "form": "kicks off",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "This command kicks off the build.",
+        "ru": "Эта команда запускает сборку.",
+        "form": "kicks off",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We kick off the project on Monday.",
+        "ru": "Мы стартуем проект в понедельник.",
+        "form": "kick off",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "Click the button to kick it off.",
+        "ru": "Нажми кнопку, чтобы запустить процесс.",
+        "form": "kick it off",
+        "chunks": [1, 3],
+        "parts": ["kick", "off"]
+      },
+      {
+        "en": "The deploy was kicked off by a bot.",
+        "ru": "Деплой запустил бот.",
+        "form": "kicked off",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "The festival kicks off at noon.",
+        "ru": "Фестиваль начинается в полдень.",
+        "form": "kicks off",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "give-up",
+    "en": "give up",
+    "ru": [
+      "сдаться",
+      "бросить",
+      "отказаться от"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 84,
+    "topic": null,
+    "note": "С объектом часто give up on: give up on an idea — отказаться от идеи.",
+    "sentences": [
+      {
+        "en": "Don't give up if the build fails.",
+        "ru": "Не сдавайся, если сборка падает.",
+        "form": "give up",
+        "chunks": [3]
+      },
+      {
+        "en": "The client gives up after three retries.",
+        "ru": "Клиент сдаётся после трёх повторных попыток.",
+        "form": "gives up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We gave up on the old framework.",
+        "ru": "Мы отказались от старого фреймворка.",
+        "form": "gave up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "I tried Vim and gave it up.",
+        "ru": "Я попробовал Vim и бросил.",
+        "form": "gave it up",
+        "chunks": [1, 3],
+        "parts": ["gave", "up"]
+      },
+      {
+        "en": "The script gives up when the server is down.",
+        "ru": "Скрипт сдаётся, если сервер лежит.",
+        "form": "gives up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Never give up on your goals.",
+        "ru": "Никогда не отказывайся от своих целей.",
+        "form": "give up",
+        "chunks": [3]
+      }
+    ]
+  },
+  {
+    "id": "roll-back",
+    "en": "roll back",
+    "ru": [
+      "откатить",
+      "откатывать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 85,
+    "topic": null,
+    "note": "Отсюда существительное rollback — откат.",
+    "sentences": [
+      {
+        "en": "Roll back the last migration.",
+        "ru": "Откати последнюю миграцию.",
+        "form": "Roll back",
+        "chunks": [2]
+      },
+      {
+        "en": "We rolled back the release an hour later.",
+        "ru": "Через час мы откатили релиз.",
+        "form": "rolled back",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "If the deploy fails, roll it back.",
+        "ru": "Если деплой упал, откати его.",
+        "form": "roll it back",
+        "chunks": [4],
+        "parts": ["roll", "back"]
+      },
+      {
+        "en": "Can I roll back a pushed commit?",
+        "ru": "Можно откатить запушенный коммит?",
+        "form": "roll back",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The update was rolled back for all users.",
+        "ru": "Обновление откатили для всех пользователей.",
+        "form": "rolled back",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Don't roll back the database by hand.",
+        "ru": "Не откатывай базу данных вручную.",
+        "form": "roll back",
+        "chunks": [3, 5]
+      }
+    ]
+  },
+  {
+    "id": "move-on",
+    "en": "move on",
+    "ru": [
+      "перейти к",
+      "двигаться дальше"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 86,
+    "topic": null,
+    "note": "Обычно с to: move on to the next step — перейти к следующему шагу.",
+    "sentences": [
+      {
+        "en": "Now move on to the next step.",
+        "ru": "Теперь переходи к следующему шагу.",
+        "form": "move on",
+        "chunks": [3]
+      },
+      {
+        "en": "Let's move on to testing.",
+        "ru": "Перейдём к тестированию.",
+        "form": "move on",
+        "chunks": [3]
+      },
+      {
+        "en": "Fix this bug before you move on.",
+        "ru": "Исправь этот баг, прежде чем двигаться дальше.",
+        "form": "move on",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "When the tests pass, we move on.",
+        "ru": "Когда тесты проходят, мы двигаемся дальше.",
+        "form": "move on",
+        "chunks": [4, 5]
+      },
+      {
+        "en": "Can we move on to the next topic?",
+        "ru": "Можем перейти к следующей теме?",
+        "form": "move on",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The team moved on to a new project.",
+        "ru": "Команда перешла к новому проекту.",
+        "form": "moved on",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "bubble-up",
+    "en": "bubble up",
+    "ru": [
+      "всплывать",
+      "подниматься вверх"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 87,
+    "topic": null,
+    "note": "В DOM события всплывают от элемента к родителям (event bubbling); то же говорят об ошибках.",
+    "sentences": [
+      {
+        "en": "Click events bubble up to the parent.",
+        "ru": "События клика всплывают к родителю.",
+        "form": "bubble up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The error bubbles up to the main function.",
+        "ru": "Ошибка поднимается вверх до функции main.",
+        "form": "bubbles up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Does this event bubble up?",
+        "ru": "Это событие всплывает?",
+        "form": "bubble up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Errors bubble up if you don't catch them.",
+        "ru": "Если не ловить ошибки, они всплывают наверх.",
+        "form": "bubble up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Focus events don't bubble up.",
+        "ru": "События фокуса не всплывают.",
+        "form": "bubble up",
+        "chunks": [2]
+      },
+      {
+        "en": "The exception bubbled up and crashed the app.",
+        "ru": "Исключение всплыло и уронило приложение.",
+        "form": "bubbled up",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "sign-out",
+    "en": "sign out",
+    "ru": [
+      "выйти",
+      "выйти из аккаунта"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 88,
+    "topic": null,
+    "note": "То же, что log out; войти — sign in.",
+    "sentences": [
+      {
+        "en": "Sign out of your account.",
+        "ru": "Выйди из аккаунта.",
+        "form": "Sign out",
+        "chunks": [2]
+      },
+      {
+        "en": "I signed out on all devices.",
+        "ru": "Я вышел из аккаунта на всех устройствах.",
+        "form": "signed out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Users are signed out automatically after an hour.",
+        "ru": "Через час пользователь автоматически выходит из аккаунта.",
+        "form": "signed out",
+        "chunks": [1, 5]
+      },
+      {
+        "en": "How do I sign out?",
+        "ru": "Как выйти из аккаунта?",
+        "form": "sign out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Don't forget to sign out on a shared computer.",
+        "ru": "Не забудь выйти из аккаунта на общем компьютере.",
+        "form": "sign out",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Click here to sign out.",
+        "ru": "Нажми здесь, чтобы выйти.",
+        "form": "sign out",
+        "chunks": [2]
+      }
+    ]
+  },
+  {
+    "id": "take-over",
+    "en": "take over",
+    "ru": [
+      "взять на себя",
+      "перехватить",
+      "взять под контроль"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 89,
+    "topic": null,
+    "note": "Существительное takeover — захват, поглощение компании.",
+    "sentences": [
+      {
+        "en": "Can you take over this task?",
+        "ru": "Можешь взять эту задачу на себя?",
+        "form": "take over",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The new team took over the project.",
+        "ru": "Новая команда взяла проект на себя.",
+        "form": "took over",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "React takes over the DOM inside this div.",
+        "ru": "React берёт под контроль DOM внутри этого div.",
+        "form": "takes over",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "When I leave, Anna will take it over.",
+        "ru": "Когда я уйду, задачу возьмёт на себя Анна.",
+        "form": "take it over",
+        "chunks": [3, 4],
+        "parts": ["take", "over"]
+      },
+      {
+        "en": "The backup server takes over if the main one fails.",
+        "ru": "Если основной сервер упадёт, его работу перехватит резервный.",
+        "form": "takes over",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "My sister took over the cooking.",
+        "ru": "Готовку взяла на себя сестра.",
+        "form": "took over",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "take-place",
+    "en": "take place",
+    "ru": [
+      "происходить",
+      "проходить",
+      "состояться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 90,
+    "topic": null,
+    "note": "Не бывает в пассиве: the meeting takes place, а не is taken place.",
+    "sentences": [
+      {
+        "en": "The update takes place at night.",
+        "ru": "Обновление происходит ночью.",
+        "form": "takes place",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Rendering takes place on the server.",
+        "ru": "Рендеринг происходит на сервере.",
+        "form": "takes place",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The migration took place without errors.",
+        "ru": "Миграция прошла без ошибок.",
+        "form": "took place",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Where does validation take place?",
+        "ru": "Где происходит валидация?",
+        "form": "take place",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "No changes take place until you click Save.",
+        "ru": "Пока не нажмёшь Save, ничего не произойдёт.",
+        "form": "take place",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The concert will take place in the park.",
+        "ru": "Концерт пройдёт в парке.",
+        "form": "take place",
+        "chunks": [2, 5]
+      }
+    ]
+  },
+  {
+    "id": "free-up",
+    "en": "free up",
+    "ru": [
+      "освободить",
+      "высвободить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 91,
+    "topic": null,
+    "note": "Обычно о ресурсах: free up memory — освободить память.",
+    "sentences": [
+      {
+        "en": "Free up some disk space.",
+        "ru": "Освободи немного места на диске.",
+        "form": "Free up",
+        "chunks": [2]
+      },
+      {
+        "en": "Closing tabs frees up memory.",
+        "ru": "Закрытие вкладок освобождает память.",
+        "form": "frees up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Delete old images to free up space.",
+        "ru": "Удали старые образы, чтобы освободить место.",
+        "form": "free up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Stop the old process to free the port up.",
+        "ru": "Останови старый процесс, чтобы освободить порт.",
+        "form": "free the port up",
+        "chunks": [1, 4],
+        "parts": ["free", "up"]
+      },
+      {
+        "en": "Was the memory freed up?",
+        "ru": "Память освободилась?",
+        "form": "freed up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The new job will free up my evenings.",
+        "ru": "Новая работа освободит мне вечера.",
+        "form": "free up",
+        "chunks": [3, 6]
+      }
+    ]
+  },
+  {
+    "id": "show-up",
+    "en": "show up",
+    "ru": [
+      "появиться",
+      "отображаться",
+      "прийти"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 92,
+    "topic": null,
+    "note": "В интерфейсе — «появиться, отобразиться»: the icon shows up — иконка появляется.",
+    "sentences": [
+      {
+        "en": "The new file doesn't show up in the list.",
+        "ru": "Новый файл не появляется в списке.",
+        "form": "show up",
+        "chunks": [3, 6]
+      },
+      {
+        "en": "A popup shows up after login.",
+        "ru": "После входа появляется всплывающее окно.",
+        "form": "shows up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "My changes didn't show up on the site.",
+        "ru": "Мои изменения не отобразились на сайте.",
+        "form": "show up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Why does this warning show up?",
+        "ru": "Почему появляется это предупреждение?",
+        "form": "show up",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "The logs will show up in the console.",
+        "ru": "Логи отобразятся в консоли.",
+        "form": "show up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "He showed up late to the meeting.",
+        "ru": "Он пришёл на встречу с опозданием.",
+        "form": "showed up",
+        "chunks": [1, 4]
+      }
+    ]
+  },
+  {
+    "id": "time-out",
+    "en": "time out",
+    "ru": [
+      "отвалиться по таймауту",
+      "упасть по таймауту",
+      "истечь"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 93,
+    "topic": null,
+    "note": "Существительное пишется слитно — timeout (таймаут).",
+    "sentences": [
+      {
+        "en": "The request timed out after 30 seconds.",
+        "ru": "Запрос отвалился по таймауту через 30 секунд.",
+        "form": "timed out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The connection times out too often.",
+        "ru": "Соединение слишком часто отваливается по таймауту.",
+        "form": "times out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Why does the test time out?",
+        "ru": "Почему тест падает по таймауту?",
+        "form": "time out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "If the server is slow, the call may time out.",
+        "ru": "Если сервер медленный, вызов может отвалиться по таймауту.",
+        "form": "time out",
+        "chunks": [5, 7]
+      },
+      {
+        "en": "My session timed out while I was away.",
+        "ru": "Пока меня не было, моя сессия истекла.",
+        "form": "timed out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The download timed out on slow Wi-Fi.",
+        "ru": "На медленном Wi-Fi загрузка отвалилась по таймауту.",
+        "form": "timed out",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "wire-up",
+    "en": "wire up",
+    "ru": [
+      "подключить",
+      "связать",
+      "соединить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 94,
+    "topic": null,
+    "note": "Так говорят о связывании частей кода: wire up a handler — подключить обработчик.",
+    "sentences": [
+      {
+        "en": "Wire up the button to the handler.",
+        "ru": "Подключи кнопку к обработчику.",
+        "form": "Wire up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We wired up the form to the API.",
+        "ru": "Мы связали форму с API.",
+        "form": "wired up",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "The routes are wired up in main.ts.",
+        "ru": "Маршруты подключаются в main.ts.",
+        "form": "wired up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "I wired it up to the database.",
+        "ru": "Я подключил это к базе данных.",
+        "form": "wired it up",
+        "chunks": [1, 4],
+        "parts": ["wired", "up"]
+      },
+      {
+        "en": "How do I wire up the events?",
+        "ru": "Как подключить события?",
+        "form": "wire up",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "He wired up the new lamp.",
+        "ru": "Он подключил новую лампу.",
+        "form": "wired up",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "scale-up",
+    "en": "scale up",
+    "ru": [
+      "масштабировать",
+      "увеличить",
+      "нарастить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 95,
+    "topic": null,
+    "note": "Противоположность — scale down; о серверах значит добавить ресурсов или экземпляров.",
+    "sentences": [
+      {
+        "en": "Scale up the cluster before the launch.",
+        "ru": "Перед запуском масштабируй кластер.",
+        "form": "Scale up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We scaled up the database last week.",
+        "ru": "На прошлой неделе мы нарастили мощность базы данных.",
+        "form": "scaled up",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "The service scales up automatically.",
+        "ru": "Сервис масштабируется автоматически.",
+        "form": "scales up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "If traffic grows, scale it up.",
+        "ru": "Если трафик растёт, увеличь его мощность.",
+        "form": "scale it up",
+        "chunks": [3],
+        "parts": ["scale", "up"]
+      },
+      {
+        "en": "Can we scale up without downtime?",
+        "ru": "Можем ли мы масштабироваться без простоя?",
+        "form": "scale up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The bakery scaled up its production.",
+        "ru": "Пекарня увеличила производство.",
+        "form": "scaled up",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "on-the-fly",
+    "en": "on the fly",
+    "ru": [
+      "на лету",
+      "по ходу дела"
+    ],
+    "pos": "phrase",
+    "source": "phrasal",
+    "rank": 96,
+    "topic": null,
+    "note": "Значит «прямо во время работы, без подготовки заранее»: compile on the fly — компилировать на лету.",
+    "sentences": [
+      {
+        "en": "The images are resized on the fly.",
+        "ru": "Размер картинок меняется на лету.",
+        "form": "on the fly",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Vite compiles the code on the fly.",
+        "ru": "Vite компилирует код на лету.",
+        "form": "on the fly",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "You can change the config on the fly.",
+        "ru": "Конфиг можно менять на лету.",
+        "form": "on the fly",
+        "chunks": [1, 5]
+      },
+      {
+        "en": "The server creates the files on the fly.",
+        "ru": "Сервер создаёт файлы на лету.",
+        "form": "on the fly",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Is the CSS generated on the fly?",
+        "ru": "CSS генерируется на лету?",
+        "form": "on the fly",
+        "chunks": [3, 4]
+      },
+      {
+        "en": "I changed the plan on the fly.",
+        "ru": "Я поменял план по ходу дела.",
+        "form": "on the fly",
+        "chunks": [1, 4]
+      }
+    ]
+  },
+  {
+    "id": "build-up",
+    "en": "build up",
+    "ru": [
+      "накапливаться",
+      "наращивать",
+      "постепенно собирать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 97,
+    "topic": null,
+    "note": "Без дополнения значит «накапливаться»: logs build up — логи накапливаются; существительное — buildup.",
+    "sentences": [
+      {
+        "en": "Old logs build up on the disk.",
+        "ru": "На диске накапливаются старые логи.",
+        "form": "build up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The function builds up a list of results.",
+        "ru": "Функция постепенно собирает список результатов.",
+        "form": "builds up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Build up the string in a loop.",
+        "ru": "Собирай строку постепенно, в цикле.",
+        "form": "Build up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Don't let tech debt build up.",
+        "ru": "Не давай техдолгу накапливаться.",
+        "form": "build up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Start with a small app and build it up.",
+        "ru": "Начни с маленького приложения и постепенно наращивай его.",
+        "form": "build it up",
+        "chunks": [1, 5],
+        "parts": ["build", "up"]
+      },
+      {
+        "en": "Snow builds up on the roof.",
+        "ru": "На крыше накапливается снег.",
+        "form": "builds up",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "fill-out",
+    "en": "fill out",
+    "ru": [
+      "заполнить",
+      "заполнять"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 98,
+    "topic": null,
+    "note": "То же, что fill in: fill out the form — заполни форму.",
+    "sentences": [
+      {
+        "en": "Fill out the form below.",
+        "ru": "Заполни форму ниже.",
+        "form": "Fill out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Users must fill out all required fields.",
+        "ru": "Пользователи должны заполнить все обязательные поля.",
+        "form": "fill out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "I filled out the bug report.",
+        "ru": "Я заполнил баг-репорт.",
+        "form": "filled out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Download the template and fill it out.",
+        "ru": "Скачай шаблон и заполни его.",
+        "form": "fill it out",
+        "chunks": [3],
+        "parts": ["fill", "out"]
+      },
+      {
+        "en": "Who fills out the release notes?",
+        "ru": "Кто заполняет заметки о релизе?",
+        "form": "fills out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Please fill out this form at the reception.",
+        "ru": "Пожалуйста, заполните эту анкету на ресепшене.",
+        "form": "fill out",
+        "chunks": [1, 3, 5]
+      }
+    ]
+  },
+  {
+    "id": "add-up",
+    "en": "add up",
+    "ru": [
+      "складывать",
+      "сходиться",
+      "накапливаться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 99,
+    "topic": null,
+    "note": "Doesn’t add up — «не сходится»: и о цифрах, и о логике.",
+    "sentences": [
+      {
+        "en": "Add up all the values in the column.",
+        "ru": "Сложи все значения в столбце.",
+        "form": "Add up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "The numbers in the report don't add up.",
+        "ru": "Цифры в отчёте не сходятся.",
+        "form": "add up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Small delays add up quickly.",
+        "ru": "Маленькие задержки быстро накапливаются.",
+        "form": "add up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The function adds up the prices.",
+        "ru": "Функция складывает цены.",
+        "form": "adds up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Does the total add up?",
+        "ru": "Итог сходится?",
+        "form": "add up",
+        "chunks": [3]
+      },
+      {
+        "en": "His story doesn't add up.",
+        "ru": "Его история не сходится.",
+        "form": "add up",
+        "chunks": [2]
+      }
+    ]
+  },
+  {
+    "id": "carry-out",
+    "en": "carry out",
+    "ru": [
+      "выполнить",
+      "провести",
+      "осуществить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 100,
+    "topic": null,
+    "note": "Звучит формально, это стиль документации; в разговоре чаще do или run.",
+    "sentences": [
+      {
+        "en": "The script carries out the migration.",
+        "ru": "Скрипт выполняет миграцию.",
+        "form": "carries out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We carried out a security audit.",
+        "ru": "Мы провели аудит безопасности.",
+        "form": "carried out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Tests are carried out on every commit.",
+        "ru": "Тесты выполняются на каждом коммите.",
+        "form": "carried out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Read the steps and carry them out.",
+        "ru": "Прочитай шаги и выполни их.",
+        "form": "carry them out",
+        "chunks": [3],
+        "parts": ["carry", "out"]
+      },
+      {
+        "en": "Who will carry out the update?",
+        "ru": "Кто проведёт обновление?",
+        "form": "carry out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Doctors carried out the operation.",
+        "ru": "Врачи провели операцию.",
+        "form": "carried out",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "split-up",
+    "en": "split up",
+    "ru": [
+      "разбить",
+      "разделить",
+      "разделиться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 101,
+    "topic": null,
+    "note": "После split up часто идёт into: split up into modules — разбить на модули.",
+    "sentences": [
+      {
+        "en": "Split up the component into smaller parts.",
+        "ru": "Разбей компонент на части поменьше.",
+        "form": "Split up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We split up the big file.",
+        "ru": "Мы разбили большой файл.",
+        "form": "split up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The task is big, so split it up.",
+        "ru": "Задача большая, так что разбей её.",
+        "form": "split it up",
+        "chunks": [2, 4],
+        "parts": ["split", "up"]
+      },
+      {
+        "en": "The data is split up into pages.",
+        "ru": "Данные разделены на страницы.",
+        "form": "split up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Should we split up this module?",
+        "ru": "Нам разбить этот модуль?",
+        "form": "split up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Let's split up and look for the cat.",
+        "ru": "Давай разделимся и поищем кота.",
+        "form": "split up",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "turn-into",
+    "en": "turn into",
+    "ru": [
+      "превратить в",
+      "превратиться в",
+      "преобразовать в"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 102,
+    "topic": null,
+    "note": "Объект ставится между частями: turn the string into a number — превратить строку в число.",
+    "sentences": [
+      {
+        "en": "This function turns text into HTML.",
+        "ru": "Эта функция превращает текст в HTML.",
+        "form": "turns text into",
+        "chunks": [2],
+        "parts": ["turns", "into"]
+      },
+      {
+        "en": "You can turn it into a number.",
+        "ru": "Его можно преобразовать в число.",
+        "form": "turn it into",
+        "chunks": [2],
+        "parts": ["turn", "into"]
+      },
+      {
+        "en": "The small script turned into a big project.",
+        "ru": "Маленький скрипт превратился в большой проект.",
+        "form": "turned into",
+        "chunks": [3]
+      },
+      {
+        "en": "In version 5, the warning turns into an error.",
+        "ru": "В версии 5 предупреждение превращается в ошибку.",
+        "form": "turns into",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "Don't let your code turn into a mess.",
+        "ru": "Не дай коду превратиться в хаос.",
+        "form": "turn into",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Water turns into ice at zero degrees.",
+        "ru": "При нуле градусов вода превращается в лёд.",
+        "form": "turns into",
+        "chunks": [1, 4]
+      }
+    ]
+  },
+  {
+    "id": "open-up",
+    "en": "open up",
+    "ru": [
+      "открыть",
+      "открыть доступ",
+      "открыться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 103,
+    "topic": null,
+    "note": "Часто о возможностях: open up new options — открыть новые возможности.",
+    "sentences": [
+      {
+        "en": "Open up port 8080 in the firewall.",
+        "ru": "Открой порт 8080 в файрволе.",
+        "form": "Open up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "This API opens up many new options.",
+        "ru": "Этот API открывает много новых возможностей.",
+        "form": "opens up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We opened up the repo to everyone.",
+        "ru": "Мы открыли доступ к репозиторию для всех.",
+        "form": "opened up",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "The port is closed, so open it up.",
+        "ru": "Порт закрыт, так что открой его.",
+        "form": "open it up",
+        "chunks": [4],
+        "parts": ["open", "up"]
+      },
+      {
+        "en": "The menu opens up when you click.",
+        "ru": "Меню открывается по клику.",
+        "form": "opens up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "A new café opened up near my house.",
+        "ru": "Рядом с моим домом открылось новое кафе.",
+        "form": "opened up",
+        "chunks": [3, 5]
+      }
+    ]
+  },
+  {
+    "id": "line-up",
+    "en": "line up",
+    "ru": [
+      "выровнять",
+      "выстроиться в ряд",
+      "совпадать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 104,
+    "topic": null,
+    "note": "С with значит «совпадать»: the numbers line up with the logs — цифры совпадают с логами.",
+    "sentences": [
+      {
+        "en": "Line up the icons with the text.",
+        "ru": "Выровняй иконки по тексту.",
+        "form": "Line up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The columns don't line up.",
+        "ru": "Столбцы не выровнены.",
+        "form": "line up",
+        "chunks": [2]
+      },
+      {
+        "en": "The labels are lined up on the left.",
+        "ru": "Подписи выровнены по левому краю.",
+        "form": "lined up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "The cards look messy, so line them up.",
+        "ru": "Карточки стоят криво, так что выровняй их.",
+        "form": "line them up",
+        "chunks": [4],
+        "parts": ["line", "up"]
+      },
+      {
+        "en": "The dates in the logs line up.",
+        "ru": "Даты в логах совпадают.",
+        "form": "line up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Kids lined up at the door.",
+        "ru": "Дети выстроились у двери.",
+        "form": "lined up",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "hook-into",
+    "en": "hook into",
+    "ru": [
+      "подключиться к",
+      "встроиться в"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 105,
+    "topic": null,
+    "note": "Так говорят о хуках и событиях: hook into the build — встроиться в процесс сборки.",
+    "sentences": [
+      {
+        "en": "Plugins can hook into the build process.",
+        "ru": "Плагины могут встраиваться в процесс сборки.",
+        "form": "hook into",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Hook into the router to track pages.",
+        "ru": "Подключись к роутеру, чтобы отслеживать страницы.",
+        "form": "Hook into",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "This library hooks into the React lifecycle.",
+        "ru": "Эта библиотека встраивается в жизненный цикл React.",
+        "form": "hooks into",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We hooked into the login event.",
+        "ru": "Мы подключились к событию входа.",
+        "form": "hooked into",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Can I hook into the save action?",
+        "ru": "Можно подключиться к действию сохранения?",
+        "form": "hook into",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The app hooks into your calendar.",
+        "ru": "Приложение подключается к твоему календарю.",
+        "form": "hooks into",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "shut-down",
+    "en": "shut down",
+    "ru": [
+      "выключить",
+      "завершить работу",
+      "закрыть"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 106,
+    "topic": null,
+    "note": "Существительное — shutdown: graceful shutdown — плавное завершение работы.",
+    "sentences": [
+      {
+        "en": "Shut down the server before the update.",
+        "ru": "Выключи сервер перед обновлением.",
+        "form": "Shut down",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The process shut down without errors.",
+        "ru": "Процесс завершил работу без ошибок.",
+        "form": "shut down",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "If you don't need the VM, shut it down.",
+        "ru": "Если виртуальная машина не нужна, выключи её.",
+        "form": "shut it down",
+        "chunks": [6],
+        "parts": ["shut", "down"]
+      },
+      {
+        "en": "The service was shut down last year.",
+        "ru": "Сервис закрыли в прошлом году.",
+        "form": "shut down",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Don't shut down your computer during the update.",
+        "ru": "Не выключай компьютер во время обновления.",
+        "form": "shut down",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "The factory shut down in 2010.",
+        "ru": "Завод закрылся в 2010 году.",
+        "form": "shut down",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "start-up",
+    "en": "start up",
+    "ru": [
+      "запустить",
+      "запуститься",
+      "включиться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 107,
+    "topic": null,
+    "note": "Существительное startup — запуск (startup time — время запуска) и стартап.",
+    "sentences": [
+      {
+        "en": "The app starts up in two seconds.",
+        "ru": "Приложение запускается за две секунды.",
+        "form": "starts up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Start up the dev server.",
+        "ru": "Запусти dev-сервер.",
+        "form": "Start up",
+        "chunks": [2]
+      },
+      {
+        "en": "The container stopped, so start it up.",
+        "ru": "Контейнер остановился, так что запусти его.",
+        "form": "start it up",
+        "chunks": [3],
+        "parts": ["start", "up"]
+      },
+      {
+        "en": "What runs when Windows starts up?",
+        "ru": "Что запускается при старте Windows?",
+        "form": "starts up",
+        "chunks": [2]
+      },
+      {
+        "en": "The database didn't start up correctly.",
+        "ru": "База данных запустилась с ошибками.",
+        "form": "start up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "My laptop starts up very slowly.",
+        "ru": "Мой ноутбук очень медленно включается.",
+        "form": "starts up",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "run-through",
+    "en": "run through",
+    "ru": [
+      "пробежаться по",
+      "пройтись по",
+      "перебрать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 108,
+    "topic": null,
+    "note": "Существительное run-through — прогон, репетиция.",
+    "sentences": [
+      {
+        "en": "Let's run through the checklist.",
+        "ru": "Давай пробежимся по чек-листу.",
+        "form": "run through",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The loop runs through every item.",
+        "ru": "Цикл перебирает каждый элемент.",
+        "form": "runs through",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I ran through the docs quickly.",
+        "ru": "Я быстро пробежался по документации.",
+        "form": "ran through",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "We will run through the release steps.",
+        "ru": "Мы пройдёмся по шагам релиза.",
+        "form": "run through",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Can you run through the main points?",
+        "ru": "Можешь пройтись по основным пунктам?",
+        "form": "run through",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "She ran through her speech again.",
+        "ru": "Она ещё раз прошлась по своей речи.",
+        "form": "ran through",
+        "chunks": [1, 3, 5]
+      }
+    ]
+  },
+  {
+    "id": "point-out",
+    "en": "point out",
+    "ru": [
+      "указать на",
+      "отметить",
+      "обратить внимание на"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 109,
+    "topic": null,
+    "note": "После point out часто идёт that: point out that… — отметить, что…",
+    "sentences": [
+      {
+        "en": "The reviewer pointed out a bug.",
+        "ru": "Ревьюер указал на баг.",
+        "form": "pointed out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Thanks for pointing out the typo.",
+        "ru": "Спасибо, что указал на опечатку.",
+        "form": "pointing out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "If you see a problem, point it out.",
+        "ru": "Если видишь проблему, укажи на неё.",
+        "form": "point it out",
+        "chunks": [5],
+        "parts": ["point", "out"]
+      },
+      {
+        "en": "The docs point out that this is slow.",
+        "ru": "В документации отмечено, что это медленно.",
+        "form": "point out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Can you point out the wrong line?",
+        "ru": "Можешь указать на неправильную строку?",
+        "form": "point out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "My friend pointed out a nice café.",
+        "ru": "Друг обратил моё внимание на милое кафе.",
+        "form": "pointed out",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "break-up",
+    "en": "break up",
+    "ru": [
+      "разбить",
+      "разделить",
+      "расстаться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 110,
+    "topic": null,
+    "note": "Break up with someone — расстаться с кем-то; в коде — «разбить на части», как split up.",
+    "sentences": [
+      {
+        "en": "Break up long functions into smaller ones.",
+        "ru": "Разбивай длинные функции на маленькие.",
+        "form": "Break up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "We broke up the monolith into services.",
+        "ru": "Мы разбили монолит на сервисы.",
+        "form": "broke up",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "This file is huge, so break it up.",
+        "ru": "Этот файл огромный, так что разбей его.",
+        "form": "break it up",
+        "chunks": [4],
+        "parts": ["break", "up"]
+      },
+      {
+        "en": "The text is broken up into sections.",
+        "ru": "Текст разделён на разделы.",
+        "form": "broken up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Should I break up this component?",
+        "ru": "Мне разбить этот компонент?",
+        "form": "break up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "They broke up last summer.",
+        "ru": "Они расстались прошлым летом.",
+        "form": "broke up",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "zoom-in",
+    "en": "zoom in",
+    "ru": [
+      "приблизить",
+      "увеличить масштаб"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 111,
+    "topic": null,
+    "note": "Противоположность — zoom out; с предметом — zoom in on: zoom in on the chart — приблизить график.",
+    "sentences": [
+      {
+        "en": "Zoom in to see the details.",
+        "ru": "Приблизь, чтобы рассмотреть детали.",
+        "form": "Zoom in",
+        "chunks": [2]
+      },
+      {
+        "en": "Press Ctrl and plus to zoom in.",
+        "ru": "Нажми Ctrl и плюс, чтобы увеличить масштаб.",
+        "form": "zoom in",
+        "chunks": [4]
+      },
+      {
+        "en": "The map zooms in on your location.",
+        "ru": "Карта приближает твоё местоположение.",
+        "form": "zooms in",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Use two fingers to zoom the map in.",
+        "ru": "Приблизь карту двумя пальцами.",
+        "form": "zoom the map in",
+        "chunks": [3],
+        "parts": ["zoom", "in"]
+      },
+      {
+        "en": "Can I zoom in on the chart?",
+        "ru": "Можно приблизить график?",
+        "form": "zoom in",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "I zoomed in on the photo.",
+        "ru": "Я увеличил масштаб фото.",
+        "form": "zoomed in",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "follow-up",
+    "en": "follow up",
+    "ru": [
+      "вернуться к",
+      "связаться ещё раз",
+      "написать повторно"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 112,
+    "topic": null,
+    "note": "Существительное follow-up — продолжение: a follow-up PR — PR в продолжение предыдущего.",
+    "sentences": [
+      {
+        "en": "I'll follow up with more details.",
+        "ru": "Я напишу повторно и пришлю подробности позже.",
+        "form": "follow up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Follow up on the open issues.",
+        "ru": "Вернись к открытым задачам.",
+        "form": "Follow up",
+        "chunks": [2]
+      },
+      {
+        "en": "We followed up with the client.",
+        "ru": "Мы ещё раз связались с клиентом.",
+        "form": "followed up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Can you follow up on this bug?",
+        "ru": "Можешь вернуться к этому багу?",
+        "form": "follow up",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Nobody followed up on the review.",
+        "ru": "Никто не вернулся к ревью.",
+        "form": "followed up",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "The doctor will follow up next week.",
+        "ru": "Врач свяжется ещё раз на следующей неделе.",
+        "form": "follow up",
+        "chunks": [2, 5]
+      }
+    ]
+  },
+  {
+    "id": "filter-out",
+    "en": "filter out",
+    "ru": [
+      "отфильтровать",
+      "отсеять",
+      "исключить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 113,
+    "topic": null,
+    "note": "Out значит «убрать»: filter out — оставить всё, кроме лишнего.",
+    "sentences": [
+      {
+        "en": "Filter out empty values from the array.",
+        "ru": "Отфильтруй пустые значения из массива.",
+        "form": "Filter out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The search filters out old posts.",
+        "ru": "Поиск отсеивает старые посты.",
+        "form": "filters out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "These logs are noise, so filter them out.",
+        "ru": "Эти логи — шум, так что отфильтруй их.",
+        "form": "filter them out",
+        "chunks": [4],
+        "parts": ["filter", "out"]
+      },
+      {
+        "en": "Spam is filtered out automatically.",
+        "ru": "Спам отсеивается автоматически.",
+        "form": "filtered out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Can we filter out bot traffic?",
+        "ru": "Можно исключить трафик ботов?",
+        "form": "filter out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "My glasses filter out blue light.",
+        "ru": "Мои очки отфильтровывают синий свет.",
+        "form": "filter out",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "work-around",
+    "en": "work around",
+    "ru": [
+      "обойти",
+      "найти обходной путь"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 114,
+    "topic": null,
+    "note": "Существительное workaround — обходной путь, временное решение.",
+    "sentences": [
+      {
+        "en": "We worked around the bug for now.",
+        "ru": "Пока мы обошли этот баг.",
+        "form": "worked around",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "You can work around this limit.",
+        "ru": "Это ограничение можно обойти.",
+        "form": "work around",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Work around the issue with a flag.",
+        "ru": "Обойди проблему с помощью флага.",
+        "form": "Work around",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "How do I work around this error?",
+        "ru": "Как обойти эту ошибку?",
+        "form": "work around",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "There is no way to work around it.",
+        "ru": "Это никак не обойти.",
+        "form": "work around",
+        "chunks": [4]
+      },
+      {
+        "en": "This patch works around a Safari bug.",
+        "ru": "Этот патч обходит баг в Safari.",
+        "form": "works around",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "come-across",
+    "en": "come across",
+    "ru": [
+      "наткнуться на",
+      "встретить",
+      "попасться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 115,
+    "topic": null,
+    "note": "С as значит «производить впечатление»: come across as rude — казаться грубым.",
+    "sentences": [
+      {
+        "en": "I came across this bug yesterday.",
+        "ru": "Вчера я наткнулся на этот баг.",
+        "form": "came across",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "You may come across old examples online.",
+        "ru": "В интернете тебе могут попасться старые примеры.",
+        "form": "come across",
+        "chunks": [2, 4, 6]
+      },
+      {
+        "en": "Have you come across this error before?",
+        "ru": "Ты раньше встречал эту ошибку?",
+        "form": "come across",
+        "chunks": [2, 4, 6]
+      },
+      {
+        "en": "If you come across a typo, open an issue.",
+        "ru": "Если наткнёшься на опечатку, открой issue.",
+        "form": "come across",
+        "chunks": [6]
+      },
+      {
+        "en": "We often come across this pattern in React.",
+        "ru": "Мы часто встречаем этот паттерн в React.",
+        "form": "come across",
+        "chunks": [1, 4, 6]
+      },
+      {
+        "en": "I came across an old photo.",
+        "ru": "Я наткнулся на старое фото.",
+        "form": "came across",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "run-out",
+    "en": "run out",
+    "ru": [
+      "закончиться",
+      "кончаться",
+      "истечь"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 116,
+    "topic": null,
+    "note": "С of указывают, что кончилось: run out of memory — исчерпать память.",
+    "sentences": [
+      {
+        "en": "The server ran out of memory.",
+        "ru": "У сервера закончилась память.",
+        "form": "ran out",
+        "chunks": [2]
+      },
+      {
+        "en": "We are running out of disk space.",
+        "ru": "У нас кончается место на диске.",
+        "form": "running out",
+        "chunks": [1, 4]
+      },
+      {
+        "en": "Your free trial runs out tomorrow.",
+        "ru": "Твой пробный период истекает завтра.",
+        "form": "runs out",
+        "chunks": [3, 5]
+      },
+      {
+        "en": "The build stopped when the time ran out.",
+        "ru": "Сборка остановилась, когда закончилось время.",
+        "form": "ran out",
+        "chunks": [2, 3]
+      },
+      {
+        "en": "What happens when the quota runs out?",
+        "ru": "Что будет, когда закончится квота?",
+        "form": "runs out",
+        "chunks": [2]
+      },
+      {
+        "en": "We ran out of milk.",
+        "ru": "У нас закончилось молоко.",
+        "form": "ran out",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "leave-out",
+    "en": "leave out",
+    "ru": [
+      "не указывать",
+      "пропустить",
+      "опустить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 117,
+    "topic": null,
+    "note": "Если параметр необязательный, его можно leave out — просто не указывать.",
+    "sentences": [
+      {
+        "en": "Leave out the semicolon at the end.",
+        "ru": "Опусти точку с запятой в конце.",
+        "form": "Leave out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "You can leave out the second argument.",
+        "ru": "Второй аргумент можно не указывать.",
+        "form": "leave out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The port is optional, so leave it out.",
+        "ru": "Порт необязателен, так что не указывай его.",
+        "form": "leave it out",
+        "chunks": [4],
+        "parts": ["leave", "out"]
+      },
+      {
+        "en": "Some files were left out of the build.",
+        "ru": "Некоторые файлы были пропущены при сборке.",
+        "form": "left out",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Did you leave out any steps?",
+        "ru": "Ты не пропустил какие-нибудь шаги?",
+        "form": "leave out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Don't leave out any details.",
+        "ru": "Не пропускай никаких деталей.",
+        "form": "leave out",
+        "chunks": [3]
+      }
+    ]
+  },
+  {
+    "id": "pass-along",
+    "en": "pass along",
+    "ru": [
+      "передать дальше",
+      "передать",
+      "переслать"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 118,
+    "topic": null,
+    "note": "Along подчёркивает «дальше по цепочке»: pass along the request — передать запрос дальше.",
+    "sentences": [
+      {
+        "en": "The middleware passes along the request.",
+        "ru": "Middleware передаёт запрос дальше.",
+        "form": "passes along",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Pass along the error to the caller.",
+        "ru": "Передай ошибку вызывающему коду.",
+        "form": "Pass along",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "If you get the link, pass it along.",
+        "ru": "Если получишь ссылку, перешли её дальше.",
+        "form": "pass it along",
+        "chunks": [5],
+        "parts": ["pass", "along"]
+      },
+      {
+        "en": "The data is passed along to the next step.",
+        "ru": "Данные передаются дальше, на следующий шаг.",
+        "form": "passed along",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Should I pass along the token?",
+        "ru": "Мне передать токен дальше?",
+        "form": "pass along",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "Please pass along my thanks to the team.",
+        "ru": "Пожалуйста, передай мою благодарность команде.",
+        "form": "pass along",
+        "chunks": [1, 3, 5]
+      }
+    ]
+  },
+  {
+    "id": "scale-down",
+    "en": "scale down",
+    "ru": [
+      "уменьшить",
+      "сократить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 119,
+    "topic": null,
+    "note": "Противоположность — scale up; о серверах значит убрать лишние ресурсы или экземпляры.",
+    "sentences": [
+      {
+        "en": "Scale down the cluster at night.",
+        "ru": "На ночь уменьшай кластер.",
+        "form": "Scale down",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "The service scales down to zero without traffic.",
+        "ru": "Без трафика сервис уменьшается до нуля.",
+        "form": "scales down",
+        "chunks": [2, 4, 6]
+      },
+      {
+        "en": "Nobody uses the test servers, so scale them down.",
+        "ru": "Тестовыми серверами никто не пользуется, так что сократи их.",
+        "form": "scale them down",
+        "chunks": [5],
+        "parts": ["scale", "down"]
+      },
+      {
+        "en": "We scaled down the image for mobile.",
+        "ru": "Мы уменьшили картинку для мобильных.",
+        "form": "scaled down",
+        "chunks": [1, 3, 5]
+      },
+      {
+        "en": "The team was scaled down last year.",
+        "ru": "В прошлом году команду сократили.",
+        "form": "scaled down",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "We scaled down our holiday plans.",
+        "ru": "Мы сократили планы на отпуск.",
+        "form": "scaled down",
+        "chunks": [1, 3]
+      }
+    ]
+  },
+  {
+    "id": "rule-out",
+    "en": "rule out",
+    "ru": [
+      "исключить",
+      "отбросить"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 120,
+    "topic": null,
+    "note": "Обычно о возможных причинах: rule out a network issue — исключить проблему с сетью.",
+    "sentences": [
+      {
+        "en": "We ruled out a network problem.",
+        "ru": "Мы исключили проблему с сетью.",
+        "form": "ruled out",
+        "chunks": [1, 3]
+      },
+      {
+        "en": "Restart the app to rule out cache issues.",
+        "ru": "Перезапусти приложение, чтобы исключить проблемы с кэшем.",
+        "form": "rule out",
+        "chunks": [3, 6]
+      },
+      {
+        "en": "Don't rule it out too early.",
+        "ru": "Не отбрасывай этот вариант слишком рано.",
+        "form": "rule it out",
+        "chunks": [4],
+        "parts": ["rule", "out"]
+      },
+      {
+        "en": "Can we rule out the database?",
+        "ru": "Можно исключить базу данных?",
+        "form": "rule out",
+        "chunks": [2, 4]
+      },
+      {
+        "en": "A memory leak can't be ruled out.",
+        "ru": "Утечку памяти нельзя исключить.",
+        "form": "ruled out",
+        "chunks": [3]
+      },
+      {
+        "en": "The doctor ruled out the flu.",
+        "ru": "Врач исключил грипп.",
+        "form": "ruled out",
+        "chunks": [2, 4]
+      }
+    ]
+  },
+  {
+    "id": "catch-up",
+    "en": "catch up",
+    "ru": [
+      "догнать",
+      "наверстать",
+      "подтянуться"
+    ],
+    "pos": "phrasal-verb",
+    "source": "phrasal",
+    "rank": 121,
+    "topic": null,
+    "note": "С with указывают, кого догоняют: catch up with main — подтянуть ветку до main.",
+    "sentences": [
+      {
+        "en": "The replica will catch up in a few seconds.",
+        "ru": "Реплика догонит через пару секунд.",
+        "form": "catch up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "Your branch must catch up with main.",
+        "ru": "Твоя ветка должна подтянуться до main.",
+        "form": "catch up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "The new framework is catching up with React.",
+        "ru": "Новый фреймворк догоняет React.",
+        "form": "catching up",
+        "chunks": [3, 6]
+      },
+      {
+        "en": "The worker can't catch up with the queue.",
+        "ru": "Воркер не может догнать очередь.",
+        "form": "catch up",
+        "chunks": [2, 5]
+      },
+      {
+        "en": "I was sick, so I need to catch up.",
+        "ru": "Я болел, так что мне нужно наверстать.",
+        "form": "catch up",
+        "chunks": [3]
+      },
+      {
+        "en": "Slow down, I can't catch up!",
+        "ru": "Помедленнее, я не могу вас догнать!",
+        "form": "catch up",
+        "chunks": [2]
+      }
+    ]
   }
 ]

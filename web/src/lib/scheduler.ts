@@ -1,12 +1,19 @@
 import { createEmptyCard, fsrs, generatorParameters, State, type Card, type Grade } from 'ts-fsrs'
-import { itWordsOrder, ngslWordsOrder, words, wordsById } from '@/lib/content'
+import {
+  itWordsOrder,
+  ngslWordsOrder,
+  phrasalOrder,
+  words,
+  wordsById,
+  type Word,
+} from '@/lib/content'
 import type { AnswerStats, Meta, Progress } from '@/lib/storage'
 
 const scheduler = fsrs(generatorParameters({ enable_fuzz: true }))
 
 const REVIEWS_PER_LESSON = 8
 const WARMUP_REVIEWS = 2
-const NGSL_SLOTS_FROM = 2
+const SHARED_SLOT_FROM = 2
 const PACE_DAYS = 14
 const NEW_WORDS_TAPER = [
   { dueBelow: 12, count: 3 },
@@ -56,14 +63,20 @@ export function newWordsLimit(dueCount: number) {
   return NEW_WORDS_TAPER.find(({ dueBelow }) => dueCount < dueBelow)?.count ?? 0
 }
 
+function startedShare(order: Word[], progress: Progress) {
+  return order.length ? order.filter((word) => progress[word.id]).length / order.length : 1
+}
+
 function getNewWordIds(progress: Progress, limit: number) {
-  const unseenIt = itWordsOrder.filter((word) => !progress[word.id])
-  const unseenNgsl = ngslWordsOrder.filter((word) => !progress[word.id])
-  const ngslSlots = limit >= NGSL_SLOTS_FROM ? 1 : 0
-  const itCount = Math.min(unseenIt.length, limit - Math.min(ngslSlots, unseenNgsl.length))
-  return [...unseenIt.slice(0, itCount), ...unseenNgsl.slice(0, limit - itCount)].map(
-    (word) => word.id
-  )
+  const unseen = (order: Word[]) => order.filter((word) => !progress[word.id])
+  const unseenIt = unseen(itWordsOrder)
+  const phrasesFirst = startedShare(phrasalOrder, progress) < startedShare(ngslWordsOrder, progress)
+  const shared = phrasesFirst
+    ? [...unseen(phrasalOrder), ...unseen(ngslWordsOrder)]
+    : [...unseen(ngslWordsOrder), ...unseen(phrasalOrder)]
+  const sharedSlots = limit >= SHARED_SLOT_FROM ? 1 : 0
+  const itCount = Math.min(unseenIt.length, limit - Math.min(sharedSlots, shared.length))
+  return [...unseenIt.slice(0, itCount), ...shared.slice(0, limit - itCount)].map((word) => word.id)
 }
 
 export function buildLesson(progress: Progress, now = new Date()): LessonItem[] {
@@ -141,6 +154,8 @@ export function getStats(
       return { id: wordId, en: word.en, ru: word.ru[0], lapses: card.lapses }
     })
   const today = meta.days[dayKey(now)]
+  const learned = words.filter((word) => progress[word.id]?.state === State.Review)
+  const learnedPhrases = learned.filter((word) => word.source === 'phrasal').length
 
   return {
     isNewWordsPaused: due >= PAUSE_NEW_WORDS_AT,
@@ -151,6 +166,8 @@ export function getStats(
     paceSeries,
     streak: getStreak(meta, now),
     total: words.length,
-    learned: words.filter((word) => progress[word.id]?.state === State.Review).length,
+    learned: learned.length,
+    learnedWords: learned.length - learnedPhrases,
+    learnedPhrases,
   }
 }

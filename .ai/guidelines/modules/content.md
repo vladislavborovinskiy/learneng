@@ -14,9 +14,10 @@ redeploying. Entry point in code: `web/src/lib/content.ts` (imported via the `@c
     `environment-variable`). It is the key of the FSRS card in storage — **never rename an id**
     of an existing word, the user's progress for it would be orphaned.
   - `ru` — translations, the first one is the canonical answer in EN→RU choice.
-  - `pos` — `noun | verb | adj | adv | prep | conj | pron | det | phrase`; drives distractor
+  - `pos` — `noun | verb | adj | adv | prep | conj | pron | det | phrase | phrasal-verb`; drives distractor
     selection.
-  - `source` — `it` (237 words, dictionary alexey-goloburdin/eng-ru-dictionary, `topic` set:
+  - `source` — `phrasal` (121 phrasal verbs and fixed expressions frequent in docs, `rank` =
+    frequency rank in a corpus of MDN, react.dev and GitHub Docs, `topic` null), `it` (237 words, dictionary alexey-goloburdin/eng-ru-dictionary, `topic` set:
     programming, general, development, network, files, os, databases, hardware, users) or `ngsl`
     (500 words of the New General Service List, CC BY-SA, `rank` = frequency rank, `topic` null).
   - `note` — optional usage hint shown on the new-word card (~420 words have one).
@@ -25,7 +26,11 @@ redeploying. Entry point in code: `web/src/lib/content.ts` (imported via the `@c
   typing and the blank rendering rely on it. `chunks` — start indices (in `en.split(' ')`) of
   chunks 2…n for «Собери из кусков»: 2–4 natural phrases (subject / verb group / object /
   prepositional phrase / clause), per word for 2–3-word sentences, `form` never cut.
-- **New-words order** — two queues: `itWordsOrder` (file order) and `ngslWordsOrder` (ascending
+- **Split sentence** — only on `phrasal-verb` items, 1–2 of six: `form` is the whole span
+  «set it up» (still once-only, inside one chunk), `parts: [verb, particle]` marks the phrase
+  (`form` starts with `parts[0] + ' '` and ends with `' ' + parts[1]`); at least 4 joined
+  sentences per item. Cloze and typing never use split sentences.
+- **New-words order** — three queues: `itWordsOrder` (file order), `phrasalOrder` and `ngslWordsOrder` (ascending
   `rank`); a lesson takes 2 IT + 1 NGSL (see `scheduling.md`).
 - **Preloader facts** (`content/facts.json`) — `[{ en, ru, source }]`, short verified facts about
   English, its history, its links with Russian, learning and IT words; ≤ 12 English / ≤ 14 Russian
@@ -36,10 +41,15 @@ redeploying. Entry point in code: `web/src/lib/content.ts` (imported via the `@c
 
 ## Key flows
 
-1. **Generation** was a one-off offline process (LLM-assisted) whose intermediate files live in
+1. **Phrase set** — `content/draft/phrasal/`: corpus (sparse clones, gitignored), `candidates.json`
+   → `count.mjs` (per-million frequency averaged over the three sources, inflections, split forms
+   only for `up/down/out/back/away/off/aside/along/apart`) → `counts.json` → hand-reviewed
+   `phrasal_list.json` → `instruction.md` + `input_N.json` → LLM subagents → `items_N.json` →
+   `merge.mjs` (replaces all `phrasal` items in `words.json`, keeps the rest).
+2. **Generation** was a one-off offline process (LLM-assisted) whose intermediate files live in
    `content/draft/` (`input_*`, `words_*`, `ngsl_*`, merged). There is no generator script in
    the repo; drafts are kept for reference and re-runs, the app never reads them.
-2. **Consumption** — `words`, `wordsById`, `itWordsOrder`, `ngslWordsOrder` from `content.ts`; the level test is
+3. **Consumption** — `words`, `wordsById`, `itWordsOrder`, `ngslWordsOrder`, `phrasalOrder` from `content.ts`; the level test is
    imported directly by `screens/level-test.tsx`.
 
 ## Non-obvious invariants / gotchas

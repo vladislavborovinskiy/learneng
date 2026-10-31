@@ -71,9 +71,10 @@ export function Home({
         </div>
         <div className="flex flex-col gap-2">
           <Progress value={(stats.learned / stats.total) * 100} />
-          <span className="self-end font-mono text-xs text-muted-foreground">
-            {t.home.today(stats.learnedToday)}
-          </span>
+          <div className="flex justify-between gap-3 font-mono text-xs text-muted-foreground">
+            <span>{t.home.split(stats.learnedWords, stats.learnedPhrases)}</span>
+            <span>{t.home.today(stats.learnedToday)}</span>
+          </div>
         </div>
         <Suspense fallback={<div className="h-36" />}>
           <PaceChart data={stats.paceSeries} />

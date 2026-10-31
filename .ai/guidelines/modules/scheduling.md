@@ -11,8 +11,10 @@ home screen. Code: `web/src/lib/scheduler.ts`, `web/src/screens/home.tsx`,
 
 - **Due** — words whose card `due <= now`, oldest due first.
 - **Lesson** (`buildLesson`) — up to `newWordsLimit(due)` new words (taper: due < 12 → 3,
-  < 24 → 2, < 48 → 1, otherwise 0); 3 slots = 2 IT (file order) + 1 NGSL (by rank), 2 slots =
-  1 IT + 1 NGSL, 1 slot = IT; when one source runs out the other fills the slots + up to 8
+  < 24 → 2, < 48 → 1, otherwise 0); 3 slots = 2 IT (file order) + 1 shared, 2 slots =
+  1 IT + 1 shared, 1 slot = IT. The shared slot takes the next item (by rank) of NGSL or the
+  phrase set, whichever has the smaller share of started items (tie → NGSL); when a source runs
+  out the others fill the slots + up to 8
   review items. Reviews are due words, most lapses first, then most overdue; free
   slots are topped up with non-due `Review` cards with the lowest retrievability
   (`get_retrievability`). Order: 2 reviews as warm-up, then each new word followed by an even

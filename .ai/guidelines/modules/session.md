@@ -30,8 +30,10 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
 - **Exercise type** (`exerciseType`) — `en-ru | ru-en | cloze | chunks | tiles | typing`, used for
   answer stats (see `progress.md`).
 - **Distractors** — words of the same part of speech (fallback: any) that share no `ru`
-  translation with the target; cloze distractors use a random sentence `form` of the other word,
-  case-matched.
+  translation with the target; phrases get only phrases, words only non-phrases; cloze
+  distractors use a random joined sentence `form` of the other item, case-matched.
+- **Joined / split sentence** — cloze and typing pick a joined sentence (no `parts`); choice and
+  assemblies may get a split one («set it up»), and the feedback highlights only `parts`.
 - **Answer result** — `correct | hinted | typo | wrong | forgot`. Typo exists only for typing:
   Levenshtein ≤ 1 for answers ≥ 4 chars, ≤ 2 for ≥ 8 chars (after trim, lowercase, collapsed
   spaces). `hinted` = correct or typo after a hint; `forgot` = «Не помню». Mistakes
