@@ -59,7 +59,9 @@ Halftone dots, hatching, rays and coloured glows SHALL NOT be used anywhere.
 ### Requirement: Every button in the thumb zone
 
 Every button of every screen SHALL be placed in the bottom action zone, including answer options
-and settings actions. The only exception is the close button shown outside Telegram.
+and settings actions. The only exception is the close button shown outside Telegram. The action
+zone SHALL float over the scrollable content on a soft gradient darkening of the background, so
+the buttons stand out from the content scrolling under them.
 
 #### Scenario: Choice exercise
 
@@ -70,6 +72,11 @@ and settings actions. The only exception is the close button shown outside Teleg
 
 - **WHEN** settings are open
 - **THEN** «Скопировать прогресс», «Восстановить», «Пройти заново» and «Готово» are all in the bottom zone
+
+#### Scenario: Content longer than the screen
+
+- **WHEN** the content does not fit above the action zone
+- **THEN** it scrolls under the buttons and is darkened by the gradient behind them
 
 ### Requirement: Answer feedback visuals
 
