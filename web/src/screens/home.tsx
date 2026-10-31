@@ -1,4 +1,4 @@
-import { FlameIcon } from '@phosphor-icons/react/dist/csr/Flame'
+import { FireIcon } from '@phosphor-icons/react/dist/csr/Fire'
 import { GearSixIcon } from '@phosphor-icons/react/dist/csr/GearSix'
 import { lazy, Suspense, useState } from 'react'
 import { ThumbLayout } from '@/components/thumb-layout'
@@ -58,7 +58,7 @@ export function Home({
               stats.streak > 0 ? 'text-foreground' : 'text-muted-foreground'
             )}
           >
-            <FlameIcon weight="fill" className="size-3.5" />
+            <FireIcon weight="fill" className="size-3.5" />
             {stats.streak}
           </div>
         </div>

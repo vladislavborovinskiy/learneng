@@ -127,10 +127,12 @@ export function getStats(
   now = new Date()
 ) {
   const due = getDueWordIds(progress, now).length
-  const paceSeries = Array.from({ length: PACE_DAYS }, (_, index) => {
-    const day = dayKey(addDays(now, index - PACE_DAYS + 1))
-    return { day, learned: meta.days[day]?.learned ?? 0 }
-  })
+  const firstDay = Object.keys(meta.days).sort()[0]
+  const paceSeries = Array.from({ length: PACE_DAYS }, (_, index) =>
+    dayKey(addDays(now, index - PACE_DAYS + 1))
+  )
+    .filter((day, index) => !firstDay || day >= firstDay || index === PACE_DAYS - 1)
+    .map((day) => ({ day, learned: meta.days[day]?.learned ?? 0 }))
   const [correct, total] = Array.from({ length: ACCURACY_DAYS }, (_, offset) =>
     Object.values(answerStats[dayKey(addDays(now, -offset))] ?? {})
   )

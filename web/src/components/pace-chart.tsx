@@ -31,7 +31,9 @@ function PaceTooltip({ active, payload }: TooltipProps) {
 }
 
 export function PaceChart({ data }: { data: PacePoint[] }) {
-  const ticks = [data[0].day, data[Math.floor(data.length / 2)].day, data[data.length - 1].day]
+  const ticks = [
+    ...new Set([data[0].day, data[Math.floor(data.length / 2)].day, data[data.length - 1].day]),
+  ]
   const lastIndex = data.length - 1
 
   return (

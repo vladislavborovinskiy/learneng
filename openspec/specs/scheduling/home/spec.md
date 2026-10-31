@@ -82,8 +82,10 @@ paragraphs.
 ### Requirement: Pace chart
 
 The home screen SHALL show, under «сегодня +N», a line chart of new words started
-per day over the last 14 local days including today (values from `meta.days[YYYY-MM-DD].learned`,
-missing days count as 0). The line SHALL be sage, with a faint area below, hairline horizontal
+per day from the learner's first active day (the earliest key of `meta.days`) to today, at most
+the last 14 local days (values from `meta.days[YYYY-MM-DD].learned`, missing days inside the range
+count as 0); with no recorded days it shows today only. The range stretches over the full width
+and each date label appears once. The line SHALL be sage, with a faint area below, hairline horizontal
 grid, small muted axis labels (days as «28 окт» on a few ticks, whole-number counts) and today's
 point marked. Tapping or hovering a day SHALL show a glass tooltip «<день> <мес> · +N». The
 chart SHALL have no legend, title or border.
@@ -95,8 +97,18 @@ chart SHALL have no legend, title or border.
 
 #### Scenario: Fresh learner
 
-- **WHEN** no new words were started in the last 14 days
-- **THEN** the chart shows a flat line at 0
+- **WHEN** the learner started using the app today
+- **THEN** the chart shows a single point for today, labelled with today's date
+
+#### Scenario: Third day
+
+- **WHEN** the first recorded day was two days ago
+- **THEN** the chart spans three days across its full width
+
+#### Scenario: Long break
+
+- **WHEN** the learner has been using the app for months and started no new words in the last 14 days
+- **THEN** the chart shows a flat line at 0 over the last 14 days
 
 #### Scenario: Tooltip
 
