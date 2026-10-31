@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { WordTitle } from '@/components/word-title'
 import type { Word } from '@/lib/content'
+import { useStrings } from '@/lib/i18n'
 import { useHotkeys } from '@/lib/use-hotkeys'
 
 type WordIntroProps = {
@@ -17,6 +18,7 @@ type WordIntroProps = {
 }
 
 export function WordIntro({ word, header, onNext, onKnown }: WordIntroProps) {
+  const t = useStrings()
   const example = word.sentences[0]
 
   useHotkeys({ Enter: onNext })
@@ -28,15 +30,15 @@ export function WordIntro({ word, header, onNext, onKnown }: WordIntroProps) {
         <div className="flex gap-3">
           <SpeakButton text={word.en} />
           <Button variant="outline" size="lg" onClick={onKnown}>
-            Знаю
+            {t.exercises.know}
           </Button>
           <Button size="lg" className="flex-1" onClick={onNext}>
-            Дальше <KeyLabel>Enter</KeyLabel>
+            {t.common.next} <KeyLabel>Enter</KeyLabel>
           </Button>
         </div>
       }
     >
-      <ScreenLabel>Новое слово</ScreenLabel>
+      <ScreenLabel>{t.exercises.newWord}</ScreenLabel>
       <Card>
         <CardContent className="@container flex flex-col gap-3">
           <WordTitle text={word.en} />

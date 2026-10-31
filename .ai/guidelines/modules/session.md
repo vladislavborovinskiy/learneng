@@ -75,6 +75,10 @@ difficulty follows the FSRS card, give immediate feedback, finish with a summary
 
 ## Non-obvious invariants / gotchas
 
+- Quoted UI strings are the Russian interface; every one has an English variant in
+  `web/src/lib/i18n.ts` (wording table in `openspec/specs/ui/interface-language`). Translations
+  of words and sentences stay Russian in both languages.
+
 - `useHotkeys` listens on `window` in the capture phase and `preventDefault`s handled keys, so a
   focused button or the typing form never fires a second time; repeats are ignored. Exercise
   bindings are disabled while the feedback panel is shown (the panel has its own `Enter`).

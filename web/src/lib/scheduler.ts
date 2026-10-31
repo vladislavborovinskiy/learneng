@@ -102,21 +102,6 @@ export function getStreak(meta: Meta, now = new Date()) {
   return streak
 }
 
-export const SHORT_MONTHS = [
-  'янв',
-  'фев',
-  'мар',
-  'апр',
-  'май',
-  'июн',
-  'июл',
-  'авг',
-  'сен',
-  'окт',
-  'ноя',
-  'дек',
-]
-
 const ACCURACY_DAYS = 7
 const HARD_WORDS_COUNT = 3
 
@@ -127,11 +112,11 @@ export function getStats(
   now = new Date()
 ) {
   const due = getDueWordIds(progress, now).length
-  const firstDay = Object.keys(meta.days).sort()[0]
+  const firstDay = Object.keys(meta.days).sort()[0] ?? dayKey(now)
   const paceSeries = Array.from({ length: PACE_DAYS }, (_, index) =>
     dayKey(addDays(now, index - PACE_DAYS + 1))
   )
-    .filter((day, index) => !firstDay || day >= firstDay || index === PACE_DAYS - 1)
+    .filter((day, index) => day >= firstDay || index === PACE_DAYS - 1)
     .map((day) => ({ day, learned: meta.days[day]?.learned ?? 0 }))
   const [correct, total] = Array.from({ length: ACCURACY_DAYS }, (_, offset) =>
     Object.values(answerStats[dayKey(addDays(now, -offset))] ?? {})

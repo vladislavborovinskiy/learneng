@@ -1,5 +1,6 @@
 import type { Card } from 'ts-fsrs'
 import type { ExerciseType } from '@/lib/exercises'
+import type { Language, Strings } from '@/lib/i18n'
 import { isTelegram, webApp } from '@/lib/telegram'
 
 type KeyValueStore = {
@@ -167,6 +168,7 @@ export type DayStats = {
 
 export type Meta = {
   levelTestDone: boolean
+  language: Language
   days: Record<string, DayStats>
 }
 
@@ -174,6 +176,7 @@ export type AnswerStats = Record<string, Partial<Record<ExerciseType, [number, n
 
 export const defaultMeta: Meta = {
   levelTestDone: false,
+  language: 'ru',
   days: {},
 }
 
@@ -281,7 +284,8 @@ export async function loadAll(): Promise<{ progress: Progress; meta: Meta; stats
     ])
   )
   const stats = entries[STATS_KEY] ? (JSON.parse(entries[STATS_KEY]) as AnswerStats) : {}
-  return { progress, meta: { ...defaultMeta, ...storedMeta, days }, stats }
+  const language = storedMeta.language === 'en' ? 'en' : 'ru'
+  return { progress, meta: { ...defaultMeta, ...storedMeta, language, days }, stats }
 }
 
 const allPackKeys = Array.from({ length: PACK_COUNT }, (_, index) => packKeyByIndex(index))
@@ -324,6 +328,17 @@ export function saveStats(stats: AnswerStats) {
   )
 }
 
+export class BackupError extends Error {
+  readonly reason: keyof Strings['backup']['errors']
+  readonly key: string
+
+  constructor(reason: BackupError['reason'], key = '') {
+    super(`${reason} ${key}`)
+    this.reason = reason
+    this.key = key
+  }
+}
+
 export function exportBackup(progress: Progress, meta: Meta) {
   const packs = serializePacks(progress, allPackKeys).filter(([, value]) => value !== '{}')
   return JSON.stringify(Object.fromEntries([...packs, [META_KEY, serializeMeta(meta)]]))
@@ -332,7 +347,7 @@ export function exportBackup(progress: Progress, meta: Meta) {
 export async function importBackup(backup: string) {
   const entries: unknown = JSON.parse(backup)
   if (typeof entries !== 'object' || entries === null || !(META_KEY in entries)) {
-    throw new Error('Это не резервная копия LearnEng')
+    throw new BackupError('notBackup')
   }
   const values = Object.fromEntries(
     Object.entries(entries).map(([key, value]) => [
@@ -341,8 +356,8 @@ export async function importBackup(backup: string) {
     ])
   )
   for (const [key, value] of Object.entries(values)) {
-    if (key !== META_KEY && !allPackKeys.includes(key)) throw new Error(`Неизвестный ключ ${key}`)
-    if (typeof value !== 'string') throw new Error(`Повреждённое значение ${key}`)
+    if (key !== META_KEY && !allPackKeys.includes(key)) throw new BackupError('unknownKey', key)
+    if (typeof value !== 'string') throw new BackupError('badValue', key)
     JSON.parse(value)
   }
   const restored: Record<string, string> = Object.fromEntries([

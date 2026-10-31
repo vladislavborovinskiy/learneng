@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { strings, StringsContext } from '@/lib/i18n'
 import { getStats, type LessonItem } from '@/lib/scheduler'
 import { haptic } from '@/lib/telegram'
 import { useLearning } from '@/lib/use-learning'
@@ -30,6 +31,8 @@ export function App() {
   }, [updateMeta])
   const isLoading = state.status === 'loading'
   const hasError = state.status === 'error'
+  const t = strings[state.status === 'ready' ? state.meta.language : 'ru']
+  const gotIt = t.common.gotIt
 
   useEffect(() => {
     if (isLoading) return
@@ -46,6 +49,7 @@ export function App() {
       return
     }
     const close = document.getElementById('preloader-close')
+    if (close) close.textContent = gotIt
     const handleClose = () => {
       haptic('success')
       hide()
@@ -53,20 +57,20 @@ export function App() {
     close?.addEventListener('click', handleClose, { once: true })
     document.fonts.ready.then(() => preloader.classList.add('preloader-ready'))
     return () => close?.removeEventListener('click', handleClose)
-  }, [isLoading, hasError])
+  }, [isLoading, hasError, gotIt])
 
   if (isLoading) return null
 
   if (state.status === 'error') {
     return (
       <div className="grid min-h-svh place-items-center p-4 text-center text-destructive">
-        Не удалось загрузить прогресс: {state.error}
+        {t.common.loadError(state.error)}
       </div>
     )
   }
 
-  if (screen === 'session') {
-    return (
+  const content =
+    screen === 'session' ? (
       <Session
         key={lessonKey}
         items={mistakeItems ?? undefined}
@@ -80,32 +84,26 @@ export function App() {
         onRepeatMistakes={repeatMistakes}
         onExit={goHome}
       />
-    )
-  }
-
-  if (screen === 'level-test') {
-    return <LevelTest markKnown={markKnown} onFinish={finishLevelTest} onExit={goHome} />
-  }
-
-  if (screen === 'settings') {
-    return (
+    ) : screen === 'level-test' ? (
+      <LevelTest markKnown={markKnown} onFinish={finishLevelTest} onExit={goHome} />
+    ) : screen === 'settings' ? (
       <Settings
         progress={state.progress}
         meta={state.meta}
         stats={state.stats}
         onRetakeLevelTest={() => setScreen('level-test')}
+        onLanguageChange={(language) => updateMeta({ language })}
         onExit={goHome}
       />
+    ) : (
+      <Home
+        stats={getStats(state.progress, state.meta, state.stats)}
+        levelTestDone={state.meta.levelTestDone}
+        onStartLesson={startLesson}
+        onStartLevelTest={() => setScreen('level-test')}
+        onOpenSettings={() => setScreen('settings')}
+      />
     )
-  }
 
-  return (
-    <Home
-      stats={getStats(state.progress, state.meta, state.stats)}
-      levelTestDone={state.meta.levelTestDone}
-      onStartLesson={startLesson}
-      onStartLevelTest={() => setScreen('level-test')}
-      onOpenSettings={() => setScreen('settings')}
-    />
-  )
+  return <StringsContext value={t}>{content}</StringsContext>
 }

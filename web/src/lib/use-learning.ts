@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { Rating, type Grade } from 'ts-fsrs'
 import type { ExerciseType } from '@/lib/exercises'
+import { strings, type Language } from '@/lib/i18n'
 import { dayKey, gradeCard } from '@/lib/scheduler'
 import {
   loadAll,
@@ -18,14 +19,15 @@ type LearningData = { progress: Progress; meta: Meta; stats: AnswerStats }
 type LearningState =
   { status: 'loading' } | { status: 'error'; error: string } | ({ status: 'ready' } & LearningData)
 
-function reportSaveError(error: unknown) {
-  console.error('Failed to save progress', error)
-  toast.error('Прогресс не сохранился', {
-    id: 'save-error',
-    description:
-      'Проверь интернет. Не закрывай приложение: в настройках можно скопировать резервную копию.',
-    duration: 8000,
-  })
+function reportSaveError(language: Language) {
+  return (error: unknown) => {
+    console.error('Failed to save progress', error)
+    toast.error(strings[language].backup.saveFailed, {
+      id: 'save-error',
+      description: strings[language].backup.saveFailedHint,
+      duration: 8000,
+    })
+  }
 }
 
 export function useLearning() {
@@ -64,8 +66,8 @@ export function useLearning() {
         },
       }
       commit({ ...data, progress, meta })
-      saveCards(progress, [wordId]).catch(reportSaveError)
-      saveMeta(meta).catch(reportSaveError)
+      saveCards(progress, [wordId]).catch(reportSaveError(meta.language))
+      saveMeta(meta).catch(reportSaveError(meta.language))
     },
     [commit]
   )
@@ -79,7 +81,7 @@ export function useLearning() {
       const progress = { ...data.progress }
       for (const wordId of unseen) progress[wordId] = gradeCard(undefined, Rating.Easy, now)
       commit({ ...data, progress })
-      saveCards(progress, unseen).catch(reportSaveError)
+      saveCards(progress, unseen).catch(reportSaveError(data.meta.language))
     },
     [commit]
   )
@@ -97,7 +99,7 @@ export function useLearning() {
       },
     }
     commit({ ...data, meta })
-    saveMeta(meta).catch(reportSaveError)
+    saveMeta(meta).catch(reportSaveError(meta.language))
   }, [commit])
 
   const updateMeta = useCallback(
@@ -106,7 +108,7 @@ export function useLearning() {
       if (!data) return
       const meta = { ...data.meta, ...patch }
       commit({ ...data, meta })
-      saveMeta(meta).catch(reportSaveError)
+      saveMeta(meta).catch(reportSaveError(meta.language))
     },
     [commit]
   )
@@ -123,7 +125,7 @@ export function useLearning() {
         [today]: { ...todayStats, [type]: [correct + (isCorrect ? 1 : 0), total + 1] },
       }
       commit({ ...data, stats })
-      saveStats(stats).catch(reportSaveError)
+      saveStats(stats).catch(reportSaveError(data.meta.language))
     },
     [commit]
   )

@@ -45,6 +45,10 @@ home screen. Code: `web/src/lib/scheduler.ts`, `web/src/screens/home.tsx`,
 
 ## Non-obvious invariants / gotchas
 
+- Quoted UI strings are the Russian interface; every one has an English variant in
+  `web/src/lib/i18n.ts` (wording table in `openspec/specs/ui/interface-language`). Translations
+  of words and sentences stay Russian in both languages.
+
 - Days are local dates (`toLocaleDateString('en-CA')`), so «выучено сегодня» and the lesson count reset at local
   midnight of the device, not UTC.
 - The queue is a snapshot; cards that become due during a lesson wait for the next one. Words

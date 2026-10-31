@@ -6,6 +6,7 @@ import { WordTitle } from '@/components/word-title'
 import { Button } from '@/components/ui/button'
 import { SentenceWithBlank } from '@/exercises/sentence-with-blank'
 import type { AnswerResult, ChoiceExercise } from '@/lib/exercises'
+import { useStrings } from '@/lib/i18n'
 import { useHotkeys } from '@/lib/use-hotkeys'
 
 type ChoiceProps = {
@@ -16,6 +17,7 @@ type ChoiceProps = {
 }
 
 export function Choice({ exercise, header, feedback, onAnswer }: ChoiceProps) {
+  const t = useStrings()
   const { mode, word, sentence, options, answer } = exercise
   const choose = (option: string) => onAnswer(option === answer ? 'correct' : 'wrong')
 
@@ -34,15 +36,15 @@ export function Choice({ exercise, header, feedback, onAnswer }: ChoiceProps) {
 
   const prompts = {
     'en-ru': {
-      title: 'Как переводится?',
+      title: t.exercises.whatMeans,
       body: <WordTitle text={word.en} />,
     },
     'ru-en': {
-      title: 'Выбери перевод',
+      title: t.exercises.chooseTranslation,
       body: <h2 className="text-2xl leading-snug font-light">{word.ru.join(', ')}</h2>,
     },
     'cloze': {
-      title: 'Вставь слово',
+      title: t.exercises.fillBlank,
       body: (
         <div className="flex flex-col gap-2">
           <SentenceWithBlank sentence={sentence} />
@@ -72,7 +74,7 @@ export function Choice({ exercise, header, feedback, onAnswer }: ChoiceProps) {
               </Button>
             ))}
             <Button variant="outline" size="lg" onClick={() => onAnswer('forgot')}>
-              Не помню <KeyLabel>⇧Enter</KeyLabel>
+              {t.common.forgot} <KeyLabel>⇧Enter</KeyLabel>
             </Button>
           </div>
         )

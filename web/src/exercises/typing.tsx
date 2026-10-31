@@ -13,6 +13,7 @@ import {
   type AnswerResult,
   type TypingExercise,
 } from '@/lib/exercises'
+import { useStrings } from '@/lib/i18n'
 import { useHotkeys } from '@/lib/use-hotkeys'
 
 type TypingProps = {
@@ -23,6 +24,7 @@ type TypingProps = {
 }
 
 export function Typing({ exercise, header, feedback, onAnswer }: TypingProps) {
+  const t = useStrings()
   const [value, setValue] = useState('')
   const [letters, setLetters] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -62,7 +64,7 @@ export function Typing({ exercise, header, feedback, onAnswer }: TypingProps) {
               <Button
                 variant="outline"
                 size="icon-lg"
-                aria-label="Подсказка"
+                aria-label={t.common.hint}
                 className="flex-col gap-0"
                 onClick={takeHint}
               >
@@ -71,16 +73,16 @@ export function Typing({ exercise, header, feedback, onAnswer }: TypingProps) {
               </Button>
             )}
             <Button variant="outline" size="lg" onClick={() => onAnswer('forgot')}>
-              Не помню <KeyLabel>⇧Enter</KeyLabel>
+              {t.common.forgot} <KeyLabel>⇧Enter</KeyLabel>
             </Button>
             <Button size="lg" className="flex-1" disabled={!value.trim()} onClick={check}>
-              Проверить <KeyLabel>Enter</KeyLabel>
+              {t.exercises.check} <KeyLabel>Enter</KeyLabel>
             </Button>
           </div>
         )
       }
     >
-      <ScreenLabel>Напиши по-английски</ScreenLabel>
+      <ScreenLabel>{t.exercises.typeInEnglish}</ScreenLabel>
       <h2 className="text-2xl leading-snug font-light">{word.ru.join(', ')}</h2>
       <div className="flex flex-col gap-2">
         {feedback ? (
@@ -115,7 +117,7 @@ export function Typing({ exercise, header, feedback, onAnswer }: TypingProps) {
                   autoCorrect="off"
                   spellCheck={false}
                   enterKeyHint="done"
-                  aria-label="Ответ"
+                  aria-label={t.exercises.answer}
                   className="col-start-1 row-start-1 w-full min-w-0 bg-transparent tracking-wide outline-none placeholder:tracking-widest placeholder:text-muted-foreground"
                 />
               </span>

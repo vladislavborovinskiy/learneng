@@ -2,9 +2,12 @@ import { FloppyDiskIcon } from '@phosphor-icons/react/dist/csr/FloppyDisk'
 import { useCallback, useState } from 'react'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Textarea } from '@/components/ui/textarea'
 import type { ExerciseType } from '@/lib/exercises'
+import { strings, useStrings, type Language } from '@/lib/i18n'
 import {
+  BackupError,
   exportBackup,
   importBackup,
   type AnswerStats,
@@ -18,19 +21,21 @@ type SettingsProps = {
   meta: Meta
   stats: AnswerStats
   onRetakeLevelTest: () => void
+  onLanguageChange: (language: Language) => void
   onExit: () => void
 }
 
-const exerciseNames: Record<ExerciseType, string> = {
-  'en-ru': 'С английского',
-  'ru-en': 'На английский',
-  'cloze': 'Вставь слово',
-  'chunks': 'Собери из кусков',
-  'tiles': 'Собери из слов',
-  'typing': 'Напиши слово',
-}
+const languages = Object.keys(strings) as Language[]
 
-export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: SettingsProps) {
+export function Settings({
+  progress,
+  meta,
+  stats,
+  onRetakeLevelTest,
+  onLanguageChange,
+  onExit,
+}: SettingsProps) {
+  const t = useStrings()
   const [backupOpen, setBackupOpen] = useState(false)
   const [confirmRetake, setConfirmRetake] = useState(false)
   const [copyStatus, setCopyStatus] = useState<string | null>(null)
@@ -50,8 +55,8 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
   const copyBackup = () => {
     navigator.clipboard
       .writeText(exportBackup(progress, meta))
-      .then(() => setCopyStatus('Скопировано'))
-      .catch(() => setCopyStatus('Не удалось скопировать'))
+      .then(() => setCopyStatus(t.backup.copied))
+      .catch(() => setCopyStatus(t.backup.copyFailed))
   }
 
   const restoreBackup = () => {
@@ -59,7 +64,13 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
     importBackup(backup.trim())
       .then(() => window.location.reload())
       .catch((error: unknown) => {
-        setImportError(error instanceof Error ? error.message : String(error))
+        setImportError(
+          error instanceof BackupError
+            ? t.backup.errors[error.reason](error.key)
+            : error instanceof Error
+              ? error.message
+              : String(error)
+        )
         setConfirmImport(false)
       })
   }
@@ -69,7 +80,7 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
     onRetakeLevelTest()
   }
 
-  const accuracy = (Object.keys(exerciseNames) as ExerciseType[])
+  const accuracy = (Object.keys(t.settings.exerciseNames) as ExerciseType[])
     .map((type) => {
       const [correct, total] = Object.values(stats).reduce(
         ([correctSum, totalSum], day) => {
@@ -89,18 +100,18 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
           <>
             <div className="grid grid-cols-2 gap-3">
               <Button variant="outline" onClick={copyBackup}>
-                Скопировать
+                {t.backup.copy}
               </Button>
               <Button
                 variant={confirmImport ? 'destructive' : 'outline'}
                 disabled={!backup.trim()}
                 onClick={restoreBackup}
               >
-                {confirmImport ? 'Точно?' : 'Восстановить'}
+                {confirmImport ? t.settings.sure : t.backup.restore}
               </Button>
             </div>
             <Button size="lg" onClick={closeBackup}>
-              Назад
+              {t.backup.back}
             </Button>
           </>
         }
@@ -112,15 +123,11 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
             setConfirmImport(false)
             setImportError(null)
           }}
-          placeholder="Вставь сюда копию из файла от бота"
+          placeholder={t.backup.placeholder}
           className="h-32 text-xs"
         />
         {copyStatus && <p className="text-sm text-muted-foreground">{copyStatus}</p>}
-        {confirmImport && (
-          <p className="text-sm text-destructive">
-            Текущий прогресс сотрётся. Нажми «Точно?», чтобы восстановить копию.
-          </p>
-        )}
+        {confirmImport && <p className="text-sm text-destructive">{t.backup.restoreWarning}</p>}
         {importError && <p className="text-sm text-destructive">{importError}</p>}
       </ThumbLayout>
     )
@@ -128,21 +135,35 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
 
   return (
     <ThumbLayout
+      header={
+        <Tabs
+          value={meta.language}
+          onValueChange={(language: Language) => onLanguageChange(language)}
+        >
+          <TabsList aria-label={t.settings.language}>
+            {languages.map((language) => (
+              <TabsTrigger key={language} value={language}>
+                {language.toUpperCase()}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+      }
       actions={
         <div className="flex items-center gap-2.5">
           <Button
             variant="outline"
             size="icon-lg"
-            aria-label="Резервная копия"
+            aria-label={t.settings.backup}
             onClick={() => setBackupOpen(true)}
           >
             <FloppyDiskIcon weight="bold" />
           </Button>
           <Button variant="outline" size="lg" onClick={retakeLevelTest}>
-            {confirmRetake ? 'Точно?' : 'Тест заново'}
+            {confirmRetake ? t.settings.sure : t.settings.retakeTest}
           </Button>
           <Button size="lg" className="flex-1" onClick={onExit}>
-            Готово
+            {t.settings.done}
           </Button>
         </div>
       }
@@ -151,7 +172,9 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
         <div className="glass mt-6 flex flex-col gap-3 rounded-3xl p-5">
           {accuracy.map(({ type, correct, total }) => (
             <div key={type} className="flex items-baseline gap-4">
-              <span className="flex-1 text-sm text-muted-foreground">{exerciseNames[type]}</span>
+              <span className="flex-1 text-sm text-muted-foreground">
+                {t.settings.exerciseNames[type]}
+              </span>
               <span className="font-mono text-xs text-muted-foreground tabular-nums">
                 {correct}/{total}
               </span>
@@ -160,15 +183,10 @@ export function Settings({ progress, meta, stats, onRetakeLevelTest, onExit }: S
               </span>
             </div>
           ))}
-          <span className="text-xs text-muted-foreground">точность за 30 дней</span>
+          <span className="text-xs text-muted-foreground">{t.settings.accuracy30}</span>
         </div>
       )}
-      {confirmRetake && (
-        <p className="text-sm text-destructive">
-          Тест не сотрёт выученные слова, только добавит новые известные. Нажми «Точно?», чтобы
-          начать.
-        </p>
-      )}
+      {confirmRetake && <p className="text-sm text-destructive">{t.settings.retakeWarning}</p>}
     </ThumbLayout>
   )
 }

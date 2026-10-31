@@ -9,6 +9,7 @@ import { Progress } from '@/components/ui/progress'
 import { WordTitle } from '@/components/word-title'
 import { words } from '@/lib/content'
 import { shuffle } from '@/lib/exercises'
+import { useStrings } from '@/lib/i18n'
 import { useBackButton } from '@/lib/telegram'
 
 type LevelTestProps = {
@@ -26,6 +27,7 @@ const FIRST_BAND_KNOWN_THRESHOLD = 0.85
 const MAX_RELIABLE_FALSE_ALARM_RATE = 1 / 3
 
 export function LevelTest({ markKnown, onFinish, onExit }: LevelTestProps) {
+  const t = useStrings()
   const [items] = useState<TestItem[]>(() =>
     shuffle([...levelTest.words, ...levelTest.pseudo.map((en) => ({ en, rank: null }))])
   )
@@ -46,15 +48,15 @@ export function LevelTest({ markKnown, onFinish, onExit }: LevelTestProps) {
         actions={
           <div className="grid grid-cols-2 gap-3">
             <Button variant="outline" size="lg" onClick={() => answer(false)}>
-              Не знаю
+              {t.levelTest.dontKnow}
             </Button>
             <Button size="lg" onClick={() => answer(true)}>
-              Знаю
+              {t.levelTest.know}
             </Button>
           </div>
         }
       >
-        <ScreenLabel>Знаешь это слово?</ScreenLabel>
+        <ScreenLabel>{t.levelTest.question}</ScreenLabel>
         <Card className="flex-1 justify-center">
           <CardContent className="@container text-center">
             <WordTitle text={items[index].en} />
@@ -101,28 +103,26 @@ export function LevelTest({ markKnown, onFinish, onExit }: LevelTestProps) {
       actions={
         isReliable ? (
           <Button size="lg" onClick={save}>
-            Сохранить
+            {t.levelTest.save}
           </Button>
         ) : (
           <Button variant="outline" size="lg" onClick={onExit}>
-            Пройти позже
+            {t.levelTest.later}
           </Button>
         )
       }
     >
-      <ScreenLabel>Результат теста</ScreenLabel>
+      <ScreenLabel>{t.levelTest.result}</ScreenLabel>
       <div>
         <div className="text-5xl font-light tracking-[-0.03em] tabular-nums">≈ {estimate}</div>
-        <p className="text-sm text-muted-foreground">слов из {totalWords} самых частых ты знаешь</p>
+        <p className="text-sm text-muted-foreground">{t.levelTest.youKnow(totalWords)}</p>
       </div>
       <Card>
         <CardContent className="flex flex-col gap-4">
           {bands.map(({ from, to, score }) => (
             <div key={from} className="flex flex-col gap-2">
               <div className="flex justify-between text-sm">
-                <span>
-                  Слова {from}–{to}
-                </span>
+                <span>{t.levelTest.band(from, to)}</span>
                 <span className="text-muted-foreground">{Math.round(score * 100)}%</span>
               </div>
               <Progress value={score * 100} />
@@ -132,15 +132,12 @@ export function LevelTest({ markKnown, onFinish, onExit }: LevelTestProps) {
       </Card>
       {falseAlarms > 0 && isReliable && (
         <p className="text-sm text-muted-foreground">
-          Ты отметил несуществующих слов: {falseAlarms} из {levelTest.pseudo.length}. Оценка
-          скорректирована с учётом этого.
+          {t.levelTest.adjusted(falseAlarms, levelTest.pseudo.length)}
         </p>
       )}
       {!isReliable && (
         <p className="text-sm text-destructive">
-          Ты отметил несуществующих слов: {falseAlarms} из {levelTest.pseudo.length}. Результат
-          ненадёжный, поэтому слова не будут помечены как известные. Попробуй ещё раз и отмечай
-          «Знаю», только если точно помнишь перевод.
+          {t.levelTest.unreliable(falseAlarms, levelTest.pseudo.length)}
         </p>
       )}
     </ThumbLayout>

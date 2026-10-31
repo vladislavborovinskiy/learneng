@@ -4,6 +4,7 @@ import { lazy, Suspense, useState } from 'react'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
+import { useStrings } from '@/lib/i18n'
 import type { getStats } from '@/lib/scheduler'
 import { cn } from '@/lib/utils'
 
@@ -26,22 +27,28 @@ export function Home({
   onStartLevelTest,
   onOpenSettings,
 }: HomeProps) {
+  const t = useStrings()
   const [revealed, setRevealed] = useState<ReadonlySet<string>>(new Set())
 
   return (
     <ThumbLayout
       actions={
         <div className="flex items-center gap-2.5">
-          <Button variant="outline" size="icon-lg" aria-label="Настройки" onClick={onOpenSettings}>
+          <Button
+            variant="outline"
+            size="icon-lg"
+            aria-label={t.home.settings}
+            onClick={onOpenSettings}
+          >
             <GearSixIcon weight="bold" />
           </Button>
           {!levelTestDone && (
             <Button variant="outline" size="lg" onClick={onStartLevelTest}>
-              Тест
+              {t.home.test}
             </Button>
           )}
           <Button size="lg" className="flex-1" onClick={onStartLesson}>
-            Урок
+            {t.home.lesson}
           </Button>
         </div>
       }
@@ -51,7 +58,7 @@ export function Home({
           <span className="text-7xl leading-none font-light tracking-[-0.04em] tabular-nums">
             {stats.learned}
           </span>
-          <span className="flex-1 text-muted-foreground">из {stats.total} слов</span>
+          <span className="flex-1 text-muted-foreground">{t.home.ofWords(stats.total)}</span>
           <div
             className={cn(
               'glass flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-xs tabular-nums',
@@ -65,7 +72,7 @@ export function Home({
         <div className="flex flex-col gap-2">
           <Progress value={(stats.learned / stats.total) * 100} />
           <span className="self-end font-mono text-xs text-muted-foreground">
-            сегодня +{stats.learnedToday}
+            {t.home.today(stats.learnedToday)}
           </span>
         </div>
         <Suspense fallback={<div className="h-36" />}>
@@ -76,10 +83,10 @@ export function Home({
       <div className="grid grid-cols-2 gap-2.5">
         {[
           {
-            label: 'точность за неделю',
+            label: t.home.accuracyWeek,
             value: stats.accuracyWeek === null ? '—' : `${stats.accuracyWeek}%`,
           },
-          { label: 'повторений сегодня', value: stats.reviewedToday },
+          { label: t.home.reviewsToday, value: stats.reviewedToday },
         ].map(({ label, value }) => (
           <div key={label} className="glass flex flex-col gap-2 rounded-3xl p-4">
             <span className="text-3xl leading-none font-light tracking-[-0.03em] tabular-nums">
@@ -91,7 +98,10 @@ export function Home({
       </div>
 
       {stats.hardWords.length > 0 && (
-        <section aria-label="Трудные слова" className="glass flex flex-col gap-3 rounded-3xl p-5">
+        <section
+          aria-label={t.home.hardWords}
+          className="glass flex flex-col gap-3 rounded-3xl p-5"
+        >
           {stats.hardWords.map(({ id, en, ru }) => (
             <button
               key={id}
@@ -116,7 +126,7 @@ export function Home({
 
       {stats.isNewWordsPaused && (
         <p className="glass rounded-3xl px-4 py-3 text-sm text-muted-foreground">
-          Новые слова на паузе — сначала повторения
+          {t.home.newWordsPaused}
         </p>
       )}
     </ThumbLayout>

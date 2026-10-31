@@ -2,6 +2,7 @@ import { KeyLabel } from '@/components/key-label'
 import { SpeakButton } from '@/components/speak-button'
 import { Button } from '@/components/ui/button'
 import type { AnswerResult, Exercise } from '@/lib/exercises'
+import { useStrings } from '@/lib/i18n'
 import { useHotkeys } from '@/lib/use-hotkeys'
 import { cn } from '@/lib/utils'
 
@@ -10,14 +11,6 @@ type FeedbackPanelProps = {
   exercise: Exercise
   onContinue: () => void
 }
-
-const titles = {
-  correct: 'Правильно!',
-  hinted: 'Верно, с подсказкой',
-  typo: 'Почти! Опечатка',
-  wrong: 'Неправильно',
-  forgot: 'Запомни',
-} satisfies Record<AnswerResult, string>
 
 const toneByResult = {
   correct: 'text-success',
@@ -36,8 +29,11 @@ const tintByResult = {
 } satisfies Record<AnswerResult, string>
 
 export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelProps) {
+  const t = useStrings()
   const title =
-    exercise.kind === 'tiles' && result === 'typo' ? 'Почти! Были ошибки' : titles[result]
+    exercise.kind === 'tiles' && result === 'typo'
+      ? t.feedback.tilesTypo
+      : t.feedback.titles[result]
   const { word, sentence } = exercise
   const correctAnswer = exercise.kind === 'tiles' ? null : exercise.answer
   const [before, after] = sentence.en.split(sentence.form)
@@ -61,7 +57,7 @@ export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelPro
         )}
         {result !== 'correct' && result !== 'forgot' && correctAnswer && (
           <p className="text-sm">
-            Ответ: <span className={cn('font-medium', tone)}>{correctAnswer}</span>
+            {t.feedback.answer} <span className={cn('font-medium', tone)}>{correctAnswer}</span>
           </p>
         )}
         <div className="flex flex-col gap-1">
@@ -76,7 +72,7 @@ export function FeedbackPanel({ result, exercise, onContinue }: FeedbackPanelPro
       <div className="flex items-center gap-3">
         <SpeakButton text={sentence.en} />
         <Button autoFocus size="lg" className="flex-1" onClick={onContinue}>
-          Дальше <KeyLabel>Enter</KeyLabel>
+          {t.common.next} <KeyLabel>Enter</KeyLabel>
         </Button>
       </div>
     </>

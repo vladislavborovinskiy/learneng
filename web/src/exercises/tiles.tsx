@@ -12,6 +12,7 @@ import {
   type AnswerResult,
   type TilesExercise,
 } from '@/lib/exercises'
+import { useStrings } from '@/lib/i18n'
 import { useHotkeys } from '@/lib/use-hotkeys'
 import { cn } from '@/lib/utils'
 
@@ -26,6 +27,7 @@ const tileClassName = 'rounded-2xl px-3.5 py-2.5 text-base transition-colors'
 const MISSES_BEFORE_HIGHLIGHT = 2
 
 export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
+  const t = useStrings()
   const [placed, setPlaced] = useState<number[]>([])
   const [mistakes, setMistakes] = useState(0)
   const [misses, setMisses] = useState(0)
@@ -116,7 +118,7 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
                 <Button
                   variant="outline"
                   size="icon-lg"
-                  aria-label="Подсказка"
+                  aria-label={t.common.hint}
                   className="flex-col gap-0"
                   onClick={takeHint}
                 >
@@ -130,14 +132,14 @@ export function Tiles({ exercise, header, feedback, onAnswer }: TilesProps) {
                 className="flex-1"
                 onClick={() => onAnswer('forgot')}
               >
-                Не помню <KeyLabel>⇧Enter</KeyLabel>
+                {t.common.forgot} <KeyLabel>⇧Enter</KeyLabel>
               </Button>
             </div>
           </>
         )
       }
     >
-      <ScreenLabel>Собери предложение</ScreenLabel>
+      <ScreenLabel>{t.exercises.buildSentence}</ScreenLabel>
       <p className="text-xl leading-snug">{sentence.ru}</p>
       <div className="flex min-h-24 flex-wrap content-start gap-2">
         {placed.map((index) => (

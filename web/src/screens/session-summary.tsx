@@ -2,6 +2,7 @@ import { KeyLabel } from '@/components/key-label'
 import { ThumbLayout } from '@/components/thumb-layout'
 import { Button } from '@/components/ui/button'
 import { isMistake, type AnswerResult } from '@/lib/exercises'
+import { useStrings } from '@/lib/i18n'
 import { getStreak } from '@/lib/scheduler'
 import type { Meta } from '@/lib/storage'
 import { useHotkeys } from '@/lib/use-hotkeys'
@@ -30,14 +31,15 @@ export function SessionSummary({
 }: SessionSummaryProps) {
   const correct = results.filter((result) => !isMistake(result)).length
   const accuracy = results.length ? Math.round((correct / results.length) * 100) : 100
+  const t = useStrings()
   const canRepeatMistakes = accuracy < REPEAT_MISTAKES_ACCURACY && missed.length > 0
 
   useHotkeys({ Enter: canRepeatMistakes ? onRepeatMistakes : onNextLesson })
   const items = [
-    { label: 'точность', value: `${accuracy}%` },
-    { label: 'ответов', value: results.length },
-    { label: 'новых слов', value: learned },
-    { label: 'дней подряд', value: getStreak(meta) },
+    { label: t.summary.accuracy, value: `${accuracy}%` },
+    { label: t.summary.answers, value: results.length },
+    { label: t.summary.newWords, value: learned },
+    { label: t.summary.streak, value: getStreak(meta) },
   ]
 
   return (
@@ -46,12 +48,12 @@ export function SessionSummary({
         <>
           {canRepeatMistakes && (
             <Button size="lg" onClick={onRepeatMistakes}>
-              Повторить ошибки <KeyLabel>Enter</KeyLabel>
+              {t.summary.repeatMistakes} <KeyLabel>Enter</KeyLabel>
             </Button>
           )}
           <div className="flex gap-3">
             <Button variant="outline" size="lg" onClick={onDone}>
-              На главную
+              {t.summary.home}
             </Button>
             <Button
               size="lg"
@@ -59,17 +61,17 @@ export function SessionSummary({
               className="flex-1"
               onClick={onNextLesson}
             >
-              Ещё урок {!canRepeatMistakes && <KeyLabel>Enter</KeyLabel>}
+              {t.summary.nextLesson} {!canRepeatMistakes && <KeyLabel>Enter</KeyLabel>}
             </Button>
           </div>
         </>
       }
     >
-      <h1 className="text-3xl leading-none font-light tracking-[-0.02em]">Урок пройден</h1>
+      <h1 className="text-3xl leading-none font-light tracking-[-0.02em]">{t.summary.title}</h1>
       {results.length > 0 && (
         <div
           className="grid grid-cols-8 gap-1.5"
-          aria-label={`Верных ответов: ${correct} из ${results.length}`}
+          aria-label={t.summary.correctOf(correct, results.length)}
         >
           {results.map((result, index) => (
             <div

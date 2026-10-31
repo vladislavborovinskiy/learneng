@@ -13,7 +13,8 @@ Also covers the manual backup in settings and the daily backup file from the ser
 ## Glossary
 
 - **Progress** — `Record<wordId, Card>` (ts-fsrs `Card`). A word without a card is unseen.
-- **Meta** — `{ levelTestDone, days }`, where `days` maps a local date `'YYYY-MM-DD'`
+- **Meta** — `{ levelTestDone, language, days }`; `language` is the interface language
+  `'ru' | 'en'` (missing or unknown → `'ru'` on load, so it travels with sync and backups); `days` `days` maps a local date `'YYYY-MM-DD'`
   (`dayKey`) to `{ reviewed, learned, lessons? }`. Stored compactly as
   `[reviewed, learned, lessons]` per day (`serializeMeta`); `loadAll` also reads the older object
   form, so old storage and backups stay valid. A legacy `newPerDay` from before lessons is
@@ -52,7 +53,8 @@ Also covers the manual backup in settings and the daily backup file from the ser
    to Review) and writes their packs. Does not touch Meta.
 4. **Complete lesson** — `completeLesson()` bumps `days[today].lessons`; `grade` keeps the other
    fields of the day (spread), so it never resets the lesson count.
-5. **Settings** — main view: no title, no caption, one action row like home:
+5. **Settings** — main view: no title, no caption; on top the «RU / EN» interface language tabs
+   (`components/ui/tabs.tsx`, saves `meta.language` at once), at the bottom one action row like home:
    round floppy-disk icon (backup), «Тест заново» (second tap «Точно?» starts it), wide «Готово»;
    read-only untitled accuracy card over the stored 30 days, rows «name  correct/total  %»,
    caption «точность за 30 дней» (hidden without answers); no daily limit. Backup
@@ -67,6 +69,9 @@ Also covers the manual backup in settings and the daily backup file from the ser
    user's chat with the bot via `sendDocument`. Errors are logged, nothing retried.
 
 ## Non-obvious invariants / gotchas
+
+- Backup import errors are `BackupError` with a `reason` and `key`; settings render the text in
+  the current interface language.
 
 - CloudStorage keys allow only `A-Za-z0-9_-`, hence `p_NN`; old backups with `p:NN` are accepted
   and renamed on import, but `loadAll` ignores `p:` keys in storage.
